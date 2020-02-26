@@ -15,10 +15,7 @@ class Inicio extends CI_Controller {
             $data['usuario_clave'] = $this->session->userdata('clave');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $data['usuario_dependencia'] = $this->session->userdata('dependencia');
-            $data['title'] = 'Alineación Estratégica del Programa de Gobierno 2018-2024 y Estructura Presupuestaria 2019';
             $data['error'] = $this->session->flashdata('error');
-
-            //print_r($this->session->userdata);
 
             $this->load->view('templates/header', $data);
             $this->load->view('inicio/inicio', $data);
@@ -65,8 +62,4 @@ class Inicio extends CI_Controller {
             $this->iniciar_sesion();
         }
     }
-
-
-
 }
-

@@ -1,23 +1,4 @@
-<h3>Identificación de la alineación estratégica</h3>
-<p>Como parte de los trabajos en la integración de información requerida por parte de la Auditoría Superior del Estado de Guanajuato con fines de formulación de las Auditorías Especiales de Evaluación y Desempeño a incluirse en los Programas Anuales de Fiscalización, el Instituto de Planeación Estadística y Geografía y la Secretaría de Finanzas, Inversión y Administración y se encuentran coordinando el proceso de solicitud e integración de la información por parte de las dependencias del Poder Ejecutivo del Estado.</p>
-<p>El objetivo principal a realizar es la de identificar la alineación entre la planeación estratégica estatal y la estructura programático presupuestal atribuida para su atención y logro. En este sentido, el Programa de Gobierno 2018-2024, publicado el 26 de marzo de 2019, es el instrumento rector de las acciones prioritarias del Ejecutivo del Estado, base de las políticas públicas que la actual administración pretende implementar a fin de buscar una solución a las problemáticas más sentidas de la población; a su vez, este mismo se compone de 6 ejes, los cuales contienen el conjunto de objetivos, estrategias y proyectos que guiarán el actuar de las dependencias y entidades del gobierno en cumplimiento de sus atribuciones y orientadas a satisfacer las necesidades de la sociedad. </p>
-<p>En base en lo anterior y considerando información del Ejercicio Fiscal 2019 para el Estado de Guanajuato, se solicita lo siguiente: </p>
-
-<ol>
-    <li>Contribución de responsabilidad estratégica</li>
-<p>Seleccionar para cada acción estratégica del Programa de Gobierno 2018-2024 atribuible a su dependencia, la asociación de clave y nombre del Programa Presupuestario, clave y nombre del Proceso (P) y/o Proyecto (Q) y Unidad Responsable que contribuyan de forma directa en su logro y atención; así también, para cada Proceso y/o Proyecto asociado, se solicita la identificación de Objetivo y Meta del Desarrollo Sostenible que contribuye al logro de la Agenda 2030.</p>
-    <li>Contribución de corresponsabilidad estratégica.</li>
-<p>Seleccionar para aquella acción estratégica del Programa de Gobierno 2018-2024 que contribuye indirectamente o corresponsablemente a su logro por parte de su dependencia, asociarla la clave y nombre del Programa Presupuestario, clave y nombre del Proceso (P) o proyecto (Q) y Unidad Responsable que contribuyan corresponsablemente en su logro y atención; así también, para cada Proceso y/o Proyecto asociado, se solicita la identificación de Objetivo y Meta del Desarrollo Sostenible que contribuye al logro de la Agenda 2030.</p>
-</ol>
-
-<p>Es importante mencionar, que la definición de contribución de responsabilidad y corresponsabilidad estratégica deberá ser validados por parte del titular de la dependencia mediante la incorporación de un oficio en formato digital en esta plataforma.</p>
-<p>Para mayor información y asesoría, a continuación, se proporcionan los datos de personal del IPLANEG asignados en el acompañamiento del proceso:</p>
-
-<ul>
-<li>Eje Seguridad y Paz Social: Enrique Sánchez Gutiérrez – esanchezg@guanajuato.gob.mx</li>
-<li>Eje Desarrollo Humano y Social: Janet Berenice Godínez Álvarez – jgodineza@guanajuato.gob.mx</li>
-<li>Eje Educación de Calidad: Teresa Elizabeth Falcón García – tefalcon@guanajuato.gob.mx</li>
-<li>Eje Economía para Todos: Enrique Sánchez Gutiérrez - esanchezg@guanajuato.gob.mx</li>
-<li>Eje Desarrollo Ordenado y Sostenible: Miguel Ángel Romero Preciado – mromeropre@guanajuato.gob.mx</li>
-<li>Eje Gobierno Humano y Eficaz: Alejandro Luevano Peña – aluevanop@guanajuato.gob.mx</li>
-</ul>
+<h3>Lorem Ipsum</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<h4>de Finibus Bonorum et Malorum</h4>
+<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
