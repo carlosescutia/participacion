@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="<?php echo base_url('img/favicon.ico'); ?>" sizes="16x16" type="image/png" />
 
-        <title><?php echo $title ?></title>
+        <title>Titulo del sistema</title>
 
         <!-- custom css -->
         <link rel="stylesheet" type="text/css" href="<?=base_url()?>css/base.css" />
@@ -43,8 +43,8 @@
             <!-- opciones del menu -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="col-sm-6 mr-5">
-                    <h5 class="my-0 mr-md-auto font-weight-normal text-white">Alineación Estratégica del Programa de Gobierno 2018-2024</h5>
-                    <h7 class="my-0 mr-md-auto font-weight-normal text-white">Estructura Presupuestaria 2019</h7>
+                    <h5 class="my-0 mr-md-auto font-weight-normal text-white">Titulo del sistema</h5>
+                    <h7 class="my-0 mr-md-auto font-weight-normal text-white">Subtitulo del sistema</h7>
                 </div>
                 <p class="m-2 text-white"><?php echo $usuario_nombre ?></a>
                 <p class="m-2 text-white">·</a>

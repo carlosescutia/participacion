@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="<?php echo base_url('img/favicon.ico'); ?>" sizes="16x16" type="image/png" />
 
-        <title>Alineación estratégica del Programa de Gobierno 2018-2024 y Estructura Presupuestaria 2019</title>
+        <title>Titulo del sistema</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
@@ -68,22 +68,21 @@
             </style>
         </head>
         <body class="text-center">
-                    <form class="form-signin" method="post" action="<?= base_url() ?>inicio/iniciar_sesion_post">
-                        <h4>Alineación Estratégica del</h4>
-                        <h4>Programa de Gobierno 2018-2024</h2>
-                    <h5>Estructura Presupuestaria 2019</h7>
-                    <hr>
-                    <?php if ($error): ?>
-                        <p class="text-danger"><?php echo $error ?></p>
-                    <?php endif ?>
-                        <img class="mb-4" src="<?=base_url()?>img/gto_iplaneg.png" alt="iplaneg">
-                        <h1 class="h3 mb-3 font-weight-normal">Inicie su sesión</h1>
-                        <label for="inputEmail" class="sr-only">Usuario</label>
-                        <input name="usuario" class="form-control" placeholder="Correo electrónico" required autofocus>
-                        <label for="inputPassword" class="sr-only">Contraseña</label>
-                        <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesión</button>
-                        <p class="mt-5 mb-3 text-muted">&copy; Iplaneg 2020</p>
-                    </form>
+            <form class="form-signin" method="post" action="<?= base_url() ?>inicio/iniciar_sesion_post">
+                <h4>Titulo del sistema</h4>
+                <h5>Subtitulo del sistema</h5>
+                <hr>
+                <?php if ($error): ?>
+                    <p class="text-danger"><?php echo $error ?></p>
+                <?php endif ?>
+                <img class="mb-4" src="<?=base_url()?>img/gto_iplaneg.png" alt="iplaneg">
+                <h1 class="h3 mb-3 font-weight-normal">Inicie su sesión</h1>
+                <label for="inputEmail" class="sr-only">Usuario</label>
+                <input name="usuario" class="form-control" placeholder="Correo electrónico" required autofocus>
+                <label for="inputPassword" class="sr-only">Contraseña</label>
+                <input type="password" name="password" class="form-control" placeholder="Contraseña" required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Iniciar sesión</button>
+                <p class="mt-5 mb-3 text-muted">&copy; Iplaneg 2020</p>
+            </form>
         </body>
     </html>
