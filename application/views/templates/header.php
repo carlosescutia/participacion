@@ -53,3 +53,35 @@
                 <a class="m-2 text-white" href="<?= base_url() ?>inicio/cerrar_sesion">Cerrar sesión</a>
             </div> <!-- opciones del menu -->
         </nav>
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+                    <div class="sidebar-sticky">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">
+                                    <span data-feather="home"></span>
+                                    Inicio <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#">
+                                    <span data-feater="file"></span>
+                                    Actores
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#">
+                                    <span data-feater="file"></span>
+                                    Consejos
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" href="#">
+                                    <span data-feater="file"></span>
+                                    Reportes
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
