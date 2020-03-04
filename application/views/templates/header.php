@@ -59,26 +59,26 @@
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#">
+                            <a class="nav-link" href="<?=base_url()?>inicio">
                                     <span data-feather="home"></span>
                                     Inicio <span class="sr-only">(current)</span>
                                 </a>
                             </li>
                             <li>
-                                <a class="nav-link" href="#">
-                                    <span data-feater="file"></span>
+                            <a class="nav-link" href="<?=base_url()?>actores/lista">
+                                    <span data-feather="user"></span>
                                     Actores
                                 </a>
                             </li>
                             <li>
                                 <a class="nav-link" href="#">
-                                    <span data-feater="file"></span>
+                                    <span data-feather="users"></span>
                                     Consejos
                                 </a>
                             </li>
                             <li>
                                 <a class="nav-link" href="#">
-                                    <span data-feater="file"></span>
+                                    <span data-feather="file"></span>
                                     Reportes
                                 </a>
                             </li>

@@ -26,7 +26,7 @@ CREATE TABLE actores (
     ine text,
     ambito text,
     sector text,
-    organización text,
+    organizacion text,
     telefono_fijo text,
     telefono_celular text,
     correo_personal text,
