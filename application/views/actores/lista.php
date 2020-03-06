@@ -1,7 +1,46 @@
-<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mb-3">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Actores</h1>
-        <button type="button" class="btn btn-primary">Nuevo</button>
+        <div class="col-sm-12 alternate-color">
+            <div class="row">
+                <div class="col-sm-3 text-left">
+                    <h1 class="h2">Actores</h1>
+                </div>
+                <div class="col-sm-7 align-self-center">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary btn-sm active">
+                            <input type="radio" name="status" id="activos" autocomplete="off" checked> Activos
+                        </label>
+                        <label class="btn btn-secondary btn-sm">
+                            <input type="radio" name="status" id="inactivos" autocomplete="off"> Inactivos
+                        </label>
+                    </div>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary btn-sm active">
+                            <input type="radio" name="tipo" id="internos" autocomplete="off" checked> Internos
+                        </label>
+                        <label class="btn btn-secondary btn-sm">
+                            <input type="radio" name="tipo" id="externos" autocomplete="off"> Externos
+                        </label>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button id="btn_sector" type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sector</button>
+                        <div class="dropdown-menu" aria-labelledby="btn_sector">
+                            <a class="dropdown-item" href="#">Todos</a>
+                            <a class="dropdown-item" href="#">Académico</a>
+                            <a class="dropdown-item" href="#">Empresarial</a>
+                            <a class="dropdown-item" href="#">Organismo social</a>
+                            <a class="dropdown-item" href="#">Ciudadano independiente</a>
+                            <a class="dropdown-item" href="#">Funcionario federal</a>
+                            <a class="dropdown-item" href="#">Funcionario estatal</a>
+                            <a class="dropdown-item" href="#">Funcionario municipal</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 text-right">
+                    <a href="<?=base_url()?>actores/nuevo" class="btn btn-primary">Nuevo</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div style="min-height: 46vh">
@@ -32,16 +71,16 @@
             <div class="col-sm-12 alternate-color">
                 <div class="row">
                     <div class="col-sm-4 align-self-center">
-                        <a href="<?=base_url()?>actores/detalle/<?=$actores_item['cve_actor']?>"<p class="small" style="margin-top: .85rem !important;"><?= $actores_item['nombre'] ?> <?= $actores_item['apellido_pa'] ?> <?= $actores_item['apellido_ma'] ?></p></a>
+                        <a href="<?=base_url()?>actores/detalle/<?=$actores_item['cve_actor']?>"<p><?= $actores_item['nombre'] ?> <?= $actores_item['apellido_pa'] ?> <?= $actores_item['apellido_ma'] ?></p></a>
                     </div>
                     <div class="col-sm-1 align-self-center">
-                        <p class="small"><?= $actores_item['externo_interno'] ?></p>
+                        <p><?= $actores_item['externo_interno'] ?></p>
                     </div>
                     <div class="col-sm-2 align-self-center">
-                        <p class="small"><?= $actores_item['sector'] ?></p>
+                        <p><?= $actores_item['sector'] ?></p>
                     </div>
                     <div class="col-sm-2 align-self-center">
-                        <p class="small"><?= $actores_item['organizacion'] ?></p>
+                        <p><?= $actores_item['organizacion'] ?></p>
                     </div>
                 </div>
             </div>
