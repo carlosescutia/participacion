@@ -71,13 +71,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="<?=base_url()?>consejos/lista">
                                     <span data-feather="users"></span>
                                     Consejos
                                 </a>
                             </li>
                             <li>
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="<?=base_url()?>reportes/lista">
                                     <span data-feather="file"></span>
                                     Reportes
                                 </a>
