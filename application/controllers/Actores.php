@@ -15,8 +15,9 @@ class Actores extends CI_Controller {
         if ($this->session->userdata('logueado')) {
             $data['usuario_clave'] = $this->session->userdata('clave');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
-            $data['usuario_dependencia'] = $this->session->userdata('dependencia');
-            $data['actores'] = $this->actores_model->get_actores();
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia);
 
             $this->load->view('templates/header', $data);
             $this->load->view('actores/lista', $data);
@@ -31,8 +32,9 @@ class Actores extends CI_Controller {
         if ($this->session->userdata('logueado')) {
             $data['usuario_clave'] = $this->session->userdata('clave');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
-            $data['usuario_dependencia'] = $this->session->userdata('dependencia');
-            $data['actores'] = $this->actores_model->get_actores($cve_actor);
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $cve_actor);
 
             $this->load->view('templates/header', $data);
             $this->load->view('actores/detalle', $data);
@@ -62,7 +64,8 @@ class Actores extends CI_Controller {
     {
         if ($this->session->userdata('logueado')) {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
-            $data['usuario_dependencia'] = $this->session->userdata('dependencia');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
 
             $actores = $this->input->post();
             if ($actores) {
@@ -78,9 +81,11 @@ class Actores extends CI_Controller {
                 $colonia = empty($actores['colonia']) ? null : $actores['colonia'];
                 $codigo_postal = empty($actores['codigo_postal']) ? null : $actores['codigo_postal'];
                 $ciudad = empty($actores['ciudad']) ? null : $actores['ciudad'];
+                $municipio = empty($actores['municipio']) ? null : $actores['municipio'];
                 $estado = empty($actores['estado']) ? null : $actores['estado'];
                 $externo_interno = empty($actores['externo_interno']) ? null : $actores['externo_interno'];
                 $ine = empty($actores['ine']) ? null : $actores['ine'];
+                $expediente_archivistico = empty($actores['expediente_archivistico']) ? null : $actores['expediente_archivistico'];
                 $ambito = empty($actores['ambito']) ? null : $actores['ambito'];
                 $sector = empty($actores['sector']) ? null : $actores['sector'];
                 $organizacion = empty($actores['organizacion']) ? null : $actores['organizacion'];
@@ -100,7 +105,7 @@ class Actores extends CI_Controller {
 
                 $cve_actor = $actores['cve_actor'];
 
-                $this->actores_model->guardar($activo, $nombre, $apellido_pa, $apellido_ma, $fecha_nacimiento, $sexo, $calle, $num_exterior, $num_interior, $colonia, $codigo_postal, $ciudad, $estado, $externo_interno, $ine, $ambito, $sector, $organizacion, $telefono_fijo, $telefono_celular, $correo_personal, $correo_laboral, $asistente, $correo_asistente, $telefono_asistente, $otros_espacios, $experiencia_exitosa, $fecha_experiencia_exitosa, $desea_colaborar, $profesion, $perfil, $cve_actor);
+                $this->actores_model->guardar($activo, $dependencia, $nombre, $apellido_pa, $apellido_ma, $fecha_nacimiento, $sexo, $calle, $num_exterior, $num_interior, $colonia, $codigo_postal, $ciudad, $municipio, $estado, $externo_interno, $ine, $expediente_archivistico, $ambito, $sector, $organizacion, $telefono_fijo, $telefono_celular, $correo_personal, $correo_laboral, $asistente, $correo_asistente, $telefono_asistente, $otros_espacios, $experiencia_exitosa, $fecha_experiencia_exitosa, $desea_colaborar, $profesion, $perfil, $cve_actor);
             }
             redirect('actores/lista');
         }

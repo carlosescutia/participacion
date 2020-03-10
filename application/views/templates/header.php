@@ -46,10 +46,10 @@
                     <h5 class="my-0 mr-md-auto font-weight-normal text-white">Titulo del sistema</h5>
                     <h7 class="my-0 mr-md-auto font-weight-normal text-white">Subtitulo del sistema</h7>
                 </div>
-                <p class="m-2 text-white"><?php echo $usuario_nombre ?></a>
-                <p class="m-2 text-white">·</a>
-                <p class="m-2 text-white"><?php echo $usuario_dependencia ?></a>
-                <p class="m-2 text-white">|</a>
+                <p class="m-2 text-white"><?php echo $usuario_nombre ?></p>
+                <p class="m-2 text-white">·</p>
+                <p class="m-2 text-white"><?php echo $usuario_dependencia ?></p>
+                <p class="m-2 text-white">|</p>
                 <a class="m-2 text-white" href="<?= base_url() ?>inicio/cerrar_sesion">Cerrar sesión</a>
             </div> <!-- opciones del menu -->
         </nav>

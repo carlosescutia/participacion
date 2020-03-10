@@ -5,22 +5,23 @@ class Actores_model extends CI_Model {
         parent::__construct();
     }
 
-    public function get_actores($cve_actor = 0) {
+    public function get_actores_dependencia($dependencia, $cve_actor = 0) {
         if ($cve_actor == 0) {
-            $sql = 'select * from actores order by nombre;';
-            $query = $this->db->query($sql, array($cve_actor));
+            $sql = 'select * from actores where dependencia = ? order by nombre;';
+            $query = $this->db->query($sql, array($dependencia));
             return $query->result_array();
         } else {
-            $sql = 'select * from actores where cve_actor = ? ;';
-            $query = $this->db->query($sql, array($cve_actor));
+            $sql = 'select * from actores where dependencia = ? and cve_actor = ? ;';
+            $query = $this->db->query($sql, array($dependencia, $cve_actor));
             return $query->row_array();
         }
     }
 
-    public function guardar($activo, $nombre, $apellido_pa, $apellido_ma, $fecha_nacimiento, $sexo, $calle, $num_exterior, $num_interior, $colonia, $codigo_postal, $ciudad, $estado, $externo_interno, $ine, $ambito, $sector, $organizacion, $telefono_fijo, $telefono_celular, $correo_personal, $correo_laboral, $asistente, $correo_asistente, $telefono_asistente, $otros_espacios, $experiencia_exitosa, $fecha_experiencia_exitosa, $desea_colaborar, $profesion, $perfil, $cve_actor=null) {
+    public function guardar($activo, $dependencia, $nombre, $apellido_pa, $apellido_ma, $fecha_nacimiento, $sexo, $calle, $num_exterior, $num_interior, $colonia, $codigo_postal, $ciudad, $municipio, $estado, $externo_interno, $ine, $expediente_archivistico, $ambito, $sector, $organizacion, $telefono_fijo, $telefono_celular, $correo_personal, $correo_laboral, $asistente, $correo_asistente, $telefono_asistente, $otros_espacios, $experiencia_exitosa, $fecha_experiencia_exitosa, $desea_colaborar, $profesion, $perfil, $cve_actor=null) {
 
       $data = array(
           'activo' => $activo,
+          'dependencia' => $dependencia,
           'nombre' => $nombre,
           'apellido_pa' => $apellido_pa,
           'apellido_ma' => $apellido_ma,
@@ -32,9 +33,11 @@ class Actores_model extends CI_Model {
           'colonia' => $colonia,
           'codigo_postal' => $codigo_postal,
           'ciudad' => $ciudad,
+          'municipio' => $municipio,
           'estado' => $estado,
           'externo_interno' => $externo_interno,
           'ine' => $ine,
+          'expediente_archivistico' => $expediente_archivistico,
           'ambito' => $ambito,
           'sector' => $sector,
           'organizacion' => $organizacion,
