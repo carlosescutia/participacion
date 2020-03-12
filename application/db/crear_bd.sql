@@ -4,7 +4,8 @@ CREATE TABLE usuarios (
     nombre text,
     usuario text,
     password text,
-    dependencia text
+    dependencia text,
+    activo integer
 );
 
 DROP TABLE IF EXISTS actores;
@@ -25,8 +26,8 @@ CREATE TABLE actores (
     colonia text,
     codigo_postal integer,
     ciudad text,
-    municipio text,
-    estado text,
+    cve_mun text,
+    cve_ent text,
     telefono_fijo text,
     telefono_celular text,
     correo_personal text,
@@ -35,9 +36,9 @@ CREATE TABLE actores (
     asistente text,
     correo_asistente text,
     telefono_asistente text,
-    externo_interno text,
-    ambito text,
-    sector text,
+    cve_tipo integer,
+    cve_ambito integer,
+    cve_sector integer,
     otros_espacios text,
     experiencia_exitosa text,
     fecha_experiencia_exitosa date,
@@ -46,4 +47,34 @@ CREATE TABLE actores (
     perfil text
 );
 
+
+DROP TABLE IF EXISTS ambitos;
+CREATE TABLE ambitos (
+    cve_ambito integer,
+    nom_ambito text
+);
+
+DROP TABLE IF EXISTS entidades;
+CREATE TABLE entidades (
+    cve_ent text,
+    nom_ent text
+);
+
+DROP TABLE IF EXISTS municipios;
+CREATE TABLE municipios (
+    cve_mun text,
+    nom_mun text
+);
+
+DROP TABLE IF EXISTS sectores;
+CREATE TABLE sectores (
+    cve_sector integer,
+    nom_sector text
+);
+
+DROP TABLE IF EXISTS tipos;
+CREATE TABLE tipos (
+    cve_tipo integer,
+    nom_tipo text
+);
 
