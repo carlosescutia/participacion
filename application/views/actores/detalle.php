@@ -79,12 +79,20 @@
                             <input type="text" class="form-control" name="ciudad" id="ciudad" value="<?=$actores['ciudad'] ?>">
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="municipio">Municipio</label>
-                            <input type="text" class="form-control" name="municipio" id="municipio" value="<?=$actores['municipio'] ?>">
+                            <label for="cve_mun">Municipio</label>
+                            <select class="custom-select" name="cve_mun" id="cve_mun">
+                                <?php foreach ($municipios as $municipios_item) { ?>
+                                <option value="<?= $municipios_item['cve_mun'] ?>" <?= ($actores['cve_mun'] == $municipios_item['cve_mun']) ? 'selected' : '' ?> ><?= $municipios_item['nom_mun'] ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="estado">Estado</label>
-                            <input type="text" class="form-control" name="estado" id="estado" value="<?=$actores['estado'] ?>">
+                            <label for="cve_ent">Estado</label>
+                            <select class="custom-select" name="cve_ent" id="cve_ent">
+                                <?php foreach ($entidades as $entidades_item) { ?>
+                                <option value="<?= $entidades_item['cve_ent'] ?>" <?= ($actores['cve_ent'] == $entidades_item['cve_ent']) ? 'selected' : '' ?> ><?= $entidades_item['nom_ent'] ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -147,16 +155,28 @@
                 <div class="col-md-10">
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label for="externo_interno">Tipo</label>
-                            <input type="text" class="form-control" name="externo_interno" id="externo_interno" value="<?=$actores['externo_interno'] ?>">
+                            <label for="cve_tipo">Tipo</label>
+                            <select class="custom-select" name="cve_tipo" id="cve_tipo">
+                                <?php foreach ($tipos as $tipos_item) { ?>
+                                <option value="<?= $tipos_item['cve_tipo'] ?>" <?= ($actores['cve_tipo'] == $tipos_item['cve_tipo']) ? 'selected' : '' ?> ><?= $tipos_item['nom_tipo'] ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="ambito">Ámbito</label>
-                            <input type="text" class="form-control" name="ambito" id="ambito" value="<?=$actores['ambito'] ?>">
+                            <label for="cve_ambito">Ámbito</label>
+                            <select class="custom-select" name="cve_ambito" id="cve_ambito">
+                                <?php foreach ($ambitos as $ambitos_item) { ?>
+                                <option value="<?= $ambitos_item['cve_ambito'] ?>" <?= ($actores['cve_ambito'] == $ambitos_item['cve_ambito']) ? 'selected' : '' ?> ><?= $ambitos_item['nom_ambito'] ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
-                        <div class="form-group col-md-5">
-                            <label for="sector">Sector</label>
-                            <input type="text" class="form-control" name="sector" id="sector" value="<?=$actores['sector'] ?>">
+                        <div class="form-group col-md-4">
+                            <label for="cve_sector">Sector</label>
+                            <select class="custom-select" name="cve_sector" id="cve_sector">
+                                <?php foreach ($sectores as $sectores_item) { ?>
+                                <option value="<?= $sectores_item['cve_sector'] ?>" <?= ($actores['cve_sector'] == $sectores_item['cve_sector']) ? 'selected' : '' ?> ><?= $sectores_item['nom_sector'] ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
