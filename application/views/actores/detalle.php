@@ -82,7 +82,7 @@
                             <label for="cve_mun">Municipio</label>
                             <select class="custom-select" name="cve_mun" id="cve_mun">
                                 <?php foreach ($municipios as $municipios_item) { ?>
-                                <option value="<?= $municipios_item['cve_mun'] ?>" <?= ($actores['cve_mun'] == $municipios_item['cve_mun']) ? 'selected' : '' ?> ><?= $municipios_item['nom_mun'] ?></option>
+                                    <option value="<?= $municipios_item['cve_mun'] ?>" <?= ($actores['cve_mun'] == $municipios_item['cve_mun']) ? 'selected' : '' ?> ><?= $municipios_item['nom_mun'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -90,7 +90,7 @@
                             <label for="cve_ent">Estado</label>
                             <select class="custom-select" name="cve_ent" id="cve_ent">
                                 <?php foreach ($entidades as $entidades_item) { ?>
-                                <option value="<?= $entidades_item['cve_ent'] ?>" <?= ($actores['cve_ent'] == $entidades_item['cve_ent']) ? 'selected' : '' ?> ><?= $entidades_item['nom_ent'] ?></option>
+                                    <option value="<?= $entidades_item['cve_ent'] ?>" <?= ($actores['cve_ent'] == $entidades_item['cve_ent']) ? 'selected' : '' ?> ><?= $entidades_item['nom_ent'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -158,7 +158,7 @@
                             <label for="cve_tipo">Tipo</label>
                             <select class="custom-select" name="cve_tipo" id="cve_tipo">
                                 <?php foreach ($tipos as $tipos_item) { ?>
-                                <option value="<?= $tipos_item['cve_tipo'] ?>" <?= ($actores['cve_tipo'] == $tipos_item['cve_tipo']) ? 'selected' : '' ?> ><?= $tipos_item['nom_tipo'] ?></option>
+                                    <option value="<?= $tipos_item['cve_tipo'] ?>" <?= ($actores['cve_tipo'] == $tipos_item['cve_tipo']) ? 'selected' : '' ?> ><?= $tipos_item['nom_tipo'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -166,7 +166,7 @@
                             <label for="cve_ambito">Ámbito</label>
                             <select class="custom-select" name="cve_ambito" id="cve_ambito">
                                 <?php foreach ($ambitos as $ambitos_item) { ?>
-                                <option value="<?= $ambitos_item['cve_ambito'] ?>" <?= ($actores['cve_ambito'] == $ambitos_item['cve_ambito']) ? 'selected' : '' ?> ><?= $ambitos_item['nom_ambito'] ?></option>
+                                    <option value="<?= $ambitos_item['cve_ambito'] ?>" <?= ($actores['cve_ambito'] == $ambitos_item['cve_ambito']) ? 'selected' : '' ?> ><?= $ambitos_item['nom_ambito'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -174,7 +174,7 @@
                             <label for="cve_sector">Sector</label>
                             <select class="custom-select" name="cve_sector" id="cve_sector">
                                 <?php foreach ($sectores as $sectores_item) { ?>
-                                <option value="<?= $sectores_item['cve_sector'] ?>" <?= ($actores['cve_sector'] == $sectores_item['cve_sector']) ? 'selected' : '' ?> ><?= $sectores_item['nom_sector'] ?></option>
+                                    <option value="<?= $sectores_item['cve_sector'] ?>" <?= ($actores['cve_sector'] == $sectores_item['cve_sector']) ? 'selected' : '' ?> ><?= $sectores_item['nom_sector'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>

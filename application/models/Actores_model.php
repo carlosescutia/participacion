@@ -5,9 +5,15 @@ class Actores_model extends CI_Model {
         parent::__construct();
     }
 
-    public function get_actores_dependencia($dependencia, $activo, $cve_tipo) {
-        $sql = 'select a.*, t.nom_tipo, s.nom_sector from actores a left join tipos t on a.cve_tipo = t.cve_tipo left join sectores s on a.cve_sector = s.cve_sector where a.dependencia=? and a.activo=? and a.cve_tipo=? order by a.nombre;';
-        $query = $this->db->query($sql, array($dependencia, $activo, $cve_tipo));
+    public function get_actores_dependencia($dependencia, $activo, $cve_tipo, $cve_sector) {
+        $sql = 'select a.*, t.nom_tipo, s.nom_sector from actores a left join tipos t on a.cve_tipo = t.cve_tipo left join sectores s on a.cve_sector = s.cve_sector where a.dependencia=? and a.activo=? and a.cve_tipo=?';
+        if ($cve_sector > 0) {
+            $sql .= ' and a.cve_sector = ? order by a.nombre;';
+            $query = $this->db->query($sql, array($dependencia, $activo, $cve_tipo, $cve_sector));
+        } else {
+            $sql .= ' order by a.nombre;';
+            $query = $this->db->query($sql, array($dependencia, $activo, $cve_tipo));
+        }
         return $query->result_array();
     }
 

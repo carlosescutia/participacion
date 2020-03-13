@@ -8,31 +8,27 @@
                 <div class="col-sm-7 align-self-center">
                     <form method="post" action="<?= base_url() ?>actores/lista">
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-secondary btn-sm <?php if ($activo) { echo 'active'; } ?>">
-                                <input type="radio" name="activo" value="1" autocomplete="off" <?php if ($activo) { echo 'checked'; } ?>> Activos
+                            <label class="btn btn-secondary btn-sm <?= ($activo) ? 'active' : '' ?>">
+                                <input type="radio" name="activo" value="1" autocomplete="off" <?= ($activo) ? 'checked' : '' ?>> Activos
                             </label>
-                            <label class="btn btn-secondary btn-sm <?php if (! $activo) { echo 'active'; } ?>">
-                                <input type="radio" name="activo" value="0" autocomplete="off" <?php if ( ! $activo) { echo 'checked'; } ?>> Inactivos
+                            <label class="btn btn-secondary btn-sm <?= (! $activo) ? 'active' : '' ?>">
+                                <input type="radio" name="activo" value="0" autocomplete="off" <?= ( ! $activo) ? 'checked' : '' ?>> Inactivos
                             </label>
                         </div>
                         <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-secondary btn-sm <?php if ($cve_tipo == '1') { echo 'active'; } ?>">
-                                <input type="radio" name="cve_tipo" value="1" autocomplete="off" <?php if ($cve_tipo == '1') { echo 'checked'; } ?>> Consejeros
+                            <label class="btn btn-secondary btn-sm <?= ($cve_tipo == '1') ? 'active' : '' ?>">
+                                <input type="radio" name="cve_tipo" value="1" autocomplete="off" <?= ($cve_tipo == '1') ? 'checked' : '' ?>> Consejeros
                             </label>
-                            <label class="btn btn-secondary btn-sm <?php if ($cve_tipo == '2') { echo 'active'; } ?>">
-                                <input type="radio" name="cve_tipo" value="2" autocomplete="off" <?php if ($cve_tipo == '2') { echo 'checked'; } ?>> Colaboradores
+                            <label class="btn btn-secondary btn-sm <?= ($cve_tipo == '2') ? 'active' : '' ?>">
+                                <input type="radio" name="cve_tipo" value="2" autocomplete="off" <?= ($cve_tipo == '2') ? 'checked' : '' ?>> Colaboradores
                             </label>
                         </div>
                         <div class="btn-group" role="group">
                             <select class="custom-select custom-select-sm" name="cve_sector">
-                                <option value="0" selected>Todos</option>
-                                <option value="1">Académico</option>
-                                <option value="2">Empresarial</option>
-                                <option value="3">Organismo social</option>
-                                <option value="4">Ciudadano independiente</option>
-                                <option value="5">Funcionario federal</option>
-                                <option value="6">Funcionario estatal</option>
-                                <option value="7">Funcionario municipal</option>
+                                <option value="0" <?= ($cve_sector == '0') ? 'selected' : '' ?>>Todos</option>
+                                <?php foreach ($sectores as $sectores_item) { ?>
+                                    <option value="<?= $sectores_item['cve_sector'] ?>" <?= ($cve_sector == $sectores_item['cve_sector']) ? 'selected' : '' ?>><?= $sectores_item['nom_sector'] ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <button class="btn btn-success btn-sm">Filtrar</button>
@@ -73,7 +69,7 @@
             <div class="col-sm-12 alternate-color">
                 <div class="row">
                     <div class="col-sm-4 align-self-center">
-                        <a href="<?=base_url()?>actores/detalle/<?=$actores_item['cve_actor']?>"<p><?= $actores_item['nombre'] ?> <?= $actores_item['apellido_pa'] ?> <?= $actores_item['apellido_ma'] ?></p></a>
+                        <a href="<?=base_url()?>actores/detalle/<?=$actores_item['cve_actor']?>"><p><?= $actores_item['nombre'] ?> <?= $actores_item['apellido_pa'] ?> <?= $actores_item['apellido_ma'] ?></p></a>
                     </div>
                     <div class="col-sm-1 align-self-center">
                         <p><?= $actores_item['nom_tipo'] ?></p>
