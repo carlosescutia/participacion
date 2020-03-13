@@ -23,11 +23,11 @@ class Actores extends CI_Controller {
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
 
-            $filtro = $this->input->post();
-            if ($filtro) {
-                $activo = $filtro['activo'];
-                $cve_tipo = $filtro['cve_tipo'];
-                $cve_sector = $filtro['cve_sector'];
+            $filtros = $this->input->post();
+            if ($filtros) {
+                $activo = $filtros['activo'];
+                $cve_tipo = $filtros['cve_tipo'];
+                $cve_sector = $filtros['cve_sector'];
             } else {
                 $activo = '1';
                 $cve_tipo = '1';
@@ -38,7 +38,8 @@ class Actores extends CI_Controller {
             $data['cve_tipo'] = $cve_tipo;
             $data['cve_sector'] = $cve_sector;
 
-            $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $activo, $cve_tipo);
+            $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $activo, $cve_tipo, $cve_sector);
+            $data['sectores'] = $this->sectores_model->get_sectores();
 
             $this->load->view('templates/header', $data);
             $this->load->view('actores/lista', $data);
