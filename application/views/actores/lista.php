@@ -45,8 +45,11 @@
         <div class="row">
             <div class="col-sm-12 alternate-color">
                 <div class="row">
-                    <div class="col-sm-4 align-self-center">
+                    <div class="col-sm-1 align-self-center">
                         <p class="small"><strong>Nombre</strong></p>
+                    </div>
+                    <div class="col-sm-3 align-self-center">
+                        <input id="filtro_actores" class="form-control form-control-sm" type="text" placeholder="Filtrar actores">
                     </div>
                     <div class="col-sm-1 align-self-center">
                         <p class="small"><strong>Tipo</strong></p>
@@ -65,31 +68,35 @@
         </div>
         <hr />
         <div class="row">
-            <?php foreach ($actores as $actores_item) { ?>
-            <div class="col-sm-12 alternate-color">
-                <div class="row">
-                    <div class="col-sm-4 align-self-center">
-                        <a href="<?=base_url()?>actores/detalle/<?=$actores_item['cve_actor']?>"><p><?= $actores_item['nombre'] ?> <?= $actores_item['apellido_pa'] ?> <?= $actores_item['apellido_ma'] ?></p></a>
+            <div class="col-sm-12">
+                <ol class="list-unstyled" id="lista_actores">
+                    <?php foreach ($actores as $actores_item) { ?>
+                    <div class="col-sm-12 alternate-color">
+                        <li><span>
+                            <div class="row">
+                                <div class="col-sm-4 align-self-center">
+                                    <a href="<?=base_url()?>actores/detalle/<?=$actores_item['cve_actor']?>"><p><?= $actores_item['nombre'] ?> <?= $actores_item['apellido_pa'] ?> <?= $actores_item['apellido_ma'] ?></p></a>
+                                </div>
+                                <div class="col-sm-1 align-self-center">
+                                    <p><?= $actores_item['nom_tipo'] ?></p>
+                                </div>
+                                <div class="col-sm-2 align-self-center">
+                                    <p><?= $actores_item['nom_sector'] ?></p>
+                                </div>
+                                <div class="col-sm-2 align-self-center">
+                                    <p><?= $actores_item['organizacion'] ?></p>
+                                </div>
+                            </div>
+                        </span></li>
                     </div>
-                    <div class="col-sm-1 align-self-center">
-                        <p><?= $actores_item['nom_tipo'] ?></p>
-                    </div>
-                    <div class="col-sm-2 align-self-center">
-                        <p><?= $actores_item['nom_sector'] ?></p>
-                    </div>
-                    <div class="col-sm-2 align-self-center">
-                        <p><?= $actores_item['organizacion'] ?></p>
-                    </div>
-                </div>
+                    <?php } ?>
+                </ol>
             </div>
-            <?php } ?>
         </div>
     </div>
 
 
-
-
-
+    <?php include 'js/inicio.js'; ?>
 
 </main>
 
