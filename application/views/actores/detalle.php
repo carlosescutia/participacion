@@ -22,25 +22,25 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" name="nombre" id="nombre" value="<?=$actores['nombre'] ?>">
+                            <input type="text" class="form-control border-primary" name="nombre" id="nombre" value="<?=$actores['nombre'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="apellido_pa">Apellido paterno</label>
-                            <input type="text" class="form-control" name="apellido_pa" id="apellido_pa" value="<?=$actores['apellido_pa'] ?>">
+                            <input type="text" class="form-control border-primary" name="apellido_pa" id="apellido_pa" value="<?=$actores['apellido_pa'] ?>">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="apellido_ma">Apellido materno</label>
-                            <input type="text" class="form-control" name="apellido_ma" id="apellido_ma" value="<?=$actores['apellido_ma'] ?>">
+                            <input type="text" class="form-control border-primary" name="apellido_ma" id="apellido_ma" value="<?=$actores['apellido_ma'] ?>">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="fecha_nacimiento">Fecha de nacimiento</label>
-                            <input type="text" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" value="<?=$actores['fecha_nacimiento'] ?>">
+                            <input type="date" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" value="<?=$actores['fecha_nacimiento'] ?>">
                         </div>
                         <div class="form-group col-md-1">
                             <label for="sexo">Sexo</label>
-                            <input type="text" class="form-control" name="sexo" id="sexo" value="<?=$actores['sexo'] ?>">
+                            <input type="text" class="form-control border-primary" name="sexo" id="sexo" value="<?=$actores['sexo'] ?>">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="ine">Clave INE</label>
@@ -82,7 +82,7 @@
                             <label for="cve_mun">Municipio</label>
                             <select class="custom-select" name="cve_mun" id="cve_mun">
                                 <?php foreach ($municipios as $municipios_item) { ?>
-                                    <option value="<?= $municipios_item['cve_mun'] ?>" <?= ($actores['cve_mun'] == $municipios_item['cve_mun']) ? 'selected' : '' ?> ><?= $municipios_item['nom_mun'] ?></option>
+                                <option value="<?= $municipios_item['cve_mun'] ?>" <?= ($actores['cve_mun'] == $municipios_item['cve_mun']) ? 'selected' : '' ?> ><?= $municipios_item['nom_mun'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -90,7 +90,7 @@
                             <label for="cve_ent">Estado</label>
                             <select class="custom-select" name="cve_ent" id="cve_ent">
                                 <?php foreach ($entidades as $entidades_item) { ?>
-                                    <option value="<?= $entidades_item['cve_ent'] ?>" <?= ($actores['cve_ent'] == $entidades_item['cve_ent']) ? 'selected' : '' ?> ><?= $entidades_item['nom_ent'] ?></option>
+                                <option value="<?= $entidades_item['cve_ent'] ?>" <?= ($actores['cve_ent'] == $entidades_item['cve_ent']) ? 'selected' : '' ?> ><?= $entidades_item['nom_ent'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -107,21 +107,21 @@
                 </div>
                 <div class="col-md-10">
                     <div class="form-row">
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
                             <label for="telefono_fijo">Teléfono</label>
                             <input type="text" class="form-control" name="telefono_fijo" id="telefono_fijo" value="<?=$actores['telefono_fijo'] ?>">
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
                             <label for="telefono_celular">Celular</label>
                             <input type="text" class="form-control" name="telefono_celular" id="telefono_celular" value="<?=$actores['telefono_celular'] ?>">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="correo_personal">Correo personal</label>
-                            <input type="text" class="form-control" name="correo_personal" id="correo_personal" value="<?=$actores['correo_personal'] ?>">
+                            <input type="email" class="form-control" name="correo_personal" id="correo_personal" value="<?=$actores['correo_personal'] ?>">
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-3">
                             <label for="correo_laboral">Correo laboral</label>
-                            <input type="text" class="form-control" name="correo_laboral" id="correo_laboral" value="<?=$actores['correo_laboral'] ?>">
+                            <input type="email" class="form-control" name="correo_laboral" id="correo_laboral" value="<?=$actores['correo_laboral'] ?>">
                         </div>
                     </div>
                     <div class="form-row">
@@ -135,7 +135,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="correo_asistente">Correo asistente</label>
-                            <input type="text" class="form-control" name="correo_asistente" id="correo_asistente" value="<?=$actores['correo_asistente'] ?>">
+                            <input type="email" class="form-control" name="correo_asistente" id="correo_asistente" value="<?=$actores['correo_asistente'] ?>">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="telefono_asistente">Teléfono asistente</label>
@@ -156,9 +156,9 @@
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="cve_tipo">Tipo</label>
-                            <select class="custom-select" name="cve_tipo" id="cve_tipo">
+                            <select class="custom-select border-primary" name="cve_tipo" id="cve_tipo">
                                 <?php foreach ($tipos as $tipos_item) { ?>
-                                    <option value="<?= $tipos_item['cve_tipo'] ?>" <?= ($actores['cve_tipo'] == $tipos_item['cve_tipo']) ? 'selected' : '' ?> ><?= $tipos_item['nom_tipo'] ?></option>
+                                <option value="<?= $tipos_item['cve_tipo'] ?>" <?= ($actores['cve_tipo'] == $tipos_item['cve_tipo']) ? 'selected' : '' ?> ><?= $tipos_item['nom_tipo'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -166,15 +166,15 @@
                             <label for="cve_ambito">Ámbito</label>
                             <select class="custom-select" name="cve_ambito" id="cve_ambito">
                                 <?php foreach ($ambitos as $ambitos_item) { ?>
-                                    <option value="<?= $ambitos_item['cve_ambito'] ?>" <?= ($actores['cve_ambito'] == $ambitos_item['cve_ambito']) ? 'selected' : '' ?> ><?= $ambitos_item['nom_ambito'] ?></option>
+                                <option value="<?= $ambitos_item['cve_ambito'] ?>" <?= ($actores['cve_ambito'] == $ambitos_item['cve_ambito']) ? 'selected' : '' ?> ><?= $ambitos_item['nom_ambito'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="cve_sector">Sector</label>
-                            <select class="custom-select" name="cve_sector" id="cve_sector">
+                            <select class="custom-select border-primary" name="cve_sector" id="cve_sector">
                                 <?php foreach ($sectores as $sectores_item) { ?>
-                                    <option value="<?= $sectores_item['cve_sector'] ?>" <?= ($actores['cve_sector'] == $sectores_item['cve_sector']) ? 'selected' : '' ?> ><?= $sectores_item['nom_sector'] ?></option>
+                                <option value="<?= $sectores_item['cve_sector'] ?>" <?= ($actores['cve_sector'] == $sectores_item['cve_sector']) ? 'selected' : '' ?> ><?= $sectores_item['nom_sector'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -187,15 +187,44 @@
                 </div>
             </div>
             <hr />
+            <div class="row">
+                <div class="col-md-2">
+                    <h6><strong>Colaboración</strong></h6>
+                </div>
+                <div class="col-md-10">
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="otros_espacios">¿Ha participado en otros espacios?</label>
+                            <input type="text" class="form-control" name="otros_espacios" id="otros_espacios" value="<?=$actores['otros_espacios'] ?>">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="experiencia_exitosa">Experiencia más exitosa</label>
+                            <input type="text" class="form-control" name="experiencia_exitosa" id="experiencia_exitosa" value="<?=$actores['experiencia_exitosa'] ?>">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="fecha_experiencia_exitosa">Fecha </label>
+                            <input type="date" class="form-control" name="fecha_experiencia_exitosa" id="fecha_experiencia_exitosa" value="<?=$actores['fecha_experiencia_exitosa'] ?>">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="desea_colaborar">¿Desea colaborar en otros espacios?</label>
+                            <input type="text" class="form-control" name="desea_colaborar" id="desea_colaborar" value="<?=$actores['desea_colaborar'] ?>">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="profesion">Profesión</label>
+                            <input type="text" class="form-control" name="profesion" id="profesion" value="<?=$actores['profesion'] ?>">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="perfil">Perfil</label>
+                            <input type="text" class="form-control" name="perfil" id="perfil" value="<?=$actores['perfil'] ?>">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <input type="hidden" name="cve_actor" value="<?=$actores['cve_actor']?>">
-        <input type="hidden" name="otros_espacios">
-        <input type="hidden" name="experiencia_exitosa">
-        <input type="hidden" name="fecha_experiencia_exitosa">
-        <input type="hidden" name="desea_colaborar">
-        <input type="hidden" name="profesion">
-        <input type="hidden" name="perfil">
 
         <hr />
 
@@ -204,6 +233,8 @@
                 <a href="<?=base_url()?>actores/lista" class="btn btn-secondary">Volver</a>
             </div>
         </div>
+
     </form>
 
+    <?php include 'js/inicio.js'; ?>
 </main>
