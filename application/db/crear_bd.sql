@@ -78,3 +78,26 @@ CREATE TABLE tipos (
     nom_tipo text
 );
 
+DROP TABLE IF EXISTS consejos;
+CREATE TABLE consejos (
+    cve_consejo integer,
+    dependencia text,
+    nom_consejo text,
+    iniciales text
+);
+
+DROP TABLE IF EXISTS consejos_actores;
+CREATE TABLE consejos_actores (
+    cve_consejo integer,
+    cve_actor integer,
+    cve_cargo integer,
+    fecha_inicio date,
+    fecha_fin date,
+    status integer
+);
+    
+DROP TABLE IF EXISTS cargos;
+CREATE TABLE cargos (
+    cve_cargo integer,
+    nom_cargo text
+);

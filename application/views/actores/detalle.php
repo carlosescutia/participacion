@@ -1,8 +1,19 @@
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <form method="post" action="<?= base_url() ?>actores/guardar/<?=$actores['cve_actor']?>">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Datos del actor</h1>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+        <div class="col-md-12 mb-3 pb-2 pt-3 border-bottom">
+            <div class="row">
+                <div class="col-md-4">
+                    <h1 class="h2">Datos del actor</h1>
+                </div>
+                <div class="col-md-6">
+                    <?php if ($error): ?>
+                        <p class="text-danger"><?php echo $error ?></p>
+                    <?php endif ?>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
         </div>
 
         <div class="col-md-12">
@@ -179,11 +190,35 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-11">
-                            <textarea class="form-control" name="consejos" id="consejos" rows="4"></textarea>
+
+                    <?php if ($consejos_actores) { ?>
+                        <div class="form-row">
+                            <h4 class="mt-3">Consejos</h4>
+                            <div class="form-group col-md-11">
+                                <table class="table table-striped table-bordered table-sm mt-3">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th scope="col">Consejo</th>
+                                            <th scope="col">Cargo</th>
+                                            <th scope="col">Periodo</th>
+                                            <th scope="col">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($consejos_actores as $consejos_actores_item) { ?>
+                                            <tr>
+                                                <td><?= $consejos_actores_item['nom_consejo'] ?></td>
+                                                <td><?= $consejos_actores_item['nom_cargo'] ?></td>
+                                                <td><?= date('d/m/y', strtotime($consejos_actores_item['fecha_inicio'])) ?> a <?= date('d/m/y', strtotime($consejos_actores_item['fecha_fin'])) ?></td>
+                                                <td><?= $consejos_actores_item['nom_status'] ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
+                    <?php } ?>
+
                 </div>
             </div>
             <hr />
