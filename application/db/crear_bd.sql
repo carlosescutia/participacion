@@ -83,7 +83,18 @@ CREATE TABLE consejos (
     cve_consejo integer,
     dependencia text,
     nom_consejo text,
-    iniciales text
+    siglas text,
+    cve_tipo integer,
+    cve_eje integer,
+    soporte_juridico text,
+    reglamento_interno text,
+    fecha_reglamento date,
+    periodo_inicio date,
+    periodo_fin date,
+    sesiones_anuales integer,
+    integracion text,
+    fecha_instalacion date,
+    status integer
 );
 
 DROP TABLE IF EXISTS consejos_actores;
@@ -107,3 +118,16 @@ CREATE TABLE perfiles (
     cve_perfil integer,
     nom_perfil text
 );
+
+DROP TABLE IF EXISTS tipo_consejos;
+CREATE TABLE tipo_consejos (
+    cve_tipo integer,
+    nom_tipo text
+);
+
+DROP TABLE IF EXISTS ejes;
+CREATE TABLE ejes (
+    cve_eje integer,
+    nom_eje text
+);
+

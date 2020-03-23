@@ -6,9 +6,57 @@
                     <h1 class="h2">Consejos</h1>
                 </div>
                 <div class="col-sm-2 text-right">
-                    <a href="<?=base_url()?>actores/nuevo" class="btn btn-primary">Nuevo</a>
+                    <a href="<?=base_url()?>consejos/nuevo" class="btn btn-primary">Nuevo</a>
                 </div>
             </div>
         </div>
     </div>
+    <div style="min-height: 46vh">
+        <div class="row">
+            <div class="col-sm-12 alternate-color">
+                <div class="row">
+                    <div class="col-sm-6 align-self-center">
+                        <p class="small"><strong>Nombre</strong></p>
+                    </div>
+                    <div class="col-sm-1 align-self-center">
+                        <p class="small"><strong>Siglas</strong></p>
+                    </div>
+                    <div class="col-sm-2 align-self-center">
+                        <p class="small"><strong>Periodo</strong></p>
+                    </div>
+                    <div class="col-sm-1 align-self-center">
+                        <p class="small"><strong>Status</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="list-unstyled" id="lista_consejos">
+                    <?php foreach ($consejos as $consejos_item) { ?>
+                    <div class="col-sm-12 alternate-color">
+                        <li><span>
+                            <div class="row">
+                                <div class="col-sm-6 align-self-center">
+                                    <a href="<?=base_url()?>consejos/detalle/<?=$consejos_item['cve_consejo']?>"><p><?= $consejos_item['nom_consejo'] ?></p></a>
+                                </div>
+                                <div class="col-sm-1 align-self-center">
+                                    <p><?= $consejos_item['siglas'] ?></p>
+                                </div>
+                                <div class="col-sm-2 align-self-center">
+                                    <p><?= date('d/m/y', strtotime($consejos_item['periodo_inicio'])) ?> a <?= date('d/m/y', strtotime($consejos_item['periodo_fin'])) ?></p>
+                                </div>
+                                <div class="col-sm-1 align-self-center">
+                                    <p><?= $consejos_item['status'] ?></p>
+                                </div>
+                            </div>
+                        </span></li>
+                    </div>
+                    <?php } ?>
+                </ol>
+            </div>
+        </div>
+    </div>
+
 </main>
