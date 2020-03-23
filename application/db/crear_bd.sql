@@ -44,7 +44,7 @@ CREATE TABLE actores (
     fecha_experiencia_exitosa date,
     desea_colaborar text,
     profesion text,
-    perfil text
+    cve_perfil integer
 );
 
 
@@ -100,4 +100,10 @@ DROP TABLE IF EXISTS cargos;
 CREATE TABLE cargos (
     cve_cargo integer,
     nom_cargo text
+);
+
+DROP TABLE IF EXISTS perfiles;
+CREATE TABLE perfiles (
+    cve_perfil integer,
+    nom_perfil text
 );

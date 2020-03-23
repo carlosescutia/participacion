@@ -13,6 +13,7 @@ class Actores extends CI_Controller {
         $this->load->model('ambitos_model');
         $this->load->model('sectores_model');
         $this->load->model('consejos_actores_model');
+        $this->load->model('perfiles_model');
 
     }
 
@@ -65,6 +66,7 @@ class Actores extends CI_Controller {
             $data['ambitos'] = $this->ambitos_model->get_ambitos();
             $data['sectores'] = $this->sectores_model->get_sectores();
             $data['consejos_actores'] = $this->consejos_actores_model->get_consejos_actor($cve_actor);
+            $data['perfiles'] = $this->perfiles_model->get_perfiles();
 
             $this->load->view('templates/header', $data);
             $this->load->view('actores/detalle', $data);
@@ -136,11 +138,11 @@ class Actores extends CI_Controller {
                 $fecha_experiencia_exitosa = empty($actores['fecha_experiencia_exitosa']) ? null : $actores['fecha_experiencia_exitosa'];
                 $desea_colaborar = empty($actores['desea_colaborar']) ? null : $actores['desea_colaborar'];
                 $profesion = empty($actores['profesion']) ? null : $actores['profesion'];
-                $perfil = empty($actores['perfil']) ? null : $actores['perfil'];
+                $cve_perfil = empty($actores['cve_perfil']) ? null : $actores['cve_perfil'];
                 $cve_actor = $actores['cve_actor'];
 
-                if ($cve_actor && $nombre && $apellido_pa && $apellido_ma && $sexo && $cve_tipo && $cve_sector) {
-                    $this->actores_model->guardar($activo, $dependencia, $nombre, $apellido_pa, $apellido_ma, $fecha_nacimiento, $sexo, $calle, $num_exterior, $num_interior, $colonia, $codigo_postal, $ciudad, $cve_mun, $cve_ent, $cve_tipo, $ine, $expediente_archivistico, $cve_ambito, $cve_sector, $organizacion, $telefono_fijo, $telefono_celular, $correo_personal, $correo_laboral, $asistente, $correo_asistente, $telefono_asistente, $otros_espacios, $experiencia_exitosa, $fecha_experiencia_exitosa, $desea_colaborar, $profesion, $perfil, $cve_actor);
+                if ($nombre && $apellido_pa && $apellido_ma && $sexo && $cve_tipo && $cve_sector) {
+                    $this->actores_model->guardar($activo, $dependencia, $nombre, $apellido_pa, $apellido_ma, $fecha_nacimiento, $sexo, $calle, $num_exterior, $num_interior, $colonia, $codigo_postal, $ciudad, $cve_mun, $cve_ent, $cve_tipo, $ine, $expediente_archivistico, $cve_ambito, $cve_sector, $organizacion, $telefono_fijo, $telefono_celular, $correo_personal, $correo_laboral, $asistente, $correo_asistente, $telefono_asistente, $otros_espacios, $experiencia_exitosa, $fecha_experiencia_exitosa, $desea_colaborar, $profesion, $cve_perfil, $cve_actor);
                 } else {
                     $this->session->set_flashdata('error', 'Capture todos los datos obligatorios (en azul)');
                     redirect($_SERVER['HTTP_REFERER']);

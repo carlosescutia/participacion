@@ -23,7 +23,7 @@ class Actores_model extends CI_Model {
         return $query->row_array();
     }
 
-    public function guardar($activo, $dependencia, $nombre, $apellido_pa, $apellido_ma, $fecha_nacimiento, $sexo, $calle, $num_exterior, $num_interior, $colonia, $codigo_postal, $ciudad, $cve_mun, $cve_ent, $cve_tipo, $ine, $expediente_archivistico, $cve_ambito, $cve_sector, $organizacion, $telefono_fijo, $telefono_celular, $correo_personal, $correo_laboral, $asistente, $correo_asistente, $telefono_asistente, $otros_espacios, $experiencia_exitosa, $fecha_experiencia_exitosa, $desea_colaborar, $profesion, $perfil, $cve_actor=null) {
+    public function guardar($activo, $dependencia, $nombre, $apellido_pa, $apellido_ma, $fecha_nacimiento, $sexo, $calle, $num_exterior, $num_interior, $colonia, $codigo_postal, $ciudad, $cve_mun, $cve_ent, $cve_tipo, $ine, $expediente_archivistico, $cve_ambito, $cve_sector, $organizacion, $telefono_fijo, $telefono_celular, $correo_personal, $correo_laboral, $asistente, $correo_asistente, $telefono_asistente, $otros_espacios, $experiencia_exitosa, $fecha_experiencia_exitosa, $desea_colaborar, $profesion, $cve_perfil, $cve_actor=null) {
 
       $data = array(
           'activo' => $activo,
@@ -59,7 +59,7 @@ class Actores_model extends CI_Model {
           'fecha_experiencia_exitosa' => $fecha_experiencia_exitosa,
           'desea_colaborar' => $desea_colaborar,
           'profesion' => $profesion,
-          'perfil' => $perfil
+          'cve_perfil' => $cve_perfil
       );
 
       if ($cve_actor) {
