@@ -51,7 +51,11 @@
                         </div>
                         <div class="form-group col-md-1">
                             <label for="sexo">Sexo</label>
-                            <input type="text" class="form-control border-primary" name="sexo" id="sexo" value="<?=$actores['sexo'] ?>">
+                            <select class="custom-select border-primary" name="sexo" id="sexo">
+                                <option value=""></option>
+                                <option value="F" <?= ($actores['sexo'] == 'F') ? 'selected' : '' ?>>F</option>
+                                <option value="M" <?= ($actores['sexo'] == 'M') ? 'selected' : '' ?>>M</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="ine">Clave INE</label>
@@ -92,6 +96,7 @@
                         <div class="form-group col-md-3">
                             <label for="cve_mun">Municipio</label>
                             <select class="custom-select" name="cve_mun" id="cve_mun">
+                                <option value=""></option>
                                 <?php foreach ($municipios as $municipios_item) { ?>
                                 <option value="<?= $municipios_item['cve_mun'] ?>" <?= ($actores['cve_mun'] == $municipios_item['cve_mun']) ? 'selected' : '' ?> ><?= $municipios_item['nom_mun'] ?></option>
                                 <?php } ?>
@@ -100,6 +105,7 @@
                         <div class="form-group col-md-3">
                             <label for="cve_ent">Estado</label>
                             <select class="custom-select" name="cve_ent" id="cve_ent">
+                                <option value=""></option>
                                 <?php foreach ($entidades as $entidades_item) { ?>
                                 <option value="<?= $entidades_item['cve_ent'] ?>" <?= ($actores['cve_ent'] == $entidades_item['cve_ent']) ? 'selected' : '' ?> ><?= $entidades_item['nom_ent'] ?></option>
                                 <?php } ?>
@@ -168,6 +174,7 @@
                         <div class="form-group col-md-3">
                             <label for="cve_tipo">Tipo</label>
                             <select class="custom-select border-primary" name="cve_tipo" id="cve_tipo">
+                                <option value=""></option>
                                 <?php foreach ($tipos as $tipos_item) { ?>
                                 <option value="<?= $tipos_item['cve_tipo'] ?>" <?= ($actores['cve_tipo'] == $tipos_item['cve_tipo']) ? 'selected' : '' ?> ><?= $tipos_item['nom_tipo'] ?></option>
                                 <?php } ?>
@@ -176,6 +183,7 @@
                         <div class="form-group col-md-3">
                             <label for="cve_ambito">Ámbito</label>
                             <select class="custom-select" name="cve_ambito" id="cve_ambito">
+                                <option value=""></option>
                                 <?php foreach ($ambitos as $ambitos_item) { ?>
                                 <option value="<?= $ambitos_item['cve_ambito'] ?>" <?= ($actores['cve_ambito'] == $ambitos_item['cve_ambito']) ? 'selected' : '' ?> ><?= $ambitos_item['nom_ambito'] ?></option>
                                 <?php } ?>
@@ -184,6 +192,7 @@
                         <div class="form-group col-md-4">
                             <label for="cve_sector">Sector</label>
                             <select class="custom-select border-primary" name="cve_sector" id="cve_sector">
+                                <option value=""></option>
                                 <?php foreach ($sectores as $sectores_item) { ?>
                                 <option value="<?= $sectores_item['cve_sector'] ?>" <?= ($actores['cve_sector'] == $sectores_item['cve_sector']) ? 'selected' : '' ?> ><?= $sectores_item['nom_sector'] ?></option>
                                 <?php } ?>
@@ -230,7 +239,11 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="otros_espacios">¿Ha participado en otros espacios?</label>
-                            <input type="text" class="form-control" name="otros_espacios" id="otros_espacios" value="<?=$actores['otros_espacios'] ?>">
+                            <select class="custom-select" name="otros_espacios" id="otros_espacios">
+                                <option value="" ></option>
+                                <option value="S" <?= ($actores['otros_espacios'] == 'S') ? 'selected' : '' ?>>S</option>
+                                <option value="N" <?= ($actores['otros_espacios'] == 'N') ? 'selected' : '' ?>>N</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="experiencia_exitosa">Experiencia más exitosa</label>
@@ -244,15 +257,24 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="desea_colaborar">¿Desea colaborar en otros espacios?</label>
-                            <input type="text" class="form-control" name="desea_colaborar" id="desea_colaborar" value="<?=$actores['desea_colaborar'] ?>">
+                            <select class="custom-select" name="desea_colaborar" id="desea_colaborar">
+                                <option value="" ></option>
+                                <option value="S" <?= ($actores['desea_colaborar'] == 'S') ? 'selected' : '' ?>>S</option>
+                                <option value="N" <?= ($actores['desea_colaborar'] == 'N') ? 'selected' : '' ?>>N</option>
+                            </select>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="profesion">Profesión</label>
                             <input type="text" class="form-control" name="profesion" id="profesion" value="<?=$actores['profesion'] ?>">
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="perfil">Perfil</label>
-                            <input type="text" class="form-control" name="perfil" id="perfil" value="<?=$actores['perfil'] ?>">
+                            <label for="cve_perfil">Perfil</label>
+                            <select class="custom-select" name="cve_perfil" id="cve_perfil">
+                                <option value=""></option>
+                                <?php foreach ($perfiles as $perfiles_item) { ?>
+                                <option value="<?= $perfiles_item['cve_perfil'] ?>" <?= ($actores['cve_perfil'] == $perfiles_item['cve_perfil']) ? 'selected' : '' ?> ><?= $perfiles_item['nom_perfil'] ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                 </div>
