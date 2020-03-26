@@ -10,6 +10,8 @@ class Consejos extends CI_Controller {
         $this->load->model('tipo_consejos_model');
         $this->load->model('ejes_model');
         $this->load->model('consejos_actores_model');
+        $this->load->model('actores_model');
+        $this->load->model('cargos_model');
 
     }
 
@@ -34,7 +36,9 @@ class Consejos extends CI_Controller {
     public function detalle($cve_consejo)
     {
         if ($this->session->userdata('logueado')) {
-            $data['error'] = $this->session->flashdata('error');
+            $data['error_consejos'] = $this->session->flashdata('error_consejos');
+            $data['error_integrantes'] = $this->session->flashdata('error_integrantes');
+            $data['error_sesiones'] = $this->session->flashdata('error_sesiones');
             $data['usuario_clave'] = $this->session->userdata('clave');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
@@ -44,6 +48,11 @@ class Consejos extends CI_Controller {
             $data['tipo_consejos'] = $this->tipo_consejos_model->get_tipo_consejos();
             $data['ejes'] = $this->ejes_model->get_ejes();
             $data['consejos_actores'] = $this->consejos_actores_model->get_actores_consejo($cve_consejo);
+            $cve_tipo = 1;
+            $activo = 1;
+            $cve_sector = 0;
+            $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $activo, $cve_tipo, $cve_sector);
+            $data['cargos'] = $this->cargos_model->get_cargos();
 
             $this->load->view('templates/header', $data);
             $this->load->view('consejos/detalle', $data);
@@ -56,7 +65,7 @@ class Consejos extends CI_Controller {
     public function nuevo()
     {
         if ($this->session->userdata('logueado')) {
-            $data['error'] = $this->session->flashdata('error');
+            $data['error_consejos'] = $this->session->flashdata('error_consejos');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;

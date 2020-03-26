@@ -4,8 +4,8 @@
     </div>
     <div class="card-body">
         <div class="col-md-6">
-            <?php if ($error): ?>
-            <p class="text-danger"><?php echo $error ?></p>
+            <?php if ($error_sesiones): ?>
+            <p class="text-danger"><?php echo $error_sesiones ?></p>
             <?php endif ?>
         </div>
         <div class="row">
