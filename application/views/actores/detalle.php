@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-md-6">
                     <?php if ($error): ?>
-                        <p class="text-danger"><?php echo $error ?></p>
+                        <p class="text-danger"><?php echo $error?></p>
                     <?php endif ?>
                 </div>
                 <div class="col-md-2">

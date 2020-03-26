@@ -5,8 +5,8 @@
     <form method="post" action="<?= base_url() ?>consejos/guardar/<?= $consejos['cve_consejo'] ?>">
         <div class="card-body">
             <div class="col-md-12">
-                <?php if ($error): ?>
-                <p class="text-danger"><?php echo $error ?></p>
+                <?php if ($error_consejos): ?>
+                <p class="text-danger"><?php echo $error_consejos ?></p>
                 <?php endif ?>
             </div>
 
