@@ -80,7 +80,7 @@ CREATE TABLE tipos (
 
 DROP TABLE IF EXISTS consejos;
 CREATE TABLE consejos (
-    cve_consejo integer,
+    cve_consejo serial,
     dependencia text,
     nom_consejo text,
     siglas text,
