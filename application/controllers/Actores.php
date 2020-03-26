@@ -87,6 +87,7 @@ class Actores extends CI_Controller {
             $data['tipos'] = $this->tipos_model->get_tipos();
             $data['ambitos'] = $this->ambitos_model->get_ambitos();
             $data['sectores'] = $this->sectores_model->get_sectores();
+            $data['perfiles'] = $this->perfiles_model->get_perfiles();
 
             $this->load->view('templates/header', $data);
             $this->load->view('actores/nuevo', $data);
