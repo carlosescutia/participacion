@@ -16,10 +16,10 @@
         
     <div class="col-md-12">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <?php include "datos_integrantes.php" ?>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <?php include "datos_sesiones.php" ?>
             </div>
         </div>

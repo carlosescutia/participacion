@@ -48,7 +48,7 @@
                                     <p><?= date('d/m/y', strtotime($consejos_item['periodo_inicio'])) ?> a <?= date('d/m/y', strtotime($consejos_item['periodo_fin'])) ?></p>
                                 </div>
                                 <div class="col-sm-1 align-self-center">
-                                    <p><?= $consejos_item['status'] ?></p>
+                                    <p><?= $consejos_item['nom_status'] ?></p>
                                 </div>
                             </div>
                         </span></li>
