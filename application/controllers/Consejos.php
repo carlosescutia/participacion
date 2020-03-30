@@ -12,6 +12,7 @@ class Consejos extends CI_Controller {
         $this->load->model('consejos_actores_model');
         $this->load->model('actores_model');
         $this->load->model('cargos_model');
+        $this->load->model('sesiones_model');
 
     }
 
@@ -53,6 +54,7 @@ class Consejos extends CI_Controller {
             $cve_sector = 0;
             $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $activo, $cve_tipo, $cve_sector);
             $data['cargos'] = $this->cargos_model->get_cargos();
+            $data['sesiones'] = $this->sesiones_model->get_sesiones_consejo($cve_consejo);
 
             $this->load->view('templates/header', $data);
             $this->load->view('consejos/detalle', $data);

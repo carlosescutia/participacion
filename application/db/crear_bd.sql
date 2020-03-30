@@ -131,3 +131,16 @@ CREATE TABLE ejes (
     nom_eje text
 );
 
+DROP TABLE IF EXISTS sesiones;
+CREATE TABLE sesiones (
+    cve_sesion serial,
+    cve_consejo integer,
+    nom_sesion text,
+    tipo text,
+    lugar text,
+    fecha date,
+    hora time,
+    objetivo text,
+    orden_dia text
+);
+

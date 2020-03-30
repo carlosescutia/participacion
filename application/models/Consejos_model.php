@@ -6,7 +6,7 @@ class Consejos_model extends CI_Model {
     }
 
     public function get_consejos_dependencia($dependencia) {
-        $sql = 'select c.* from consejos c where c.dependencia=? order by c.nom_consejo';
+        $sql = "select c.*, (case when c.status=1 then 'activo' else 'inactivo' end) as nom_status from consejos c where c.dependencia=? order by c.status, c.nom_consejo";
         $query = $this->db->query($sql, array($dependencia));
         return $query->result_array();
     }
