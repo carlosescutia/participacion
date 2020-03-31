@@ -56,7 +56,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             <label for="soporte_juridico">Soporte jurídico</label>
-                            <input type="text" class="form-control " name="soporte_juridico" id="soporte_juridico">
+                            <input type="text" class="form-control border-primary" name="soporte_juridico" id="soporte_juridico">
                         </div>
                     </div>
 

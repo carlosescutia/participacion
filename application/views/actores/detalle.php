@@ -32,7 +32,7 @@
                 <div class="col-md-10">
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="nombre">Nombre</label>
+                            <label for="nombre">Nombre(s)</label>
                             <input type="text" class="form-control border-primary" name="nombre" id="nombre" value="<?=$actores['nombre'] ?>">
                         </div>
                         <div class="form-group col-md-4">

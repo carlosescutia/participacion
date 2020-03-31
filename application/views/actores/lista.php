@@ -46,7 +46,7 @@
             <div class="col-sm-12 alternate-color">
                 <div class="row">
                     <div class="col-sm-1 align-self-center">
-                        <p class="small"><strong>Nombre</strong></p>
+                        <p class="small"><strong>Nombre(s)</strong></p>
                     </div>
                     <div class="col-sm-3 align-self-center">
                         <input id="filtro_actores" class="form-control form-control-sm" type="text" placeholder="Filtrar actores">
