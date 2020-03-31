@@ -23,7 +23,7 @@
                         <td><?= $consejos_actores_item['nom_cargo'] ?></td>
                         <td><?= date('d/m/y', strtotime($consejos_actores_item['fecha_inicio'])) ?> a <?= date('d/m/y', strtotime($consejos_actores_item['fecha_fin'])) ?></td>
                         <td><?= $consejos_actores_item['nom_status'] ?></td>
-                        <td><a class="btn btn-danger btn-sm" href="<?= base_url() ?>consejos_actores/eliminar_registro/<?= $consejos_actores_item['cve_consejo'] ?>/<?= $consejos_actores_item['cve_actor'] ?>/<?= $consejos_actores_item['cve_cargo'] ?>/<?= $consejos_actores_item['fecha_inicio'] ?>/<?= $consejos_actores_item['fecha_fin'] ?>/<?= $consejos_actores_item['status'] ?>">x</a>
+                        <td><a style="color: #f00" href="<?= base_url() ?>consejos_actores/eliminar_registro/<?= $consejos_actores_item['cve_consejo'] ?>/<?= $consejos_actores_item['cve_actor'] ?>/<?= $consejos_actores_item['cve_cargo'] ?>/<?= $consejos_actores_item['fecha_inicio'] ?>/<?= $consejos_actores_item['fecha_fin'] ?>/<?= $consejos_actores_item['status'] ?>"><span data-feather="x-circle"></span></a>
                         </div>
                     </tr>
                     <?php } ?>
@@ -51,7 +51,7 @@
                     </select>
                 </div>
             </div>
-            <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?= $consejos_actores_item['cve_consejo'] ?>">
+            <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?= $consejos['cve_consejo'] ?>">
             <div class="row mt-3">
                 <div class="col">
                     <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio">

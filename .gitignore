@@ -8,5 +8,7 @@ application/logs/*
 
 !application/*/.htaccess
 
+adj_sesiones/*
+
 composer.lock
 

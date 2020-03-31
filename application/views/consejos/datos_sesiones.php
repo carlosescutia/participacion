@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="card-footer">
-        <form method="post" action="<?= base_url() ?>sesiones/nuevo/<?= $sesiones_item['cve_consejo'] ?>">
+        <form method="post" action="<?= base_url() ?>sesiones/nuevo/<?= $consejos['cve_consejo'] ?>">
                 <button type="submit" class="btn btn-primary">Nueva sesión</button>
         </form>
     </div>

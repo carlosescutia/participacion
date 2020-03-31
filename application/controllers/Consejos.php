@@ -108,10 +108,10 @@ class Consejos extends CI_Controller {
 
                 $cve_consejo = $consejo['cve_consejo'];
 
-                if ($nom_consejo && $siglas) {
+                if ($nom_consejo && $siglas && $soporte_juridico) {
                     $this->consejos_model->guardar($nom_consejo, $dependencia, $siglas, $cve_tipo, $cve_eje, $soporte_juridico, $reglamento_interno, $fecha_reglamento, $periodo_inicio, $periodo_fin, $sesiones_anuales, $integracion, $fecha_instalacion, $status, $cve_consejo);
                 } else {
-                    $this->session->set_flashdata('error', 'Capture todos los datos obligatorios (en azul)');
+                    $this->session->set_flashdata('error_consejos', 'Capture todos los datos obligatorios (en azul)');
                     redirect($_SERVER['HTTP_REFERER']);
                 }
             }

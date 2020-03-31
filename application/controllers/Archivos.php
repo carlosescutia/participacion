@@ -8,44 +8,85 @@ class Archivos extends CI_Controller {
 
     }
 
-    public function enviar()
+    public function presentacion()
     {
         if ($this->session->userdata('logueado')) {
+            $cve_consejo = $this->input->post('cve_consejo');
+            $cve_sesion = $this->input->post('cve_sesion');
+            
             $config = array();
-            $config['upload_path'] = 'oficios';
             $config['allowed_types'] = 'pdf';
             $config['overwrite'] = TRUE;
-            $config['file_name'] = $this->session->userdata('clave') . '.pdf';
-            $this->load->library('upload', $config);
-            if ( ! $this->upload->do_upload('subir_archivo') ) {
+            $config['upload_path'] = 'adj_sesiones';
+            $config['file_name'] = $cve_consejo . '_' . $cve_sesion . '_presentacion.pdf';
+            $this->load->library('upload',$config);
+            if ( ! $this->upload->do_upload('arch-presentacion') ) {
                 $error = array('error' => $this->upload->display_errors());
-                print_r($error);
                 $this->session->set_flashdata('error', $error['error']);
             }
-            $this->load->view('inicio/iniciar_sesion', $data);
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
 
-    public function nota_metodologica()
+    public function minuta()
     {
-        $cve_indicador = $this->input->post('cve_indicador');
         if ($this->session->userdata('logueado')) {
+            $cve_consejo = $this->input->post('cve_consejo');
+            $cve_sesion = $this->input->post('cve_sesion');
+            
             $config = array();
-            $config['upload_path'] = 'metadatos_propios';
-            $config['allowed_types'] = 'jpg';
+            $config['allowed_types'] = 'pdf';
             $config['overwrite'] = TRUE;
-            $config['file_name'] = $cve_indicador . '.jpg';
-            $this->load->library('upload', $config);
-            if ( ! $this->upload->do_upload('subir_nota') ) {
+            $config['upload_path'] = 'adj_sesiones';
+            $config['file_name'] = $cve_consejo . '_' . $cve_sesion . '_minuta.pdf';
+            $this->load->library('upload',$config);
+            if ( ! $this->upload->do_upload('arch-minuta') ) {
                 $error = array('error' => $this->upload->display_errors());
-                print_r($error);
                 $this->session->set_flashdata('error', $error['error']);
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
+
+    public function asistencia()
+    {
+        if ($this->session->userdata('logueado')) {
+            $cve_consejo = $this->input->post('cve_consejo');
+            $cve_sesion = $this->input->post('cve_sesion');
+            
+            $config = array();
+            $config['allowed_types'] = 'pdf';
+            $config['overwrite'] = TRUE;
+            $config['upload_path'] = 'adj_sesiones';
+            $config['file_name'] = $cve_consejo . '_' . $cve_sesion . '_asistencia.pdf';
+            $this->load->library('upload',$config);
+            if ( ! $this->upload->do_upload('arch-asistencia') ) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $error['error']);
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+
+    public function extras()
+    {
+        if ($this->session->userdata('logueado')) {
+            $cve_consejo = $this->input->post('cve_consejo');
+            $cve_sesion = $this->input->post('cve_sesion');
+            
+            $config = array();
+            $config['allowed_types'] = 'zip';
+            $config['overwrite'] = TRUE;
+            $config['upload_path'] = 'adj_sesiones';
+            $config['file_name'] = $cve_consejo . '_' . $cve_sesion . '_extras.zip';
+            $this->load->library('upload',$config);
+            if ( ! $this->upload->do_upload('arch-extras') ) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $error['error']);
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+
 
 }
-
-
