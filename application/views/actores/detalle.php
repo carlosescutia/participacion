@@ -23,8 +23,8 @@
                     <div class="form-check text-center">
                         <input type="checkbox" class="form-check-input" name="activo" id="activo" value="" <?= $actores['activo'] ? 'checked' : '' ?> >
                         <label class="form-check-label" for="activo">Activo</label>
-                        <?php $foto_default = 'fotos/default.jpg'; ?>
-                        <?php $foto_actor = 'fotos/'.$actores['cve_actor'].'.jpg' ; ?>
+                        <?php $foto_default = 'adj_actores/default_foto.jpg'; ?>
+                        <?php $foto_actor = 'adj_actores/'.$actores['cve_actor'].'_foto.jpg' ; ?>
                         <?php file_exists($foto_actor) ? $foto = $foto_actor : $foto = $foto_default ?>
                         <img src="<?=base_url();?><?=$foto;?>" class="img-fluid img-thumbnail mt-3">
                     </div>
@@ -201,36 +201,39 @@
                     </div>
 
                     <?php if ($consejos_actores) { ?>
-                        <div class="form-row">
-                            <h4 class="mt-3">Consejos</h4>
-                            <div class="form-group col-md-11">
-                                <table class="table table-striped table-bordered table-sm mt-3">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th scope="col">Consejo</th>
-                                            <th scope="col">Cargo</th>
-                                            <th scope="col">Periodo</th>
-                                            <th scope="col">Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($consejos_actores as $consejos_actores_item) { ?>
-                                            <tr>
-                                                <td><?= $consejos_actores_item['nom_consejo'] ?></td>
-                                                <td><?= $consejos_actores_item['nom_cargo'] ?></td>
-                                                <td><?= date('d/m/y', strtotime($consejos_actores_item['fecha_inicio'])) ?> a <?= date('d/m/y', strtotime($consejos_actores_item['fecha_fin'])) ?></td>
-                                                <td><?= $consejos_actores_item['nom_status'] ?></td>
-                                            </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                    <div class="form-row">
+                        <h4 class="mt-3">Consejos</h4>
+                        <div class="form-group col-md-11">
+                            <table class="table table-striped table-bordered table-sm mt-3">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">Consejo</th>
+                                        <th scope="col">Cargo</th>
+                                        <th scope="col">Periodo</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($consejos_actores as $consejos_actores_item) { ?>
+                                    <tr>
+                                        <td><?= $consejos_actores_item['nom_consejo'] ?></td>
+                                        <td><?= $consejos_actores_item['nom_cargo'] ?></td>
+                                        <td><?= date('d/m/y', strtotime($consejos_actores_item['fecha_inicio'])) ?> a <?= date('d/m/y', strtotime($consejos_actores_item['fecha_fin'])) ?></td>
+                                        <td><?= $consejos_actores_item['nom_status'] ?></td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
                     <?php } ?>
 
                 </div>
             </div>
             <hr />
+        </div>
+
+        <div class="col-md-12">
             <div class="row">
                 <div class="col-md-2">
                     <h6><strong>Colaboración</strong></h6>
@@ -279,11 +282,139 @@
                     </div>
                 </div>
             </div>
+            <hr />
+        </div>
+
+    </form>
+
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-2">
+                    <h6><strong>Adjuntos</strong></h6>
+                </div>
+                <div class="col-md-10">
+                    <table class="table table-sm table-borderless">
+                        <tbody>
+                            <tr class="text-center">
+                                <td>
+                                    <?php
+                                    $cve_actor = $actores['cve_actor'] ;
+                                    $arch_actores_adj1 = 'adj_actores/' . $cve_actor . '_adj1.pdf';
+                                    if ( file_exists($arch_actores_adj1) ) { ?>
+                                    <a href="<?= base_url() ?><?= $arch_actores_adj1 ?>" target="_blank">
+                                        <?php } ?>
+                                        Adjunto 1 (pdf)
+                                        <?php
+                                        if ( file_exists($arch_actores_adj1) ) { ?>
+                                    </a>
+                                    <?php } ?>
+                                </td>
+
+                                <td>
+                                    <?php
+                                    $cve_actor = $actores['cve_actor'] ;
+                                    $arch_actores_adj2 = 'adj_actores/' . $cve_actor . '_adj2.pdf';
+                                    if ( file_exists($arch_actores_adj2) ) { ?>
+                                    <a href="<?= base_url() ?><?= $arch_actores_adj2 ?>" target="_blank">
+                                        <?php } ?>
+                                        Adjunto 2 (pdf)
+                                        <?php
+                                        if ( file_exists($arch_actores_adj2) ) { ?>
+                                    </a>
+                                    <?php } ?>
+                                </td>
+
+                                <td>
+                                    <?php
+                                    $cve_actor = $actores['cve_actor'] ;
+                                    $arch_actores_extras = 'adj_actores/' . $cve_actor . '_extras.zip';
+                                    if ( file_exists($arch_actores_extras) ) { ?>
+                                    <a href="<?= base_url() ?><?= $arch_actores_extras ?>" target="_blank">
+                                        <?php } ?>
+                                        Extras (zip)
+                                        <?php
+                                        if ( file_exists($arch_actores_extras) ) { ?>
+                                    </a>
+                                    <?php } ?>
+                                </td>
+
+                                <td>
+                                    <?php
+                                    $cve_actor = $actores['cve_actor'] ;
+                                    $arch_actores_foto = 'adj_actores/' . $cve_actor . '_foto.jpg';
+                                    if ( file_exists($arch_actores_foto) ) { ?>
+                                    <a href="<?= base_url() ?><?= $arch_actores_foto ?>" target="_blank">
+                                        <?php } ?>
+                                        Foto (jpg)
+                                        <?php
+                                        if ( file_exists($arch_actores_foto) ) { ?>
+                                    </a>
+                                    <?php } ?>
+                                </td>
+
+                            </tr>
+                            <tr class="text-center">
+                                <td>
+                                    <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/actores_adj1">
+                                        <label class="btn btn-primary btn-sm" for="arch-act-adj1">
+                                            <input name="arch-act-adj1" id="arch-act-adj1" type="file" style="display:none"
+                                            onchange="$('#arch-act-adj1-info').removeClass('invisible')">
+                                            +
+                                        </label>
+                                        <input type="hidden" name="cve_actor" id="cve_actor" value="<?= $actores['cve_actor'] ?>">
+                                        <button id="arch-act-adj1-info" type="submit" class="btn btn-sm invisible" style="background: none; color: #28A745">
+                                            <span data-feather="upload"></span>
+                                        </button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/actores_adj2">
+                                        <label class="btn btn-primary btn-sm" for="arch-act-adj2">
+                                            <input name="arch-act-adj2" id="arch-act-adj2" type="file" style="display:none"
+                                            onchange="$('#arch-act-adj2-info').removeClass('invisible')">
+                                            +
+                                        </label>
+                                        <input type="hidden" name="cve_actor" id="cve_actor" value="<?= $actores['cve_actor'] ?>">
+                                        <button id="arch-act-adj2-info" type="submit" class="btn btn-sm invisible" style="background: none; color: #28A745">
+                                            <span data-feather="upload"></span>
+                                        </button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/actores_extras">
+                                        <label class="btn btn-primary btn-sm" for="arch-act-extras">
+                                            <input name="arch-act-extras" id="arch-act-extras" type="file" style="display:none"
+                                            onchange="$('#arch-act-extras-info').removeClass('invisible')">
+                                            +
+                                        </label>
+                                        <input type="hidden" name="cve_actor" id="cve_actor" value="<?= $actores['cve_actor'] ?>">
+                                        <button id="arch-act-extras-info" type="submit" class="btn btn-sm invisible" style="background: none; color: #28A745">
+                                            <span data-feather="upload"></span>
+                                        </button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/actores_foto">
+                                        <label class="btn btn-primary btn-sm" for="arch-act-foto">
+                                            <input name="arch-act-foto" id="arch-act-foto" type="file" style="display:none"
+                                            onchange="$('#arch-act-foto-info').removeClass('invisible')">
+                                            +
+                                        </label>
+                                        <input type="hidden" name="cve_actor" id="cve_actor" value="<?= $actores['cve_actor'] ?>">
+                                        <button id="arch-act-foto-info" type="submit" class="btn btn-sm invisible" style="background: none; color: #28A745">
+                                            <span data-feather="upload"></span>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <hr />
         </div>
 
         <input type="hidden" name="cve_actor" value="<?=$actores['cve_actor']?>">
-
-        <hr />
 
         <div class="form-group row">
             <div class="col-sm-10">
@@ -291,7 +422,6 @@
             </div>
         </div>
 
-    </form>
 
     <?php include 'js/inicio.js'; ?>
 </main>

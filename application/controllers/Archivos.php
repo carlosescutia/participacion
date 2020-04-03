@@ -88,5 +88,81 @@ class Archivos extends CI_Controller {
         }
     }
 
+    public function actores_adj1()
+    {
+        if ($this->session->userdata('logueado')) {
+            $cve_actor = $this->input->post('cve_actor');
+            
+            $config = array();
+            $config['allowed_types'] = 'pdf';
+            $config['overwrite'] = TRUE;
+            $config['upload_path'] = 'adj_actores';
+            $config['file_name'] = $cve_actor . '_adj1.pdf';
+            $this->load->library('upload',$config);
+            if ( ! $this->upload->do_upload('arch-act-adj1') ) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $error['error']);
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+
+    public function actores_adj2()
+    {
+        if ($this->session->userdata('logueado')) {
+            $cve_actor = $this->input->post('cve_actor');
+            
+            $config = array();
+            $config['allowed_types'] = 'pdf';
+            $config['overwrite'] = TRUE;
+            $config['upload_path'] = 'adj_actores';
+            $config['file_name'] = $cve_actor . '_adj2.pdf';
+            $this->load->library('upload',$config);
+            if ( ! $this->upload->do_upload('arch-act-adj2') ) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $error['error']);
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+
+    public function actores_extras()
+    {
+        if ($this->session->userdata('logueado')) {
+            $cve_actor = $this->input->post('cve_actor');
+            
+            $config = array();
+            $config['allowed_types'] = 'zip';
+            $config['overwrite'] = TRUE;
+            $config['upload_path'] = 'adj_actores';
+            $config['file_name'] = $cve_actor . '_extras.zip';
+            $this->load->library('upload',$config);
+            if ( ! $this->upload->do_upload('arch-act-extras') ) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $error['error']);
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+
+    public function actores_foto()
+    {
+        if ($this->session->userdata('logueado')) {
+            $cve_actor = $this->input->post('cve_actor');
+            
+            $config = array();
+            $config['allowed_types'] = 'jpg';
+            $config['overwrite'] = TRUE;
+            $config['upload_path'] = 'adj_actores';
+            $config['file_name'] = $cve_actor . '_foto.jpg';
+            $this->load->library('upload',$config);
+            if ( ! $this->upload->do_upload('arch-act-foto') ) {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('error', $error['error']);
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+
 
 }

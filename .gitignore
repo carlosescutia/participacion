@@ -9,6 +9,7 @@ application/logs/*
 !application/*/.htaccess
 
 adj_sesiones/*
+adj_actores/*
 
 composer.lock
 
