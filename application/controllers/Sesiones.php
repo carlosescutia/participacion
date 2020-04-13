@@ -64,7 +64,7 @@ class Sesiones extends CI_Controller {
                 $objetivo = empty($sesion['objetivo']) ? null : $sesion['objetivo'];
                 $orden_dia = empty($sesion['orden_dia']) ? null : $sesion['orden_dia'];
 
-                if ($nom_sesion) {
+                if ($cve_consejo && $nom_sesion && $tipo && $lugar && $fecha && $hora && $objetivo && $orden_dia) {
                     $this->sesiones_model->guardar($cve_consejo, $nom_sesion, $tipo, $lugar, $fecha, $hora, $objetivo, $orden_dia, $cve_sesion);
                 } else {
                     $this->session->set_flashdata('error_sesion', 'Capture todos los datos');

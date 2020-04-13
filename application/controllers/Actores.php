@@ -55,6 +55,7 @@ class Actores extends CI_Controller {
     {
         if ($this->session->userdata('logueado')) {
             $data['error'] = $this->session->flashdata('error');
+            $data['error_adj_actores'] = $this->session->flashdata('error_adj_actores');
             $data['usuario_clave'] = $this->session->userdata('clave');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');

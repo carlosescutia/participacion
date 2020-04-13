@@ -100,8 +100,8 @@ class Archivos extends CI_Controller {
             $config['file_name'] = $cve_actor . '_adj1.pdf';
             $this->load->library('upload',$config);
             if ( ! $this->upload->do_upload('arch-act-adj1') ) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('error', $error['error']);
+                $error_adj_actores = array('error_adj_actores' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_adj_actores', $error_adj_actores['error_adj_actores']);
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
@@ -119,8 +119,8 @@ class Archivos extends CI_Controller {
             $config['file_name'] = $cve_actor . '_adj2.pdf';
             $this->load->library('upload',$config);
             if ( ! $this->upload->do_upload('arch-act-adj2') ) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('error', $error['error']);
+                $error_adj_actores = array('error_adj_actores' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_adj_actores', $error_adj_actores['error_adj_actores']);
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
@@ -138,8 +138,8 @@ class Archivos extends CI_Controller {
             $config['file_name'] = $cve_actor . '_extras.zip';
             $this->load->library('upload',$config);
             if ( ! $this->upload->do_upload('arch-act-extras') ) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('error', $error['error']);
+                $error_adj_actores = array('error_adj_actores' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_adj_actores', $error_adj_actores['error_adj_actores']);
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
@@ -157,8 +157,8 @@ class Archivos extends CI_Controller {
             $config['file_name'] = $cve_actor . '_foto.jpg';
             $this->load->library('upload',$config);
             if ( ! $this->upload->do_upload('arch-act-foto') ) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('error', $error['error']);
+                $error_adj_actores = array('error_adj_actores' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_adj_actores', $error_adj_actores['error_adj_actores']);
             }
             redirect($_SERVER['HTTP_REFERER']);
         }

@@ -17,7 +17,7 @@ class Sesiones_model extends CI_Model {
         return $query->row_array();
     }
 
-    public function guardar($cve_consejo, $nom_sesion, $tipo, $lugar, $fecha, $hora, $objetivo, $orden_dia, $cve_sesion)
+    public function guardar($cve_consejo, $nom_sesion, $tipo, $lugar, $fecha, $hora, $objetivo, $orden_dia, $cve_sesion=null)
     {
         $data = array(
             'cve_consejo' => $cve_consejo,
