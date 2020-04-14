@@ -21,7 +21,7 @@
                 <div class="col-md-2">
                     <h6><strong>Datos básicos</strong></h6>
                     <div class="form-check text-center">
-                        <?php $foto_default = 'fotos/default.jpg'; ?>
+                        <?php $foto_default = 'adj_actores/default_foto.jpg'; ?>
                         <?php $foto = $foto_default ?>
                         <img src="<?=base_url();?><?=$foto;?>" class="img-fluid img-thumbnail mt-3">
                     </div>
