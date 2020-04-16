@@ -6,6 +6,8 @@ class Inicio extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('usuarios_model');
+        $this->load->model('actores_model');
+        $this->load->model('consejos_model');
 
     }
 
@@ -14,8 +16,11 @@ class Inicio extends CI_Controller {
         if ($this->session->userdata('logueado')) {
             $data['usuario_clave'] = $this->session->userdata('clave');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
-            $data['usuario_dependencia'] = $this->session->userdata('dependencia');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
             $data['error'] = $this->session->flashdata('error');
+            $data['estadisticas_actores'] = $this->actores_model->get_estadisticas_actores($dependencia);
+            $data['estadisticas_consejos'] = $this->consejos_model->get_estadisticas_consejos($dependencia);
 
             $this->load->view('templates/header', $data);
             $this->load->view('inicio/inicio', $data);
