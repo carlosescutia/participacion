@@ -70,5 +70,11 @@ class Actores_model extends CI_Model {
       }
     }
 
-}
+    public function get_estadisticas_actores($dependencia)
+    {
+        $sql = 'select count(*) as registrados, count(*) filter (where activo = 1) as activos, count(*) filter (where activo = 0) as inactivos, count(*) filter (where cve_tipo = 1) as consejeros, count(*) filter (where cve_tipo = 2) as colaboradores from actores where dependencia = ?';
+        $query = $this->db->query($sql, array($dependencia));
+        return $query->row_array();
+    }
 
+}

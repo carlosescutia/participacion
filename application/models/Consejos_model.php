@@ -44,4 +44,11 @@ class Consejos_model extends CI_Model {
       }
     }
 
+    public function get_estadisticas_consejos($dependencia)
+    {
+        $sql = 'select count(*) as registrados, count(*) filter (where status = 1) as activos, count(*) filter (where status = 0) as inactivos from consejos where dependencia = ?';
+        $query = $this->db->query($sql, array($dependencia));
+        return $query->row_array();
+    }
+
 }
