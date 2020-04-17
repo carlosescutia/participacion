@@ -103,7 +103,6 @@
                         <div class="form-group col-md-3">
                             <label for="status">Status</label>
                             <select class="custom-select" name="status" id="status">
-                                <option value=""></option>
                                 <option value="1">Activo</option>
                                 <option value="0">Inactivo</option>
                             </select>
