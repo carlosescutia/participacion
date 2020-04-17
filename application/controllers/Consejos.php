@@ -104,9 +104,7 @@ class Consejos extends CI_Controller {
                 $sesiones_anuales = empty($consejo['sesiones_anuales']) ? null : $consejo['sesiones_anuales'];
                 $integracion = empty($consejo['integracion']) ? null : $consejo['integracion'];
                 $fecha_instalacion = empty($consejo['fecha_instalacion']) ? null : $consejo['fecha_instalacion'];
-                $status = empty($consejo['status']) ? null : $consejo['status'];
-
-                $cve_consejo = $consejo['cve_consejo'];
+                $status = !isset($consejo['status']) ? null : $consejo['status'];
 
                 if ($nom_consejo && $siglas && $soporte_juridico) {
                     $this->consejos_model->guardar($nom_consejo, $dependencia, $siglas, $cve_tipo, $cve_eje, $soporte_juridico, $reglamento_interno, $fecha_reglamento, $periodo_inicio, $periodo_fin, $sesiones_anuales, $integracion, $fecha_instalacion, $status, $cve_consejo);
