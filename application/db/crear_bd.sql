@@ -144,3 +144,18 @@ CREATE TABLE sesiones (
     orden_dia text
 );
 
+DROP TABLE IF EXISTS calendario_sesiones;
+CREATE TABLE calendario_sesiones (
+    cve_sesion serial,
+    cve_consejo integer,
+    nom_sesion text,
+    fecha date,
+    hora time,
+    cve_status integer
+);
+
+DROP TABLE IF EXISTS status_sesiones;
+CREATE TABLE status_sesiones (
+    cve_status integer,
+    nom_status text
+);

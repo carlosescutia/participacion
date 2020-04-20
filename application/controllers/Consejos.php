@@ -13,6 +13,8 @@ class Consejos extends CI_Controller {
         $this->load->model('actores_model');
         $this->load->model('cargos_model');
         $this->load->model('sesiones_model');
+        $this->load->model('calendario_sesiones_model');
+        $this->load->model('status_sesiones_model');
 
     }
 
@@ -40,6 +42,7 @@ class Consejos extends CI_Controller {
             $data['error_consejos'] = $this->session->flashdata('error_consejos');
             $data['error_integrantes'] = $this->session->flashdata('error_integrantes');
             $data['error_sesiones'] = $this->session->flashdata('error_sesiones');
+            $data['error_calendario_sesion'] = $this->session->flashdata('error_calendario_sesion');
             $data['usuario_clave'] = $this->session->userdata('clave');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
@@ -55,6 +58,8 @@ class Consejos extends CI_Controller {
             $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $activo, $cve_tipo, $cve_sector);
             $data['cargos'] = $this->cargos_model->get_cargos();
             $data['sesiones'] = $this->sesiones_model->get_sesiones_consejo($cve_consejo);
+            $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_consejo($cve_consejo);
+            $data['status_sesiones'] = $this->status_sesiones_model->get_status_sesiones();
 
             $this->load->view('templates/header', $data);
             $this->load->view('consejos/detalle', $data);
