@@ -24,6 +24,12 @@
             </div>
         </div>
         <hr />
+        <div class="row">
+            <div class="col-md-8">
+                <?php include "calendario_sesiones.php" ?>
+            </div>
+        </div>
+        <hr />
     </div>
 
     <hr />
@@ -35,4 +41,3 @@
     </div>
 
 </main>
-
