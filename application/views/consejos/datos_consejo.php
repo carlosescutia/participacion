@@ -92,6 +92,7 @@
                 <div class="form-group col-md-3">
                     <label for="status">Status</label>
                     <select class="custom-select" name="status" id="status">
+                        <option value=""></option>
                         <option value="1" <?= ($consejos['status'] == '1') ? 'selected' : '' ?> >Activo</option>
                         <option value="0" <?= ($consejos['status'] == '0') ? 'selected' : '' ?> >Inactivo</option>
                     </select>

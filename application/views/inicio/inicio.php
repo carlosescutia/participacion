@@ -19,6 +19,14 @@
                         <?php include "datos_consejos.php"; ?>
                     </div>
                 </div>
+
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <?php include "datos_calendario_sesiones.php"; ?>
+                    </div>
+                </div>
             </div>
         </div>
 

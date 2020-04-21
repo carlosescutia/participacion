@@ -8,6 +8,8 @@ class Inicio extends CI_Controller {
         $this->load->model('usuarios_model');
         $this->load->model('actores_model');
         $this->load->model('consejos_model');
+        $this->load->model('calendario_sesiones_model');
+        $this->load->model('status_sesiones_model');
 
     }
 
@@ -21,6 +23,7 @@ class Inicio extends CI_Controller {
             $data['error'] = $this->session->flashdata('error');
             $data['estadisticas_actores'] = $this->actores_model->get_estadisticas_actores($dependencia);
             $data['estadisticas_consejos'] = $this->consejos_model->get_estadisticas_consejos($dependencia);
+            $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_dependencia($dependencia);
 
             $this->load->view('templates/header', $data);
             $this->load->view('inicio/inicio', $data);

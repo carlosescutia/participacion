@@ -58,7 +58,7 @@ class Consejos extends CI_Controller {
             $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $activo, $cve_tipo, $cve_sector);
             $data['cargos'] = $this->cargos_model->get_cargos();
             $data['sesiones'] = $this->sesiones_model->get_sesiones_consejo($cve_consejo);
-            $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_consejo($cve_consejo);
+            $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_consejo($cve_consejo, $dependencia);
             $data['status_sesiones'] = $this->status_sesiones_model->get_status_sesiones();
 
             $this->load->view('templates/header', $data);
