@@ -23,6 +23,13 @@ class Actores_model extends CI_Model {
         return $query->row_array();
     }
 
+    public function get_reporte_actores_01($dependencia) {
+        $sql = "select a.nombre, a.apellido_pa, a.apellido_ma, m.nom_mun, a.sexo, s.nom_sector, (select string_agg(c.nom_consejo, ',') as consejos from consejos_actores ca left join consejos c on ca.cve_consejo = c.cve_consejo where ca.cve_actor = a.cve_actor), t.nom_tipo from actores a left join municipios m on a.cve_mun = m.cve_mun left join sectores s on a.cve_sector = s.cve_sector left join tipos t on a.cve_tipo = t.cve_tipo where a.dependencia=? order by a.nombre";
+        $query = $this->db->query($sql, array($dependencia));
+        return $query->result_array();
+    }
+
+
     public function guardar($activo, $dependencia, $nombre, $apellido_pa, $apellido_ma, $fecha_nacimiento, $sexo, $calle, $num_exterior, $num_interior, $colonia, $codigo_postal, $ciudad, $cve_mun, $cve_ent, $cve_tipo, $ine, $expediente_archivistico, $cve_ambito, $cve_sector, $organizacion, $telefono_fijo, $telefono_celular, $correo_personal, $correo_laboral, $asistente, $correo_asistente, $telefono_asistente, $otros_espacios, $experiencia_exitosa, $fecha_experiencia_exitosa, $desea_colaborar, $profesion, $cve_perfil, $cve_actor=null) {
 
       $data = array(
