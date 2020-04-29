@@ -7,7 +7,7 @@
             <?php include "btn_reporte_actores_01.php" ?>
         </div>
         <div class="col-md-6">
-            <h5><a href="#">Reporte de Consejos</a></h5>
+            <?php include "btn_reporte_consejos_01.php" ?>
         </div>
     </div>
 </main>

@@ -72,8 +72,8 @@ CREATE TABLE sectores (
     nom_sector text
 );
 
-DROP TABLE IF EXISTS tipos;
-CREATE TABLE tipos (
+DROP TABLE IF EXISTS tipo_actores;
+CREATE TABLE tipo_actores (
     cve_tipo integer,
     nom_tipo text
 );
