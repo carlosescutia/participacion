@@ -9,7 +9,7 @@ class Actores extends CI_Controller {
         $this->load->model('actores_model');
         $this->load->model('municipios_model');
         $this->load->model('entidades_model');
-        $this->load->model('tipos_model');
+        $this->load->model('tipo_actores_model');
         $this->load->model('ambitos_model');
         $this->load->model('sectores_model');
         $this->load->model('consejos_actores_model');
@@ -63,7 +63,7 @@ class Actores extends CI_Controller {
             $data['actores'] = $this->actores_model->get_actor_dependencia($dependencia, $cve_actor);
             $data['municipios'] = $this->municipios_model->get_municipios();
             $data['entidades'] = $this->entidades_model->get_entidades();
-            $data['tipos'] = $this->tipos_model->get_tipos();
+            $data['tipo_actores'] = $this->tipo_actores_model->get_tipo_actores();
             $data['ambitos'] = $this->ambitos_model->get_ambitos();
             $data['sectores'] = $this->sectores_model->get_sectores();
             $data['consejos_actores'] = $this->consejos_actores_model->get_consejos_actor($cve_actor);
@@ -85,7 +85,7 @@ class Actores extends CI_Controller {
             $data['usuario_dependencia'] = $this->session->userdata('dependencia');
             $data['municipios'] = $this->municipios_model->get_municipios();
             $data['entidades'] = $this->entidades_model->get_entidades();
-            $data['tipos'] = $this->tipos_model->get_tipos();
+            $data['tipo_actores'] = $this->tipo_actores_model->get_tipo_actores();
             $data['ambitos'] = $this->ambitos_model->get_ambitos();
             $data['sectores'] = $this->sectores_model->get_sectores();
             $data['perfiles'] = $this->perfiles_model->get_perfiles();

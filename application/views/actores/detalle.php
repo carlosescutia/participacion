@@ -175,8 +175,8 @@
                             <label for="cve_tipo">Tipo</label>
                             <select class="custom-select border-primary" name="cve_tipo" id="cve_tipo">
                                 <option value=""></option>
-                                <?php foreach ($tipos as $tipos_item) { ?>
-                                <option value="<?= $tipos_item['cve_tipo'] ?>" <?= ($actores['cve_tipo'] == $tipos_item['cve_tipo']) ? 'selected' : '' ?> ><?= $tipos_item['nom_tipo'] ?></option>
+                                <?php foreach ($tipo_actores as $tipo_actores_item) { ?>
+                                <option value="<?= $tipo_actores_item['cve_tipo'] ?>" <?= ($actores['cve_tipo'] == $tipo_actores_item['cve_tipo']) ? 'selected' : '' ?> ><?= $tipo_actores_item['nom_tipo'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
