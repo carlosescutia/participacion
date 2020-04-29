@@ -38,7 +38,18 @@ class Consejos_actores_model extends CI_Model {
           'fecha_fin' => $fecha_fin,
           'status' => $status
       );
-      $this->db->insert('consejos_actores', $data);
+      try {
+          $result = $this->db->insert('consejos_actores', $data);
+          if (!$result)
+          {
+              throw new Exception('El actor ya es integrante');
+              return false;
+          }
+          return $result;
+      } catch(Exception $e) {
+          $this->session->set_flashdata('error_integrantes', 'El actor ya es integrante');
+          redirect($_SERVER['HTTP_REFERER']);
+      }
     }
 
 

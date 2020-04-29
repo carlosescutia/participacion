@@ -104,7 +104,8 @@ CREATE TABLE consejos_actores (
     cve_cargo integer,
     fecha_inicio date,
     fecha_fin date,
-    status integer
+    status integer,
+    primary key (cve_consejo, cve_actor)
 );
     
 DROP TABLE IF EXISTS cargos;
