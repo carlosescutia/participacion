@@ -18,7 +18,7 @@ class Consejos_model extends CI_Model {
     }
     
     public function get_reporte_consejos_01($dependencia) {
-        $sql = "select c.nom_consejo, e.nom_eje, c.dependencia, (select string_agg(concat(s.nom_sesion, ' (', s.fecha, ') '), ',') as sesiones from sesiones s where s.cve_consejo = c.cve_consejo), (select string_agg(concat(a.nombre, ' ', a.apellido_pa, ' ', apellido_ma, ': ', cs.nom_cargo), '; ' order by ca.cve_cargo) as integrantes from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor left join cargos cs on ca.cve_cargo = cs.cve_cargo where ca.status = 1 and ca.cve_consejo = c.cve_consejo), tc.nom_tipo, (case when c.status=1 then 'activo' when c.status=0 then 'inactivo' else '' end) as nom_status from consejos c left join ejes e on e.cve_eje = c.cve_eje left join tipo_consejos tc on tc.cve_tipo = c.cve_tipo where dependencia = ?";
+        $sql = "select c.nom_consejo, e.nom_eje, c.dependencia, (select string_agg(concat(s.nom_sesion, ' (', s.fecha, ') '), ', ') as sesiones from sesiones s where s.cve_consejo = c.cve_consejo), (select string_agg(concat(a.nombre, ' ', a.apellido_pa, ' ', apellido_ma, ': ', cs.nom_cargo), '; ' order by ca.cve_cargo) as integrantes from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor left join cargos cs on ca.cve_cargo = cs.cve_cargo where ca.status = 1 and ca.cve_consejo = c.cve_consejo), tc.nom_tipo, (case when c.status=1 then 'activo' when c.status=0 then 'inactivo' else '' end) as nom_status from consejos c left join ejes e on e.cve_eje = c.cve_eje left join tipo_consejos tc on tc.cve_tipo = c.cve_tipo where dependencia = ?";
         $query = $this->db->query($sql, array($dependencia));
         return $query->result_array();
     }

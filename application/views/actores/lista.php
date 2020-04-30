@@ -86,6 +86,9 @@
                                 <div class="col-sm-2 align-self-center">
                                     <p><?= $actores_item['organizacion'] ?></p>
                                 </div>
+                                <div class="col-sm-2 align-self-center">
+                                    <p><?= $actores_item['consejos'] ?></p>
+                                </div>
                             </div>
                         </span></li>
                     </div>
