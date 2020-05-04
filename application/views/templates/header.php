@@ -44,43 +44,17 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="col-sm-6 mr-5">
                     <h5 class="my-0 mr-md-auto font-weight-normal text-white">Sistema de Vinculación y Gestión Social</h5>
+                    <hr class="mb-0 pb-0" />
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>inicio">Tablero</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>actores/lista">Actores</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>consejos/lista">Consejos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>reportes/lista">Reportes</a></li>
+                    </ul>
                 </div>
-                <p class="m-2 text-white"><?php echo $usuario_nombre ?></p>
-                <p class="m-2 text-white">·</p>
-                <p class="m-2 text-white"><?php echo $usuario_dependencia ?></p>
-                <p class="m-2 text-white">|</p>
-                <a class="m-2 text-white" href="<?= base_url() ?>inicio/cerrar_sesion">Cerrar sesión</a>
+                <div class="col-sm-5 text-right">
+                    <p class="m-2 text-white"><?php echo $usuario_nombre ?> · <?php echo $usuario_dependencia ?> | <a class="m-2 text-white" href="<?= base_url() ?>inicio/cerrar_sesion">Cerrar sesión</a></p>
+                </div>
             </div> <!-- opciones del menu -->
         </nav>
         <div class="container-fluid">
-            <div class="row">
-                <nav class="col-md-2 d-none d-md-block bg-light sidebar d-print-none">
-                    <div class="sidebar-sticky">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                            <a class="nav-link" href="<?=base_url()?>inicio">
-                                    <span data-feather="home"></span>
-                                    Inicio <span class="sr-only">(current)</span>
-                                </a>
-                            </li>
-                            <li>
-                            <a class="nav-link" href="<?=base_url()?>actores/lista">
-                                    <span data-feather="user"></span>
-                                    Actores
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="<?=base_url()?>consejos/lista">
-                                    <span data-feather="users"></span>
-                                    Consejos
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link" href="<?=base_url()?>reportes/lista">
-                                    <span data-feather="file"></span>
-                                    Reportes
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
