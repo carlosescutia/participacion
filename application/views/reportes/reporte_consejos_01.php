@@ -23,7 +23,6 @@
                             <th scope="col">Eje</th>
                             <th scope="col">Dependencia</th>
                             <th scope="col">Sesiones anuales</th>
-                            <th scope="col">Sesiones</th>
                             <th scope="col">Integrantes</th>
                             <th scope="col">Tipo</th>
                             <th scope="col">Status</th>
@@ -36,7 +35,6 @@
                             <td><?= $consejos_item['nom_eje'] ?></td>
                             <td><?= $consejos_item['dependencia'] ?></td>
                             <td class="text-center"><?= $consejos_item['sesiones_anuales'] ?></td>
-                            <td><?= $consejos_item['sesiones'] ?></td>
                             <td><?= $consejos_item['integrantes'] ?></td>
                             <td><?= $consejos_item['nom_tipo'] ?></td>
                             <td><?= $consejos_item['nom_status'] ?></td>
