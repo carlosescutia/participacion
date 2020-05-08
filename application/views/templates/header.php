@@ -46,7 +46,7 @@
                     <h5 class="my-0 mr-md-auto font-weight-normal text-white">Sistema de Vinculación y Gestión Social</h5>
                     <hr class="mb-0 pb-0" />
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>inicio">Tablero</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?=base_url()?>inicio">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>actores/lista">Actores</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>consejos/lista">Consejos</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>reportes/lista">Reportes</a></li>
