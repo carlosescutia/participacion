@@ -5,11 +5,14 @@ class Sesiones extends CI_Controller {
     {
         parent::__construct();
         $this->load->helper('url');
+        $this->load->helper('form');
         $this->load->model('sesiones_model');
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
 
     }
 
-    public function detalle($cve_sesion)
+    public function detalle($cve_sesion, $cve_consejo)
     {
         if ($this->session->userdata('logueado')) {
             $data['error_sesion'] = $this->session->flashdata('error_sesion');
@@ -18,7 +21,7 @@ class Sesiones extends CI_Controller {
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
 
-            $data['sesiones'] = $this->sesiones_model->get_sesion($cve_sesion);
+            $data['sesiones'] = $this->sesiones_model->get_sesion_consejo($cve_sesion, $cve_consejo);
 
             $this->load->view('templates/header', $data);
             $this->load->view('sesiones/detalle', $data);
@@ -28,9 +31,45 @@ class Sesiones extends CI_Controller {
         }
     }
 
-    public function nuevo($cve_consejo)
+    public function guardar($cve_consejo)
     {
         if ($this->session->userdata('logueado')) {
+
+            $this->form_validation->set_rules('nom_sesion','nombre','required',array('required' => '* requerido',));
+            $this->form_validation->set_rules('tipo','tipo','required',array('required' => '* requerido',));
+            $this->form_validation->set_rules('lugar','lugar','required',array('required' => '* requerido',));
+            $this->form_validation->set_rules('fecha','fecha','required',array('required' => '* requerido',));
+            $this->form_validation->set_rules('hora','hora','required',array('required' => '* requerido',));
+            $this->form_validation->set_rules('objetivo','objetivo','required',array('required' => '* requerido',));
+            $this->form_validation->set_rules('orden_dia','orden_dia','required',array('required' => '* requerido',));
+
+            if ($this->form_validation->run())
+            {
+                $sesion = $this->input->post();
+                $data = array(
+                    'cve_consejo' => $sesion['cve_consejo'],
+                    'nom_sesion' => $sesion['nom_sesion'],
+                    'tipo' => $sesion['tipo'],
+                    'lugar' => $sesion['lugar'],
+                    'fecha' => $sesion['fecha'],
+                    'hora' => $sesion['hora'],
+                    'objetivo' => $sesion['objetivo'],
+                    'orden_dia' => $sesion['orden_dia']
+                );
+                $cve_sesion = $sesion['cve_sesion'];
+                $this->sesiones_model->guardar($data, $cve_sesion);
+                redirect('consejos/lista');
+            } else {
+                if (validation_errors())
+                {
+                    $sesion = $this->input->post();
+                }
+            }
+
+            $data = array(
+                'sesiones' => $sesion
+            );
+
             $data['error_sesion'] = $this->session->flashdata('error_sesion');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
@@ -38,40 +77,18 @@ class Sesiones extends CI_Controller {
 
             $data['cve_consejo'] = $cve_consejo;
 
-            $this->load->view('templates/header', $data);
-            $this->load->view('sesiones/nuevo', $data);
-            $this->load->view('templates/footer');
+            if (isset($data['sesiones']['cve_sesion']))
+            {
+                $this->load->view('templates/header', $data);
+                $this->load->view('sesiones/detalle', $data);
+                $this->load->view('templates/footer');
+            } else {
+                $this->load->view('templates/header', $data);
+                $this->load->view('sesiones/nuevo', $data);
+                $this->load->view('templates/footer');
+            }
         } else {
             redirect('inicio/iniciar_sesion');
-        }
-    }
-
-    public function guardar($cve_sesion=null)
-    {
-        if ($this->session->userdata('logueado')) {
-            $data['usuario_nombre'] = $this->session->userdata('nombre');
-            $dependencia = $this->session->userdata('dependencia');
-            $data['usuario_dependencia'] = $dependencia;
-
-            $sesion = $this->input->post();
-            if ($sesion) {
-                $cve_consejo = empty($sesion['cve_consejo']) ? null : $sesion['cve_consejo'];
-                $nom_sesion = empty($sesion['nom_sesion']) ? null : $sesion['nom_sesion'];
-                $tipo = empty($sesion['tipo']) ? null : $sesion['tipo'];
-                $lugar = empty($sesion['lugar']) ? null : $sesion['lugar'];
-                $fecha = empty($sesion['fecha']) ? null : $sesion['fecha'];
-                $hora = empty($sesion['hora']) ? null : $sesion['hora'];
-                $objetivo = empty($sesion['objetivo']) ? null : $sesion['objetivo'];
-                $orden_dia = empty($sesion['orden_dia']) ? null : $sesion['orden_dia'];
-
-                if ($cve_consejo && $nom_sesion && $tipo && $lugar && $fecha && $hora && $objetivo && $orden_dia) {
-                    $this->sesiones_model->guardar($cve_consejo, $nom_sesion, $tipo, $lugar, $fecha, $hora, $objetivo, $orden_dia, $cve_sesion);
-                } else {
-                    $this->session->set_flashdata('error_sesion', 'Capture todos los datos');
-                    redirect($_SERVER['HTTP_REFERER']);
-                }
-            }
-            redirect('consejos/lista');
         }
     }
 

@@ -17,7 +17,7 @@
                 <tbody>
                     <?php foreach ($sesiones as $sesiones_item) { ?>
                     <tr>
-                        <td><a href="<?= base_url() ?>sesiones/detalle/<?= $sesiones_item['cve_sesion'] ?>"><?= $sesiones_item['nom_sesion'] ?></a></td>
+                        <td><a href="<?= base_url() ?>sesiones/detalle/<?= $sesiones_item['cve_sesion'] ?>/<?= $consejos['cve_consejo'] ?>"><?= $sesiones_item['nom_sesion'] ?></a></td>
                         <td><?= date('d/m/y', strtotime($sesiones_item['fecha'])) ?></td>
                     </tr>
                     <?php } ?>
@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="card-footer">
-        <form method="post" action="<?= base_url() ?>sesiones/nuevo/<?= $consejos['cve_consejo'] ?>">
+        <form method="post" action="<?= base_url() ?>sesiones/guardar/<?= $consejos['cve_consejo'] ?>">
                 <button type="submit" class="btn btn-primary">Nueva sesión</button>
         </form>
     </div>

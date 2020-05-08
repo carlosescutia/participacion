@@ -11,27 +11,17 @@ class Sesiones_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_sesion($cve_sesion) {
-        $sql = "select s.* from sesiones s where s.cve_sesion = ?";
-        $query = $this->db->query($sql, array($cve_sesion));
+    public function get_sesion_consejo($cve_sesion, $cve_consejo) {
+        $sql = "select s.* from sesiones s where s.cve_sesion = ? and cve_consejo = ?";
+        $query = $this->db->query($sql, array($cve_sesion, $cve_consejo));
         return $query->row_array();
     }
 
-    public function guardar($cve_consejo, $nom_sesion, $tipo, $lugar, $fecha, $hora, $objetivo, $orden_dia, $cve_sesion=null)
+    public function guardar($data, $cve_sesion=null)
     {
-        $data = array(
-            'cve_consejo' => $cve_consejo,
-            'nom_sesion' => $nom_sesion,
-            'tipo' => $tipo,
-            'lugar' => $lugar,
-            'fecha' => $fecha,
-            'hora' => $hora,
-            'objetivo' => $objetivo,
-            'orden_dia' => $orden_dia
-        );
-
-        if ($cve_sesion) {
+        if (isset($cve_sesion)) {
             $this->db->where('cve_sesion', $cve_sesion);
+            $this->db->where('cve_consejo', $data['cve_consejo']);
             $this->db->update('sesiones', $data);
         } else {
             $this->db->insert('sesiones', $data);
