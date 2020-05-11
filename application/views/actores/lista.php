@@ -35,7 +35,9 @@
                     </form>
                 </div>
                 <div class="col-sm-2 text-right">
-                    <a href="<?=base_url()?>actores/nuevo" class="btn btn-primary">Nuevo</a>
+                    <form method="post" action="<?= base_url() ?>actores/guardar">
+                        <button type="submit" class="btn btn-primary">Nuevo</button>
+                    </form>
                 </div>
             </div>
         </div>
