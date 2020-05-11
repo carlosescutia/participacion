@@ -1,14 +1,9 @@
 <main role="main" class="ml-sm-auto px-4">
-    <form method="post" action="<?= base_url() ?>actores/guardar/<?=$actores['cve_actor']?>">
+    <form method="post" action="<?= base_url() ?>actores/guardar">
         <div class="col-md-12 mb-3 pb-2 pt-3 border-bottom">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-10">
                     <h1 class="h2">Datos del actor</h1>
-                </div>
-                <div class="col-md-6 text-danger">
-                    <?php if ($error): ?>
-                        <?php echo $error?>
-                    <?php endif ?>
                 </div>
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-primary">Guardar</button>
@@ -21,8 +16,10 @@
                 <div class="col-md-2">
                     <h6><strong>Datos básicos</strong></h6>
                     <div class="form-check text-center">
-                        <input type="checkbox" class="form-check-input" name="activo" id="activo" value="" <?= $actores['activo'] ? 'checked' : '' ?> >
-                        <label class="form-check-label" for="activo">Activo</label>
+                        <select class="custom-select form-control-sm" name="activo" id="activo">
+                            <option value="1" <?= ($actores['activo'] == '1') ? 'selected' : '' ?>>Activo</option>
+                            <option value="0" <?= ($actores['activo'] == '0') ? 'selected' : '' ?>>Inactivo</option>
+                        </select>
                         <?php $foto_default = 'adj_actores/default_foto.jpg'; ?>
                         <?php $foto_actor = 'adj_actores/'.$actores['cve_actor'].'_foto.jpg' ; ?>
                         <?php file_exists($foto_actor) ? $foto = $foto_actor : $foto = $foto_default ?>
@@ -33,15 +30,18 @@
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="nombre">Nombre(s)</label>
-                            <input type="text" class="form-control border-primary" name="nombre" id="nombre" value="<?=$actores['nombre'] ?>">
+                            <?php echo form_error('nombre'); ?>
+                            <input type="text" class="form-control" name="nombre" id="nombre" value="<?=$actores['nombre'] ?>">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="apellido_pa">Apellido paterno</label>
-                            <input type="text" class="form-control border-primary" name="apellido_pa" id="apellido_pa" value="<?=$actores['apellido_pa'] ?>">
+                            <?php echo form_error('apellido_pa'); ?>
+                            <input type="text" class="form-control" name="apellido_pa" id="apellido_pa" value="<?=$actores['apellido_pa'] ?>">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="apellido_ma">Apellido materno</label>
-                            <input type="text" class="form-control border-primary" name="apellido_ma" id="apellido_ma" value="<?=$actores['apellido_ma'] ?>">
+                            <?php echo form_error('apellido_ma'); ?>
+                            <input type="text" class="form-control" name="apellido_ma" id="apellido_ma" value="<?=$actores['apellido_ma'] ?>">
                         </div>
                     </div>
                     <div class="form-row">
@@ -51,7 +51,8 @@
                         </div>
                         <div class="form-group col-md-1">
                             <label for="sexo">Sexo</label>
-                            <select class="custom-select border-primary" name="sexo" id="sexo">
+                            <?php echo form_error('sexo'); ?>
+                            <select class="custom-select" name="sexo" id="sexo">
                                 <option value=""></option>
                                 <option value="F" <?= ($actores['sexo'] == 'F') ? 'selected' : '' ?>>F</option>
                                 <option value="M" <?= ($actores['sexo'] == 'M') ? 'selected' : '' ?>>M</option>
@@ -173,7 +174,8 @@
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="cve_tipo">Tipo</label>
-                            <select class="custom-select border-primary" name="cve_tipo" id="cve_tipo">
+                            <?php echo form_error('cve_tipo'); ?>
+                            <select class="custom-select" name="cve_tipo" id="cve_tipo">
                                 <option value=""></option>
                                 <?php foreach ($tipo_actores as $tipo_actores_item) { ?>
                                 <option value="<?= $tipo_actores_item['cve_tipo'] ?>" <?= ($actores['cve_tipo'] == $tipo_actores_item['cve_tipo']) ? 'selected' : '' ?> ><?= $tipo_actores_item['nom_tipo'] ?></option>
@@ -191,7 +193,8 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="cve_sector">Sector</label>
-                            <select class="custom-select border-primary" name="cve_sector" id="cve_sector">
+                            <?php echo form_error('cve_sector'); ?>
+                            <select class="custom-select" name="cve_sector" id="cve_sector">
                                 <option value=""></option>
                                 <?php foreach ($sectores as $sectores_item) { ?>
                                 <option value="<?= $sectores_item['cve_sector'] ?>" <?= ($actores['cve_sector'] == $sectores_item['cve_sector']) ? 'selected' : '' ?> ><?= $sectores_item['nom_sector'] ?></option>
@@ -286,6 +289,7 @@
         </div>
 
         <input type="hidden" name="cve_actor" value="<?=$actores['cve_actor']?>">
+        <input type="hidden" name="dependencia" value="<?=$actores['dependencia']?>">
 
     </form>
 

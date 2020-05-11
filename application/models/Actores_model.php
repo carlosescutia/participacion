@@ -30,45 +30,7 @@ class Actores_model extends CI_Model {
     }
 
 
-    public function guardar($activo, $dependencia, $nombre, $apellido_pa, $apellido_ma, $fecha_nacimiento, $sexo, $calle, $num_exterior, $num_interior, $colonia, $codigo_postal, $ciudad, $cve_mun, $cve_ent, $cve_tipo, $ine, $expediente_archivistico, $cve_ambito, $cve_sector, $organizacion, $telefono_fijo, $telefono_celular, $correo_personal, $correo_laboral, $asistente, $correo_asistente, $telefono_asistente, $otros_espacios, $experiencia_exitosa, $fecha_experiencia_exitosa, $desea_colaborar, $profesion, $cve_perfil, $cve_actor=null) {
-
-      $data = array(
-          'activo' => $activo,
-          'dependencia' => $dependencia,
-          'nombre' => $nombre,
-          'apellido_pa' => $apellido_pa,
-          'apellido_ma' => $apellido_ma,
-          'fecha_nacimiento' => $fecha_nacimiento,
-          'sexo' => $sexo,
-          'calle' => $calle,
-          'num_exterior' => $num_exterior,
-          'num_interior' => $num_interior,
-          'colonia' => $colonia,
-          'codigo_postal' => $codigo_postal,
-          'ciudad' => $ciudad,
-          'cve_mun' => $cve_mun,
-          'cve_ent' => $cve_ent,
-          'cve_tipo' => $cve_tipo,
-          'ine' => $ine,
-          'expediente_archivistico' => $expediente_archivistico,
-          'cve_ambito' => $cve_ambito,
-          'cve_sector' => $cve_sector,
-          'organizacion' => $organizacion,
-          'telefono_fijo' => $telefono_fijo,
-          'telefono_celular' => $telefono_celular,
-          'correo_personal' => $correo_personal,
-          'correo_laboral' => $correo_laboral,
-          'asistente' => $asistente,
-          'correo_asistente' => $correo_asistente,
-          'telefono_asistente' => $telefono_asistente,
-          'otros_espacios' => $otros_espacios,
-          'experiencia_exitosa' => $experiencia_exitosa,
-          'fecha_experiencia_exitosa' => $fecha_experiencia_exitosa,
-          'desea_colaborar' => $desea_colaborar,
-          'profesion' => $profesion,
-          'cve_perfil' => $cve_perfil
-      );
-
+    public function guardar($data, $cve_actor=null) {
       if ($cve_actor) {
           $this->db->where('cve_actor', $cve_actor);
           $this->db->update('actores', $data);

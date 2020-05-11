@@ -5,6 +5,10 @@ class Actores extends CI_Controller {
     {
         parent::__construct();
         $this->load->helper('url');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+
         $this->load->model('usuarios_model');
         $this->load->model('actores_model');
         $this->load->model('municipios_model');
@@ -99,58 +103,91 @@ class Actores extends CI_Controller {
     }
 
 
-    public function guardar($cve_actor=null)
+    public function guardar()
     {
         if ($this->session->userdata('logueado')) {
+
+            $this->form_validation->set_rules('nombre','nombre','required',array('required' => '* requerido',));
+            $this->form_validation->set_rules('apellido_pa','apellido paterno','required',array('required' => '* requerido',));
+            $this->form_validation->set_rules('apellido_ma','apellido materno','required',array('required' => '* requerido',));
+            $this->form_validation->set_rules('sexo','sexo','required',array('required' => '*req',));
+            $this->form_validation->set_rules('cve_tipo','tipo de actor','required',array('required' => '* requerido',));
+            $this->form_validation->set_rules('cve_sector','sector','required',array('required' => '* requerido',));
+
+            $actores = $this->input->post();
+            if ($this->form_validation->run())
+            {
+                $data = array(
+                    'activo' => $actores['activo'] ,
+                    'dependencia' => $actores['dependencia'],
+                    'nombre' =>  $actores['nombre'],
+                    'apellido_pa' =>  $actores['apellido_pa'],
+                    'apellido_ma' =>  $actores['apellido_ma'],
+                    'fecha_nacimiento' =>  $actores['fecha_nacimiento'],
+                    'sexo' =>  $actores['sexo'],
+                    'calle' =>  $actores['calle'],
+                    'num_exterior' =>  $actores['num_exterior'],
+                    'num_interior' =>  $actores['num_interior'],
+                    'colonia' =>  $actores['colonia'],
+                    'codigo_postal' =>  $actores['codigo_postal'],
+                    'ciudad' =>  $actores['ciudad'],
+                    'cve_mun' =>  $actores['cve_mun'],
+                    'cve_ent' =>  $actores['cve_ent'],
+                    'cve_tipo' =>  $actores['cve_tipo'],
+                    'ine' =>  $actores['ine'],
+                    'expediente_archivistico' =>  $actores['expediente_archivistico'],
+                    'cve_ambito' =>  $actores['cve_ambito'],
+                    'cve_sector' =>  $actores['cve_sector'],
+                    'organizacion' =>  $actores['organizacion'],
+                    'telefono_fijo' =>  $actores['telefono_fijo'],
+                    'telefono_celular' =>  $actores['telefono_celular'],
+                    'correo_personal' =>  $actores['correo_personal'],
+                    'correo_laboral' =>  $actores['correo_laboral'],
+                    'asistente' =>  $actores['asistente'],
+                    'correo_asistente' =>  $actores['correo_asistente'],
+                    'telefono_asistente' =>  $actores['telefono_asistente'],
+                    'otros_espacios' =>  $actores['otros_espacios'],
+                    'experiencia_exitosa' =>  $actores['experiencia_exitosa'],
+                    'fecha_experiencia_exitosa' =>  $actores['fecha_experiencia_exitosa'],
+                    'desea_colaborar' =>  $actores['desea_colaborar'],
+                    'profesion' =>  $actores['profesion'],
+                    'cve_perfil' =>  $actores['cve_perfil']
+                );
+                $cve_actor = $actores['cve_actor'];
+                $this->actores_model->guardar($data, $cve_actor);
+                redirect('actores/lista');
+            }
+
+            $data = array(
+                'actores' => $actores
+            );
+            
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
+            $data['error_adj_actores'] = $this->session->flashdata('error_adj_actores');
 
-            $actores = $this->input->post();
-            if ($actores) {
-                $activo = isset($actores['activo']) ? 1 : 0 ;
-                $nombre = empty($actores['nombre']) ? null : $actores['nombre'];
-                $apellido_pa = empty($actores['apellido_pa']) ? null : $actores['apellido_pa'];
-                $apellido_ma = empty($actores['apellido_ma']) ? null : $actores['apellido_ma'];
-                $fecha_nacimiento = empty($actores['fecha_nacimiento']) ? null : $actores['fecha_nacimiento'];
-                $sexo = empty($actores['sexo']) ? null : $actores['sexo'];
-                $calle = empty($actores['calle']) ? null : $actores['calle'];
-                $num_exterior = empty($actores['num_exterior']) ? null : $actores['num_exterior'];
-                $num_interior = empty($actores['num_interior']) ? null : $actores['num_interior'];
-                $colonia = empty($actores['colonia']) ? null : $actores['colonia'];
-                $codigo_postal = empty($actores['codigo_postal']) ? null : $actores['codigo_postal'];
-                $ciudad = empty($actores['ciudad']) ? null : $actores['ciudad'];
-                $cve_mun = empty($actores['cve_mun']) ? null : $actores['cve_mun'];
-                $cve_ent = empty($actores['cve_ent']) ? null : $actores['cve_ent'];
-                $cve_tipo = empty($actores['cve_tipo']) ? null : $actores['cve_tipo'];
-                $ine = empty($actores['ine']) ? null : $actores['ine'];
-                $expediente_archivistico = empty($actores['expediente_archivistico']) ? null : $actores['expediente_archivistico'];
-                $cve_ambito = empty($actores['cve_ambito']) ? null : $actores['cve_ambito'];
-                $cve_sector = empty($actores['cve_sector']) ? null : $actores['cve_sector'];
-                $organizacion = empty($actores['organizacion']) ? null : $actores['organizacion'];
-                $telefono_fijo = empty($actores['telefono_fijo']) ? null : $actores['telefono_fijo'];
-                $telefono_celular = empty($actores['telefono_celular']) ? null : $actores['telefono_celular'];
-                $correo_personal = empty($actores['correo_personal']) ? null : $actores['correo_personal'];
-                $correo_laboral = empty($actores['correo_laboral']) ? null : $actores['correo_laboral'];
-                $asistente = empty($actores['asistente']) ? null : $actores['asistente'];
-                $correo_asistente = empty($actores['correo_asistente']) ? null : $actores['correo_asistente'];
-                $telefono_asistente = empty($actores['telefono_asistente']) ? null : $actores['telefono_asistente'];
-                $otros_espacios = empty($actores['otros_espacios']) ? null : $actores['otros_espacios'];
-                $experiencia_exitosa = empty($actores['experiencia_exitosa']) ? null : $actores['experiencia_exitosa'];
-                $fecha_experiencia_exitosa = empty($actores['fecha_experiencia_exitosa']) ? null : $actores['fecha_experiencia_exitosa'];
-                $desea_colaborar = empty($actores['desea_colaborar']) ? null : $actores['desea_colaborar'];
-                $profesion = empty($actores['profesion']) ? null : $actores['profesion'];
-                $cve_perfil = empty($actores['cve_perfil']) ? null : $actores['cve_perfil'];
-                $cve_actor = $actores['cve_actor'];
+            $data['municipios'] = $this->municipios_model->get_municipios();
+            $data['entidades'] = $this->entidades_model->get_entidades();
+            $data['tipo_actores'] = $this->tipo_actores_model->get_tipo_actores();
+            $data['ambitos'] = $this->ambitos_model->get_ambitos();
+            $data['sectores'] = $this->sectores_model->get_sectores();
+            $data['perfiles'] = $this->perfiles_model->get_perfiles();
 
-                if ($nombre && $apellido_pa && $apellido_ma && $sexo && $cve_tipo && $cve_sector) {
-                    $this->actores_model->guardar($activo, $dependencia, $nombre, $apellido_pa, $apellido_ma, $fecha_nacimiento, $sexo, $calle, $num_exterior, $num_interior, $colonia, $codigo_postal, $ciudad, $cve_mun, $cve_ent, $cve_tipo, $ine, $expediente_archivistico, $cve_ambito, $cve_sector, $organizacion, $telefono_fijo, $telefono_celular, $correo_personal, $correo_laboral, $asistente, $correo_asistente, $telefono_asistente, $otros_espacios, $experiencia_exitosa, $fecha_experiencia_exitosa, $desea_colaborar, $profesion, $cve_perfil, $cve_actor);
-                } else {
-                    $this->session->set_flashdata('error', 'Capture todos los datos obligatorios (en azul)');
-                    redirect($_SERVER['HTTP_REFERER']);
-                }
+            if (isset($data['actores']['cve_actor']))
+            {
+                //$data['actores'] = $this->actores_model->get_actor_dependencia($dependencia, $data['actores']['cve_actor']);
+                $data['consejos_actores'] = $this->consejos_actores_model->get_consejos_actor($data['actores']['cve_actor']);
+                $this->load->view('templates/header', $data);
+                $this->load->view('actores/detalle', $data);
+                $this->load->view('templates/footer');
+            } else {
+                $this->load->view('templates/header', $data);
+                $this->load->view('actores/nuevo', $data);
+                $this->load->view('templates/footer');
             }
-            redirect('actores/lista');
+        } else {
+            redirect('inicio/iniciar_sesion');
         }
     }
 

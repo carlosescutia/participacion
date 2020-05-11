@@ -43,9 +43,9 @@ class Sesiones extends CI_Controller {
             $this->form_validation->set_rules('objetivo','objetivo','required',array('required' => '* requerido',));
             $this->form_validation->set_rules('orden_dia','orden_dia','required',array('required' => '* requerido',));
 
+            $sesion = $this->input->post();
             if ($this->form_validation->run())
             {
-                $sesion = $this->input->post();
                 $data = array(
                     'cve_consejo' => $sesion['cve_consejo'],
                     'nom_sesion' => $sesion['nom_sesion'],
@@ -59,11 +59,6 @@ class Sesiones extends CI_Controller {
                 $cve_sesion = $sesion['cve_sesion'];
                 $this->sesiones_model->guardar($data, $cve_sesion);
                 redirect('consejos/lista');
-            } else {
-                if (validation_errors())
-                {
-                    $sesion = $this->input->post();
-                }
             }
 
             $data = array(
