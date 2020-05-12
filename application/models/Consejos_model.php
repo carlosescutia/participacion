@@ -24,31 +24,14 @@ class Consejos_model extends CI_Model {
     }
 
 
-    public function guardar($nom_consejo, $dependencia, $siglas, $cve_tipo, $cve_eje, $soporte_juridico, $reglamento_interno, $fecha_reglamento, $periodo_inicio, $periodo_fin, $sesiones_anuales, $integracion, $fecha_instalacion, $status, $cve_consejo) {
-
-      $data = array(
-          'nom_consejo' => $nom_consejo,
-          'dependencia' => $dependencia,
-          'siglas' => $siglas,
-          'cve_tipo' => $cve_tipo,
-          'cve_eje' => $cve_eje,
-          'soporte_juridico' => $soporte_juridico,
-          'reglamento_interno' => $reglamento_interno,
-          'fecha_reglamento' => $fecha_reglamento,
-          'periodo_inicio' => $periodo_inicio,
-          'periodo_fin' => $periodo_fin,
-          'sesiones_anuales' => $sesiones_anuales,
-          'integracion' => $integracion,
-          'fecha_instalacion' => $fecha_instalacion,
-          'status' => $status,
-      );
-
-      if ($cve_consejo) {
-          $this->db->where('cve_consejo', $cve_consejo);
-          $this->db->update('consejos', $data);
-      } else {
-          $this->db->insert('consejos', $data);
-      }
+    public function guardar($data, $cve_consejo) 
+    {
+        if ($cve_consejo) {
+            $this->db->where('cve_consejo', $cve_consejo);
+            $this->db->update('consejos', $data);
+        } else {
+            $this->db->insert('consejos', $data);
+        }
     }
 
     public function get_estadisticas_consejos($dependencia)

@@ -4,23 +4,19 @@
     </div>
     <form method="post" action="<?= base_url() ?>consejos/guardar/<?= $consejos['cve_consejo'] ?>">
         <div class="card-body">
-            <div class="col-md-12">
-                <?php if ($error_consejos): ?>
-                <p class="text-danger"><?php echo $error_consejos ?></p>
-                <?php endif ?>
-            </div>
-
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="nom_consejo">Nombre</label>
-                    <input type="text" class="form-control border-primary" name="nom_consejo" id="nom_consejo" value="<?=$consejos['nom_consejo'] ?>">
+                    <?php echo form_error('nom_consejo'); ?>
+                    <input type="text" class="form-control" name="nom_consejo" id="nom_consejo" value="<?=$consejos['nom_consejo'] ?>">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="siglas">Siglas</label>
-                    <input type="text" class="form-control border-primary" name="siglas" id="siglas" value="<?=$consejos['siglas'] ?>">
+                    <?php echo form_error('siglas'); ?>
+                    <input type="text" class="form-control" name="siglas" id="siglas" value="<?=$consejos['siglas'] ?>">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="cve_tipo">Tipo</label>
@@ -45,7 +41,8 @@
             <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="soporte_juridico">Soporte jurídico</label>
-                    <input type="text" class="form-control border-primary" name="soporte_juridico" id="soporte_juridico" value="<?=$consejos['soporte_juridico'] ?>">
+                    <?php echo form_error('soporte_juridico'); ?>
+                    <input type="text" class="form-control" name="soporte_juridico" id="soporte_juridico" value="<?=$consejos['soporte_juridico'] ?>">
                 </div>
             </div>
 
@@ -99,6 +96,7 @@
                 </div>
             </div>
 
+            <input type="hidden" name="dependencia" value="<?= $usuario_dependencia; ?>">
             <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?=$consejos['cve_consejo'] ?>">
 
         </div>

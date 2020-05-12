@@ -6,7 +6,9 @@
                     <h1 class="h2">Consejos</h1>
                 </div>
                 <div class="col-sm-2 text-right">
-                    <a href="<?=base_url()?>consejos/nuevo" class="btn btn-primary">Nuevo</a>
+                    <form method="post" action="<?= base_url() ?>consejos/guardar">
+                        <button type="submit" class="btn btn-primary">Nuevo</button>
+                    </form>
                 </div>
             </div>
         </div>
