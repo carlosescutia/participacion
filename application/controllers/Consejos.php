@@ -5,6 +5,10 @@ class Consejos extends CI_Controller {
     {
         parent::__construct();
         $this->load->helper('url');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+
         $this->load->model('usuarios_model');
         $this->load->model('consejos_model');
         $this->load->model('tipo_consejos_model');
@@ -69,10 +73,41 @@ class Consejos extends CI_Controller {
         }
     }
 
-    public function nuevo()
+    public function guardar($cve_consejo=null)
     {
         if ($this->session->userdata('logueado')) {
-            $data['error_consejos'] = $this->session->flashdata('error_consejos');
+            $this->form_validation->set_rules('nom_consejo','nombre','required',array('required' => '* requerido',));
+            $this->form_validation->set_rules('siglas','siglas','required',array('required' => '* requerido',));
+            $this->form_validation->set_rules('soporte_juridico','soporte juridico','required',array('required' => '* requerido',));
+
+            $consejo = $this->input->post();
+            if ($this->form_validation->run()) {
+                $data = array(
+                    'dependencia' => $consejo['dependencia'],
+                    'nom_consejo' => $consejo['nom_consejo'],
+                    'siglas' => $consejo['siglas'],
+                    'cve_tipo' => empty($consejo['cve_tipo']) ? null : $consejo['cve_tipo'],
+                    'cve_eje' => empty($consejo['cve_eje']) ? null : $consejo['cve_eje'],
+                    'soporte_juridico' => $consejo['soporte_juridico'],
+                    'reglamento_interno' => $consejo['reglamento_interno'],
+                    'fecha_reglamento' => empty($consejo['fecha_reglamento']) ? null : $consejo['fecha_reglamento'],
+                    'periodo_inicio' => empty($consejo['periodo_inicio']) ? null : $consejo['periodo_inicio'],
+                    'periodo_fin' => empty($consejo['periodo_fin']) ? null : $consejo['periodo_fin'],
+                    'sesiones_anuales' => empty($consejo['sesiones_anuales']) ? null : $consejo['sesiones_anuales'],
+                    'integracion' => $consejo['integracion'],
+                    'fecha_instalacion' => empty($consejo['fecha_instalacion']) ? null : $consejo['fecha_instalacion'],
+                    'status' => $consejo['status']
+               );
+                $cve_consejo = isset($consejo['cve_consejo']) ? $consejo['cve_consejo'] : null;
+                print_r($data);
+                $this->consejos_model->guardar($data, $cve_consejo);
+                redirect('consejos/lista');
+            }
+
+            $data = array(
+                'consejos' => $consejo
+            );
+
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
@@ -80,49 +115,34 @@ class Consejos extends CI_Controller {
             $data['tipo_consejos'] = $this->tipo_consejos_model->get_tipo_consejos();
             $data['ejes'] = $this->ejes_model->get_ejes();
 
-            $this->load->view('templates/header', $data);
-            $this->load->view('consejos/nuevo', $data);
-            $this->load->view('templates/footer');
+            if (isset($data['consejos']['cve_consejo']))
+            {
+                $data['error_integrantes'] = $this->session->flashdata('error_integrantes');
+                $data['error_sesiones'] = $this->session->flashdata('error_sesiones');
+                $data['error_calendario_sesion'] = $this->session->flashdata('error_calendario_sesion');
+
+                $data['consejos_actores'] = $this->consejos_actores_model->get_actores_consejo($cve_consejo);
+                $cve_tipo = 1;
+                $activo = 1;
+                $cve_sector = 0;
+                $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $activo, $cve_tipo, $cve_sector);
+                $data['cargos'] = $this->cargos_model->get_cargos();
+                $data['sesiones'] = $this->sesiones_model->get_sesiones_consejo($cve_consejo);
+                $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_consejo($cve_consejo, $dependencia);
+                $data['status_sesiones'] = $this->status_sesiones_model->get_status_sesiones();
+
+                $this->load->view('templates/header', $data);
+                $this->load->view('consejos/detalle', $data);
+                $this->load->view('templates/footer');
+            } else {
+                $this->load->view('templates/header', $data);
+                $this->load->view('consejos/nuevo', $data);
+                $this->load->view('templates/footer');
+            }
+
         } else {
             redirect('inicio/iniciar_sesion');
         }
     }
 
-    public function guardar($cve_consejo=null)
-    {
-        if ($this->session->userdata('logueado')) {
-            $data['usuario_nombre'] = $this->session->userdata('nombre');
-            $dependencia = $this->session->userdata('dependencia');
-            $data['usuario_dependencia'] = $dependencia;
-
-            $consejo = $this->input->post();
-            if ($consejo) {
-                $nom_consejo = empty($consejo['nom_consejo']) ? null : $consejo['nom_consejo'];
-                $siglas = empty($consejo['siglas']) ? null : $consejo['siglas'];
-                $cve_tipo = empty($consejo['cve_tipo']) ? null : $consejo['cve_tipo'];
-                $cve_eje = empty($consejo['cve_eje']) ? null : $consejo['cve_eje'];
-                $soporte_juridico = empty($consejo['soporte_juridico']) ? null : $consejo['soporte_juridico'];
-                $reglamento_interno = empty($consejo['reglamento_interno']) ? null : $consejo['reglamento_interno'];
-                $fecha_reglamento = empty($consejo['fecha_reglamento']) ? null : $consejo['fecha_reglamento'];
-                $periodo_inicio = empty($consejo['periodo_inicio']) ? null : $consejo['periodo_inicio'];
-                $periodo_fin = empty($consejo['periodo_fin']) ? null : $consejo['periodo_fin'];
-                $sesiones_anuales = empty($consejo['sesiones_anuales']) ? null : $consejo['sesiones_anuales'];
-                $integracion = empty($consejo['integracion']) ? null : $consejo['integracion'];
-                $fecha_instalacion = empty($consejo['fecha_instalacion']) ? null : $consejo['fecha_instalacion'];
-                $status = !isset($consejo['status']) ? null : $consejo['status'];
-
-                if ($nom_consejo && $siglas && $soporte_juridico) {
-                    $this->consejos_model->guardar($nom_consejo, $dependencia, $siglas, $cve_tipo, $cve_eje, $soporte_juridico, $reglamento_interno, $fecha_reglamento, $periodo_inicio, $periodo_fin, $sesiones_anuales, $integracion, $fecha_instalacion, $status, $cve_consejo);
-                } else {
-                    $this->session->set_flashdata('error_consejos', 'Capture todos los datos obligatorios (en azul)');
-                    redirect($_SERVER['HTTP_REFERER']);
-                }
-            }
-            redirect('consejos/lista');
-        }
-    }
-
-
 }
-
-
