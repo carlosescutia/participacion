@@ -81,28 +81,6 @@ class Actores extends CI_Controller {
         }
     }
 
-    public function nuevo()
-    {
-        if ($this->session->userdata('logueado')) {
-            $data['error'] = $this->session->flashdata('error');
-            $data['usuario_nombre'] = $this->session->userdata('nombre');
-            $data['usuario_dependencia'] = $this->session->userdata('dependencia');
-            $data['municipios'] = $this->municipios_model->get_municipios();
-            $data['entidades'] = $this->entidades_model->get_entidades();
-            $data['tipo_actores'] = $this->tipo_actores_model->get_tipo_actores();
-            $data['ambitos'] = $this->ambitos_model->get_ambitos();
-            $data['sectores'] = $this->sectores_model->get_sectores();
-            $data['perfiles'] = $this->perfiles_model->get_perfiles();
-
-            $this->load->view('templates/header', $data);
-            $this->load->view('actores/nuevo', $data);
-            $this->load->view('templates/footer');
-        } else {
-            redirect('inicio/iniciar_sesion');
-        }
-    }
-
-
     public function guardar()
     {
         if ($this->session->userdata('logueado')) {
@@ -123,21 +101,21 @@ class Actores extends CI_Controller {
                     'nombre' =>  $actores['nombre'],
                     'apellido_pa' =>  $actores['apellido_pa'],
                     'apellido_ma' =>  $actores['apellido_ma'],
-                    'fecha_nacimiento' =>  $actores['fecha_nacimiento'],
+                    'fecha_nacimiento' => empty($actores['fecha_nacimiento']) ? null : $actores['fecha_nacimiento'],
                     'sexo' =>  $actores['sexo'],
                     'calle' =>  $actores['calle'],
                     'num_exterior' =>  $actores['num_exterior'],
                     'num_interior' =>  $actores['num_interior'],
                     'colonia' =>  $actores['colonia'],
-                    'codigo_postal' =>  $actores['codigo_postal'],
+                    'codigo_postal' => empty($actores['codigo_postal']) ? null : $actores['codigo_postal'],
                     'ciudad' =>  $actores['ciudad'],
                     'cve_mun' =>  $actores['cve_mun'],
                     'cve_ent' =>  $actores['cve_ent'],
-                    'cve_tipo' =>  $actores['cve_tipo'],
+                    'cve_tipo' => empty($actores['cve_tipo']) ? null : $actores['cve_tipo'],
                     'ine' =>  $actores['ine'],
                     'expediente_archivistico' =>  $actores['expediente_archivistico'],
-                    'cve_ambito' =>  $actores['cve_ambito'],
-                    'cve_sector' =>  $actores['cve_sector'],
+                    'cve_ambito' => empty($actores['cve_ambito']) ? null : $actores['cve_ambito'],
+                    'cve_sector' => empty($actores['cve_sector']) ? null : $actores['cve_sector'],
                     'organizacion' =>  $actores['organizacion'],
                     'telefono_fijo' =>  $actores['telefono_fijo'],
                     'telefono_celular' =>  $actores['telefono_celular'],
@@ -148,12 +126,12 @@ class Actores extends CI_Controller {
                     'telefono_asistente' =>  $actores['telefono_asistente'],
                     'otros_espacios' =>  $actores['otros_espacios'],
                     'experiencia_exitosa' =>  $actores['experiencia_exitosa'],
-                    'fecha_experiencia_exitosa' =>  $actores['fecha_experiencia_exitosa'],
+                    'fecha_experiencia_exitosa' => empty($actores['fecha_experiencia_exitosa']) ? null : $actores['fecha_experiencia_exitosa'],
                     'desea_colaborar' =>  $actores['desea_colaborar'],
                     'profesion' =>  $actores['profesion'],
-                    'cve_perfil' =>  $actores['cve_perfil']
+                    'cve_perfil' => empty($actores['cve_perfil']) ? null : $actores['cve_perfil']
                 );
-                $cve_actor = $actores['cve_actor'];
+                $cve_actor = isset($actores['cve_actor']) ? $actores['cve_actor'] : null;
                 $this->actores_model->guardar($data, $cve_actor);
                 redirect('actores/lista');
             }
@@ -176,7 +154,6 @@ class Actores extends CI_Controller {
 
             if (isset($data['actores']['cve_actor']))
             {
-                //$data['actores'] = $this->actores_model->get_actor_dependencia($dependencia, $data['actores']['cve_actor']);
                 $data['consejos_actores'] = $this->consejos_actores_model->get_consejos_actor($data['actores']['cve_actor']);
                 $this->load->view('templates/header', $data);
                 $this->load->view('actores/detalle', $data);
