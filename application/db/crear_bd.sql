@@ -161,3 +161,20 @@ CREATE TABLE status_sesiones (
     cve_status integer,
     nom_status text
 );
+
+DROP TABLE IF EXISTS acuerdos_sesion;
+CREATE TABLE acuerdos_sesion (
+    cve_acuerdo serial,
+    cve_sesion integer,
+    cve_consejo integer,
+    nom_acuerdo text,
+    cve_status integer,
+    observaciones text
+);
+
+DROP TABLE IF EXISTS status_acuerdos_sesion;
+CREATE TABLE status_acuerdos_sesion (
+    cve_status integer,
+    nom_status text
+);
+
