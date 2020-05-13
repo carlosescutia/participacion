@@ -19,7 +19,6 @@ class Consejos extends CI_Controller {
         $this->load->model('sesiones_model');
         $this->load->model('calendario_sesiones_model');
         $this->load->model('status_sesiones_model');
-
     }
 
     public function lista()

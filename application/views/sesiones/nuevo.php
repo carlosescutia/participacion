@@ -69,7 +69,7 @@
 
         <div class="form-group row">
             <div class="col-sm-10">
-                <a href="#" onclick="history.go(-1)" class="btn btn-secondary">Volver</a>
+                <a href="<?=base_url()?>consejos/detalle/<?=$cve_consejo ?>" class="btn btn-secondary">Volver</a>
             </div>
         </div>
     </form>

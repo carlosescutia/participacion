@@ -6,10 +6,12 @@ class Sesiones extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->helper('form');
-        $this->load->model('sesiones_model');
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
 
+        $this->load->model('sesiones_model');
+        $this->load->model('acuerdos_sesion_model');
+        $this->load->model('status_acuerdos_sesion_model');
     }
 
     public function detalle($cve_sesion, $cve_consejo)
@@ -22,6 +24,8 @@ class Sesiones extends CI_Controller {
             $data['usuario_dependencia'] = $dependencia;
 
             $data['sesiones'] = $this->sesiones_model->get_sesion_consejo($cve_sesion, $cve_consejo);
+            $data['acuerdos_sesion'] = $this->acuerdos_sesion_model->get_acuerdos_sesion($cve_sesion, $cve_consejo);
+            $data['status_acuerdos_sesion'] = $this->status_acuerdos_sesion_model->get_status_acuerdos_sesion();
 
             $this->load->view('templates/header', $data);
             $this->load->view('sesiones/detalle', $data);
@@ -58,7 +62,7 @@ class Sesiones extends CI_Controller {
                 );
                 $cve_sesion = $sesion['cve_sesion'];
                 $this->sesiones_model->guardar($data, $cve_sesion);
-                redirect('consejos/lista');
+                redirect('consejos/detalle/'.$cve_consejo);
             }
 
             $data = array(
