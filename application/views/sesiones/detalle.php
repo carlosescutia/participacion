@@ -77,7 +77,7 @@
     </div>
 
     <div class="col-md-9 mt-3">
-        <?php include 'acuerdos_sesiones.php' ?>
+        <?php include 'acuerdos_sesion.php' ?>
     </div>
 
     <hr />
