@@ -4,11 +4,9 @@
     </div>
     <div class="card-body p-0">
         <div class="col-md-12">
-<!--
             <?php if ($error_acuerdos_sesion): ?>
             <p class="text-danger"><?php echo $error_acuerdos_sesion ?></p>
             <?php endif ?>
-            -->
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>
@@ -25,11 +23,11 @@
                         <td>
                             <select class="custom-select" onchange="document.location.href=this.value" >
                                 <?php foreach ($status_acuerdos_sesion as $status_acuerdos_sesion_item) { ?>
-                                <option value="../../acuerdos_sesion/actualizar_status/<?= $acuerdos_sesion_item['cve_sesion'] ?>/<?= $acuerdos_sesion_item['cve_consejo'] ?>/<?= $status_acuerdos_sesion_item['cve_status'] ?>"  <?= ($acuerdos_sesion_item['cve_status'] == $status_acuerdos_sesion_item['cve_status']) ? 'selected' : '' ?>   ><?= $status_acuerdos_sesion_item['nom_status'] ?></option>
+                                <option value="../../../acuerdos_sesion/actualizar_status/<?= $acuerdos_sesion_item['cve_acuerdo'] ?>/<?= $acuerdos_sesion_item['cve_sesion'] ?>/<?= $acuerdos_sesion_item['cve_consejo'] ?>/<?= $status_acuerdos_sesion_item['cve_status'] ?>"  <?= ($acuerdos_sesion_item['cve_status'] == $status_acuerdos_sesion_item['cve_status']) ? 'selected' : '' ?>   ><?= $status_acuerdos_sesion_item['nom_status'] ?></option>
                                 <?php } ?>
                             </select>
                         </td>
-                        <td><a style="color: #f00" href="<?= base_url() ?>acuerdos_sesion/eliminar_registro/<?= $acuerdos_sesion_item['cve_sesion'] ?>/<?= $acuerdos_sesion_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a>
+                        <td><a style="color: #f00" href="<?= base_url() ?>acuerdos_sesion/eliminar_registro/<?= $acuerdos_sesion_item['cve_acuerdo'] ?>/<?= $acuerdos_sesion_item['cve_sesion'] ?>/<?= $acuerdos_sesion_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a>
                         </div>
                     </tr>
                     <?php } ?>
@@ -48,20 +46,17 @@
                 </div>
                 <div class="col-md-2">
                     <select class="custom-select" name="cve_status" id="cve_status">
-<!--
-                        <?php foreach ($status_sesion as $status_sesion_item) { ?>
-                        <option value="<?= $status_sesion_item['cve_status'] ?>"><?= $status_sesion_item['nom_status'] ?></option>
+                        <?php foreach ($status_acuerdos_sesion as $status_acuerdos_sesion_item) { ?>
+                        <option value="<?= $status_acuerdos_sesion_item['cve_status'] ?>"><?= $status_acuerdos_sesion_item['nom_status'] ?></option>
                         <?php } ?>
-                        -->
                     </select>
                 </div>
                 <div class="col-md-1">
                     <button type="submit" class="btn btn-primary">Agregar</button>
                 </div>
             </div>
-<!--
-            <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?= $consejos['cve_consejo'] ?>">
--->
+            <input type="hidden" name="cve_sesion" id="cve_sesion" value="<?= $sesiones['cve_sesion'] ?>">
+            <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?= $sesiones['cve_consejo'] ?>">
         </form>
     </div>
 </div>

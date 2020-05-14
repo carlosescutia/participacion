@@ -18,6 +18,7 @@ class Sesiones extends CI_Controller {
     {
         if ($this->session->userdata('logueado')) {
             $data['error_sesion'] = $this->session->flashdata('error_sesion');
+            $data['error_acuerdos_sesion'] = $this->session->flashdata('error_acuerdos_sesion');
             $data['usuario_clave'] = $this->session->userdata('clave');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
