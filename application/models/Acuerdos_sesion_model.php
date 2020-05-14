@@ -11,41 +11,29 @@ class Acuerdos_sesion_model extends CI_Model {
         return $query->result_array();
     }
 
-    /*
-    public function guardar($cve_consejo, $nom_sesion, $dependencia, $fecha, $hora, $cve_status)
+    public function guardar($data)
     {
-        $data = array(
-            'cve_consejo' => $cve_consejo,
-            'nom_sesion' => $nom_sesion,
-            'dependencia' => $dependencia,
-            'fecha' => $fecha,
-            'hora' => $hora,
-            'cve_status' => $cve_status
-        );
-
-        $this->db->insert('calendario_sesiones', $data);
+        $this->db->insert('acuerdos_sesion', $data);
     }
 
-    public function actualizar_status($cve_sesion, $cve_consejo, $cve_status)
+    public function actualizar_status($cve_acuerdo, $cve_sesion, $cve_consejo, $cve_status)
     {
         $data = array(
             'cve_status' => $cve_status
         );
 
+        $this->db->where('cve_acuerdo', $cve_acuerdo);
         $this->db->where('cve_sesion', $cve_sesion);
         $this->db->where('cve_consejo', $cve_consejo);
-        $this->db->update('calendario_sesiones', $data);
+        $this->db->update('acuerdos_sesion', $data);
     }
 
-    public function eliminar_registro($cve_sesion, $cve_consejo, $dependencia)
+    public function eliminar_registro($cve_acuerdo, $cve_sesion, $cve_consejo)
     {
+        $this->db->where('cve_acuerdo', $cve_acuerdo);
         $this->db->where('cve_sesion', $cve_sesion);
         $this->db->where('cve_consejo', $cve_consejo);
-        $this->db->where('dependencia', $dependencia);
-        $this->db->delete('calendario_sesiones');
+        $this->db->delete('acuerdos_sesion');
     }
-     */
 
 }
-
-
