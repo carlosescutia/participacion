@@ -50,6 +50,9 @@
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>actores/lista">Actores</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>consejos/lista">Consejos</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>reportes/lista">Reportes</a></li>
+                        <?php if ($usuario_rol == 'Administrador' ) { ?>
+                        <li class="nav-item"><a class="nav-link ml-5" href="<?=base_url()?>catalogos/lista">Catálogos</a></li>
+                        <?php } ?>
                     </ul>
                 </div>
                 <div class="col-sm-5 text-right">

@@ -20,21 +20,26 @@
                     <tr>
                         <td><?= $acuerdos_sesion_item['nom_acuerdo'] ?></td>
                         <td><?= $acuerdos_sesion_item['observaciones'] ?></td>
-                        <td>
-                            <select class="custom-select" onchange="document.location.href=this.value" >
-                                <?php foreach ($status_acuerdos_sesion as $status_acuerdos_sesion_item) { ?>
-                                <option value="../../../acuerdos_sesion/actualizar_status/<?= $acuerdos_sesion_item['cve_acuerdo'] ?>/<?= $acuerdos_sesion_item['cve_sesion'] ?>/<?= $acuerdos_sesion_item['cve_consejo'] ?>/<?= $status_acuerdos_sesion_item['cve_status'] ?>"  <?= ($acuerdos_sesion_item['cve_status'] == $status_acuerdos_sesion_item['cve_status']) ? 'selected' : '' ?>   ><?= $status_acuerdos_sesion_item['nom_status'] ?></option>
-                                <?php } ?>
-                            </select>
-                        </td>
-                        <td><a style="color: #f00" href="<?= base_url() ?>acuerdos_sesion/eliminar_registro/<?= $acuerdos_sesion_item['cve_acuerdo'] ?>/<?= $acuerdos_sesion_item['cve_sesion'] ?>/<?= $acuerdos_sesion_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a>
-                        </div>
+                        <?php if ($usuario_rol !== 'Administrador') { ?>
+                            <td>
+                                <select class="custom-select" onchange="document.location.href=this.value" >
+                                    <?php foreach ($status_acuerdos_sesion as $status_acuerdos_sesion_item) { ?>
+                                    <option value="../../../acuerdos_sesion/actualizar_status/<?= $acuerdos_sesion_item['cve_acuerdo'] ?>/<?= $acuerdos_sesion_item['cve_sesion'] ?>/<?= $acuerdos_sesion_item['cve_consejo'] ?>/<?= $status_acuerdos_sesion_item['cve_status'] ?>"  <?= ($acuerdos_sesion_item['cve_status'] == $status_acuerdos_sesion_item['cve_status']) ? 'selected' : '' ?>   ><?= $status_acuerdos_sesion_item['nom_status'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </td>
+                            <td><a style="color: #f00" href="<?= base_url() ?>acuerdos_sesion/eliminar_registro/<?= $acuerdos_sesion_item['cve_acuerdo'] ?>/<?= $acuerdos_sesion_item['cve_sesion'] ?>/<?= $acuerdos_sesion_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a>
+                            </td>
+                        <?php } else { ?>
+                            <td><?= $acuerdos_sesion_item['nom_status'] ?></td>
+                        <?php } ?>
                     </tr>
                     <?php } ?>
                 </tbody>
             </table>
         </div>
     </div>
+    <?php if ($usuario_rol !== 'Administrador') { ?>
     <div class="card-footer">
         <form method="post" action="<?= base_url() ?>acuerdos_sesion/guardar">
             <div class="form-row">
@@ -59,6 +64,7 @@
             <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?= $sesiones['cve_consejo'] ?>">
         </form>
     </div>
+    <?php } ?>
 </div>
 
 

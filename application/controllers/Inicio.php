@@ -21,6 +21,13 @@ class Inicio extends CI_Controller {
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
             $data['error'] = $this->session->flashdata('error');
+            $rol = $this->session->userdata('rol');
+            $data['usuario_rol'] = $rol;
+
+            if ($rol == 'Administrador') {
+                $dependencia = '';
+            }
+
             $data['estadisticas_actores'] = $this->actores_model->get_estadisticas_actores($dependencia);
             $data['estadisticas_consejos'] = $this->consejos_model->get_estadisticas_consejos($dependencia);
             $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_dependencia($dependencia);
@@ -58,6 +65,7 @@ class Inicio extends CI_Controller {
                     'nombre' => $usuario_db->nombre,
                     'usuario' => $usuario_db->usuario,
                     'dependencia' => $usuario_db->dependencia,
+                    'rol' => $usuario_db->nom_rol,
                     'logueado' => TRUE
                 );
                 $this->session->set_userdata($usuario_data);

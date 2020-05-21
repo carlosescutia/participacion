@@ -100,8 +100,10 @@
             <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?=$consejos['cve_consejo'] ?>">
 
         </div>
+        <?php if ($usuario_rol !== 'Administrador') { ?>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
+        <?php } ?>
     </form>
 </div>
