@@ -23,6 +23,12 @@ class Sesiones extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
+            $rol = $this->session->userdata('rol');
+            $data['usuario_rol'] = $rol;
+
+            if ($rol == 'Administrador') {
+                $dependencia = '';
+            }
 
             $data['sesiones'] = $this->sesiones_model->get_sesion_consejo($cve_sesion, $cve_consejo);
             $data['acuerdos_sesion'] = $this->acuerdos_sesion_model->get_acuerdos_sesion($cve_sesion, $cve_consejo);

@@ -178,3 +178,15 @@ CREATE TABLE status_acuerdos_sesion (
     nom_status text
 );
 
+DROP TABLE IF EXISTS roles;
+CREATE TABLE roles (
+    cve_rol integer,
+    nom_rol text
+);
+
+DROP TABLE IF EXISTS usuarios_roles;
+CREATE TABLE usuarios_roles (
+    cve_usuario integer,
+    cve_rol integer
+);
+

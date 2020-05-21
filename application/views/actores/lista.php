@@ -35,9 +35,11 @@
                     </form>
                 </div>
                 <div class="col-sm-2 text-right">
+                    <?php if ($usuario_rol !== 'Administrador') { ?>
                     <form method="post" action="<?= base_url() ?>actores/guardar">
                         <button type="submit" class="btn btn-primary">Nuevo</button>
                     </form>
+                    <?php } ?>
                 </div>
             </div>
         </div>

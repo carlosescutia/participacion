@@ -12,7 +12,9 @@
                 <?php endif ?>
             </div>
             <div class="col-md-2">
+                <?php if ($usuario_rol !== 'Administrador') { ?>
                 <button type="submit" class="btn btn-primary">Guardar</button>
+                <?php } ?>
             </div>
         </div>
     </div>
