@@ -10,7 +10,7 @@
             <?php include "cargos/boton.php" ?>
         </div>
         <div class="col-md-3">
-            <?php include "btn_ejes.php" ?>
+            <?php include "ejes/boton.php" ?>
         </div>
         <div class="col-md-3">
             <?php include "btn_entidades.php" ?>
