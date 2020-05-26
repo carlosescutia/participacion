@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS usuarios;
 CREATE TABLE usuarios (
-    clave integer, 
+    clave serial, 
     nombre text,
     usuario text,
     password text,
@@ -50,7 +50,7 @@ CREATE TABLE actores (
 
 DROP TABLE IF EXISTS ambitos;
 CREATE TABLE ambitos (
-    cve_ambito integer,
+    cve_ambito serial,
     nom_ambito text
 );
 
@@ -68,13 +68,13 @@ CREATE TABLE municipios (
 
 DROP TABLE IF EXISTS sectores;
 CREATE TABLE sectores (
-    cve_sector integer,
+    cve_sector serial,
     nom_sector text
 );
 
 DROP TABLE IF EXISTS tipo_actores;
 CREATE TABLE tipo_actores (
-    cve_tipo integer,
+    cve_tipo serial,
     nom_tipo text
 );
 
@@ -110,25 +110,25 @@ CREATE TABLE consejos_actores (
     
 DROP TABLE IF EXISTS cargos;
 CREATE TABLE cargos (
-    cve_cargo integer,
+    cve_cargo serial,
     nom_cargo text
 );
 
 DROP TABLE IF EXISTS perfiles;
 CREATE TABLE perfiles (
-    cve_perfil integer,
+    cve_perfil serial,
     nom_perfil text
 );
 
 DROP TABLE IF EXISTS tipo_consejos;
 CREATE TABLE tipo_consejos (
-    cve_tipo integer,
+    cve_tipo serial,
     nom_tipo text
 );
 
 DROP TABLE IF EXISTS ejes;
 CREATE TABLE ejes (
-    cve_eje integer,
+    cve_eje serial,
     nom_eje text
 );
 
@@ -158,7 +158,7 @@ CREATE TABLE calendario_sesiones (
 
 DROP TABLE IF EXISTS status_sesiones;
 CREATE TABLE status_sesiones (
-    cve_status integer,
+    cve_status serial,
     nom_status text
 );
 
@@ -174,13 +174,13 @@ CREATE TABLE acuerdos_sesion (
 
 DROP TABLE IF EXISTS status_acuerdos_sesion;
 CREATE TABLE status_acuerdos_sesion (
-    cve_status integer,
+    cve_status serial,
     nom_status text
 );
 
 DROP TABLE IF EXISTS roles;
 CREATE TABLE roles (
-    cve_rol integer,
+    cve_rol serial,
     nom_rol text
 );
 
