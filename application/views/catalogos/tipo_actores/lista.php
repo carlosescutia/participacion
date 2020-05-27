@@ -3,10 +3,10 @@
         <div class="col-sm-12 alternate-color">
             <div class="row">
                 <div class="col-sm-10 text-left">
-                    <h1 class="h2">Ejes</h1>
+                    <h1 class="h2">Tipo actores</h1>
                 </div>
                 <div class="col-sm-2 text-right">
-                    <form method="post" action="<?= base_url() ?>ejes/nuevo">
+                    <form method="post" action="<?= base_url() ?>tipo_actores/nuevo">
                         <button type="submit" class="btn btn-primary">Nuevo</button>
                     </form>
                 </div>
@@ -29,17 +29,17 @@
                 </div>
             </div>
             <div class="row">
-                <?php foreach ($ejes as $ejes_item) { ?>
+                <?php foreach ($tipo_actores as $tipo_actores_item) { ?>
                 <div class="col-sm-7 alternate-color">
                     <div class="row">
                         <div class="col-sm-3 align-self-center">
-                            <p><?= $ejes_item['cve_eje'] ?></p>
+                            <p><?= $tipo_actores_item['cve_tipo'] ?></p>
                         </div>
                         <div class="col-sm-8 align-self-center">
-                            <a href="<?=base_url()?>ejes/detalle/<?=$ejes_item['cve_eje']?>"><?= $ejes_item['nom_eje'] ?></a>
+                            <a href="<?=base_url()?>tipo_actores/detalle/<?=$tipo_actores_item['cve_tipo']?>"><?= $tipo_actores_item['nom_tipo'] ?></a>
                         </div>
                         <div class="col-sm-1">
-                            <a style="color: #f00" href="<?= base_url() ?>ejes/eliminar/<?= $ejes_item['cve_eje'] ?>/"><span data-feather="x-circle"></span></a>
+                            <a style="color: #f00" href="<?= base_url() ?>tipo_actores/eliminar/<?= $tipo_actores_item['cve_tipo'] ?>/"><span data-feather="x-circle"></span></a>
                         </div>
                     </div>
                 </div>
