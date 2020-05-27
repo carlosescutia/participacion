@@ -13,43 +13,43 @@
             <?php include "ejes/boton.php" ?>
         </div>
         <div class="col-md-3">
-            <?php include "btn_entidades.php" ?>
+            <?php include "entidades/boton.php" ?>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-md-3">
-            <?php include "btn_municipios.php" ?>
+            <?php include "municipios/boton.php" ?>
         </div>
         <div class="col-md-3">
             <?php include "perfiles/boton.php" ?>
         </div>
         <div class="col-md-3">
-            <?php include "btn_roles.php" ?>
+            <?php include "roles/boton.php" ?>
         </div>
         <div class="col-md-3">
-            <?php include "btn_sectores.php" ?>
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="col-md-3">
-            <?php include "btn_status_acuerdos_sesion.php" ?>
-        </div>
-        <div class="col-md-3">
-            <?php include "btn_status_sesiones.php" ?>
-        </div>
-        <div class="col-md-3">
-            <?php include "btn_tipo_actores.php" ?>
-        </div>
-        <div class="col-md-3">
-            <?php include "btn_tipo_consejos.php" ?>
+            <?php include "sectores/boton.php" ?>
         </div>
     </div>
     <div class="row mb-3">
         <div class="col-md-3">
-            <?php include "btn_usuarios.php" ?>
+            <?php include "status_acuerdos_sesion/boton.php" ?>
         </div>
         <div class="col-md-3">
-            <?php include "btn_usuarios_roles.php" ?>
+            <?php include "status_sesiones/boton.php" ?>
+        </div>
+        <div class="col-md-3">
+            <?php include "tipo_actores/boton.php" ?>
+        </div>
+        <div class="col-md-3">
+            <?php include "tipo_consejos/boton.php" ?>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <?php include "usuarios/boton.php" ?>
+        </div>
+        <div class="col-md-3">
+            <?php include "usuarios_roles/boton.php" ?>
         </div>
     </div>
 </main>
