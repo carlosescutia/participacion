@@ -11,5 +11,28 @@ class Perfiles_model extends CI_Model {
         return $query->result_array();
     }
 
-}
+    public function get_perfil($cve_perfil) {
+        $sql = 'select * from perfiles where cve_perfil = ?;';
+        $query = $this->db->query($sql, array($cve_perfil));
+        return $query->row_array();
+    }
 
+    public function guardar($data, $cve_perfil)
+    {
+        if ($cve_perfil) {
+            $this->db->where('cve_perfil', $cve_perfil);
+            $result = $this->db->update('perfiles', $data);
+        } else {
+            $result = $this->db->insert('perfiles', $data);
+        }
+        return $result;
+    }
+
+    public function eliminar($cve_perfil)
+    {
+        $this->db->where('cve_perfil', $cve_perfil);
+        $result = $this->db->delete('perfiles');
+        return $result;
+    }
+
+}
