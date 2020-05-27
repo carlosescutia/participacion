@@ -5,7 +5,7 @@
         <div class="col-md-12 mb-3 pb-2 pt-3 border-bottom">
             <div class="row">
                 <div class="col-md-10">
-                    <h1 class="h2">Nuevo ámbito</h1>
+                    <h1 class="h2">Nuevo eje</h1>
                 </div>
                 <div class="col-md-2 text-right">
                     <button type="submit" class="btn btn-primary">Guardar</button>

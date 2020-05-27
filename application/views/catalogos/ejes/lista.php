@@ -13,26 +13,38 @@
             </div>
         </div>
     </div>
-    <div style="min-height: 46vh">
-        <div class="row">
-            <table class="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th scope="col">Clave</th>
-                        <th scope="col">Nombre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($ejes as $ejes_item) { ?>
-                        <tr>
-                            <td><?= $ejes_item['cve_eje'] ?></td>
-                            <td><a href="<?=base_url()?>ejes/detalle/<?=$ejes_item['cve_eje']?>"><?= $ejes_item['nom_eje'] ?></a></td>
-                            <td><a style="color: #f00" href="<?= base_url() ?>ejes/eliminar/<?= $ejes_item['cve_eje'] ?>/"><span data-feather="x-circle"></span></a>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
+
+    <div class="col-sm-12">
+        <div style="min-height: 46vh">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="row">
+                        <div class="col-sm-3 align-self-center">
+                            <p class="small"><strong>Clave</strong></p>
+                        </div>
+                        <div class="col-sm-8 align-self-center">
+                            <p class="small"><strong>Nombre</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <?php foreach ($ejes as $ejes_item) { ?>
+                <div class="col-sm-7 alternate-color">
+                    <div class="row">
+                        <div class="col-sm-3 align-self-center">
+                            <p><?= $ejes_item['cve_eje'] ?></p>
+                        </div>
+                        <div class="col-sm-8 align-self-center">
+                            <a href="<?=base_url()?>ejes/detalle/<?=$ejes_item['cve_eje']?>"><?= $ejes_item['nom_eje'] ?></a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a style="color: #f00" href="<?= base_url() ?>ejes/eliminar/<?= $ejes_item['cve_eje'] ?>/"><span data-feather="x-circle"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+            </div>
         </div>
     </div>
 
