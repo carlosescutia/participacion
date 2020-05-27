@@ -13,26 +13,38 @@
             </div>
         </div>
     </div>
-    <div style="min-height: 46vh">
-        <div class="row">
-            <table class="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th scope="col">Clave</th>
-                        <th scope="col">Nombre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($cargos as $cargos_item) { ?>
-                        <tr>
-                            <td><?= $cargos_item['cve_cargo'] ?></td>
-                            <td><a href="<?=base_url()?>cargos/detalle/<?=$cargos_item['cve_cargo']?>"><?= $cargos_item['nom_cargo'] ?></a></td>
-                            <td><a style="color: #f00" href="<?= base_url() ?>cargos/eliminar/<?= $cargos_item['cve_cargo'] ?>/"><span data-feather="x-circle"></span></a>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
+
+    <div class="col-sm-12">
+        <div style="min-height: 46vh">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="row">
+                        <div class="col-sm-3 align-self-center">
+                            <p class="small"><strong>Clave</strong></p>
+                        </div>
+                        <div class="col-sm-8 align-self-center">
+                            <p class="small"><strong>Nombre</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <?php foreach ($cargos as $cargos_item) { ?>
+                <div class="col-sm-7 alternate-color">
+                    <div class="row">
+                        <div class="col-sm-3 align-self-center">
+                            <p><?= $cargos_item['cve_cargo'] ?></p>
+                        </div>
+                        <div class="col-sm-8 align-self-center">
+                            <a href="<?=base_url()?>cargos/detalle/<?=$cargos_item['cve_cargo']?>"><?= $cargos_item['nom_cargo'] ?></a>
+                        </div>
+                        <div class="col-sm-1">
+                            <a style="color: #f00" href="<?= base_url() ?>cargos/eliminar/<?= $cargos_item['cve_cargo'] ?>/"><span data-feather="x-circle"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <?php } ?>
+            </div>
         </div>
     </div>
 
@@ -44,3 +56,4 @@
         </div>
     </div>
 </main>
+
