@@ -3,10 +3,10 @@
         <div class="col-sm-12 alternate-color">
             <div class="row">
                 <div class="col-sm-10 text-left">
-                    <h1 class="h2">Ejes</h1>
+                    <h1 class="h2">Usuarios</h1>
                 </div>
                 <div class="col-sm-2 text-right">
-                    <form method="post" action="<?= base_url() ?>ejes/nuevo">
+                    <form method="post" action="<?= base_url() ?>usuarios/nuevo">
                         <button type="submit" class="btn btn-primary">Nuevo</button>
                     </form>
                 </div>
@@ -17,29 +17,53 @@
     <div class="col-sm-12">
         <div style="min-height: 46vh">
             <div class="row">
-                <div class="col-sm-7">
+                <div class="col-sm-12">
                     <div class="row">
-                        <div class="col-sm-3 align-self-center">
+                        <div class="col-sm-1 align-self-center">
                             <p class="small"><strong>Clave</strong></p>
                         </div>
-                        <div class="col-sm-8 align-self-center">
+                        <div class="col-sm-3 align-self-center">
                             <p class="small"><strong>Nombre</strong></p>
+                        </div>
+                        <div class="col-sm-3 align-self-center">
+                            <p class="small"><strong>Usuario</strong></p>
+                        </div>
+                        <div class="col-sm-1 align-self-center">
+                            <p class="small"><strong>Password</strong></p>
+                        </div>
+                        <div class="col-sm-1 align-self-center">
+                            <p class="small"><strong>Dependencia</strong></p>
+                        </div>
+                        <div class="col-sm-1 align-self-center">
+                            <p class="small"><strong>Activo</strong></p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <?php foreach ($ejes as $ejes_item) { ?>
-                <div class="col-sm-7 alternate-color">
+                <?php foreach ($usuarios as $usuarios_item) { ?>
+                <div class="col-sm-12 alternate-color">
                     <div class="row">
-                        <div class="col-sm-3 align-self-center">
-                            <p><?= $ejes_item['cve_eje'] ?></p>
+                        <div class="col-sm-1 align-self-center">
+                            <p><?= $usuarios_item['clave'] ?></p>
                         </div>
-                        <div class="col-sm-8 align-self-center">
-                            <a href="<?=base_url()?>ejes/detalle/<?=$ejes_item['cve_eje']?>"><?= $ejes_item['nom_eje'] ?></a>
+                        <div class="col-sm-3 align-self-center">
+                            <a href="<?=base_url()?>usuarios/detalle/<?=$usuarios_item['clave']?>"><?= $usuarios_item['nombre'] ?></a>
+                        </div>
+                        <div class="col-sm-3 align-self-center">
+                            <p><?= $usuarios_item['usuario'] ?></p>
+                        </div>
+                        <div class="col-sm-1 align-self-center">
+                            <p><?= $usuarios_item['password'] ?></p>
+                        </div>
+                        <div class="col-sm-1 align-self-center">
+                            <p><?= $usuarios_item['dependencia'] ?></p>
+                        </div>
+                        <div class="col-sm-1 align-self-center">
+                            <p><?= $usuarios_item['activo'] ?></p>
                         </div>
                         <div class="col-sm-1">
-                            <a style="color: #f00" href="<?= base_url() ?>ejes/eliminar/<?= $ejes_item['cve_eje'] ?>/"><span data-feather="x-circle"></span></a>
+                            <a style="color: #f00" href="<?= base_url() ?>usuarios/eliminar/<?= $usuarios_item['clave'] ?>/"><span data-feather="x-circle"></span></a>
                         </div>
                     </div>
                 </div>

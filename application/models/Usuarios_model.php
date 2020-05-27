@@ -16,4 +16,35 @@ class Usuarios_model extends CI_Model {
         $resultado = $consulta->row();
         return $resultado;
     }
+
+    public function get_usuarios() {
+        $sql = 'select * from usuarios order by clave;';
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
+    public function get_usuario($cve_usuario) {
+        $sql = 'select * from usuarios where clave = ?;';
+        $query = $this->db->query($sql, array($cve_usuario));
+        return $query->row_array();
+    }
+
+    public function guardar($data, $cve_usuario)
+    {
+        if ($cve_usuario) {
+            $this->db->where('clave', $cve_usuario);
+            $result = $this->db->update('usuarios', $data);
+        } else {
+            $result = $this->db->insert('usuarios', $data);
+        }
+        return $result;
+    }
+
+    public function eliminar($cve_usuario)
+    {
+        $this->db->where('clave', $cve_usuario);
+        $result = $this->db->delete('usuarios');
+        return $result;
+    }
+
 }

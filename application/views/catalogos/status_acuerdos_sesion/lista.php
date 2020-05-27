@@ -3,10 +3,10 @@
         <div class="col-sm-12 alternate-color">
             <div class="row">
                 <div class="col-sm-10 text-left">
-                    <h1 class="h2">Ejes</h1>
+                    <h1 class="h2">Status de acuerdos de sesión</h1>
                 </div>
                 <div class="col-sm-2 text-right">
-                    <form method="post" action="<?= base_url() ?>ejes/nuevo">
+                    <form method="post" action="<?= base_url() ?>status_acuerdos_sesion/nuevo">
                         <button type="submit" class="btn btn-primary">Nuevo</button>
                     </form>
                 </div>
@@ -29,17 +29,17 @@
                 </div>
             </div>
             <div class="row">
-                <?php foreach ($ejes as $ejes_item) { ?>
+                <?php foreach ($status_acuerdos_sesion as $status_acuerdos_sesion_item) { ?>
                 <div class="col-sm-7 alternate-color">
                     <div class="row">
                         <div class="col-sm-3 align-self-center">
-                            <p><?= $ejes_item['cve_eje'] ?></p>
+                            <p><?= $status_acuerdos_sesion_item['cve_status'] ?></p>
                         </div>
                         <div class="col-sm-8 align-self-center">
-                            <a href="<?=base_url()?>ejes/detalle/<?=$ejes_item['cve_eje']?>"><?= $ejes_item['nom_eje'] ?></a>
+                            <a href="<?=base_url()?>status_acuerdos_sesion/detalle/<?=$status_acuerdos_sesion_item['cve_status']?>"><?= $status_acuerdos_sesion_item['nom_status'] ?></a>
                         </div>
                         <div class="col-sm-1">
-                            <a style="color: #f00" href="<?= base_url() ?>ejes/eliminar/<?= $ejes_item['cve_eje'] ?>/"><span data-feather="x-circle"></span></a>
+                            <a style="color: #f00" href="<?= base_url() ?>status_acuerdos_sesion/eliminar/<?= $status_acuerdos_sesion_item['cve_status'] ?>/"><span data-feather="x-circle"></span></a>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,31 @@ class Consejos_actores extends CI_Controller {
         $this->load->model('consejos_actores_model');
     }
 
+    public function lista()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $rol = $this->session->userdata('rol');
+            $data['usuario_rol'] = $rol;
+
+            if ($rol == 'Administrador') {
+                $dependencia = '';
+            }
+
+
+            $data['consejos'] = $this->consejos_model->get_consejos_dependencia($dependencia);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('consejos/lista', $data);
+            $this->load->view('templates/footer');
+        } else {
+            redirect('inicio/iniciar_sesion');
+        }
+    }
+
     public function guardar()
     {
         if ($this->session->userdata('logueado')) {

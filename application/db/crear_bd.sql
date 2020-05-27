@@ -187,6 +187,6 @@ CREATE TABLE roles (
 DROP TABLE IF EXISTS usuarios_roles;
 CREATE TABLE usuarios_roles (
     cve_usuario integer,
-    cve_rol integer
+    cve_rol integer,
+    primary key (cve_usuario, cve_rol)
 );
-
