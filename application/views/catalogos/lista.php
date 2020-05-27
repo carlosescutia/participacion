@@ -21,7 +21,7 @@
             <?php include "btn_municipios.php" ?>
         </div>
         <div class="col-md-3">
-            <?php include "btn_perfiles.php" ?>
+            <?php include "perfiles/boton.php" ?>
         </div>
         <div class="col-md-3">
             <?php include "btn_roles.php" ?>
