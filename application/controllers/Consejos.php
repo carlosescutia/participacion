@@ -123,6 +123,13 @@ class Consejos extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
+            $rol = $this->session->userdata('rol');
+            $data['usuario_rol'] = $rol;
+
+            if ($rol == 'Administrador') {
+                $dependencia = '';
+            }
+
 
             $data['tipo_consejos'] = $this->tipo_consejos_model->get_tipo_consejos();
             $data['ejes'] = $this->ejes_model->get_ejes();
