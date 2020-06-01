@@ -40,11 +40,11 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-4">
                             <label for="fecha_nacimiento">Fecha de nacimiento</label>
                             <input type="date" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" value="<?php echo set_value('fecha_nacimiento'); ?>">
                         </div>
-                        <div class="form-group col-md-1">
+                        <div class="form-group col-md-2">
                             <label for="sexo">Sexo</label>
                             <?php echo form_error('sexo'); ?>
                             <select class="custom-select" name="sexo" id="sexo">
@@ -53,11 +53,7 @@
                                 <option value="M" <?php echo set_select('sexo', 'M'); ?> >M</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-3">
-                            <label for="ine">Clave INE</label>
-                            <input type="text" class="form-control" name="ine" id="ine" value="<?php echo set_value('ine'); ?>">
-                        </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-5">
                             <label for="expediente_archivistico">Expediente archivístico</label>
                             <input type="text" class="form-control" name="expediente_archivistico" id="expediente_archivistico" value="<?php echo set_value('expediente_archivistico'); ?>">
                         </div>

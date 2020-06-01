@@ -59,7 +59,7 @@
 
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label for="reglamento_interno">¿Tiene reglamento interno?</label>
+                            <label for="reglamento_interno">¿Tiene normativa interna?</label>
                             <select class="custom-select" name="reglamento_interno" id="reglamento_interno">
                                 <option value="" <?php echo set_select('reglamento_interno', '', TRUE); ?> ></option>
                                 <option value="S" <?php echo set_select('reglamento_interno', 'S'); ?> >Si</option>
