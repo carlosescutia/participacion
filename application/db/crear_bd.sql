@@ -18,7 +18,6 @@ CREATE TABLE actores (
     apellido_ma text,
     fecha_nacimiento date,
     sexo text,
-    ine text,
     expediente_archivistico text,
     calle text,
     num_exterior text,

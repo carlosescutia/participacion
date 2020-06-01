@@ -125,7 +125,6 @@ class Actores extends CI_Controller {
                     'cve_mun' =>  $actores['cve_mun'],
                     'cve_ent' =>  $actores['cve_ent'],
                     'cve_tipo' => empty($actores['cve_tipo']) ? null : $actores['cve_tipo'],
-                    'ine' =>  $actores['ine'],
                     'expediente_archivistico' =>  $actores['expediente_archivistico'],
                     'cve_ambito' => empty($actores['cve_ambito']) ? null : $actores['cve_ambito'],
                     'cve_sector' => empty($actores['cve_sector']) ? null : $actores['cve_sector'],
