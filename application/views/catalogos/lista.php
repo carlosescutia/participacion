@@ -44,4 +44,12 @@
             <?php include "usuarios_roles/boton.php" ?>
         </div>
     </div>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <?php include "objetivos_sesion/boton.php" ?>
+        </div>
+        <div class="col-md-3">
+            <?php include "modalidades_sesion/boton.php" ?>
+        </div>
+    </div>
 </main>
