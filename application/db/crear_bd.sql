@@ -137,10 +137,12 @@ CREATE TABLE sesiones (
     cve_consejo integer,
     nom_sesion text,
     tipo text,
+    cve_modalidad integer,
     lugar text,
     fecha date,
-    hora time,
-    objetivo text,
+    hora_ini time,
+    hora_fin time,
+    cve_objetivo integer,
     orden_dia text
 );
 
@@ -189,3 +191,17 @@ CREATE TABLE usuarios_roles (
     cve_rol integer,
     primary key (cve_usuario, cve_rol)
 );
+
+DROP TABLE IF EXISTS objetivos_sesion;
+CREATE TABLE objetivos_sesion (
+    cve_objetivo serial,
+    nom_objetivo text
+);
+
+DROP TABLE IF EXISTS modalidades_sesion;
+CREATE TABLE modalidades_sesion (
+    cve_modalidad serial,
+    nom_modalidad text
+);
+
+
