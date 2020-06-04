@@ -17,7 +17,7 @@
                 <tbody>
                     <?php foreach ($sesiones as $sesiones_item) { ?>
                     <tr>
-                        <td><a href="<?= base_url() ?>sesiones/detalle/<?= $sesiones_item['cve_sesion'] ?>/<?= $consejos['cve_consejo'] ?>"><?= $sesiones_item['nom_sesion'] ?></a></td>
+                        <td><a href="<?= base_url() ?>sesiones/detalle/<?= $sesiones_item['cve_sesion'] ?>/<?= $consejos['cve_consejo'] ?>">Sesión <?= $sesiones_item['num_sesion'] ?> <?= $sesiones_item['tipo'] =='o' ? 'ordinaria' : 'extraordinaria'; ?></a></td>
                         <td><?= date('d/m/y', strtotime($sesiones_item['fecha'])) ?></td>
                     </tr>
                     <?php } ?>

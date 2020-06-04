@@ -21,9 +21,9 @@
             <div class="col-md-10">
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label for="nom_sesion">Nombre </label>
-                        <?php echo form_error('nom_sesion'); ?>
-                        <input type="text" class="form-control" name="nom_sesion" id="nom_sesion" value="<?php echo set_value('nom_sesion'); ?>">
+                        <label for="num_sesion">Nombre </label>
+                        <?php echo form_error('num_sesion'); ?>
+                        <input type="text" class="form-control" name="num_sesion" id="num_sesion" value="<?php echo set_value('num_sesion'); ?>">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="tipo">Tipo</label>
