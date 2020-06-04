@@ -34,7 +34,7 @@
                         <select class="custom-select" name="tipo" id="tipo">
                             <option value=""></option>
                             <option value="o" <?= ($sesiones['tipo'] == 'o') ? 'selected' : '' ?> >Ordinaria</option>
-                            <option value="n" <?= ($sesiones['tipo'] == 'n') ? 'selected' : '' ?> >Extraordinaria</option>
+                            <option value="e" <?= ($sesiones['tipo'] == 'e') ? 'selected' : '' ?> >Extraordinaria</option>
                         </select>
                     </div>
                     <div class="form-group col-md-3">
@@ -81,10 +81,10 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-12">
                         <label for="orden_dia">Orden del día</label>
                         <?php echo form_error('orden_dia'); ?>
-                        <textarea rows="6" class="form-control" name="orden_dia" id="orden_dia"><?=$sesiones['orden_dia'] ?></textarea>
+                        <textarea rows="8" class="form-control" name="orden_dia" id="orden_dia"><?=$sesiones['orden_dia'] ?></textarea>
                     </div>
                 </div>
             </div>
