@@ -135,7 +135,7 @@ DROP TABLE IF EXISTS sesiones;
 CREATE TABLE sesiones (
     cve_sesion serial,
     cve_consejo integer,
-    nom_sesion text,
+    num_sesion integer,
     tipo text,
     cve_modalidad integer,
     lugar text,

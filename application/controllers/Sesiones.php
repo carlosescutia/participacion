@@ -50,7 +50,7 @@ class Sesiones extends CI_Controller {
     {
         if ($this->session->userdata('logueado')) {
 
-            $this->form_validation->set_rules('nom_sesion','nombre','required',array('required' => '* requerido',));
+            $this->form_validation->set_rules('num_sesion','nombre','required|numeric',array('required' => '* requerido','numeric' => '* número'));
             $this->form_validation->set_rules('tipo','tipo','required',array('required' => '* requerido',));
             $this->form_validation->set_rules('cve_modalidad','cve_modalidad','required',array('required' => '* requerido',));
             $this->form_validation->set_rules('lugar','lugar','required',array('required' => '* requerido',));
@@ -65,7 +65,7 @@ class Sesiones extends CI_Controller {
             {
                 $data = array(
                     'cve_consejo' => $sesion['cve_consejo'],
-                    'nom_sesion' => $sesion['nom_sesion'],
+                    'num_sesion' => $sesion['num_sesion'],
                     'tipo' => $sesion['tipo'],
                     'cve_modalidad' => $sesion['cve_modalidad'],
                     'lugar' => $sesion['lugar'],
@@ -83,7 +83,7 @@ class Sesiones extends CI_Controller {
             $data = array(
                 'sesiones' => $sesion
             );
-            $cve_sesion = $sesion['cve_sesion'];
+            $cve_sesion = empty($sesion['cve_sesion']) ? null : $sesion['cve_sesion'];
 
             $data['error_sesion'] = $this->session->flashdata('error_sesion');
             $data['error_acuerdos_sesion'] = $this->session->flashdata('error_acuerdos_sesion');
@@ -97,6 +97,7 @@ class Sesiones extends CI_Controller {
             $data['acuerdos_sesion'] = $this->acuerdos_sesion_model->get_acuerdos_sesion($cve_sesion, $cve_consejo);
             $data['status_acuerdos_sesion'] = $this->status_acuerdos_sesion_model->get_status_acuerdos_sesion();
             $data['objetivos_sesion'] = $this->objetivos_sesion_model->get_objetivos_sesion();
+            $data['modalidades_sesion'] = $this->modalidades_sesion_model->get_modalidades_sesion();
 
             if ($rol == 'Administrador') {
                 $dependencia = '';

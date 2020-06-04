@@ -23,10 +23,10 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="nom_sesion">Nombre</label>
-                        <?php echo form_error('nom_sesion'); ?>
-                        <input type="text" class="form-control" name="nom_sesion" id="nom_sesion" value="<?=$sesiones['nom_sesion'] ?>">
+                    <div class="form-group col-md-2">
+                        <label for="num_sesion">Número</label>
+                        <?php echo form_error('num_sesion'); ?>
+                        <input type="text" class="form-control" name="num_sesion" id="num_sesion" value="<?=$sesiones['num_sesion'] ?>">
                     </div>
                     <div class="form-group col-md-3">
                         <label for="tipo">Tipo</label>
@@ -44,6 +44,16 @@
                                 <option value=""></option>
                                 <?php foreach ($modalidades_sesion as $modalidades_sesion_item) { ?>
                                 <option value="<?= $modalidades_sesion_item['cve_modalidad'] ?>" <?= ($sesiones['cve_modalidad'] == $modalidades_sesion_item['cve_modalidad']) ? 'selected' : '' ?> ><?= $modalidades_sesion_item['nom_modalidad'] ?></option>
+                                <?php } ?>
+                            </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="cve_objetivo">Objetivo</label>
+                        <?php echo form_error('cve_objetivo'); ?>
+                            <select class="custom-select" name="cve_objetivo" id="cve_objetivo">
+                                <option value=""></option>
+                                <?php foreach ($objetivos_sesion as $objetivos_sesion_item) { ?>
+                                <option value="<?= $objetivos_sesion_item['cve_objetivo'] ?>" <?= ($sesiones['cve_objetivo'] == $objetivos_sesion_item['cve_objetivo']) ? 'selected' : '' ?> ><?= $objetivos_sesion_item['nom_objetivo'] ?></option>
                                 <?php } ?>
                             </select>
                     </div>
@@ -71,17 +81,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="cve_objetivo">Objetivo</label>
-                        <?php echo form_error('cve_objetivo'); ?>
-                            <select class="custom-select" name="cve_objetivo" id="cve_objetivo">
-                                <option value=""></option>
-                                <?php foreach ($objetivos_sesion as $objetivos_sesion_item) { ?>
-                                <option value="<?= $objetivos_sesion_item['cve_objetivo'] ?>" <?= ($sesiones['cve_objetivo'] == $objetivos_sesion_item['cve_objetivo']) ? 'selected' : '' ?> ><?= $objetivos_sesion_item['nom_objetivo'] ?></option>
-                                <?php } ?>
-                            </select>
-                    </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-8">
                         <label for="orden_dia">Orden del día</label>
                         <?php echo form_error('orden_dia'); ?>
                         <textarea rows="6" class="form-control" name="orden_dia" id="orden_dia"><?=$sesiones['orden_dia'] ?></textarea>
