@@ -134,6 +134,70 @@
                             </form>
                         </td>
                     </tr>
+                    <tr>
+                        <?php
+                        $cve_consejo = $sesiones['cve_consejo'] ;
+                        $cve_sesion = $sesiones['cve_sesion'] ;
+                        $arch_audio = 'adj_sesiones/' . $cve_consejo . '_' . $cve_sesion . '_audio.mp3';
+                        ?>
+                        <td>
+                            <?php
+                            if ( file_exists($arch_audio) ) { ?>
+                            <a href="<?= base_url() ?><?= $arch_audio ?>" target="_blank">
+                                <?php } ?>
+                                Audio
+                                <?php
+                                if ( file_exists($arch_audio) ) { ?>
+                            </a>
+                            <?php } ?>
+                        </td>
+                        <td>
+                            <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/audio">
+                                <label class="btn btn-primary btn-sm" for="arch-audio">
+                                    <input name="arch-audio" id="arch-audio" type="file" style="display:none"
+                                    onchange="$('#arch-audio-info').removeClass('invisible')">
+                                    +
+                                </label>
+                                <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?= $sesiones['cve_consejo'] ?>">
+                                <input type="hidden" name="cve_sesion" id="cve_sesion" value="<?= $sesiones['cve_sesion'] ?>">
+                                <button id="arch-audio-info" type="submit" class="btn btn-sm invisible" style="background: none; color: #28A745">
+                                    <span data-feather="upload"></span>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <?php
+                        $cve_consejo = $sesiones['cve_consejo'] ;
+                        $cve_sesion = $sesiones['cve_sesion'] ;
+                        $arch_video = 'adj_sesiones/' . $cve_consejo . '_' . $cve_sesion . '_video.mp4';
+                        ?>
+                        <td>
+                            <?php
+                            if ( file_exists($arch_video) ) { ?>
+                            <a href="<?= base_url() ?><?= $arch_video ?>" target="_blank">
+                                <?php } ?>
+                                Video
+                                <?php
+                                if ( file_exists($arch_video) ) { ?>
+                            </a>
+                            <?php } ?>
+                        </td>
+                        <td>
+                            <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/video">
+                                <label class="btn btn-primary btn-sm" for="arch-video">
+                                    <input name="arch-video" id="arch-video" type="file" style="display:none"
+                                    onchange="$('#arch-video-info').removeClass('invisible')">
+                                    +
+                                </label>
+                                <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?= $sesiones['cve_consejo'] ?>">
+                                <input type="hidden" name="cve_sesion" id="cve_sesion" value="<?= $sesiones['cve_sesion'] ?>">
+                                <button id="arch-video-info" type="submit" class="btn btn-sm invisible" style="background: none; color: #28A745">
+                                    <span data-feather="upload"></span>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
