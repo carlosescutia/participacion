@@ -5,4 +5,4 @@ AddDefaultCharset UTF-8
 
 SetEnvIf Server_Addr ^192\.168\.56\.101$ CI_ENV=development
 SetEnvIf Server_Addr ^172\.16\.2\.42$ CI_ENV=testing
-SetEnvIf Host "participacion.guanajuato.gob.mx" CI_ENV=production
+SetEnvIf Host "participa2040.guanajuato.gob.mx" CI_ENV=production
