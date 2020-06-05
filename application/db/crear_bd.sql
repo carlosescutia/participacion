@@ -170,7 +170,12 @@ CREATE TABLE acuerdos_sesion (
     cve_consejo integer,
     nom_acuerdo text,
     cve_status integer,
-    observaciones text
+    observaciones text,
+    fecha_acuerdo date,
+    fecha_compromiso date,
+    fecha_cumplimiento date,
+    porcentaje_avance numeric,
+    causa_cancelado text
 );
 
 DROP TABLE IF EXISTS status_acuerdos_sesion;
