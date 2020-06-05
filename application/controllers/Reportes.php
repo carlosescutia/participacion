@@ -148,4 +148,63 @@ class Reportes extends CI_Controller {
         }
     }
 
+    public function reporte_acuerdos($cve_sesion, $cve_consejo)
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $rol = $this->session->userdata('rol');
+            $data['usuario_rol'] = $rol;
+
+            if ($rol == 'Administrador') {
+                $dependencia = '';
+            }
+            $this->load->model('acuerdos_sesion_model');
+            $this->load->model('sesiones_model');
+
+            $data['consejo'] = $this->consejos_model->get_consejo_dependencia($dependencia, $cve_consejo);
+            $data['sesion'] = $this->sesiones_model->get_sesion_consejo($cve_sesion, $cve_consejo);
+            $data['acuerdos_sesion'] = $this->acuerdos_sesion_model->get_acuerdos_sesion($cve_sesion, $cve_consejo);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('reportes/reporte_acuerdos_01', $data);
+            $this->load->view('templates/footer');
+        } else {
+            redirect('inicio/iniciar_sesion');
+        }
+    }
+
+    public function reporte_acuerdos_csv($cve_sesion, $cve_consejo)
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $rol = $this->session->userdata('rol');
+            $data['usuario_rol'] = $rol;
+
+            if ($rol == 'Administrador') {
+                $dependencia = '';
+            }
+            $this->load->dbutil();
+            $this->load->helper('file');
+            $this->load->helper('download');
+            $this->load->model('acuerdos_sesion_model');
+            $this->load->model('sesiones_model');
+
+            $sql = "select c.nom_consejo, 'Sesion ' || s.num_sesion || ' ' || (case when s.tipo='o' then 'ordinaria' when s.tipo='e' then 'extraordinaria' else '' end) as sesion, a.nom_acuerdo, a.observaciones, a.porcentaje_avance, a.fecha_acuerdo, a.fecha_compromiso, a.fecha_cumplimiento, a.causa_cancelado, sac.nom_status from acuerdos_sesion a left join consejos c on a.cve_consejo = c.cve_consejo left join sesiones s on a.cve_sesion = s.cve_sesion left join status_acuerdos_sesion sac on a.cve_status = sac.cve_status where a.cve_sesion = ? and a.cve_consejo = ? ;";
+            $query = $this->db->query($sql, array($cve_sesion, $cve_consejo));
+
+            $delimiter = ",";
+            $newline = "\r\n";
+            $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
+            force_download("reporte_acuerdos.csv", $data);
+        } else {
+            redirect('inicio/iniciar_sesion');
+        }
+    }
+
 }
