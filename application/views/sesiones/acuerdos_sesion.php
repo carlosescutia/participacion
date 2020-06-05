@@ -18,20 +18,12 @@
                 <tbody>
                     <?php foreach ($acuerdos_sesion as $acuerdos_sesion_item) { ?>
                     <tr>
-                        <td><?= $acuerdos_sesion_item['nom_acuerdo'] ?></td>
+                        <td><a href="<?=base_url()?>acuerdos_sesion/detalle/<?=$acuerdos_sesion_item['cve_acuerdo']?>/<?=$acuerdos_sesion_item['cve_sesion']?>/<?=$acuerdos_sesion_item['cve_consejo']?>"><?= $acuerdos_sesion_item['nom_acuerdo'] ?></a></td>
                         <td><?= $acuerdos_sesion_item['observaciones'] ?></td>
+                        <td><?= $acuerdos_sesion_item['nom_status'] ?></td>
                         <?php if ($usuario_rol !== 'Administrador') { ?>
-                            <td>
-                                <select class="custom-select" onchange="document.location.href=this.value" >
-                                    <?php foreach ($status_acuerdos_sesion as $status_acuerdos_sesion_item) { ?>
-                                    <option value="../../../acuerdos_sesion/actualizar_status/<?= $acuerdos_sesion_item['cve_acuerdo'] ?>/<?= $acuerdos_sesion_item['cve_sesion'] ?>/<?= $acuerdos_sesion_item['cve_consejo'] ?>/<?= $status_acuerdos_sesion_item['cve_status'] ?>"  <?= ($acuerdos_sesion_item['cve_status'] == $status_acuerdos_sesion_item['cve_status']) ? 'selected' : '' ?>   ><?= $status_acuerdos_sesion_item['nom_status'] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </td>
                             <td><a style="color: #f00" href="<?= base_url() ?>acuerdos_sesion/eliminar_registro/<?= $acuerdos_sesion_item['cve_acuerdo'] ?>/<?= $acuerdos_sesion_item['cve_sesion'] ?>/<?= $acuerdos_sesion_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a>
                             </td>
-                        <?php } else { ?>
-                            <td><?= $acuerdos_sesion_item['nom_status'] ?></td>
                         <?php } ?>
                     </tr>
                     <?php } ?>
@@ -41,27 +33,12 @@
     </div>
     <?php if ($usuario_rol !== 'Administrador') { ?>
     <div class="card-footer">
-        <form method="post" action="<?= base_url() ?>acuerdos_sesion/guardar">
+    <form method="post" action="<?= base_url() ?>acuerdos_sesion/guardar/<?=$acuerdos_sesion_item['cve_sesion']?>/<?=$acuerdos_sesion_item['cve_consejo']?>">
             <div class="form-row">
-                <div class="col-md-4">
-                    <input type="text" class="form-control" name="nom_acuerdo" id="nom_acuerdo">
-                </div>
-                <div class="col-md-4">
-                    <input type="text" class="form-control" name="observaciones" id="observaciones">
-                </div>
-                <div class="col-md-2">
-                    <select class="custom-select" name="cve_status" id="cve_status">
-                        <?php foreach ($status_acuerdos_sesion as $status_acuerdos_sesion_item) { ?>
-                        <option value="<?= $status_acuerdos_sesion_item['cve_status'] ?>"><?= $status_acuerdos_sesion_item['nom_status'] ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
                 <div class="col-md-1">
-                    <button type="submit" class="btn btn-primary">Agregar</button>
+                    <button type="submit" class="btn btn-primary">Nuevo acuerdo</button>
                 </div>
             </div>
-            <input type="hidden" name="cve_sesion" id="cve_sesion" value="<?= $sesiones['cve_sesion'] ?>">
-            <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?= $sesiones['cve_consejo'] ?>">
         </form>
     </div>
     <?php } ?>
