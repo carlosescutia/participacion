@@ -33,7 +33,7 @@
     </div>
     <?php if ($usuario_rol !== 'Administrador') { ?>
     <div class="card-footer">
-    <form method="post" action="<?= base_url() ?>acuerdos_sesion/guardar/<?=$acuerdos_sesion_item['cve_sesion']?>/<?=$acuerdos_sesion_item['cve_consejo']?>">
+    <form method="post" action="<?= base_url() ?>acuerdos_sesion/guardar/<?=$sesiones['cve_sesion']?>/<?=$sesiones['cve_consejo']?>">
             <div class="form-row">
                 <div class="col-md-1">
                     <button type="submit" class="btn btn-primary">Nuevo acuerdo</button>
