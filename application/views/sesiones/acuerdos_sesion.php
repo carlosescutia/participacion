@@ -1,6 +1,10 @@
 <div class="card mt-0 mb-3">
     <div class="card-header" style="background-color:#E6D9FA">
-        <strong>Acuerdos</strong>
+        <div class="row">
+            <div class="col-md-10">
+                <strong>Acuerdos</strong>
+            </div>
+        </div>
     </div>
     <div class="card-body p-0">
         <div class="col-md-12">
@@ -33,13 +37,20 @@
     </div>
     <?php if ($usuario_rol !== 'Administrador') { ?>
     <div class="card-footer">
-    <form method="post" action="<?= base_url() ?>acuerdos_sesion/guardar/<?=$sesiones['cve_sesion']?>/<?=$sesiones['cve_consejo']?>">
-            <div class="form-row">
-                <div class="col-md-1">
-                    <button type="submit" class="btn btn-primary">Nuevo acuerdo</button>
-                </div>
+        <div class="row">
+            <div class="col-md-10">
+                <form method="post" action="<?= base_url() ?>acuerdos_sesion/guardar/<?=$sesiones['cve_sesion']?>/<?=$sesiones['cve_consejo']?>">
+                    <div class="form-row">
+                        <div class="col-md-1">
+                            <button type="submit" class="btn btn-primary">Nuevo acuerdo</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-        </form>
+            <div class="col-md-2 text-right">
+                <a href="<?=base_url()?>reportes/reporte_acuerdos/<?=$sesiones['cve_sesion']?>/<?=$sesiones['cve_consejo']?>" class="btn btn-primary">Generar reporte</a>
+            </div>
+        </div>
     </div>
     <?php } ?>
 </div>
