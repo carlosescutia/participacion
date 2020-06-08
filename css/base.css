@@ -252,3 +252,26 @@ body {
     text-align: center;
 }
 
+.semaforo {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.verde {
+    background-color: green;
+}
+
+.amarillo {
+    background-color: yellow;
+}
+
+.rojo {
+    background-color: red;
+}
+
+.negro {
+    background-color: black;
+}
+
