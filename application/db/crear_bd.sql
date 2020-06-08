@@ -170,6 +170,7 @@ CREATE TABLE acuerdos_sesion (
     cve_consejo integer,
     nom_acuerdo text,
     cve_status integer,
+    cve_acceso integer,
     observaciones text,
     fecha_acuerdo date,
     fecha_compromiso date,
@@ -209,4 +210,9 @@ CREATE TABLE modalidades_sesion (
     nom_modalidad text
 );
 
+DROP TABLE IF EXISTS accesos;
+CREATE TABLE accesos (
+    cve_acceso serial,
+    nom_acceso text
+);
 

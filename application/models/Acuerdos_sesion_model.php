@@ -6,7 +6,7 @@ class Acuerdos_sesion_model extends CI_Model {
     }
 
     public function get_acuerdos_sesion($cve_sesion, $cve_consejo) {
-        $sql = "select a.*, sac.nom_status from acuerdos_sesion a left join status_acuerdos_sesion sac on a.cve_status = sac.cve_status where a.cve_sesion = ? and a.cve_consejo = ? ";
+        $sql = "select a.*, acc.nom_acceso, sac.nom_status from acuerdos_sesion a left join status_acuerdos_sesion sac on a.cve_status = sac.cve_status left join accesos acc on a.cve_acceso = acc.cve_acceso where a.cve_sesion = ? and a.cve_consejo = ? ";
         $query = $this->db->query($sql, array($cve_sesion, $cve_consejo));
         return $query->result_array();
     }

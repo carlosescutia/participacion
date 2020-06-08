@@ -11,6 +11,7 @@ class Acuerdos_sesion extends CI_Controller {
 
         $this->load->model('acuerdos_sesion_model');
         $this->load->model('status_acuerdos_sesion_model');
+        $this->load->model('accesos_model');
     }
 
     public function detalle($cve_acuerdo, $cve_sesion, $cve_consejo)
@@ -30,6 +31,7 @@ class Acuerdos_sesion extends CI_Controller {
 
             $data['acuerdos_sesion'] = $this->acuerdos_sesion_model->get_acuerdo($cve_acuerdo, $cve_sesion, $cve_consejo);
             $data['status_acuerdos_sesion'] = $this->status_acuerdos_sesion_model->get_status_acuerdos_sesion();
+            $data['accesos'] = $this->accesos_model->get_accesos();
 
             $this->load->view('templates/header', $data);
             $this->load->view('acuerdos/detalle', $data);
@@ -53,6 +55,7 @@ class Acuerdos_sesion extends CI_Controller {
                 $data = array(
                     'nom_acuerdo' => $acuerdos_sesion['nom_acuerdo'],
                     'cve_status' => $acuerdos_sesion['cve_status'],
+                    'cve_acceso' => $acuerdos_sesion['cve_acceso'],
                     'cve_sesion' => $cve_sesion,
                     'cve_consejo' => $cve_consejo,
                     'observaciones' => $acuerdos_sesion['observaciones'],
@@ -78,6 +81,7 @@ class Acuerdos_sesion extends CI_Controller {
             $data['usuario_rol'] = $rol;
 
             $data['status_acuerdos_sesion'] = $this->status_acuerdos_sesion_model->get_status_acuerdos_sesion();
+            $data['accesos'] = $this->accesos_model->get_accesos();
             $data['cve_sesion'] = $cve_sesion;
             $data['cve_consejo'] = $cve_consejo;
 

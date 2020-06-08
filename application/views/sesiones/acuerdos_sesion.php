@@ -16,6 +16,7 @@
                     <tr>
                         <th scope="col">Acuerdo</th>
                         <th scope="col">Observaciones</th>
+                        <th scope="col">Acceso</th>
                         <th scope="col">Status</th>
                     </tr>
                 </thead>
@@ -39,6 +40,7 @@
                     <tr>
                         <td><a href="<?=base_url()?>acuerdos_sesion/detalle/<?=$acuerdos_sesion_item['cve_acuerdo']?>/<?=$acuerdos_sesion_item['cve_sesion']?>/<?=$acuerdos_sesion_item['cve_consejo']?>"><?= $acuerdos_sesion_item['nom_acuerdo'] ?></a></td>
                         <td><?= $acuerdos_sesion_item['observaciones'] ?></td>
+                        <td><?= substr($acuerdos_sesion_item['nom_acceso'],0,4) ?></td>
                         <td><span class="semaforo <?=$color?>"></span> <?= $acuerdos_sesion_item['nom_status'] ?></td>
                         <?php if ($usuario_rol !== 'Administrador') { ?>
                             <td><a style="color: #f00" href="<?= base_url() ?>acuerdos_sesion/eliminar_registro/<?= $acuerdos_sesion_item['cve_acuerdo'] ?>/<?= $acuerdos_sesion_item['cve_sesion'] ?>/<?= $acuerdos_sesion_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a>
