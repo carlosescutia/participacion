@@ -20,11 +20,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($acuerdos_sesion as $acuerdos_sesion_item) { ?>
+                    <?php foreach ($acuerdos_sesion as $acuerdos_sesion_item) { 
+                        switch( $acuerdos_sesion_item['cve_status'] ) {
+                            case "1":
+                                $color = 'amarillo';
+                                break;
+                            case "2":
+                                $color = 'verde';
+                                break;
+                            case "3":
+                                $color = 'rojo';
+                                break;
+                            case "4":
+                                $color = 'negro';
+                                break;
+                        }
+                    ?>
                     <tr>
                         <td><a href="<?=base_url()?>acuerdos_sesion/detalle/<?=$acuerdos_sesion_item['cve_acuerdo']?>/<?=$acuerdos_sesion_item['cve_sesion']?>/<?=$acuerdos_sesion_item['cve_consejo']?>"><?= $acuerdos_sesion_item['nom_acuerdo'] ?></a></td>
                         <td><?= $acuerdos_sesion_item['observaciones'] ?></td>
-                        <td><?= $acuerdos_sesion_item['nom_status'] ?></td>
+                        <td><span class="semaforo <?=$color?>"></span> <?= $acuerdos_sesion_item['nom_status'] ?></td>
                         <?php if ($usuario_rol !== 'Administrador') { ?>
                             <td><a style="color: #f00" href="<?= base_url() ?>acuerdos_sesion/eliminar_registro/<?= $acuerdos_sesion_item['cve_acuerdo'] ?>/<?= $acuerdos_sesion_item['cve_sesion'] ?>/<?= $acuerdos_sesion_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a>
                             </td>
