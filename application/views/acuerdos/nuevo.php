@@ -18,12 +18,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-5">
                         <label for="nom_acuerdo">Acuerdo</label>
                         <?php echo form_error('nom_acuerdo'); ?>
                         <input type="text" class="form-control" name="nom_acuerdo" id="nom_acuerdo" value="<?php echo set_value('nom_acuerdo'); ?>">
                     </div>
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-4">
                         <label for="observaciones">Observaciones</label>
                         <?php echo form_error('observaciones'); ?>
                         <input type="text" class="form-control" name="observaciones" id="observaciones" value="<?php echo set_value('observaciones'); ?>">
@@ -32,6 +32,16 @@
                         <label for="porcentaje_avance">% avance</label>
                         <?php echo form_error('porcentaje_avance'); ?>
                         <input type="text" class="form-control" name="porcentaje_avance" id="porcentaje_avance" value="<?php echo set_value('porcentaje_avance'); ?>">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="cve_acceso">Acceso</label>
+                        <?php echo form_error('cve_acceso'); ?>
+                        <select class="custom-select" name="cve_acceso" id="cve_acceso">
+                            <option value="" <?php echo set_select('cve_acceso', '', TRUE); ?> ></option>
+                            <?php foreach ($accesos as $accesos_item) { ?>
+                            <option value="<?= $accesos_item['cve_acceso'] ?>" <?php echo set_select('cve_acceso', $accesos_item['cve_acceso']); ?> ><?= $accesos_item['nom_acceso'] ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
                 <div class="form-row">
