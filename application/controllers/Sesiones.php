@@ -73,15 +73,17 @@ class Sesiones extends CI_Controller {
                     'hora_ini' => $sesion['hora_ini'],
                     'hora_fin' => $sesion['hora_fin'],
                     'cve_objetivo' => $sesion['cve_objetivo'],
-                    'orden_dia' => $sesion['orden_dia'],
-                    'pub_presentacion' => empty($sesion['pub_presentacion']) ? 1 : 0,
-                    'pub_minuta' => empty($sesion['pub_minuta']) ? 1 : 0,
-                    'pub_lista_asistencia' => empty($sesion['pub_lista_asistencia']) ? 1 : 0,
-                    'pub_extras' => empty($sesion['pub_extras']) ? 1 : 0,
-                    'pub_audio' => empty($sesion['pub_audio']) ? 1 : 0,
-                    'pub_video' => empty($sesion['pub_video']) ? 1 : 0
+                    'orden_dia' => $sesion['orden_dia']
                 );
                 $cve_sesion = $sesion['cve_sesion'];
+                if ( !isset($cve_sesion) ) {
+                    $data['pub_presentacion'] = 1;
+                    $data['pub_minuta'] = 1;
+                    $data['pub_lista_asistencia'] = 1;
+                    $data['pub_extras'] = 1;
+                    $data['pub_audio'] = 1;
+                    $data['pub_video'] = 1;
+                }
                 $this->sesiones_model->guardar($data, $cve_sesion);
                 redirect('consejos/detalle/'.$cve_consejo);
             }
