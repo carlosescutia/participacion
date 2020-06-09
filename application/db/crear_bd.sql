@@ -143,7 +143,13 @@ CREATE TABLE sesiones (
     hora_ini time,
     hora_fin time,
     cve_objetivo integer,
-    orden_dia text
+    orden_dia text,
+    pub_presentacion integer,
+    pub_minuta integer,
+    pub_lista_asistencia integer,
+    pub_extras integer,
+    pub_audio integer,
+    pub_video integer
 );
 
 DROP TABLE IF EXISTS calendario_sesiones;

@@ -1,6 +1,13 @@
 <div class="card mt-4 mb-3">
     <div class="card-header" style="background-color:#E6D9FA">
-        <strong>Adjuntos</strong>
+        <div class="row">
+            <div class="col-md-9">
+                <strong>Adjuntos</strong>
+            </div>
+            <div class="col-md-3 text-right">
+                <strong>Pub</strong>
+            </div>
+        </div>
     </div>
     <div class="card-body p-0">
         <div class="col-md-12">
@@ -37,6 +44,11 @@
                                 </button>
                             </form>
                         </td>
+                        <td>
+                            <?php $newvalue = $sesiones['pub_presentacion'] == 1 ? 0 : 1 ; ?>
+                            <?php $enlace = "../../../sesiones/actualizar_acceso_adjunto/".$sesiones["cve_sesion"]."/".$sesiones["cve_consejo"]."/pub_presentacion/".$newvalue; ?>
+                            <input class="form-check-input" type="checkbox" name="chk_presentacion" id="chk_presentacion" onchange="document.location.href='<?=$enlace?>'" <?= $sesiones['pub_presentacion'] == '1' ? 'checked' : '' ?>>
+                        </td>
                     </tr>
                     <tr>
                         <?php
@@ -68,6 +80,11 @@
                                     <span data-feather="upload"></span>
                                 </button>
                             </form>
+                        </td>
+                        <td>
+                            <?php $newvalue = $sesiones['pub_minuta'] == 1 ? 0 : 1 ; ?>
+                            <?php $enlace = "../../../sesiones/actualizar_acceso_adjunto/".$sesiones["cve_sesion"]."/".$sesiones["cve_consejo"]."/pub_minuta/".$newvalue; ?>
+                            <input class="form-check-input" type="checkbox" name="chk_minuta" id="chk_minuta" onchange="document.location.href='<?=$enlace?>'" <?= $sesiones['pub_minuta'] == '1' ? 'checked' : '' ?>>
                         </td>
                     </tr>
                     <tr>
@@ -101,6 +118,11 @@
                                 </button>
                             </form>
                         </td>
+                        <td>
+                            <?php $newvalue = $sesiones['pub_lista_asistencia'] == 1 ? 0 : 1 ; ?>
+                            <?php $enlace = "../../../sesiones/actualizar_acceso_adjunto/".$sesiones["cve_sesion"]."/".$sesiones["cve_consejo"]."/pub_lista_asistencia/".$newvalue; ?>
+                            <input class="form-check-input" type="checkbox" name="chk_lista_asistencia" id="chk_lista_asistencia" onchange="document.location.href='<?=$enlace?>'" <?= $sesiones['pub_lista_asistencia'] == '1' ? 'checked' : '' ?>>
+                        </td>
                     </tr>
                     <tr>
                         <?php
@@ -132,6 +154,11 @@
                                     <span data-feather="upload"></span>
                                 </button>
                             </form>
+                        </td>
+                        <td>
+                            <?php $newvalue = $sesiones['pub_extras'] == 1 ? 0 : 1 ; ?>
+                            <?php $enlace = "../../../sesiones/actualizar_acceso_adjunto/".$sesiones["cve_sesion"]."/".$sesiones["cve_consejo"]."/pub_extras/".$newvalue; ?>
+                            <input class="form-check-input" type="checkbox" name="chk_extras" id="chk_extras" onchange="document.location.href='<?=$enlace?>'" <?= $sesiones['pub_extras'] == '1' ? 'checked' : '' ?>>
                         </td>
                     </tr>
                     <tr>
@@ -165,6 +192,11 @@
                                 </button>
                             </form>
                         </td>
+                        <td>
+                            <?php $newvalue = $sesiones['pub_audio'] == 1 ? 0 : 1 ; ?>
+                            <?php $enlace = "../../../sesiones/actualizar_acceso_adjunto/".$sesiones["cve_sesion"]."/".$sesiones["cve_consejo"]."/pub_audio/".$newvalue; ?>
+                            <input class="form-check-input" type="checkbox" name="chk_audio" id="chk_audio" onchange="document.location.href='<?=$enlace?>'" <?= $sesiones['pub_audio'] == '1' ? 'checked' : '' ?>>
+                        </td>
                     </tr>
                     <tr>
                         <?php
@@ -196,6 +228,11 @@
                                     <span data-feather="upload"></span>
                                 </button>
                             </form>
+                        </td>
+                        <td>
+                            <?php $newvalue = $sesiones['pub_video'] == 1 ? 0 : 1 ; ?>
+                            <?php $enlace = "../../../sesiones/actualizar_acceso_adjunto/".$sesiones["cve_sesion"]."/".$sesiones["cve_consejo"]."/pub_video/".$newvalue; ?>
+                            <input class="form-check-input" type="checkbox" name="chk_video" id="chk_video" onchange="document.location.href='<?=$enlace?>'" <?= $sesiones['pub_video'] == '1' ? 'checked' : '' ?>>
                         </td>
                     </tr>
                 </tbody>
