@@ -6,7 +6,7 @@
                     <h1 class="h2">Consejos</h1>
                 </div>
                 <div class="col-sm-2 text-right">
-                    <?php if ($usuario_rol !== 'Administrador') { ?>
+                    <?php if ($cve_rol != 'adm') { ?>
                     <form method="post" action="<?= base_url() ?>consejos/guardar">
                         <button type="submit" class="btn btn-primary">Nuevo</button>
                     </form>

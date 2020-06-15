@@ -28,12 +28,10 @@ class Actores extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
-            $rol = $this->session->userdata('rol');
-            $data['usuario_rol'] = $rol;
-
-            if ($rol == 'Administrador') {
-                $dependencia = '';
-            }
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
 
             $filtros = $this->input->post();
             if ($filtros) {
@@ -50,7 +48,7 @@ class Actores extends CI_Controller {
             $data['cve_tipo'] = $cve_tipo;
             $data['cve_sector'] = $cve_sector;
 
-            $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $activo, $cve_tipo, $cve_sector);
+            $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $area, $activo, $cve_tipo, $cve_sector, $cve_rol);
             $data['sectores'] = $this->sectores_model->get_sectores();
 
             $this->load->view('templates/header', $data);
@@ -70,14 +68,12 @@ class Actores extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
-            $rol = $this->session->userdata('rol');
-            $data['usuario_rol'] = $rol;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
 
-            if ($rol == 'Administrador') {
-                $dependencia = '';
-            }
-
-            $data['actores'] = $this->actores_model->get_actor_dependencia($dependencia, $cve_actor);
+            $data['actores'] = $this->actores_model->get_actor_dependencia($dependencia, $area, $cve_actor, $cve_rol);
             $data['municipios'] = $this->municipios_model->get_municipios();
             $data['entidades'] = $this->entidades_model->get_entidades();
             $data['tipo_actores'] = $this->tipo_actores_model->get_tipo_actores();
@@ -111,6 +107,7 @@ class Actores extends CI_Controller {
                 $data = array(
                     'activo' => $actores['activo'] ,
                     'dependencia' => $actores['dependencia'],
+                    'area' => $actores['area'],
                     'nombre' =>  $actores['nombre'],
                     'apellido_pa' =>  $actores['apellido_pa'],
                     'apellido_ma' =>  $actores['apellido_ma'],
@@ -155,13 +152,11 @@ class Actores extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
             $data['error_adj_actores'] = $this->session->flashdata('error_adj_actores');
-            $rol = $this->session->userdata('rol');
-            $data['usuario_rol'] = $rol;
-
-            if ($rol == 'Administrador') {
-                $dependencia = '';
-            }
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
 
             $data['municipios'] = $this->municipios_model->get_municipios();
             $data['entidades'] = $this->entidades_model->get_entidades();

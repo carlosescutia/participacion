@@ -6,7 +6,7 @@
                     <h1 class="h2">Datos del actor</h1>
                 </div>
                 <div class="col-md-2">
-                    <?php if ($usuario_rol !== 'Administrador') { ?>
+                    <?php if ($cve_rol != 'adm') { ?>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                     <?php } ?>
                 </div>
@@ -288,6 +288,7 @@
 
         <input type="hidden" name="cve_actor" value="<?=$actores['cve_actor']?>">
         <input type="hidden" name="dependencia" value="<?=$actores['dependencia']?>">
+        <input type="hidden" name="area" value="<?=$actores['area']?>">
 
     </form>
 

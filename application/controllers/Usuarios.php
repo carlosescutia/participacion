@@ -4,59 +4,7 @@ class Usuarios extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('usuarios_model');
-    }
-
-    public function iniciar_sesion() {
-        $data = array();
-        $data['error'] = $this->session->flashdata('error');
-        $this->load->view('usuarios/iniciar_sesion', $data);
-    }
-
-    public function iniciar_sesion_post() {
-        if ($this->input->post()) {
-            $usuario = $this->input->post('usuario');
-            $password = $this->input->post('password');
-            $this->load->model('usuario_model');
-            $usuario_db = $this->usuario_model->usuario_por_nombre_password($usuario, $password);
-            if ($usuario_db) {
-                $usuario_data = array(
-                    'id' => $usuario_db->id,
-                    'nombre' => $usuario_db->nombre,
-                    'usuario' => $usuario_db->usuario,
-                    'correo' => $usuario_db->correo,
-                    'dependencia' => $usuario_db->dependencia,
-                    'logueado' => TRUE
-                );
-                $this->session->set_userdata($usuario_data);
-                redirect('usuarios/logueado');
-            } else {
-                $this->session->set_flashdata('error', 'Usuario o contraseña incorrectos');
-                redirect('usuarios/iniciar_sesion');
-            }
-        } else {
-            $this->iniciar_sesion();
-        }
-    }
-
-    public function logueado() {
-        if ($this->session->userdata('logueado')) {
-            $data = array();
-            $data['nombre'] = $this->session->userdata('nombre');
-            $data['usuario'] = $this->session->userdata('usuario');
-            $data['correo'] = $this->session->userdata('correo');
-            $data['dependencia'] = $this->session->userdata('dependencia');
-            $this->load->view('usuarios/logueado', $data);
-        } else {
-            redirect('usuarios/iniciar_sesion');
-        }
-    }
-
-    public function cerrar_sesion() {
-        $usuario_data = array(
-            'logueado' => FALSE
-        );
-        $this->session->set_userdata($usuario_data);
-        redirect('usuarios/iniciar_sesion');
+        $this->load->model('roles_model');
     }
 
     public function lista()
@@ -66,11 +14,11 @@ class Usuarios extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
-            $rol = $this->session->userdata('rol');
-            $data['usuario_rol'] = $rol;
-            if ($rol == 'Administrador') {
-                $dependencia = '';
-            } else {
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+            if ($cve_rol != 'adm') {
                 redirect('inicio');
             }
 
@@ -91,15 +39,16 @@ class Usuarios extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
-            $rol = $this->session->userdata('rol');
-            $data['usuario_rol'] = $rol;
-            if ($rol == 'Administrador') {
-                $dependencia = '';
-            } else {
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+            if ($cve_rol != 'adm') {
                 redirect('inicio');
             }
 
             $data['usuarios'] = $this->usuarios_model->get_usuario($cve_usuario);
+            $data['roles'] = $this->roles_model->get_roles();
 
             $this->load->view('templates/header', $data);
             $this->load->view('catalogos/usuarios/detalle', $data);
@@ -116,13 +65,15 @@ class Usuarios extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
-            $rol = $this->session->userdata('rol');
-            $data['usuario_rol'] = $rol;
-            if ($rol == 'Administrador') {
-                $dependencia = '';
-            } else {
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+            if ($cve_rol != 'adm') {
                 redirect('inicio');
             }
+
+            $data['roles'] = $this->roles_model->get_roles();
 
             $this->load->view('templates/header', $data);
             $this->load->view('catalogos/usuarios/nuevo', $data);
@@ -143,6 +94,8 @@ class Usuarios extends CI_Controller {
                     'usuario' => empty($usuarios['usuario']) ? null : $usuarios['usuario'],
                     'password' => empty($usuarios['password']) ? null : $usuarios['password'],
                     'dependencia' => empty($usuarios['dependencia']) ? null : $usuarios['dependencia'],
+                    'area' => empty($usuarios['area']) ? null : $usuarios['area'],
+                    'cve_rol' => empty($usuarios['cve_rol']) ? null : $usuarios['cve_rol'],
                     'activo' => empty($usuarios['activo']) ? '0' : $usuarios['activo']
                 );
                 $this->usuarios_model->guardar($data, $cve_usuario);

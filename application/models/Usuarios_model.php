@@ -6,25 +6,25 @@ class Usuarios_model extends CI_Model {
     }
 
     public function usuario_por_nombre($usuario, $password) {
-        $this->db->select('u.clave, u.nombre, u.usuario, u.dependencia, r.nom_rol');
+        $this->db->select('u.clave, u.nombre, u.usuario, u.dependencia, u.area, u.cve_rol, r.nom_rol');
         $this->db->from('usuarios u');
-        $this->db->join('usuarios_roles ur', 'u.clave = ur.cve_usuario', 'left');
-        $this->db->join('roles r', 'ur.cve_rol = r.cve_rol', 'left');
+        $this->db->join('roles r', 'u.cve_rol = r.cve_rol', 'left');
         $this->db->where('u.usuario', $usuario);
         $this->db->where('u.password', $password);
+        $this->db->where('u.activo', '1');
         $consulta = $this->db->get();
         $resultado = $consulta->row();
         return $resultado;
     }
 
     public function get_usuarios() {
-        $sql = 'select * from usuarios order by clave;';
+        $sql = 'select u.*, r.nom_rol from usuarios u left join roles r on u.cve_rol = r.cve_rol order by clave;';
         $query = $this->db->query($sql);
         return $query->result_array();
     }
 
     public function get_usuario($cve_usuario) {
-        $sql = 'select * from usuarios where clave = ?;';
+        $sql = 'select u.*, r.nom_rol from usuarios u left join roles r on u.cve_rol = r.cve_rol where clave = ?;';
         $query = $this->db->query($sql, array($cve_usuario));
         return $query->row_array();
     }

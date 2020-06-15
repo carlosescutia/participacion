@@ -19,18 +19,16 @@ class Inicio extends CI_Controller {
             $data['usuario_clave'] = $this->session->userdata('clave');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
+            $area = $this->session->userdata('area');
             $data['usuario_dependencia'] = $dependencia;
+            $data['usuario_area'] = $area;
             $data['error'] = $this->session->flashdata('error');
-            $rol = $this->session->userdata('rol');
-            $data['usuario_rol'] = $rol;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
 
-            if ($rol == 'Administrador') {
-                $dependencia = '';
-            }
-
-            $data['estadisticas_actores'] = $this->actores_model->get_estadisticas_actores($dependencia);
-            $data['estadisticas_consejos'] = $this->consejos_model->get_estadisticas_consejos($dependencia);
-            $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_dependencia($dependencia);
+            $data['estadisticas_actores'] = $this->actores_model->get_estadisticas_actores($dependencia, $area, $cve_rol);
+            $data['estadisticas_consejos'] = $this->consejos_model->get_estadisticas_consejos($dependencia, $area, $cve_rol);
+            $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_dependencia($dependencia, $area, $cve_rol);
 
             $this->load->view('templates/header', $data);
             $this->load->view('inicio/inicio', $data);
@@ -65,7 +63,8 @@ class Inicio extends CI_Controller {
                     'nombre' => $usuario_db->nombre,
                     'usuario' => $usuario_db->usuario,
                     'dependencia' => $usuario_db->dependencia,
-                    'rol' => $usuario_db->nom_rol,
+                    'area' => $usuario_db->area,
+                    'cve_rol' => $usuario_db->cve_rol,
                     'logueado' => TRUE
                 );
                 $this->session->set_userdata($usuario_data);

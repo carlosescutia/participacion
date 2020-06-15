@@ -22,6 +22,7 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Municipio</th>
                             <th scope="col">Dependencia</th>
+                            <th scope="col">Area</th>
                             <th scope="col">Sexo</th>
                             <th scope="col">Sector</th>
                             <th scope="col">Estructuras</th>
@@ -34,6 +35,7 @@
                             <td><?= $actores_item['nombre'] ?> <?= $actores_item['apellido_pa'] ?> <?= $actores_item['apellido_ma'] ?></td>
                             <td><?= $actores_item['nom_mun'] ?></td>
                             <td><?= $actores_item['dependencia'] ?></td>
+                            <td><?= $actores_item['area'] ?></td>
                             <td><?= $actores_item['sexo'] ?></td>
                             <td><?= $actores_item['nom_sector'] ?></td>
                             <td><?= $actores_item['consejos'] ?></td>

@@ -28,15 +28,12 @@ class Consejos extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
-            $rol = $this->session->userdata('rol');
-            $data['usuario_rol'] = $rol;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
 
-            if ($rol == 'Administrador') {
-                $dependencia = '';
-            }
-
-
-            $data['consejos'] = $this->consejos_model->get_consejos_dependencia($dependencia);
+            $data['consejos'] = $this->consejos_model->get_consejos_dependencia($dependencia, $area, $cve_rol);
 
             $this->load->view('templates/header', $data);
             $this->load->view('consejos/lista', $data);
@@ -57,24 +54,22 @@ class Consejos extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
-            $rol = $this->session->userdata('rol');
-            $data['usuario_rol'] = $rol;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
 
-            if ($rol == 'Administrador') {
-                $dependencia = '';
-            }
-
-            $data['consejos'] = $this->consejos_model->get_consejo_dependencia($dependencia, $cve_consejo);
+            $data['consejos'] = $this->consejos_model->get_consejo_dependencia($dependencia, $area, $cve_consejo, $cve_rol);
             $data['tipo_consejos'] = $this->tipo_consejos_model->get_tipo_consejos();
             $data['ejes'] = $this->ejes_model->get_ejes();
             $data['consejos_actores'] = $this->consejos_actores_model->get_actores_consejo($cve_consejo);
             $cve_tipo = 1;
             $activo = 1;
             $cve_sector = 0;
-            $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $activo, $cve_tipo, $cve_sector);
+            $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $area, $activo, $cve_tipo, $cve_sector, $cve_rol);
             $data['cargos'] = $this->cargos_model->get_cargos();
             $data['sesiones'] = $this->sesiones_model->get_sesiones_consejo($cve_consejo);
-            $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_consejo($cve_consejo, $dependencia);
+            $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_consejo($cve_consejo, $dependencia, $area, $cve_rol);
             $data['status_sesiones'] = $this->status_sesiones_model->get_status_sesiones();
 
             $this->load->view('templates/header', $data);
@@ -123,13 +118,10 @@ class Consejos extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
-            $rol = $this->session->userdata('rol');
-            $data['usuario_rol'] = $rol;
-
-            if ($rol == 'Administrador') {
-                $dependencia = '';
-            }
-
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
 
             $data['tipo_consejos'] = $this->tipo_consejos_model->get_tipo_consejos();
             $data['ejes'] = $this->ejes_model->get_ejes();
@@ -144,10 +136,10 @@ class Consejos extends CI_Controller {
                 $cve_tipo = 1;
                 $activo = 1;
                 $cve_sector = 0;
-                $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $activo, $cve_tipo, $cve_sector);
+                $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $area, $activo, $cve_tipo, $cve_sector, $cve_rol);
                 $data['cargos'] = $this->cargos_model->get_cargos();
                 $data['sesiones'] = $this->sesiones_model->get_sesiones_consejo($cve_consejo);
-                $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_consejo($cve_consejo, $dependencia);
+                $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_consejo($cve_consejo, $dependencia, $area, $cve_rol);
                 $data['status_sesiones'] = $this->status_sesiones_model->get_status_sesiones();
 
                 $this->load->view('templates/header', $data);
