@@ -15,6 +15,8 @@ class Calendario_sesiones extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
 
             $calendario_sesion = $this->input->post();
             if ($calendario_sesion) {
@@ -25,7 +27,7 @@ class Calendario_sesiones extends CI_Controller {
                 $cve_status = empty($calendario_sesion['cve_status']) ? null : $calendario_sesion['cve_status'];
 
                 if ($cve_consejo && $nom_sesion && $fecha && $hora && $cve_status) {
-                    $this->calendario_sesiones_model->guardar($cve_consejo, $nom_sesion, $dependencia, $fecha, $hora, $cve_status);
+                    $this->calendario_sesiones_model->guardar($cve_consejo, $nom_sesion, $dependencia, $area, $fecha, $hora, $cve_status);
                 } else {
                     $this->session->set_flashdata('error_calendario_sesion', 'Capture todos los datos');
                     redirect($_SERVER['HTTP_REFERER']);
@@ -41,6 +43,8 @@ class Calendario_sesiones extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
 
             if ($cve_sesion && $cve_consejo && $cve_status) {
                 $this->calendario_sesiones_model->actualizar_status($cve_sesion, $cve_consejo, $cve_status);
@@ -55,7 +59,8 @@ class Calendario_sesiones extends CI_Controller {
     public function eliminar_registro($cve_sesion, $cve_consejo)
     {
         $dependencia = $this->session->userdata('dependencia');
-        $this->calendario_sesiones_model->eliminar_registro($cve_sesion, $cve_consejo, $dependencia);
+        $area = $this->session->userdata('area');
+        $this->calendario_sesiones_model->eliminar_registro($cve_sesion, $cve_consejo, $dependencia, $area);
         redirect($_SERVER['HTTP_REFERER']);
     }
 

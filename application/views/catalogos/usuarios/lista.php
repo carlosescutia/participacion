@@ -25,14 +25,17 @@
                         <div class="col-sm-3 align-self-center">
                             <p class="small"><strong>Nombre</strong></p>
                         </div>
-                        <div class="col-sm-3 align-self-center">
+                        <div class="col-sm-2 align-self-center">
                             <p class="small"><strong>Usuario</strong></p>
                         </div>
                         <div class="col-sm-1 align-self-center">
-                            <p class="small"><strong>Password</strong></p>
+                            <p class="small"><strong>Dependencia</strong></p>
                         </div>
                         <div class="col-sm-1 align-self-center">
-                            <p class="small"><strong>Dependencia</strong></p>
+                            <p class="small"><strong>Area</strong></p>
+                        </div>
+                        <div class="col-sm-2 align-self-center">
+                            <p class="small"><strong>Rol</strong></p>
                         </div>
                         <div class="col-sm-1 align-self-center">
                             <p class="small"><strong>Activo</strong></p>
@@ -50,14 +53,17 @@
                         <div class="col-sm-3 align-self-center">
                             <a href="<?=base_url()?>usuarios/detalle/<?=$usuarios_item['clave']?>"><?= $usuarios_item['nombre'] ?></a>
                         </div>
-                        <div class="col-sm-3 align-self-center">
+                        <div class="col-sm-2 align-self-center">
                             <p><?= $usuarios_item['usuario'] ?></p>
                         </div>
                         <div class="col-sm-1 align-self-center">
-                            <p><?= $usuarios_item['password'] ?></p>
+                            <p><?= $usuarios_item['dependencia'] ?></p>
                         </div>
                         <div class="col-sm-1 align-self-center">
-                            <p><?= $usuarios_item['dependencia'] ?></p>
+                            <p><?= $usuarios_item['area'] ?></p>
+                        </div>
+                        <div class="col-sm-2 align-self-center">
+                            <p><?= $usuarios_item['nom_rol'] ?></p>
                         </div>
                         <div class="col-sm-1 align-self-center">
                             <p><?= $usuarios_item['activo'] ?></p>

@@ -250,6 +250,7 @@
 
         <input type="hidden" name="activo" value="1">
         <input type="hidden" name="dependencia" value="<?= $usuario_dependencia; ?>">
+        <input type="hidden" name="area" value="<?= $usuario_area; ?>">
 
         <div class="form-group row">
             <div class="col-sm-10">

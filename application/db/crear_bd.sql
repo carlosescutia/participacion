@@ -5,6 +5,8 @@ CREATE TABLE usuarios (
     usuario text,
     password text,
     dependencia text,
+    area text,
+    cve_rol text,
     activo integer
 );
 
@@ -13,6 +15,7 @@ CREATE TABLE actores (
     cve_actor serial, 
     activo integer,
     dependencia text,
+    area text,
     nombre text,
     apellido_pa text,
     apellido_ma text,
@@ -81,6 +84,7 @@ DROP TABLE IF EXISTS consejos;
 CREATE TABLE consejos (
     cve_consejo serial,
     dependencia text,
+    area text,
     nom_consejo text,
     siglas text,
     cve_tipo integer,
@@ -154,9 +158,11 @@ CREATE TABLE sesiones (
 
 DROP TABLE IF EXISTS calendario_sesiones;
 CREATE TABLE calendario_sesiones (
-    cve_sesion serial,
+    cve_evento serial,
+    cve_sesion integer,
     cve_consejo integer,
     dependencia text,
+    area text,
     nom_sesion text,
     fecha date,
     hora time,
@@ -193,15 +199,8 @@ CREATE TABLE status_acuerdos_sesion (
 
 DROP TABLE IF EXISTS roles;
 CREATE TABLE roles (
-    cve_rol serial,
+    cve_rol text,
     nom_rol text
-);
-
-DROP TABLE IF EXISTS usuarios_roles;
-CREATE TABLE usuarios_roles (
-    cve_usuario integer,
-    cve_rol integer,
-    primary key (cve_usuario, cve_rol)
 );
 
 DROP TABLE IF EXISTS objetivos_sesion;

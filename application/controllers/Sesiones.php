@@ -25,12 +25,10 @@ class Sesiones extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
-            $rol = $this->session->userdata('rol');
-            $data['usuario_rol'] = $rol;
-
-            if ($rol == 'Administrador') {
-                $dependencia = '';
-            }
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
 
             $data['sesiones'] = $this->sesiones_model->get_sesion_consejo($cve_sesion, $cve_consejo);
             $data['acuerdos_sesion'] = $this->acuerdos_sesion_model->get_acuerdos_sesion($cve_sesion, $cve_consejo);
@@ -99,18 +97,15 @@ class Sesiones extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
-            $rol = $this->session->userdata('rol');
-            $data['usuario_rol'] = $rol;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
 
             $data['acuerdos_sesion'] = $this->acuerdos_sesion_model->get_acuerdos_sesion($cve_sesion, $cve_consejo);
             $data['status_acuerdos_sesion'] = $this->status_acuerdos_sesion_model->get_status_acuerdos_sesion();
             $data['objetivos_sesion'] = $this->objetivos_sesion_model->get_objetivos_sesion();
             $data['modalidades_sesion'] = $this->modalidades_sesion_model->get_modalidades_sesion();
-
-            if ($rol == 'Administrador') {
-                $dependencia = '';
-            }
-
 
             $data['cve_consejo'] = $cve_consejo;
 

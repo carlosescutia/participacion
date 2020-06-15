@@ -7,7 +7,7 @@
                 <h1 class="h2">Datos del acuerdo</h1>
             </div>
             <div class="col-md-2">
-                <?php if ($usuario_rol !== 'Administrador') { ?>
+                <?php if ($cve_rol !== 'adm') { ?>
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 <?php } ?>
             </div>

@@ -45,6 +45,22 @@
                 </div>
             </div>
             <div class="form-group row">
+                <label for="area" class="col-sm-2 col-form-label">Area</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="area" id="area" value="<?=$usuarios['area'] ?>">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="cve_rol" class="col-sm-2 col-form-label">Rol</label>
+                <div class="col-sm-10">
+                    <select class="custom-select" name="cve_rol" id="cve_rol">
+                        <?php foreach ($roles as $roles_item) { ?>
+                        <option value="<?= $roles_item['cve_rol'] ?>" <?= ($usuarios['cve_rol'] == $roles_item['cve_rol']) ? 'selected' : '' ?> ><?= $roles_item['nom_rol'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
                 <label for="activo" class="col-sm-2 col-form-label">Activo</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" name="activo" id="activo" value="<?=$usuarios['activo'] ?>">

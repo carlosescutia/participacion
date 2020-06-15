@@ -22,7 +22,7 @@
                         <td><?= $calendario_sesiones_item['nom_sesion'] ?></td>
                         <td><?= date('d/m/y', strtotime($calendario_sesiones_item['fecha'])) ?></td>
                         <td><?= $calendario_sesiones_item['hora'] ?></td>
-                        <?php if ($usuario_rol !== 'Administrador') { ?>
+                        <?php if ($cve_rol !== 'adm') { ?>
                             <td>
                                 <select class="custom-select" onchange="document.location.href=this.value" >
                                     <?php foreach ($status_sesiones as $status_sesiones_item) { ?>
@@ -40,7 +40,7 @@
             </table>
         </div>
     </div>
-    <?php if ($usuario_rol !== 'Administrador') { ?>
+    <?php if ($cve_rol !== 'adm') { ?>
     <div class="card-footer">
         <form method="post" action="<?= base_url() ?>calendario_sesiones/guardar">
             <div class="form-row">
