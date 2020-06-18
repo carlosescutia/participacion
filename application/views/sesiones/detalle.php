@@ -12,7 +12,7 @@
                 <?php endif ?>
             </div>
             <div class="col-md-2">
-                <?php if ($cve_rol !== 'adm') { ?>
+                <?php if ($cve_rol == 'usr') { ?>
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 <?php } ?>
             </div>

@@ -43,7 +43,7 @@ class Roles extends CI_Controller {
             $area = $this->session->userdata('area');
             $data['usuario_area'] = $area;
             $rol = $this->session->userdata('cve_rol');
-            $data['rol'] = $rol;
+            $data['cve_rol'] = $rol;
             if ($rol != 'adm') {
                 redirect('inicio');
             }

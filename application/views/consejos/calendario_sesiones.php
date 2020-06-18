@@ -22,15 +22,15 @@
                         <td><?= $calendario_sesiones_item['nom_sesion'] ?></td>
                         <td><?= date('d/m/y', strtotime($calendario_sesiones_item['fecha'])) ?></td>
                         <td><?= $calendario_sesiones_item['hora'] ?></td>
-                        <?php if ($cve_rol !== 'adm') { ?>
+                        <?php if ($cve_rol == 'usr') { ?>
                             <td>
                                 <select class="custom-select" onchange="document.location.href=this.value" >
                                     <?php foreach ($status_sesiones as $status_sesiones_item) { ?>
-                                    <option value="../../calendario_sesiones/actualizar_status/<?= $calendario_sesiones_item['cve_sesion'] ?>/<?= $calendario_sesiones_item['cve_consejo'] ?>/<?= $status_sesiones_item['cve_status'] ?>"  <?= ($calendario_sesiones_item['cve_status'] == $status_sesiones_item['cve_status']) ? 'selected' : '' ?>   ><?= $status_sesiones_item['nom_status'] ?></option>
+                                    <option value="../../calendario_sesiones/actualizar_status/<?= $calendario_sesiones_item['cve_evento'] ?>/<?= $calendario_sesiones_item['cve_consejo'] ?>/<?= $status_sesiones_item['cve_status'] ?>"  <?= ($calendario_sesiones_item['cve_status'] == $status_sesiones_item['cve_status']) ? 'selected' : '' ?>   ><?= $status_sesiones_item['nom_status'] ?></option>
                                     <?php } ?>
                                 </select>
                             </td>
-                            <td><a style="color: #f00" href="<?= base_url() ?>calendario_sesiones/eliminar_registro/<?= $calendario_sesiones_item['cve_sesion'] ?>/<?= $calendario_sesiones_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a></td>
+                            <td><a style="color: #f00" href="<?= base_url() ?>calendario_sesiones/eliminar_registro/<?= $calendario_sesiones_item['cve_evento'] ?>/<?= $calendario_sesiones_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a></td>
                         <?php } else { ?>
                             <td><?= $calendario_sesiones_item['nom_status'] ?></td>
                         <?php } ?>
@@ -40,7 +40,7 @@
             </table>
         </div>
     </div>
-    <?php if ($cve_rol !== 'adm') { ?>
+    <?php if ($cve_rol == 'usr') { ?>
     <div class="card-footer">
         <form method="post" action="<?= base_url() ?>calendario_sesiones/guardar">
             <div class="form-row">

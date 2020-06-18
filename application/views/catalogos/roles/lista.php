@@ -5,11 +5,6 @@
                 <div class="col-sm-10 text-left">
                     <h1 class="h2">Roles</h1>
                 </div>
-                <div class="col-sm-2 text-right">
-                    <form method="post" action="<?= base_url() ?>roles/nuevo">
-                        <button type="submit" class="btn btn-primary">Nuevo</button>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
@@ -37,9 +32,6 @@
                         </div>
                         <div class="col-sm-8 align-self-center">
                             <a href="<?=base_url()?>roles/detalle/<?=$roles_item['cve_rol']?>"><?= $roles_item['nom_rol'] ?></a>
-                        </div>
-                        <div class="col-sm-1">
-                            <a style="color: #f00" href="<?= base_url() ?>roles/eliminar/<?= $roles_item['cve_rol'] ?>/"><span data-feather="x-circle"></span></a>
                         </div>
                     </div>
                 </div>

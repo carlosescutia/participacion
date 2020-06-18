@@ -25,7 +25,7 @@
             </table>
         </div>
     </div>
-    <?php if ($cve_rol != 'adm') { ?>
+    <?php if ($cve_rol == 'usr') { ?>
     <div class="card-footer">
         <form method="post" action="<?= base_url() ?>sesiones/guardar/<?= $consejos['cve_consejo'] ?>">
                 <button type="submit" class="btn btn-primary">Nueva sesión</button>

@@ -91,6 +91,7 @@ class Consejos extends CI_Controller {
             if ($this->form_validation->run()) {
                 $data = array(
                     'dependencia' => $consejo['dependencia'],
+                    'area' => $consejo['area'],
                     'nom_consejo' => $consejo['nom_consejo'],
                     'siglas' => $consejo['siglas'],
                     'cve_tipo' => empty($consejo['cve_tipo']) ? null : $consejo['cve_tipo'],

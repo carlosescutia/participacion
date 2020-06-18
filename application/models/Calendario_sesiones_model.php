@@ -13,7 +13,7 @@ class Calendario_sesiones_model extends CI_Model {
             $dependencia = '%';
             $area = '%';
         }
-        $sql = "select cs.*, ss.nom_status from calendario_sesiones cs left join status_sesiones ss on cs.cve_status= ss.cve_status where cs.cve_consejo = ? and dependencia = ? and area = ? order by cs.fecha asc";
+        $sql = "select cs.*, ss.nom_status from calendario_sesiones cs left join status_sesiones ss on cs.cve_status= ss.cve_status where cs.cve_consejo = ? and dependencia LIKE ? and area LIKE ? order by cs.fecha asc";
         $query = $this->db->query($sql, array($cve_consejo, $dependencia, $area));
         return $query->result_array();
     }
@@ -31,10 +31,9 @@ class Calendario_sesiones_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function guardar($cve_sesion, $cve_consejo, $nom_sesion, $dependencia, $area, $fecha, $hora, $cve_status)
+    public function guardar($cve_consejo, $nom_sesion, $dependencia, $area, $fecha, $hora, $cve_status)
     {
         $data = array(
-            'cve_sesion' => $cve_sesion,
             'cve_consejo' => $cve_consejo,
             'nom_sesion' => $nom_sesion,
             'dependencia' => $dependencia,
@@ -47,22 +46,20 @@ class Calendario_sesiones_model extends CI_Model {
         $this->db->insert('calendario_sesiones', $data);
     }
 
-    public function actualizar_status($cve_evento, $cve_sesion, $cve_consejo, $cve_status)
+    public function actualizar_status($cve_evento, $cve_consejo, $cve_status)
     {
         $data = array(
             'cve_status' => $cve_status
         );
 
         $this->db->where('cve_evento', $cve_evento);
-        $this->db->where('cve_sesion', $cve_sesion);
         $this->db->where('cve_consejo', $cve_consejo);
         $this->db->update('calendario_sesiones', $data);
     }
 
-    public function eliminar_registro($cve_evento, $cve_sesion, $cve_consejo)
+    public function eliminar_registro($cve_evento, $cve_consejo)
     {
         $this->db->where('cve_evento', $cve_evento);
-        $this->db->where('cve_sesion', $cve_sesion);
         $this->db->where('cve_consejo', $cve_consejo);
         $this->db->delete('calendario_sesiones');
     }
