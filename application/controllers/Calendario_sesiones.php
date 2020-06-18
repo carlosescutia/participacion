@@ -37,7 +37,7 @@ class Calendario_sesiones extends CI_Controller {
         }
     }
 
-    public function actualizar_status($cve_sesion, $cve_consejo, $cve_status)
+    public function actualizar_status($cve_evento, $cve_consejo, $cve_status)
     {
         if ($this->session->userdata('logueado')) {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
@@ -46,8 +46,8 @@ class Calendario_sesiones extends CI_Controller {
             $area = $this->session->userdata('area');
             $data['usuario_area'] = $area;
 
-            if ($cve_sesion && $cve_consejo && $cve_status) {
-                $this->calendario_sesiones_model->actualizar_status($cve_sesion, $cve_consejo, $cve_status);
+            if ($cve_evento && $cve_consejo && $cve_status) {
+                $this->calendario_sesiones_model->actualizar_status($cve_evento, $cve_consejo, $cve_status);
             } else {
                 $this->session->set_flashdata('error_calendario_sesion', 'Capture todos los datos');
                 redirect($_SERVER['HTTP_REFERER']);
@@ -56,11 +56,11 @@ class Calendario_sesiones extends CI_Controller {
         }
     }
 
-    public function eliminar_registro($cve_sesion, $cve_consejo)
+    public function eliminar_registro($cve_evento, $cve_consejo)
     {
         $dependencia = $this->session->userdata('dependencia');
         $area = $this->session->userdata('area');
-        $this->calendario_sesiones_model->eliminar_registro($cve_sesion, $cve_consejo, $dependencia, $area);
+        $this->calendario_sesiones_model->eliminar_registro($cve_evento, $cve_consejo, $dependencia, $area);
         redirect($_SERVER['HTTP_REFERER']);
     }
 

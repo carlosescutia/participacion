@@ -97,10 +97,11 @@
             </div>
 
             <input type="hidden" name="dependencia" value="<?= $usuario_dependencia; ?>">
+            <input type="hidden" name="area" value="<?= $usuario_area; ?>">
             <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?=$consejos['cve_consejo'] ?>">
 
         </div>
-        <?php if ($cve_rol !== 'adm') { ?>
+        <?php if ($cve_rol == 'usr') { ?>
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Guardar</button>
         </div>

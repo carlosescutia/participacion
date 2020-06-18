@@ -159,7 +159,6 @@ CREATE TABLE sesiones (
 DROP TABLE IF EXISTS calendario_sesiones;
 CREATE TABLE calendario_sesiones (
     cve_evento serial,
-    cve_sesion integer,
     cve_consejo integer,
     dependencia text,
     area text,

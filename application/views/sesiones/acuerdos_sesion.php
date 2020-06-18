@@ -42,7 +42,7 @@
                         <td><?= $acuerdos_sesion_item['observaciones'] ?></td>
                         <td><?= substr($acuerdos_sesion_item['nom_acceso'],0,4) ?></td>
                         <td><span class="semaforo <?=$color?>"></span> <?= $acuerdos_sesion_item['nom_status'] ?></td>
-                        <?php if ($cve_rol !== 'adm') { ?>
+                        <?php if ($cve_rol == 'usr') { ?>
                             <td><a style="color: #f00" href="<?= base_url() ?>acuerdos_sesion/eliminar_registro/<?= $acuerdos_sesion_item['cve_acuerdo'] ?>/<?= $acuerdos_sesion_item['cve_sesion'] ?>/<?= $acuerdos_sesion_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a>
                             </td>
                         <?php } ?>
@@ -52,7 +52,7 @@
             </table>
         </div>
     </div>
-    <?php if ($cve_rol !== 'adm') { ?>
+    <?php if ($cve_rol == 'usr') { ?>
     <div class="card-footer">
         <div class="row">
             <div class="col-md-10">

@@ -6,7 +6,7 @@
                     <h1 class="h2">Datos del actor</h1>
                 </div>
                 <div class="col-md-2">
-                    <?php if ($cve_rol != 'adm') { ?>
+                    <?php if ($cve_rol == 'usr') { ?>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                     <?php } ?>
                 </div>
@@ -367,6 +367,7 @@
                                     </td>
 
                                 </tr>
+                                <?php if ($cve_rol == 'usr') { ?>
                                 <tr class="text-center">
                                     <td>
                                         <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/actores_adj1">
@@ -421,6 +422,7 @@
                                         </form>
                                     </td>
                                 </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>

@@ -30,6 +30,7 @@
                             </a>
                             <?php } ?>
                         </td>
+                        <?php if ($cve_rol == 'usr') { ?>
                         <td>
                             <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/presentacion">
                                 <label class="btn btn-primary btn-sm" for="arch-presentacion">
@@ -44,10 +45,11 @@
                                 </button>
                             </form>
                         </td>
+                        <?php } ?>
                         <td>
                             <?php $newvalue = $sesiones['pub_presentacion'] == 1 ? 0 : 1 ; ?>
                             <?php $enlace = "../../../sesiones/actualizar_acceso_adjunto/".$sesiones["cve_sesion"]."/".$sesiones["cve_consejo"]."/pub_presentacion/".$newvalue; ?>
-                            <input class="form-check-input" type="checkbox" name="chk_presentacion" id="chk_presentacion" onchange="document.location.href='<?=$enlace?>'" <?= $sesiones['pub_presentacion'] == '1' ? 'checked' : '' ?>>
+                            <input class="form-check-input" type="checkbox" name="chk_presentacion" id="chk_presentacion" <?php if ($cve_rol == 'usr') { ?>onchange="document.location.href='<?=$enlace?>'"<?php } ?> <?= $sesiones['pub_presentacion'] == '1' ? 'checked' : '' ?>>
                         </td>
                     </tr>
                     <tr>
@@ -67,6 +69,7 @@
                             </a>
                             <?php } ?>
                         </td>
+                        <?php if ($cve_rol == 'usr') { ?>
                         <td>
                             <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/minuta">
                                 <label class="btn btn-primary btn-sm" for="arch-minuta">
@@ -81,10 +84,11 @@
                                 </button>
                             </form>
                         </td>
+                        <?php } ?>
                         <td>
                             <?php $newvalue = $sesiones['pub_minuta'] == 1 ? 0 : 1 ; ?>
                             <?php $enlace = "../../../sesiones/actualizar_acceso_adjunto/".$sesiones["cve_sesion"]."/".$sesiones["cve_consejo"]."/pub_minuta/".$newvalue; ?>
-                            <input class="form-check-input" type="checkbox" name="chk_minuta" id="chk_minuta" onchange="document.location.href='<?=$enlace?>'" <?= $sesiones['pub_minuta'] == '1' ? 'checked' : '' ?>>
+                            <input class="form-check-input" type="checkbox" name="chk_minuta" id="chk_minuta" <?php if ($cve_rol == 'usr') { ?>onchange="document.location.href='<?=$enlace?>'"<?php } ?> <?= $sesiones['pub_minuta'] == '1' ? 'checked' : '' ?>>
                         </td>
                     </tr>
                     <tr>
@@ -104,6 +108,7 @@
                             </a>
                             <?php } ?>
                         </td>
+                        <?php if ($cve_rol == 'usr') { ?>
                         <td>
                             <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/asistencia">
                                 <label class="btn btn-primary btn-sm" for="arch-asistencia">
@@ -118,10 +123,11 @@
                                 </button>
                             </form>
                         </td>
+                        <?php } ?>
                         <td>
                             <?php $newvalue = $sesiones['pub_lista_asistencia'] == 1 ? 0 : 1 ; ?>
                             <?php $enlace = "../../../sesiones/actualizar_acceso_adjunto/".$sesiones["cve_sesion"]."/".$sesiones["cve_consejo"]."/pub_lista_asistencia/".$newvalue; ?>
-                            <input class="form-check-input" type="checkbox" name="chk_lista_asistencia" id="chk_lista_asistencia" onchange="document.location.href='<?=$enlace?>'" <?= $sesiones['pub_lista_asistencia'] == '1' ? 'checked' : '' ?>>
+                            <input class="form-check-input" type="checkbox" name="chk_lista_asistencia" id="chk_lista_asistencia" <?php if ($cve_rol == 'usr') { ?>onchange="document.location.href='<?=$enlace?>'"<?php } ?> <?= $sesiones['pub_lista_asistencia'] == '1' ? 'checked' : '' ?>>
                         </td>
                     </tr>
                     <tr>
@@ -141,6 +147,7 @@
                             </a>
                             <?php } ?>
                         </td>
+                        <?php if ($cve_rol == 'usr') { ?>
                         <td>
                             <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/extras">
                                 <label class="btn btn-primary btn-sm" for="arch-extras">
@@ -155,10 +162,11 @@
                                 </button>
                             </form>
                         </td>
+                        <?php } ?>
                         <td>
                             <?php $newvalue = $sesiones['pub_extras'] == 1 ? 0 : 1 ; ?>
                             <?php $enlace = "../../../sesiones/actualizar_acceso_adjunto/".$sesiones["cve_sesion"]."/".$sesiones["cve_consejo"]."/pub_extras/".$newvalue; ?>
-                            <input class="form-check-input" type="checkbox" name="chk_extras" id="chk_extras" onchange="document.location.href='<?=$enlace?>'" <?= $sesiones['pub_extras'] == '1' ? 'checked' : '' ?>>
+                            <input class="form-check-input" type="checkbox" name="chk_extras" id="chk_extras" <?php if ($cve_rol == 'usr') { ?>onchange="document.location.href='<?=$enlace?>'"<?php } ?> <?= $sesiones['pub_extras'] == '1' ? 'checked' : '' ?>>
                         </td>
                     </tr>
                     <tr>
@@ -178,6 +186,7 @@
                             </a>
                             <?php } ?>
                         </td>
+                        <?php if ($cve_rol == 'usr') { ?>
                         <td>
                             <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/audio">
                                 <label class="btn btn-primary btn-sm" for="arch-audio">
@@ -192,10 +201,11 @@
                                 </button>
                             </form>
                         </td>
+                        <?php } ?>
                         <td>
                             <?php $newvalue = $sesiones['pub_audio'] == 1 ? 0 : 1 ; ?>
                             <?php $enlace = "../../../sesiones/actualizar_acceso_adjunto/".$sesiones["cve_sesion"]."/".$sesiones["cve_consejo"]."/pub_audio/".$newvalue; ?>
-                            <input class="form-check-input" type="checkbox" name="chk_audio" id="chk_audio" onchange="document.location.href='<?=$enlace?>'" <?= $sesiones['pub_audio'] == '1' ? 'checked' : '' ?>>
+                            <input class="form-check-input" type="checkbox" name="chk_audio" id="chk_audio" <?php if ($cve_rol == 'usr') { ?>onchange="document.location.href='<?=$enlace?>'"<?php } ?> <?= $sesiones['pub_audio'] == '1' ? 'checked' : '' ?>>
                         </td>
                     </tr>
                     <tr>
@@ -215,6 +225,7 @@
                             </a>
                             <?php } ?>
                         </td>
+                        <?php if ($cve_rol == 'usr') { ?>
                         <td>
                             <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/video">
                                 <label class="btn btn-primary btn-sm" for="arch-video">
@@ -229,10 +240,11 @@
                                 </button>
                             </form>
                         </td>
+                        <?php } ?>
                         <td>
                             <?php $newvalue = $sesiones['pub_video'] == 1 ? 0 : 1 ; ?>
                             <?php $enlace = "../../../sesiones/actualizar_acceso_adjunto/".$sesiones["cve_sesion"]."/".$sesiones["cve_consejo"]."/pub_video/".$newvalue; ?>
-                            <input class="form-check-input" type="checkbox" name="chk_video" id="chk_video" onchange="document.location.href='<?=$enlace?>'" <?= $sesiones['pub_video'] == '1' ? 'checked' : '' ?>>
+                            <input class="form-check-input" type="checkbox" name="chk_video" id="chk_video" <?php if ($cve_rol == 'usr') { ?>onchange="document.location.href='<?=$enlace?>'"<?php } ?> <?= $sesiones['pub_video'] == '1' ? 'checked' : '' ?>>
                         </td>
                     </tr>
                 </tbody>

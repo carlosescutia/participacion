@@ -107,6 +107,7 @@
                     </div>
 
                     <input type="hidden" name="dependencia" value="<?= $usuario_dependencia; ?>">
+                    <input type="hidden" name="area" value="<?= $usuario_area; ?>">
 
                 </div>
                 <div class="card-footer">
