@@ -50,6 +50,7 @@ class Consejos extends CI_Controller {
             $data['error_integrantes'] = $this->session->flashdata('error_integrantes');
             $data['error_sesiones'] = $this->session->flashdata('error_sesiones');
             $data['error_calendario_sesion'] = $this->session->flashdata('error_calendario_sesion');
+            $data['error_adj_consejos'] = $this->session->flashdata('error_adj_consejos');
             $data['usuario_clave'] = $this->session->userdata('clave');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');

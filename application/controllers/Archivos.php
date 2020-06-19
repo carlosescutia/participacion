@@ -204,5 +204,61 @@ class Archivos extends CI_Controller {
         }
     }
 
+    public function consejos_juridico()
+    {
+        if ($this->session->userdata('logueado')) {
+            $cve_consejo = $this->input->post('cve_consejo');
+            
+            $config = array();
+            $config['allowed_types'] = 'pdf';
+            $config['overwrite'] = TRUE;
+            $config['upload_path'] = 'adj_consejos';
+            $config['file_name'] = $cve_consejo . '_juridico.pdf';
+            $this->load->library('upload',$config);
+            if ( ! $this->upload->do_upload('arch-juridico') ) {
+                $error_adj_consejos = array('error_adj_consejos' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_adj_consejos', $error_adj_consejos['error_adj_consejos']);
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+
+    public function consejos_normativa()
+    {
+        if ($this->session->userdata('logueado')) {
+            $cve_consejo = $this->input->post('cve_consejo');
+            
+            $config = array();
+            $config['allowed_types'] = 'pdf';
+            $config['overwrite'] = TRUE;
+            $config['upload_path'] = 'adj_consejos';
+            $config['file_name'] = $cve_consejo . '_normativa.pdf';
+            $this->load->library('upload',$config);
+            if ( ! $this->upload->do_upload('arch-normativa') ) {
+                $error_adj_consejos = array('error_adj_consejos' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_adj_consejos', $error_adj_consejos['error_adj_consejos']);
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
+
+    public function consejos_extras()
+    {
+        if ($this->session->userdata('logueado')) {
+            $cve_consejo = $this->input->post('cve_consejo');
+            
+            $config = array();
+            $config['allowed_types'] = 'zip';
+            $config['overwrite'] = TRUE;
+            $config['upload_path'] = 'adj_consejos';
+            $config['file_name'] = $cve_consejo . '_extras.zip';
+            $this->load->library('upload',$config);
+            if ( ! $this->upload->do_upload('arch-extras') ) {
+                $error_adj_consejos = array('error_adj_consejos' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_adj_consejos', $error_adj_consejos['error_adj_consejos']);
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+    }
 
 }
