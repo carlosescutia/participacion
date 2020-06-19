@@ -37,7 +37,6 @@
                         <label for="cve_acceso">Acceso</label>
                         <?php echo form_error('cve_acceso'); ?>
                         <select class="custom-select" name="cve_acceso" id="cve_acceso">
-                            <option value="" <?php echo set_select('cve_acceso', '', TRUE); ?> ></option>
                             <?php foreach ($accesos as $accesos_item) { ?>
                             <option value="<?= $accesos_item['cve_acceso'] ?>" <?php echo set_select('cve_acceso', $accesos_item['cve_acceso']); ?> ><?= $accesos_item['nom_acceso'] ?></option>
                             <?php } ?>
@@ -64,7 +63,6 @@
                         <label for="cve_status">Status</label>
                         <?php echo form_error('cve_status'); ?>
                         <select class="custom-select" name="cve_status" id="cve_status">
-                            <option value="" <?php echo set_select('cve_status', '', TRUE); ?> ></option>
                             <?php foreach ($status_acuerdos_sesion as $status_acuerdos_sesion_item) { ?>
                             <option value="<?= $status_acuerdos_sesion_item['cve_status'] ?>" <?php echo set_select('cve_status', $status_acuerdos_sesion_item['cve_status']); ?> ><?= $status_acuerdos_sesion_item['nom_status'] ?></option>
                             <?php } ?>
