@@ -11,6 +11,13 @@
     </div>
     <div class="card-body p-0">
         <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12 text-danger">
+                    <?php if ($error_adj_sesiones): ?>
+                    <?php echo $error_adj_sesiones?>
+                    <?php endif ?>
+                </div>
+            </div>
             <table class="table table-sm">
                 <tbody>
                     <tr>
@@ -24,7 +31,7 @@
                             if ( file_exists($arch_presentacion) ) { ?>
                             <a href="<?= base_url() ?><?= $arch_presentacion ?>" target="_blank">
                                 <?php } ?>
-                                Presentación
+                                Presentación (pdf)
                                 <?php
                                 if ( file_exists($arch_presentacion) ) { ?>
                             </a>
@@ -32,7 +39,7 @@
                         </td>
                         <?php if ($cve_rol == 'usr') { ?>
                         <td>
-                            <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/presentacion">
+                            <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/sesiones_presentacion">
                                 <label class="btn btn-primary btn-sm" for="arch-presentacion">
                                     <input name="arch-presentacion" id="arch-presentacion" type="file" style="display:none"
                                     onchange="$('#arch-presentacion-info').removeClass('invisible')">
@@ -63,7 +70,7 @@
                             if ( file_exists($arch_minuta) ) { ?>
                             <a href="<?= base_url() ?><?= $arch_minuta ?>" target="_blank">
                                 <?php } ?>
-                                Minuta
+                                Minuta (pdf)
                                 <?php
                                 if ( file_exists($arch_minuta) ) { ?>
                             </a>
@@ -71,7 +78,7 @@
                         </td>
                         <?php if ($cve_rol == 'usr') { ?>
                         <td>
-                            <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/minuta">
+                            <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/sesiones_minuta">
                                 <label class="btn btn-primary btn-sm" for="arch-minuta">
                                     <input name="arch-minuta" id="arch-minuta" type="file" style="display:none"
                                     onchange="$('#arch-minuta-info').removeClass('invisible')">
@@ -102,7 +109,7 @@
                             if ( file_exists($arch_asistencia) ) { ?>
                             <a href="<?= base_url() ?><?= $arch_asistencia ?>" target="_blank">
                                 <?php } ?>
-                                Lista de asistencia
+                                Lista de asistencia (pdf)
                                 <?php
                                 if ( file_exists($arch_asistencia) ) { ?>
                             </a>
@@ -110,7 +117,7 @@
                         </td>
                         <?php if ($cve_rol == 'usr') { ?>
                         <td>
-                            <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/asistencia">
+                            <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/sesiones_asistencia">
                                 <label class="btn btn-primary btn-sm" for="arch-asistencia">
                                     <input name="arch-asistencia" id="arch-asistencia" type="file" style="display:none"
                                     onchange="$('#arch-asistencia-info').removeClass('invisible')">
@@ -141,7 +148,7 @@
                             if ( file_exists($arch_extras) ) { ?>
                             <a href="<?= base_url() ?><?= $arch_extras ?>" target="_blank">
                                 <?php } ?>
-                                Extras
+                                Extras (zip)
                                 <?php
                                 if ( file_exists($arch_extras) ) { ?>
                             </a>
@@ -149,7 +156,7 @@
                         </td>
                         <?php if ($cve_rol == 'usr') { ?>
                         <td>
-                            <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/extras">
+                            <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/sesiones_extras">
                                 <label class="btn btn-primary btn-sm" for="arch-extras">
                                     <input name="arch-extras" id="arch-extras" type="file" style="display:none"
                                     onchange="$('#arch-extras-info').removeClass('invisible')">
@@ -180,7 +187,7 @@
                             if ( file_exists($arch_audio) ) { ?>
                             <a href="<?= base_url() ?><?= $arch_audio ?>" target="_blank">
                                 <?php } ?>
-                                Audio
+                                Audio (mp3)
                                 <?php
                                 if ( file_exists($arch_audio) ) { ?>
                             </a>
@@ -188,7 +195,7 @@
                         </td>
                         <?php if ($cve_rol == 'usr') { ?>
                         <td>
-                            <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/audio">
+                            <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/sesiones_audio">
                                 <label class="btn btn-primary btn-sm" for="arch-audio">
                                     <input name="arch-audio" id="arch-audio" type="file" style="display:none"
                                     onchange="$('#arch-audio-info').removeClass('invisible')">
@@ -219,7 +226,7 @@
                             if ( file_exists($arch_video) ) { ?>
                             <a href="<?= base_url() ?><?= $arch_video ?>" target="_blank">
                                 <?php } ?>
-                                Video
+                                Video (mp4)
                                 <?php
                                 if ( file_exists($arch_video) ) { ?>
                             </a>
@@ -227,7 +234,7 @@
                         </td>
                         <?php if ($cve_rol == 'usr') { ?>
                         <td>
-                            <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/video">
+                            <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/sesiones_video">
                                 <label class="btn btn-primary btn-sm" for="arch-video">
                                     <input name="arch-video" id="arch-video" type="file" style="display:none"
                                     onchange="$('#arch-video-info').removeClass('invisible')">

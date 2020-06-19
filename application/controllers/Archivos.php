@@ -8,7 +8,7 @@ class Archivos extends CI_Controller {
 
     }
 
-    public function presentacion()
+    public function sesiones_presentacion()
     {
         if ($this->session->userdata('logueado')) {
             $cve_consejo = $this->input->post('cve_consejo');
@@ -21,14 +21,14 @@ class Archivos extends CI_Controller {
             $config['file_name'] = $cve_consejo . '_' . $cve_sesion . '_presentacion.pdf';
             $this->load->library('upload',$config);
             if ( ! $this->upload->do_upload('arch-presentacion') ) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('error', $error['error']);
+                $error_adj_sesiones = array('error_adj_sesiones' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_adj_sesiones', $error_adj_sesiones['error_adj_sesiones']);
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
 
-    public function minuta()
+    public function sesiones_minuta()
     {
         if ($this->session->userdata('logueado')) {
             $cve_consejo = $this->input->post('cve_consejo');
@@ -41,14 +41,14 @@ class Archivos extends CI_Controller {
             $config['file_name'] = $cve_consejo . '_' . $cve_sesion . '_minuta.pdf';
             $this->load->library('upload',$config);
             if ( ! $this->upload->do_upload('arch-minuta') ) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('error', $error['error']);
+                $error_adj_sesiones = array('error_adj_sesiones' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_adj_sesiones', $error_adj_sesiones['error_adj_sesiones']);
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
 
-    public function asistencia()
+    public function sesiones_asistencia()
     {
         if ($this->session->userdata('logueado')) {
             $cve_consejo = $this->input->post('cve_consejo');
@@ -61,14 +61,14 @@ class Archivos extends CI_Controller {
             $config['file_name'] = $cve_consejo . '_' . $cve_sesion . '_asistencia.pdf';
             $this->load->library('upload',$config);
             if ( ! $this->upload->do_upload('arch-asistencia') ) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('error', $error['error']);
+                $error_adj_sesiones = array('error_adj_sesiones' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_adj_sesiones', $error_adj_sesiones['error_adj_sesiones']);
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
 
-    public function extras()
+    public function sesiones_extras()
     {
         if ($this->session->userdata('logueado')) {
             $cve_consejo = $this->input->post('cve_consejo');
@@ -81,14 +81,14 @@ class Archivos extends CI_Controller {
             $config['file_name'] = $cve_consejo . '_' . $cve_sesion . '_extras.zip';
             $this->load->library('upload',$config);
             if ( ! $this->upload->do_upload('arch-extras') ) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('error', $error['error']);
+                $error_adj_sesiones = array('error_adj_sesiones' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_adj_sesiones', $error_adj_sesiones['error_adj_sesiones']);
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
 
-    public function audio()
+    public function sesiones_audio()
     {
         if ($this->session->userdata('logueado')) {
             $cve_consejo = $this->input->post('cve_consejo');
@@ -101,14 +101,14 @@ class Archivos extends CI_Controller {
             $config['file_name'] = $cve_consejo . '_' . $cve_sesion . '_audio.mp3';
             $this->load->library('upload',$config);
             if ( ! $this->upload->do_upload('arch-audio') ) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('error', $error['error']);
+                $error_adj_sesiones = array('error_adj_sesiones' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_adj_sesiones', $error_adj_sesiones['error_adj_sesiones']);
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
     }
 
-    public function video()
+    public function sesiones_video()
     {
         if ($this->session->userdata('logueado')) {
             $cve_consejo = $this->input->post('cve_consejo');
@@ -121,8 +121,8 @@ class Archivos extends CI_Controller {
             $config['file_name'] = $cve_consejo . '_' . $cve_sesion . '_video.mp4';
             $this->load->library('upload',$config);
             if ( ! $this->upload->do_upload('arch-video') ) {
-                $error = array('error' => $this->upload->display_errors());
-                $this->session->set_flashdata('error', $error['error']);
+                $error_adj_sesiones = array('error_adj_sesiones' => $this->upload->display_errors());
+                $this->session->set_flashdata('error_adj_sesiones', $error_adj_sesiones['error_adj_sesiones']);
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
