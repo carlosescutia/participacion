@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteCond $1 !^(index\.php|css|js|doc|img|oficios|adj_sesiones|adj_actores|fotos|images|theme|jquery|uploadify|fonts|fichas|metadatos|robots\.txt)
+RewriteCond $1 !^(index\.php|css|js|doc|img|oficios|adj_sesiones|adj_actores|adj_consejos|fotos|images|theme|jquery|uploadify|fonts|fichas|metadatos|robots\.txt)
 RewriteRule ^(.*)$ index.php?/$1 [L]
 AddDefaultCharset UTF-8
 

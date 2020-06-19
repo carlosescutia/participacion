@@ -28,6 +28,9 @@
             <div class="col-md-8">
                 <?php include "calendario_sesiones.php" ?>
             </div>
+            <div class="col-md-4">
+                <?php include "adjuntos_consejo.php" ?>
+            </div>
         </div>
         <hr />
     </div>
