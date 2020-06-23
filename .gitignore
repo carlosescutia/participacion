@@ -13,3 +13,6 @@ adj_actores/*
 
 composer.lock
 
+*~
+*.swp
+*.swo
