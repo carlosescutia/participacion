@@ -54,10 +54,10 @@
             </table>
         </div>
     </div>
-    <?php if ($cve_rol == 'usr') { ?>
     <div class="card-footer">
         <div class="row">
             <div class="col-md-10">
+                <?php if ($cve_rol == 'usr') { ?>
                 <form method="post" action="<?= base_url() ?>acuerdos_sesion/guardar/<?=$sesiones['cve_sesion']?>/<?=$sesiones['cve_consejo']?>">
                     <div class="form-row">
                         <div class="col-md-1">
@@ -65,13 +65,13 @@
                         </div>
                     </div>
                 </form>
+                <?php } ?>
             </div>
             <div class="col-md-2 text-right">
                 <a href="<?=base_url()?>reportes/reporte_acuerdos/<?=$sesiones['cve_sesion']?>/<?=$sesiones['cve_consejo']?>" class="btn btn-primary">Generar reporte</a>
             </div>
         </div>
     </div>
-    <?php } ?>
 </div>
 
 
