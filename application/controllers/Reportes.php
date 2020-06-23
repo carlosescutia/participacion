@@ -181,7 +181,7 @@ class Reportes extends CI_Controller {
             $this->load->model('acuerdos_sesion_model');
             $this->load->model('sesiones_model');
 
-            $sql = "select c.nom_consejo, 'Sesion ' || s.num_sesion || ' ' || (case when s.tipo='o' then 'ordinaria' when s.tipo='e' then 'extraordinaria' else '' end) as sesion, a.nom_acuerdo, a.observaciones, a.porcentaje_avance, a.fecha_acuerdo, a.fecha_compromiso, a.fecha_cumplimiento, a.causa_cancelado, sac.nom_status from acuerdos_sesion a left join consejos c on a.cve_consejo = c.cve_consejo left join sesiones s on a.cve_sesion = s.cve_sesion left join status_acuerdos_sesion sac on a.cve_status = sac.cve_status where a.cve_sesion = ? and a.cve_consejo = ? ;";
+            $sql = "select c.nom_consejo, 'Sesion ' || s.num_sesion || ' ' || (case when s.tipo='o' then 'ordinaria' when s.tipo='e' then 'extraordinaria' else '' end) as sesion, a.codigo_acuerdo, a.nom_acuerdo, a.observaciones, a.porcentaje_avance, acc.nom_acceso, a.fecha_acuerdo, a.fecha_compromiso, a.fecha_cumplimiento, a.causa_cancelado, sac.nom_status from acuerdos_sesion a left join consejos c on a.cve_consejo = c.cve_consejo left join sesiones s on a.cve_sesion = s.cve_sesion left join status_acuerdos_sesion sac on a.cve_status = sac.cve_status left join accesos acc on a.cve_acceso = acc.cve_acceso where a.cve_sesion = ? and a.cve_consejo = ? ;";
             $query = $this->db->query($sql, array($cve_sesion, $cve_consejo));
 
             $delimiter = ",";

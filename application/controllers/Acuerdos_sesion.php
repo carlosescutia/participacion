@@ -44,6 +44,7 @@ class Acuerdos_sesion extends CI_Controller {
     {
         if ($this->session->userdata('logueado')) {
 
+            $this->form_validation->set_rules('codigo_acuerdo','Codigo','required',array('required' => '* requerido'));
             $this->form_validation->set_rules('nom_acuerdo','Acuerdo','required',array('required' => '* requerido'));
             $this->form_validation->set_rules('cve_status','Status','required',array('required' => '* requerido'));
             $this->form_validation->set_rules('fecha_acuerdo','Fecha acuerdo','required',array('required' => '* requerido'));
@@ -51,6 +52,7 @@ class Acuerdos_sesion extends CI_Controller {
             $acuerdos_sesion = $this->input->post();
             if ($this->form_validation->run()) {
                 $data = array(
+                    'codigo_acuerdo' => $acuerdos_sesion['codigo_acuerdo'],
                     'nom_acuerdo' => $acuerdos_sesion['nom_acuerdo'],
                     'cve_status' => $acuerdos_sesion['cve_status'],
                     'cve_acceso' => $acuerdos_sesion['cve_acceso'],

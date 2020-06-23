@@ -179,6 +179,7 @@ CREATE TABLE acuerdos_sesion (
     cve_acuerdo serial,
     cve_sesion integer,
     cve_consejo integer,
+    codigo_acuerdo text,
     nom_acuerdo text,
     cve_status integer,
     cve_acceso integer,
