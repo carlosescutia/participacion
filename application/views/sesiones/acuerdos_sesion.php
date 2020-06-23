@@ -14,6 +14,7 @@
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>
+                        <th scope="col">Codigo</th>
                         <th scope="col">Acuerdo</th>
                         <th scope="col">Observaciones</th>
                         <th scope="col">Acceso</th>
@@ -38,6 +39,7 @@
                         }
                     ?>
                     <tr>
+                        <td><?= $acuerdos_sesion_item['codigo_acuerdo'] ?></td>
                         <td><a href="<?=base_url()?>acuerdos_sesion/detalle/<?=$acuerdos_sesion_item['cve_acuerdo']?>/<?=$acuerdos_sesion_item['cve_sesion']?>/<?=$acuerdos_sesion_item['cve_consejo']?>"><?= $acuerdos_sesion_item['nom_acuerdo'] ?></a></td>
                         <td><?= $acuerdos_sesion_item['observaciones'] ?></td>
                         <td><?= substr($acuerdos_sesion_item['nom_acceso'],0,4) ?></td>

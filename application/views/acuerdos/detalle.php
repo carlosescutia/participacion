@@ -18,12 +18,17 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-row">
-                    <div class="form-group col-md-5">
+                    <div class="form-group col-md-2">
+                        <label for="codigo_acuerdo">Codigo</label>
+                        <?php echo form_error('codigo_acuerdo'); ?>
+                        <input type="text" class="form-control" name="codigo_acuerdo" id="codigo_acuerdo" value="<?=$acuerdos_sesion['codigo_acuerdo'] ?>">
+                    </div>
+                    <div class="form-group col-md-6">
                         <label for="nom_acuerdo">Acuerdo</label>
                         <?php echo form_error('nom_acuerdo'); ?>
                         <input type="text" class="form-control" name="nom_acuerdo" id="nom_acuerdo" value="<?=$acuerdos_sesion['nom_acuerdo'] ?>">
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-2">
                         <label for="observaciones">Observaciones</label>
                         <?php echo form_error('observaciones'); ?>
                         <input type="text" class="form-control" name="observaciones" id="observaciones" value="<?=$acuerdos_sesion['observaciones'] ?>">
@@ -33,7 +38,7 @@
                         <?php echo form_error('porcentaje_avance'); ?>
                         <input type="text" class="form-control" name="porcentaje_avance" id="porcentaje_avance" value="<?=$acuerdos_sesion['porcentaje_avance'] ?>">
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-1">
                         <label for="cve_acceso">Acceso</label>
                         <?php echo form_error('cve_acceso'); ?>
                         <select class="custom-select" name="cve_acceso" id="cve_acceso">
