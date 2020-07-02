@@ -51,5 +51,16 @@
         <div class="col-md-3">
             <?php include "accesos/boton.php" ?>
         </div>
+        <div class="col-md-3">
+            <?php include "preparaciones/boton.php" ?>
+        </div>
+        <div class="col-md-3">
+            <?php include "plazos/boton.php" ?>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <?php include "atingencias/boton.php" ?>
+        </div>
     </div>
 </main>

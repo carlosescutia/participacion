@@ -18,6 +18,7 @@ class Consejos extends CI_Controller {
         $this->load->model('cargos_model');
         $this->load->model('sesiones_model');
         $this->load->model('calendario_sesiones_model');
+        $this->load->model('proyectos_consejo_model');
         $this->load->model('status_sesiones_model');
     }
 
@@ -50,6 +51,7 @@ class Consejos extends CI_Controller {
             $data['error_integrantes'] = $this->session->flashdata('error_integrantes');
             $data['error_sesiones'] = $this->session->flashdata('error_sesiones');
             $data['error_calendario_sesion'] = $this->session->flashdata('error_calendario_sesion');
+            $data['error_proyectos_consejo'] = $this->session->flashdata('error_proyectos_consejo');
             $data['error_adj_consejos'] = $this->session->flashdata('error_adj_consejos');
             $data['usuario_clave'] = $this->session->userdata('clave');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
@@ -71,6 +73,7 @@ class Consejos extends CI_Controller {
             $data['cargos'] = $this->cargos_model->get_cargos();
             $data['sesiones'] = $this->sesiones_model->get_sesiones_consejo($cve_consejo);
             $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_consejo($cve_consejo, $dependencia, $area, $cve_rol);
+            $data['proyectos_consejo'] = $this->proyectos_consejo_model->get_proyectos_consejo($cve_consejo, $dependencia, $area, $cve_rol);
             $data['status_sesiones'] = $this->status_sesiones_model->get_status_sesiones();
 
             $this->load->view('templates/header', $data);
