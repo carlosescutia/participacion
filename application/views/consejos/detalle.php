@@ -25,6 +25,12 @@
         </div>
         <hr />
         <div class="row">
+            <div class="col-md-12">
+                <?php include "proyectos_consejo.php" ?>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
             <div class="col-md-8">
                 <?php include "calendario_sesiones.php" ?>
             </div>

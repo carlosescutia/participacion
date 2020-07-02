@@ -221,3 +221,34 @@ CREATE TABLE accesos (
     nom_acceso text
 );
 
+DROP TABLE IF EXISTS preparaciones;
+CREATE TABLE preparaciones (
+    cve_preparacion serial,
+    nom_preparacion text
+);
+
+DROP TABLE IF EXISTS plazos;
+CREATE TABLE plazos (
+    cve_plazo serial,
+    nom_plazo text
+);
+
+DROP TABLE IF EXISTS atingencias;
+CREATE TABLE atingencias (
+    cve_atingencia serial,
+    nom_atingencia text
+);
+
+DROP TABLE IF EXISTS proyectos_consejo;
+CREATE TABLE proyectos_consejo (
+    cve_proyecto serial,
+    nom_proyecto text,
+    dependencia text,
+    area text,
+    cve_consejo integer,
+    cve_preparacion integer,
+    cve_plazo integer,
+    objetivo_definido text,
+    cve_atingencia integer
+);
+
