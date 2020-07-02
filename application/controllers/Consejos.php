@@ -20,6 +20,9 @@ class Consejos extends CI_Controller {
         $this->load->model('calendario_sesiones_model');
         $this->load->model('proyectos_consejo_model');
         $this->load->model('status_sesiones_model');
+        $this->load->model('preparaciones_model');
+        $this->load->model('plazos_model');
+        $this->load->model('atingencias_model');
     }
 
     public function lista()
@@ -73,8 +76,11 @@ class Consejos extends CI_Controller {
             $data['cargos'] = $this->cargos_model->get_cargos();
             $data['sesiones'] = $this->sesiones_model->get_sesiones_consejo($cve_consejo);
             $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_consejo($cve_consejo, $dependencia, $area, $cve_rol);
-            $data['proyectos_consejo'] = $this->proyectos_consejo_model->get_proyectos_consejo($cve_consejo, $dependencia, $area, $cve_rol);
             $data['status_sesiones'] = $this->status_sesiones_model->get_status_sesiones();
+            $data['proyectos_consejo'] = $this->proyectos_consejo_model->get_proyectos_consejo($cve_consejo, $dependencia, $area, $cve_rol);
+            $data['preparaciones'] = $this->preparaciones_model->get_preparaciones();
+            $data['plazos'] = $this->plazos_model->get_plazos();
+            $data['atingencias'] = $this->atingencias_model->get_atingencias();
 
             $this->load->view('templates/header', $data);
             $this->load->view('consejos/detalle', $data);

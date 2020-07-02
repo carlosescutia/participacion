@@ -18,37 +18,60 @@ class Proyectos_consejo_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function guardar($cve_consejo, $nom_sesion, $dependencia, $area, $fecha, $hora, $cve_status)
+    public function guardar($data)
     {
-        $data = array(
-            'cve_consejo' => $cve_consejo,
-            'nom_sesion' => $nom_sesion,
-            'dependencia' => $dependencia,
-            'area' => $area,
-            'fecha' => $fecha,
-            'hora' => $hora,
-            'cve_status' => $cve_status
-        );
-
-        $this->db->insert('calendario_sesiones', $data);
+        $this->db->insert('proyectos_consejo', $data);
     }
 
-    public function actualizar_status($cve_evento, $cve_consejo, $cve_status)
+    public function actualizar_preparacion($cve_proyecto, $cve_consejo, $cve_preparacion)
     {
         $data = array(
-            'cve_status' => $cve_status
+            'cve_preparacion' => $cve_preparacion
         );
 
-        $this->db->where('cve_evento', $cve_evento);
+        $this->db->where('cve_proyecto', $cve_proyecto);
         $this->db->where('cve_consejo', $cve_consejo);
-        $this->db->update('calendario_sesiones', $data);
+        $this->db->update('proyectos_consejo', $data);
     }
 
-    public function eliminar_registro($cve_evento, $cve_consejo)
+    public function actualizar_plazo($cve_proyecto, $cve_consejo, $cve_plazo)
     {
-        $this->db->where('cve_evento', $cve_evento);
+        $data = array(
+            'cve_plazo' => $cve_plazo
+        );
+
+        $this->db->where('cve_proyecto', $cve_proyecto);
         $this->db->where('cve_consejo', $cve_consejo);
-        $this->db->delete('calendario_sesiones');
+        $this->db->update('proyectos_consejo', $data);
+    }
+
+    public function actualizar_objetivo($cve_proyecto, $cve_consejo, $objetivo)
+    {
+        $data = array(
+            'objetivo_definido' => $objetivo
+        );
+
+        $this->db->where('cve_proyecto', $cve_proyecto);
+        $this->db->where('cve_consejo', $cve_consejo);
+        $this->db->update('proyectos_consejo', $data);
+    }
+
+    public function actualizar_atingencia($cve_proyecto, $cve_consejo, $cve_atingencia)
+    {
+        $data = array(
+            'cve_atingencia' => $cve_atingencia
+        );
+
+        $this->db->where('cve_proyecto', $cve_proyecto);
+        $this->db->where('cve_consejo', $cve_consejo);
+        $this->db->update('proyectos_consejo', $data);
+    }
+
+    public function eliminar_registro($cve_proyecto, $cve_consejo)
+    {
+        $this->db->where('cve_proyecto', $cve_proyecto);
+        $this->db->where('cve_consejo', $cve_consejo);
+        $this->db->delete('proyectos_consejo');
     }
 
 }
