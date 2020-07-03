@@ -23,22 +23,37 @@
                         <?php echo form_error('codigo_acuerdo'); ?>
                         <input type="text" class="form-control" name="codigo_acuerdo" id="codigo_acuerdo" value="<?php echo set_value('codigo_acuerdo'); ?>">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-5">
                         <label for="nom_acuerdo">Acuerdo</label>
                         <?php echo form_error('nom_acuerdo'); ?>
                         <input type="text" class="form-control" name="nom_acuerdo" id="nom_acuerdo" value="<?php echo set_value('nom_acuerdo'); ?>">
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-5">
                         <label for="observaciones">Observaciones</label>
                         <?php echo form_error('observaciones'); ?>
                         <input type="text" class="form-control" name="observaciones" id="observaciones" value="<?php echo set_value('observaciones'); ?>">
                     </div>
-                    <div class="form-group col-md-1">
-                        <label for="porcentaje_avance">% avance</label>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="porcentaje_avance">Porcentaje de avance</label>
                         <?php echo form_error('porcentaje_avance'); ?>
                         <input type="text" class="form-control" name="porcentaje_avance" id="porcentaje_avance" value="<?php echo set_value('porcentaje_avance'); ?>">
                     </div>
-                    <div class="form-group col-md-1">
+                    <div class="form-group col-md-2">
+                        <label for="solicitud_iplaneg">¿Solicitud a Iplaneg?</label>
+                        <?php echo form_error('solicitud_iplaneg'); ?>
+                        <select class="custom-select" name="solicitud_iplaneg" id="solicitud_iplaneg">
+                            <option value="s" <?php echo set_select('solicitud_iplaneg', 's'); ?> >Si</option>
+                            <option value="n" <?php echo set_select('solicitud_iplaneg', 'n'); ?> >No</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="responsable">Responsable</label>
+                        <?php echo form_error('responsable'); ?>
+                        <input type="text" class="form-control" name="responsable" id="responsable" value="<?php echo set_value('responsable'); ?>">
+                    </div>
+                    <div class="form-group col-md-2">
                         <label for="cve_acceso">Acceso</label>
                         <?php echo form_error('cve_acceso'); ?>
                         <select class="custom-select" name="cve_acceso" id="cve_acceso">

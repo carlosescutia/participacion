@@ -59,6 +59,8 @@ class Acuerdos_sesion extends CI_Controller {
                     'cve_sesion' => $cve_sesion,
                     'cve_consejo' => $cve_consejo,
                     'observaciones' => $acuerdos_sesion['observaciones'],
+                    'solicitud_iplaneg' => $acuerdos_sesion['solicitud_iplaneg'],
+                    'responsable' => $acuerdos_sesion['responsable'],
                     'fecha_acuerdo' => empty($acuerdos_sesion['fecha_acuerdo']) ? null : $acuerdos_sesion['fecha_acuerdo'],
                     'fecha_compromiso' => empty($acuerdos_sesion['fecha_compromiso']) ? null : $acuerdos_sesion['fecha_compromiso'],
                     'fecha_cumplimiento' => empty($acuerdos_sesion['fecha_cumplimiento']) ? null : $acuerdos_sesion['fecha_cumplimiento'],

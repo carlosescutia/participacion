@@ -189,7 +189,9 @@ CREATE TABLE acuerdos_sesion (
     fecha_compromiso date,
     fecha_cumplimiento date,
     porcentaje_avance numeric,
-    causa_cancelado text
+    causa_cancelado text,
+    solicitud_iplaneg text,
+    responsable text
 );
 
 DROP TABLE IF EXISTS status_acuerdos_sesion;
