@@ -72,7 +72,8 @@ class Sesiones extends CI_Controller {
                     'hora_ini' => $sesion['hora_ini'],
                     'hora_fin' => $sesion['hora_fin'],
                     'cve_objetivo' => $sesion['cve_objetivo'],
-                    'orden_dia' => $sesion['orden_dia']
+                    'orden_dia' => $sesion['orden_dia'],
+                    'comentarios' => $sesion['comentarios']
                 );
                 $cve_sesion = $sesion['cve_sesion'];
                 if ( !isset($cve_sesion) ) {

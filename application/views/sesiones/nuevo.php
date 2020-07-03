@@ -84,6 +84,13 @@
                         <textarea rows="6" class="form-control" name="orden_dia" id="orden_dia"><?php echo set_value('orden_dia'); ?></textarea>
                     </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="comentarios">Comentarios</label>
+                        <?php echo form_error('comentarios'); ?>
+                        <textarea rows="6" class="form-control" name="comentarios" id="comentarios"><?php echo set_value('comentarios'); ?></textarea>
+                    </div>
+                </div>
             </div>
         </div>
 
