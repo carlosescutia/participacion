@@ -87,6 +87,13 @@
                         <textarea rows="8" class="form-control" name="orden_dia" id="orden_dia"><?=$sesiones['orden_dia'] ?></textarea>
                     </div>
                 </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="comentarios">Comentarios</label>
+                        <?php echo form_error('comentarios'); ?>
+                        <textarea rows="8" class="form-control" name="comentarios" id="comentarios"><?=$sesiones['comentarios'] ?></textarea>
+                    </div>
+                </div>
             </div>
             <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?=$sesiones['cve_consejo'] ?>">
             <input type="hidden" name="cve_sesion" id="cve_sesion" value="<?=$sesiones['cve_sesion'] ?>">

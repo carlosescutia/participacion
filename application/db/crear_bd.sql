@@ -153,7 +153,8 @@ CREATE TABLE sesiones (
     pub_lista_asistencia integer,
     pub_extras integer,
     pub_audio integer,
-    pub_video integer
+    pub_video integer,
+    comentarios text
 );
 
 DROP TABLE IF EXISTS calendario_sesiones;
