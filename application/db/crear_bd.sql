@@ -255,3 +255,20 @@ CREATE TABLE proyectos_consejo (
     cve_atingencia integer
 );
 
+DROP TABLE IF EXISTS asistencia_sesion;
+CREATE TABLE asistencia_sesion (
+    cve_asistencia serial,
+    cve_sesion integer,
+    cve_consejo integer,
+    nom_actor text,
+    dependencia text,
+    nom_sector text,
+    asistencia text,
+    cve_grado_participacion integer
+);
+
+DROP TABLE IF EXISTS grados_participacion;
+CREATE TABLE grados_participacion (
+    cve_grado_participacion serial,
+    nom_grado_participacion text
+);
