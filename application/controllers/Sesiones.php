@@ -14,6 +14,8 @@ class Sesiones extends CI_Controller {
         $this->load->model('status_acuerdos_sesion_model');
         $this->load->model('objetivos_sesion_model');
         $this->load->model('modalidades_sesion_model');
+        $this->load->model('asistencia_sesion_model');
+        $this->load->model('grados_participacion_model');
     }
 
     public function detalle($cve_sesion, $cve_consejo)
@@ -22,6 +24,7 @@ class Sesiones extends CI_Controller {
             $data['error_sesion'] = $this->session->flashdata('error_sesion');
             $data['error_acuerdos_sesion'] = $this->session->flashdata('error_acuerdos_sesion');
             $data['error_adj_sesiones'] = $this->session->flashdata('error_adj_sesiones');
+            $data['error_asistencia_sesion'] = $this->session->flashdata('error_asistencia_sesion');
             $data['usuario_clave'] = $this->session->userdata('clave');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
@@ -36,6 +39,8 @@ class Sesiones extends CI_Controller {
             $data['status_acuerdos_sesion'] = $this->status_acuerdos_sesion_model->get_status_acuerdos_sesion();
             $data['objetivos_sesion'] = $this->objetivos_sesion_model->get_objetivos_sesion();
             $data['modalidades_sesion'] = $this->modalidades_sesion_model->get_modalidades_sesion();
+            $data['asistencia_sesion'] = $this->asistencia_sesion_model->get_asistencia_sesion($cve_sesion, $cve_consejo);
+            $data['grados_participacion'] = $this->grados_participacion_model->get_grados_participacion();
 
             $this->load->view('templates/header', $data);
             $this->load->view('sesiones/detalle', $data);

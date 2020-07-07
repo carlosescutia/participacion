@@ -106,6 +106,9 @@
     </div>
 
     <div class="col-md-9 mt-3">
+        <?php include 'asistencia_sesion.php' ?>
+    </div>
+    <div class="col-md-9 mt-3">
         <?php include 'acuerdos_sesion.php' ?>
     </div>
 
