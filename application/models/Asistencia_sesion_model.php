@@ -6,7 +6,7 @@ class Asistencia_sesion_model extends CI_Model {
     }
 
     public function get_asistencia_sesion($cve_sesion, $cve_consejo) {
-        $sql = "select ase.* from asistencia_sesion ase where ase.cve_sesion = ? and ase.cve_consejo = ? order by cve_asistencia";
+        $sql = "select ase.*, case ase.asistencia when 's' then 'Si' when 'n' then 'No' end as nom_asistencia, gp.nom_grado_participacion from asistencia_sesion ase left join grados_participacion gp on ase.cve_grado_participacion = gp.cve_grado_participacion where ase.cve_sesion = ? and ase.cve_consejo = ? order by cve_asistencia ";
         $query = $this->db->query($sql, array($cve_sesion, $cve_consejo));
         return $query->result_array();
     }
