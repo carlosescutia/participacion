@@ -118,6 +118,9 @@
         <div class="col-sm-10">
             <a href="<?=base_url()?>consejos/detalle/<?=$sesiones['cve_consejo'] ?>" class="btn btn-secondary">Volver</a>
         </div>
+        <div class="col-sm-2 text-right">
+            <a href="<?=base_url()?>reportes/reporte_sesion_01/<?=$sesiones['cve_sesion']?>/<?=$sesiones['cve_consejo']?>" class="btn btn-primary">Generar nota informativa</a>
+        </div>
     </div>
 
 </main>

@@ -193,4 +193,35 @@ class Reportes extends CI_Controller {
         }
     }
 
+    public function reporte_sesion_01($cve_sesion, $cve_consejo)
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+
+            $this->load->model('sesiones_model');
+            $this->load->model('acuerdos_sesion_model');
+            $this->load->model('asistencia_sesion_model');
+            $this->load->model('proyectos_consejo_model');
+
+            $data['consejo'] = $this->consejos_model->get_consejo_dependencia($dependencia, $area, $cve_consejo, $cve_rol);
+            $data['sesion'] = $this->sesiones_model->get_sesion_consejo($cve_sesion, $cve_consejo);
+            $data['acuerdos_sesion'] = $this->acuerdos_sesion_model->get_acuerdos_sesion($cve_sesion, $cve_consejo);
+            $data['asistencia_sesion'] = $this->asistencia_sesion_model->get_asistencia_sesion($cve_sesion, $cve_consejo);
+            $data['proyectos_consejo'] = $this->proyectos_consejo_model->get_proyectos_consejo($cve_consejo, $dependencia, $area, $cve_rol);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('reportes/reporte_sesion_01', $data);
+            $this->load->view('templates/footer');
+        } else {
+            redirect('inicio/iniciar_sesion');
+        }
+    }
+
 }
