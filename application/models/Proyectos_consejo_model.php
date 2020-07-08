@@ -13,7 +13,7 @@ class Proyectos_consejo_model extends CI_Model {
             $dependencia = '%';
             $area = '%';
         }
-        $sql = "select pc.* from proyectos_consejo pc where pc.cve_consejo = ? and dependencia LIKE ? and area LIKE ? ";
+        $sql = "select pc.*, pr.nom_preparacion, pl.nom_plazo, at.nom_atingencia from proyectos_consejo pc left join preparaciones pr on pc.cve_preparacion = pr.cve_preparacion left join plazos pl on pc.cve_plazo = pl.cve_plazo left join atingencias at on pc.cve_atingencia = at.cve_atingencia where pc.cve_consejo = ? and dependencia LIKE ? and area LIKE ? ";
         $query = $this->db->query($sql, array($cve_consejo, $dependencia, $area));
         return $query->result_array();
     }
