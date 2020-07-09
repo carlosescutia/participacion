@@ -7,66 +7,83 @@
             <?php if ($error_proyectos_consejo): ?>
             <p class="text-danger"><?php echo $error_proyectos_consejo ?></p>
             <?php endif ?>
-            <table class="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Preparación</th>
-                        <th scope="col">Plazo de ejecución</th>
-                        <th scope="col">Objetivo definido?</th>
-                        <th scope="col">Atingencia al prg de reactiv.</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($proyectos_consejo as $proyectos_consejo_item) { ?>
-                    <tr>
-                        <td><?= $proyectos_consejo_item['nom_proyecto'] ?></td>
 
-                        <?php if ($cve_rol == 'usr') { ?>
-                            <td>
-                                <select class="custom-select" onchange="document.location.href=this.value" >
-                                    <?php foreach ($preparaciones as $preparaciones_item) { ?>
-                                    <option value="../../proyectos_consejo/actualizar_preparacion/<?= $proyectos_consejo_item['cve_proyecto'] ?>/<?= $proyectos_consejo_item['cve_consejo'] ?>/<?= $preparaciones_item['cve_preparacion'] ?>"  <?= ($proyectos_consejo_item['cve_preparacion'] == $preparaciones_item['cve_preparacion']) ? 'selected' : '' ?>   ><?= $preparaciones_item['nom_preparacion'] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="custom-select" onchange="document.location.href=this.value" >
-                                    <?php foreach ($plazos as $plazos_item) { ?>
-                                    <option value="../../proyectos_consejo/actualizar_plazo/<?= $proyectos_consejo_item['cve_proyecto'] ?>/<?= $proyectos_consejo_item['cve_consejo'] ?>/<?= $plazos_item['cve_plazo'] ?>"  <?= ($proyectos_consejo_item['cve_plazo'] == $plazos_item['cve_plazo']) ? 'selected' : '' ?>   ><?= $plazos_item['nom_plazo'] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="custom-select" onchange="document.location.href=this.value" >
-                                    <option value="../../proyectos_consejo/actualizar_objetivo/<?= $proyectos_consejo_item['cve_proyecto'] ?>/<?= $proyectos_consejo_item['cve_consejo'] ?>/s"  <?= ($proyectos_consejo_item['objetivo_definido'] == 's') ? 'selected' : '' ?> >Si</option>
-                                    <option value="../../proyectos_consejo/actualizar_objetivo/<?= $proyectos_consejo_item['cve_proyecto'] ?>/<?= $proyectos_consejo_item['cve_consejo'] ?>/n"  <?= ($proyectos_consejo_item['objetivo_definido'] == 'n') ? 'selected' : '' ?> >No</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="custom-select" onchange="document.location.href=this.value" >
-                                    <?php foreach ($atingencias as $atingencias_item) { ?>
-                                    <option value="../../proyectos_consejo/actualizar_atingencia/<?= $proyectos_consejo_item['cve_proyecto'] ?>/<?= $proyectos_consejo_item['cve_consejo'] ?>/<?= $atingencias_item['cve_atingencia'] ?>"  <?= ($proyectos_consejo_item['cve_atingencia'] == $atingencias_item['cve_atingencia']) ? 'selected' : '' ?>   ><?= $atingencias_item['nom_atingencia'] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </td>
-                            <td><a style="color: #f00" href="<?= base_url() ?>proyectos_consejo/eliminar_registro/<?= $proyectos_consejo_item['cve_proyecto'] ?>/<?= $proyectos_consejo_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a></td>
-                        <?php } else { ?>
-                            <td><?= $proyectos_consejo_item['nom_preparacion'] ?></td>
-                            <td><?= $proyectos_consejo_item['nom_plazo'] ?></td>
-                            <td><?= $proyectos_consejo_item['objetivo_definido'] ?></td>
-                            <td><?= $proyectos_consejo_item['nom_atingencia'] ?></td>
-                        <?php } ?>
-                    </tr>
+            <div class="row">
+                <div class="col-md-3">
+                    <strong>Nombre</strong>
+                </div>
+                <div class="col-md-2">
+                    <strong>Preparación</strong>
+                </div>
+                <div class="col-md-2">
+                    <strong>Plazo de ejecución</strong>
+                </div>
+                <div class="col-md-2">
+                    <strong>Objetivo definido</strong>
+                </div>
+                <div class="col-md-2">
+                    <strong>Atingencia al prg de reactiv.</strong>
+                </div>
+            </div>
+
+            <?php foreach ($proyectos_consejo as $proyectos_consejo_item) { ?>
+                <div class="row">
+                    <div class="col-md-3">
+                        <p><?= $proyectos_consejo_item['nom_proyecto'] ?></p>
+                    </div>
+                    <?php if ($cve_rol == 'usr') { ?>
+                        <div class="col-md-2">
+                            <select class="custom-select" onchange="document.location.href=this.value" >
+                                <?php foreach ($preparaciones as $preparaciones_item) { ?>
+                                <option value="../../proyectos_consejo/actualizar_preparacion/<?= $proyectos_consejo_item['cve_proyecto'] ?>/<?= $proyectos_consejo_item['cve_consejo'] ?>/<?= $preparaciones_item['cve_preparacion'] ?>"  <?= ($proyectos_consejo_item['cve_preparacion'] == $preparaciones_item['cve_preparacion']) ? 'selected' : '' ?>   ><?= $preparaciones_item['nom_preparacion'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="custom-select" onchange="document.location.href=this.value" >
+                                <?php foreach ($plazos as $plazos_item) { ?>
+                                <option value="../../proyectos_consejo/actualizar_plazo/<?= $proyectos_consejo_item['cve_proyecto'] ?>/<?= $proyectos_consejo_item['cve_consejo'] ?>/<?= $plazos_item['cve_plazo'] ?>"  <?= ($proyectos_consejo_item['cve_plazo'] == $plazos_item['cve_plazo']) ? 'selected' : '' ?>   ><?= $plazos_item['nom_plazo'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="custom-select" onchange="document.location.href=this.value" >
+                                <option value="../../proyectos_consejo/actualizar_objetivo/<?= $proyectos_consejo_item['cve_proyecto'] ?>/<?= $proyectos_consejo_item['cve_consejo'] ?>/s"  <?= ($proyectos_consejo_item['objetivo_definido'] == 's') ? 'selected' : '' ?> >Si</option>
+                                <option value="../../proyectos_consejo/actualizar_objetivo/<?= $proyectos_consejo_item['cve_proyecto'] ?>/<?= $proyectos_consejo_item['cve_consejo'] ?>/n"  <?= ($proyectos_consejo_item['objetivo_definido'] == 'n') ? 'selected' : '' ?> >No</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="custom-select" onchange="document.location.href=this.value" >
+                                <?php foreach ($atingencias as $atingencias_item) { ?>
+                                <option value="../../proyectos_consejo/actualizar_atingencia/<?= $proyectos_consejo_item['cve_proyecto'] ?>/<?= $proyectos_consejo_item['cve_consejo'] ?>/<?= $atingencias_item['cve_atingencia'] ?>"  <?= ($proyectos_consejo_item['cve_atingencia'] == $atingencias_item['cve_atingencia']) ? 'selected' : '' ?>   ><?= $atingencias_item['nom_atingencia'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <a style="color: #f00" href="<?= base_url() ?>proyectos_consejo/eliminar_registro/<?= $proyectos_consejo_item['cve_proyecto'] ?>/<?= $proyectos_consejo_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a>
+                        </div>
+                    <?php } else { ?>
+                        <div class="col-md-2">
+                            <p><?= $proyectos_consejo_item['nom_preparacion'] ?></p>
+                        </div>
+                        <div class="col-md-2">
+                            <p><?= $proyectos_consejo_item['nom_plazo'] ?></p>
+                        </div>
+                        <div class="col-md-2">
+                            <p><?= $proyectos_consejo_item['objetivo_definido'] ?></p>
+                        </div>
+                        <div class="col-md-2">
+                            <p><?= $proyectos_consejo_item['nom_atingencia'] ?></p>
+                        </div>
                     <?php } ?>
-                </tbody>
-            </table>
+                </div>
+            <?php } ?>
         </div>
     </div>
     <?php if ($cve_rol == 'usr') { ?>
     <div class="card-footer">
         <form method="post" action="<?= base_url() ?>proyectos_consejo/guardar">
-            <div class="form-row">
+            <div class="row">
                 <div class="col-md-3">
                     <input type="text" class="form-control" name="nom_proyecto" id="nom_proyecto">
                 </div>

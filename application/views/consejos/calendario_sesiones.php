@@ -3,47 +3,60 @@
         <strong>Calendario de sesiones</strong>
     </div>
     <div class="card-body p-0">
-        <div class="col-md-12">
+        <div class="col-md-12 alternate-color">
             <?php if ($error_calendario_sesion): ?>
             <p class="text-danger"><?php echo $error_calendario_sesion ?></p>
             <?php endif ?>
-            <table class="table table-striped table-sm">
-                <thead>
-                    <tr>
-                        <th scope="col">Sesión</th>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Hora</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($calendario_sesiones as $calendario_sesiones_item) { ?>
-                    <tr>
-                        <td><?= $calendario_sesiones_item['nom_sesion'] ?></td>
-                        <td><?= date('d/m/y', strtotime($calendario_sesiones_item['fecha'])) ?></td>
-                        <td><?= $calendario_sesiones_item['hora'] ?></td>
-                        <?php if ($cve_rol == 'usr') { ?>
-                            <td>
-                                <select class="custom-select" onchange="document.location.href=this.value" >
-                                    <?php foreach ($status_sesiones as $status_sesiones_item) { ?>
-                                    <option value="../../calendario_sesiones/actualizar_status/<?= $calendario_sesiones_item['cve_evento'] ?>/<?= $calendario_sesiones_item['cve_consejo'] ?>/<?= $status_sesiones_item['cve_status'] ?>"  <?= ($calendario_sesiones_item['cve_status'] == $status_sesiones_item['cve_status']) ? 'selected' : '' ?>   ><?= $status_sesiones_item['nom_status'] ?></option>
-                                    <?php } ?>
-                                </select>
-                            </td>
-                            <td><a style="color: #f00" href="<?= base_url() ?>calendario_sesiones/eliminar_registro/<?= $calendario_sesiones_item['cve_evento'] ?>/<?= $calendario_sesiones_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a></td>
-                        <?php } else { ?>
-                            <td><?= $calendario_sesiones_item['nom_status'] ?></td>
-                        <?php } ?>
-                    </tr>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>Sesión</strong>
+                </div>
+                <div class="col-md-2">
+                    <strong>Fecha</strong>
+                </div>
+                <div class="col-md-2">
+                    <strong>Hora</strong>
+                </div>
+                <div class="col-md-2">
+                    <strong>Status</strong>
+                </div>
+            </div>
+            <?php foreach ($calendario_sesiones as $calendario_sesiones_item) { ?>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p><?= $calendario_sesiones_item['nom_sesion'] ?></p>
+                    </div>
+                    <div class="col-md-2">
+                        <p><?= date('d/m/y', strtotime($calendario_sesiones_item['fecha'])) ?></p>
+                    </div>
+                    <div class="col-md-2">
+                        <p><?= $calendario_sesiones_item['hora'] ?></p>
+                    </div>
+                    <?php if ($cve_rol == 'usr') { ?>
+                        <div class="col-md-2">
+                            <select class="custom-select" onchange="document.location.href=this.value" >
+                                <?php foreach ($status_sesiones as $status_sesiones_item) { ?>
+                                <option value="../../calendario_sesiones/actualizar_status/<?= $calendario_sesiones_item['cve_evento'] ?>/<?= $calendario_sesiones_item['cve_consejo'] ?>/<?= $status_sesiones_item['cve_status'] ?>"  <?= ($calendario_sesiones_item['cve_status'] == $status_sesiones_item['cve_status']) ? 'selected' : '' ?>   ><?= $status_sesiones_item['nom_status'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="col-md-1">
+                            <a style="color: #f00" href="<?= base_url() ?>calendario_sesiones/eliminar_registro/<?= $calendario_sesiones_item['cve_evento'] ?>/<?= $calendario_sesiones_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a>
+                        </div>
+                    <?php } else { ?>
+                        <div class="col-md-2">
+                            <p><?= $calendario_sesiones_item['nom_status'] ?></p>
+                        </div>
                     <?php } ?>
-                </tbody>
-            </table>
+                </div>
+            <?php } ?>
         </div>
     </div>
     <?php if ($cve_rol == 'usr') { ?>
     <div class="card-footer">
         <form method="post" action="<?= base_url() ?>calendario_sesiones/guardar">
-            <div class="form-row">
+            <div class="row">
                 <div class="col-md-4">
                     <input type="text" class="form-control" name="nom_sesion" id="nom_sesion">
                 </div>
