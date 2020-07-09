@@ -26,7 +26,6 @@
                         <?php if ($cve_rol == 'usr') { ?>
                         <td><a style="color: #f00" href="<?= base_url() ?>consejos_actores/eliminar_registro/<?= $consejos_actores_item['cve_consejo'] ?>/<?= $consejos_actores_item['cve_actor'] ?>/<?= $consejos_actores_item['cve_cargo'] ?>/<?= $consejos_actores_item['fecha_inicio'] ?>/<?= $consejos_actores_item['fecha_fin'] ?>/<?= $consejos_actores_item['status'] ?>"><span data-feather="x-circle"></span></a>
                         <?php } ?>
-                        </div>
                     </tr>
                     <?php } ?>
                 </tbody>
