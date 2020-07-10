@@ -24,7 +24,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Actor</th>
-                        <th scope="col">Dependencia</th>
+                        <th scope="col">Organización</th>
                         <th scope="col">Sector</th>
                         <th scope="col">Asistencia</th>
                         <th scope="col">Participación</th>
@@ -34,7 +34,7 @@
                     <?php foreach ($asistencia_sesion as $asistencia_sesion_item) { ?>
                     <tr>
                         <td><?= $asistencia_sesion_item['nom_actor'] ?></td>
-                        <td><?= $asistencia_sesion_item['dependencia'] ?></td>
+                        <td><?= $asistencia_sesion_item['organizacion'] ?></td>
                         <td><?= $asistencia_sesion_item['nom_sector'] ?></td>
                         <?php if ($cve_rol == 'usr') { ?>
                             <td>
