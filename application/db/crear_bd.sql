@@ -261,7 +261,7 @@ CREATE TABLE asistencia_sesion (
     cve_sesion integer,
     cve_consejo integer,
     nom_actor text,
-    dependencia text,
+    organizacion text,
     nom_sector text,
     asistencia text,
     cve_grado_participacion integer
