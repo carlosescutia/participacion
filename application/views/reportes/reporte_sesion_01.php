@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h4><?=$consejo['nom_consejo']?> (<?=$consejo['siglas']?>)</h4>
-                <h5>Sesión <?=$sesion['num_sesion']?> <?= $sesion['tipo'] == 'o' ? 'ordinaria' : 'extraordinaria' ?>, <?=$sesion['lugar']?>, <?= date('d/m/y', strtotime($sesion['fecha'])) ?></h5>
+                <h5>Sesión <?=$sesion['num_sesion']?> <?= $sesion['tipo'] == 'o' ? 'ordinaria' : 'extraordinaria' ?>, <?=$sesion['lugar']?>, <?= date('d/m/y', strtotime($sesion['fecha'])) ?> - Documentador: <?=$usuario_nombre ?></h5>
                 <br />
             </div>
         </div>
