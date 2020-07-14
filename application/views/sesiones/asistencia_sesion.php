@@ -15,6 +15,9 @@
             </div>
         </div>
     </div>
+    <?php if ($cve_rol == 'usr') { ?>
+    <form method="post" action="<?= base_url() ?>asistencia_sesion/guardar_lista/<?= $sesiones['cve_sesion'] ?>/<?= $sesiones['cve_consejo'] ?>">
+    <?php } ?>
     <div class="card-body p-0">
         <div class="col-md-12">
             <?php if ($error_asistencia_sesion): ?>
@@ -38,15 +41,15 @@
                         <td><?= $asistencia_sesion_item['nom_sector'] ?></td>
                         <?php if ($cve_rol == 'usr') { ?>
                             <td>
-                                <select class="custom-select" onchange="document.location.href=this.value" >
-                                    <option value="../../../asistencia_sesion/actualizar_asistencia/<?= $asistencia_sesion_item['cve_asistencia'] ?>/<?= $asistencia_sesion_item['cve_sesion'] ?>/<?= $asistencia_sesion_item['cve_consejo'] ?>/s"  <?= ($asistencia_sesion_item['asistencia'] == 's') ? 'selected' : '' ?> >Si</option>
-                                    <option value="../../../asistencia_sesion/actualizar_asistencia/<?= $asistencia_sesion_item['cve_asistencia'] ?>/<?= $asistencia_sesion_item['cve_sesion'] ?>/<?= $asistencia_sesion_item['cve_consejo'] ?>/n"  <?= ($asistencia_sesion_item['asistencia'] == 'n') ? 'selected' : '' ?> >No</option>
+                                <select class="custom-select" name="a_<?= $asistencia_sesion_item['cve_asistencia'] ?>" id="a_<?= $asistencia_sesion_item['cve_asistencia'] ?>">
+                                    <option value="s" <?= ($asistencia_sesion_item['asistencia'] == 's') ? 'selected' : '' ?> >Si</option>
+                                    <option value="n" <?= ($asistencia_sesion_item['asistencia'] == 'n') ? 'selected' : '' ?> >No</option>
                                 </select>
                             </td>
                             <td>
-                                <select class="custom-select" onchange="document.location.href=this.value" >
+                                <select class="custom-select" name="p_<?= $asistencia_sesion_item['cve_asistencia'] ?>" id="p_<?= $asistencia_sesion_item['cve_asistencia'] ?>">
                                     <?php foreach ($grados_participacion as $grados_participacion_item) { ?>
-                                    <option value="../../../asistencia_sesion/actualizar_grado_participacion/<?= $asistencia_sesion_item['cve_asistencia'] ?>/<?= $asistencia_sesion_item['cve_sesion'] ?>/<?= $asistencia_sesion_item['cve_consejo'] ?>/<?= $grados_participacion_item['cve_grado_participacion'] ?>"  <?= ($asistencia_sesion_item['cve_grado_participacion'] == $grados_participacion_item['cve_grado_participacion']) ? 'selected' : '' ?>   ><?= $grados_participacion_item['nom_grado_participacion'] ?></option>
+                                    <option value="<?= $grados_participacion_item['cve_grado_participacion'] ?>" <?= ($asistencia_sesion_item['cve_grado_participacion'] == $grados_participacion_item['cve_grado_participacion']) ? 'selected' : '' ?> ><?= $grados_participacion_item['nom_grado_participacion'] ?></option>
                                     <?php } ?>
                                 </select>
                             </td>
@@ -61,4 +64,10 @@
             </table>
         </div>
     </div>
+    <?php if ($cve_rol == 'usr') { ?>
+    <div class="card-footer text-right">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+    </form>
+    <?php } ?>
 </div>

@@ -26,7 +26,7 @@ class Asistencia_sesion extends CI_Controller {
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    public function actualizar_asistencia($cve_asistencia, $cve_sesion, $cve_consejo, $asistencia)
+    public function guardar_lista($cve_sesion, $cve_consejo)
     {
         if ($this->session->userdata('logueado')) {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
@@ -35,32 +35,36 @@ class Asistencia_sesion extends CI_Controller {
             $area = $this->session->userdata('area');
             $data['usuario_area'] = $area;
 
-            if ($cve_asistencia && $cve_sesion && $cve_consejo && $asistencia) {
-                $this->asistencia_sesion_model->actualizar_asistencia($cve_asistencia, $cve_sesion, $cve_consejo, $asistencia);
-            } else {
-                $this->session->set_flashdata('error_asistencia_sesion', 'Capture todos los datos');
-                redirect($_SERVER['HTTP_REFERER']);
+            $lista_asistencia = $this->input->post();
+            if ($lista_asistencia) {
+                foreach ($lista_asistencia as $clave => $valor) {
+                    if ($clave[0] == 'a') {
+                        $cve_asistencia = substr($clave, 2);
+                        $asistencia = $valor;
+                        $this->actualizar_asistencia($cve_asistencia, $cve_sesion, $cve_consejo, $asistencia);
+                    }
+                    if ($clave[0] == 'p') {
+                        $cve_asistencia = substr($clave, 2);
+                        $cve_grado_participacion = $valor;
+                        $this->actualizar_grado_participacion($cve_asistencia, $cve_sesion, $cve_consejo, $cve_grado_participacion);
+                    }
+                }
             }
-            redirect($_SERVER['HTTP_REFERER']);
+        }
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function actualizar_asistencia($cve_asistencia, $cve_sesion, $cve_consejo, $asistencia)
+    {
+        if ($cve_asistencia && $cve_sesion && $cve_consejo && $asistencia) {
+            $this->asistencia_sesion_model->actualizar_asistencia($cve_asistencia, $cve_sesion, $cve_consejo, $asistencia);
         }
     }
 
     public function actualizar_grado_participacion($cve_asistencia, $cve_sesion, $cve_consejo, $cve_grado_participacion)
     {
-        if ($this->session->userdata('logueado')) {
-            $data['usuario_nombre'] = $this->session->userdata('nombre');
-            $dependencia = $this->session->userdata('dependencia');
-            $data['usuario_dependencia'] = $dependencia;
-            $area = $this->session->userdata('area');
-            $data['usuario_area'] = $area;
-
-            if ($cve_asistencia && $cve_sesion && $cve_consejo && $cve_grado_participacion) {
-                $this->asistencia_sesion_model->actualizar_grado_participacion($cve_asistencia, $cve_sesion, $cve_consejo, $cve_grado_participacion);
-            } else {
-                $this->session->set_flashdata('error_asistencia_sesion', 'Capture todos los datos');
-                redirect($_SERVER['HTTP_REFERER']);
-            }
-            redirect($_SERVER['HTTP_REFERER']);
+        if ($cve_asistencia && $cve_sesion && $cve_consejo && $cve_grado_participacion) {
+            $this->asistencia_sesion_model->actualizar_grado_participacion($cve_asistencia, $cve_sesion, $cve_consejo, $cve_grado_participacion);
         }
     }
 
