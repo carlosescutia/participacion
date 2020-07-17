@@ -5,124 +5,93 @@ class Proyectos_consejo extends CI_Controller {
     {
         parent::__construct();
         $this->load->helper('url');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
         $this->load->model('proyectos_consejo_model');
+        $this->load->model('preparaciones_model');
+        $this->load->model('plazos_model');
+        $this->load->model('atingencias_model');
 
     }
 
-    public function guardar()
+    public function detalle($cve_proyecto)
     {
         if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
             $area = $this->session->userdata('area');
             $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
 
-            $proyecto_sesion = $this->input->post();
-            if ($proyecto_sesion) {
-                $nom_proyecto = empty($proyecto_sesion['nom_proyecto']) ? null : $proyecto_sesion['nom_proyecto'];
-                $dependencia = empty($proyecto_sesion['dependencia']) ? null : $proyecto_sesion['dependencia'];
-                $area = empty($proyecto_sesion['area']) ? null : $proyecto_sesion['area'];
-                $cve_consejo = empty($proyecto_sesion['cve_consejo']) ? null : $proyecto_sesion['cve_consejo'];
-                $cve_preparacion = empty($proyecto_sesion['cve_preparacion']) ? null : $proyecto_sesion['cve_preparacion'];
-                $cve_plazo = empty($proyecto_sesion['cve_plazo']) ? null : $proyecto_sesion['cve_plazo'];
-                $objetivo_definido = empty($proyecto_sesion['objetivo_definido']) ? null : $proyecto_sesion['objetivo_definido'];
-                $cve_atingencia = empty($proyecto_sesion['cve_atingencia']) ? null : $proyecto_sesion['cve_atingencia'];
+            $data['proyecto_consejo'] = $this->proyectos_consejo_model->get_proyecto_consejo($cve_proyecto);
+            $data['preparaciones'] = $this->preparaciones_model->get_preparaciones();
+            $data['plazos'] = $this->plazos_model->get_plazos();
+            $data['atingencias'] = $this->atingencias_model->get_atingencias();
 
-                if ($nom_proyecto && $cve_consejo && cve_preparacion && objetivo_definido && cve_atingencia) {
-                    $data = array(
-                        'nom_proyecto' => $nom_proyecto,
-                        'dependencia' => $dependencia,
-                        'area' => $area,
-                        'cve_consejo' => $cve_consejo,
-                        'cve_preparacion' => $cve_preparacion,
-                        'cve_plazo' => $cve_plazo,
-                        'objetivo_definido' => $objetivo_definido,
-                        'cve_atingencia' => $cve_atingencia
-                    );
-                    $this->proyectos_consejo_model->guardar($data);
-                } else {
-                    $this->session->set_flashdata('error_calendario_sesion', 'Capture todos los datos');
-                    redirect($_SERVER['HTTP_REFERER']);
-                }
-            }
-            redirect($_SERVER['HTTP_REFERER']);
+            $this->load->view('templates/header', $data);
+            $this->load->view('proyectos_consejo/detalle', $data);
+            $this->load->view('templates/footer');
+        } else {
+            redirect('inicio/iniciar_sesion');
         }
     }
 
-    public function actualizar_preparacion($cve_proyecto, $cve_consejo, $cve_preparacion)
+    public function guardar($cve_consejo=null)
     {
         if ($this->session->userdata('logueado')) {
+            $this->form_validation->set_rules('nom_proyecto','Proyecto','required',array('required' => '* requerido'));
+            
+            $proyecto_consejo = $this->input->post();
+            if ($this->form_validation->run()) {
+                $data = array(
+                    'nom_proyecto' => $proyecto_consejo['nom_proyecto'],
+                    'dependencia' => $proyecto_consejo['dependencia'],
+                    'area' => $proyecto_consejo['area'],
+                    'cve_consejo' => $proyecto_consejo['cve_consejo'],
+                    'cve_preparacion' => $proyecto_consejo['cve_preparacion'],
+                    'cve_plazo' => $proyecto_consejo['cve_plazo'],
+                    'objetivo_definido' => $proyecto_consejo['objetivo_definido'],
+                    'cve_atingencia' => $proyecto_consejo['cve_atingencia']
+                );
+                $cve_proyecto = isset($proyecto_consejo['cve_proyecto']) ? $proyecto_consejo['cve_proyecto'] : null;
+                $cve_consejo = isset($proyecto_consejo['cve_consejo']) ? $proyecto_consejo['cve_consejo'] : $cve_consejo ;
+                $this->proyectos_consejo_model->guardar($data, $cve_proyecto);
+                redirect('consejos/detalle/'.$cve_consejo);
+            }
+
+            $data = array(
+                'proyecto_consejo' => $proyecto_consejo
+            );
+
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
             $area = $this->session->userdata('area');
             $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
 
-            if ($cve_proyecto && $cve_consejo && $cve_preparacion) {
-                $this->proyectos_consejo_model->actualizar_preparacion($cve_proyecto, $cve_consejo, $cve_preparacion);
+            $data['preparaciones'] = $this->preparaciones_model->get_preparaciones();
+            $data['plazos'] = $this->plazos_model->get_plazos();
+            $data['atingencias'] = $this->atingencias_model->get_atingencias();
+            $data['cve_consejo'] = $cve_consejo;
+                
+            if (isset($data['proyecto_consejo']['cve_proyecto']))
+            {
+                $this->load->view('templates/header', $data);
+                $this->load->view('proyectos_consejo/detalle', $data);
+                $this->load->view('templates/footer');
             } else {
-                $this->session->set_flashdata('error_proyectos_consejo', 'Capture todos los datos');
-                redirect($_SERVER['HTTP_REFERER']);
+                $this->load->view('templates/header', $data);
+                $this->load->view('proyectos_consejo/nuevo', $data);
+                $this->load->view('templates/footer');
             }
-            redirect($_SERVER['HTTP_REFERER']);
-        }
-    }
-
-    public function actualizar_plazo($cve_proyecto, $cve_consejo, $cve_plazo)
-    {
-        if ($this->session->userdata('logueado')) {
-            $data['usuario_nombre'] = $this->session->userdata('nombre');
-            $dependencia = $this->session->userdata('dependencia');
-            $data['usuario_dependencia'] = $dependencia;
-            $area = $this->session->userdata('area');
-            $data['usuario_area'] = $area;
-
-            if ($cve_proyecto && $cve_consejo && $cve_plazo) {
-                $this->proyectos_consejo_model->actualizar_plazo($cve_proyecto, $cve_consejo, $cve_plazo);
-            } else {
-                $this->session->set_flashdata('error_proyectos_consejo', 'Capture todos los datos');
-                redirect($_SERVER['HTTP_REFERER']);
-            }
-            redirect($_SERVER['HTTP_REFERER']);
-        }
-    }
-
-    public function actualizar_objetivo($cve_proyecto, $cve_consejo, $objetivo)
-    {
-        if ($this->session->userdata('logueado')) {
-            $data['usuario_nombre'] = $this->session->userdata('nombre');
-            $dependencia = $this->session->userdata('dependencia');
-            $data['usuario_dependencia'] = $dependencia;
-            $area = $this->session->userdata('area');
-            $data['usuario_area'] = $area;
-
-            if ($cve_proyecto && $cve_consejo && $objetivo) {
-                $this->proyectos_consejo_model->actualizar_objetivo($cve_proyecto, $cve_consejo, $objetivo);
-            } else {
-                $this->session->set_flashdata('error_proyectos_consejo', 'Capture todos los datos');
-                redirect($_SERVER['HTTP_REFERER']);
-            }
-            redirect($_SERVER['HTTP_REFERER']);
-        }
-    }
-
-    public function actualizar_atingencia($cve_proyecto, $cve_consejo, $cve_atingencia)
-    {
-        if ($this->session->userdata('logueado')) {
-            $data['usuario_nombre'] = $this->session->userdata('nombre');
-            $dependencia = $this->session->userdata('dependencia');
-            $data['usuario_dependencia'] = $dependencia;
-            $area = $this->session->userdata('area');
-            $data['usuario_area'] = $area;
-
-            if ($cve_proyecto && $cve_consejo && $cve_atingencia) {
-                $this->proyectos_consejo_model->actualizar_atingencia($cve_proyecto, $cve_consejo, $cve_atingencia);
-            } else {
-                $this->session->set_flashdata('error_proyectos_consejo', 'Capture todos los datos');
-                redirect($_SERVER['HTTP_REFERER']);
-            }
-            redirect($_SERVER['HTTP_REFERER']);
+        } else {
+            redirect('inicio/iniciar_sesion');
         }
     }
 
@@ -135,6 +104,3 @@ class Proyectos_consejo extends CI_Controller {
     }
 
 }
-
-
-
