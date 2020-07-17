@@ -18,9 +18,20 @@ class Proyectos_consejo_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function guardar($data)
+    public function get_proyecto_consejo($cve_proyecto) {
+        $sql = "select pc.*, pr.nom_preparacion, pl.nom_plazo, at.nom_atingencia from proyectos_consejo pc left join preparaciones pr on pc.cve_preparacion = pr.cve_preparacion left join plazos pl on pc.cve_plazo = pl.cve_plazo left join atingencias at on pc.cve_atingencia = at.cve_atingencia where pc.cve_proyecto = ? ";
+        $query = $this->db->query($sql, array($cve_proyecto));
+        return $query->row_array();
+    }
+
+    public function guardar($data, $cve_proyecto)
     {
-        $this->db->insert('proyectos_consejo', $data);
+        if ($cve_proyecto) {
+            $this->db->where('cve_proyecto', $cve_proyecto);
+            $this->db->update('proyectos_consejo', $data);
+        } else {
+            $this->db->insert('proyectos_consejo', $data);
+        }
     }
 
     public function actualizar_preparacion($cve_proyecto, $cve_consejo, $cve_preparacion)
