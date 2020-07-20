@@ -36,19 +36,16 @@ class Actores extends CI_Controller {
             $filtros = $this->input->post();
             if ($filtros) {
                 $activo = $filtros['activo'];
-                $cve_tipo = $filtros['cve_tipo'];
                 $cve_sector = $filtros['cve_sector'];
             } else {
                 $activo = '1';
-                $cve_tipo = '1';
                 $cve_sector = '0';
 			}
 
             $data['activo'] = $activo;
-            $data['cve_tipo'] = $cve_tipo;
             $data['cve_sector'] = $cve_sector;
 
-            $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $area, $activo, $cve_tipo, $cve_sector, $cve_rol);
+            $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $area, $activo, $cve_sector, $cve_rol);
             $data['sectores'] = $this->sectores_model->get_sectores();
 
             $this->load->view('templates/header', $data);

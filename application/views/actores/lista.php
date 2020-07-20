@@ -15,14 +15,6 @@
                                 <input type="radio" name="activo" value="0" autocomplete="off" <?= ( ! $activo) ? 'checked' : '' ?>> Inactivos
                             </label>
                         </div>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-secondary btn-sm <?= ($cve_tipo == '1') ? 'active' : '' ?>">
-                                <input type="radio" name="cve_tipo" value="1" autocomplete="off" <?= ($cve_tipo == '1') ? 'checked' : '' ?>> Consejeros
-                            </label>
-                            <label class="btn btn-secondary btn-sm <?= ($cve_tipo == '2') ? 'active' : '' ?>">
-                                <input type="radio" name="cve_tipo" value="2" autocomplete="off" <?= ($cve_tipo == '2') ? 'checked' : '' ?>> Colaboradores
-                            </label>
-                        </div>
                         <div class="btn-group" role="group">
                             <select class="custom-select custom-select-sm" name="cve_sector">
                                 <option value="0" <?= ($cve_sector == '0') ? 'selected' : '' ?>>Todos</option>
