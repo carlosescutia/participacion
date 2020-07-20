@@ -5,7 +5,7 @@ class Actores_model extends CI_Model {
         parent::__construct();
     }
 
-    public function get_actores_dependencia($dependencia, $area, $activo, $cve_tipo, $cve_sector, $cve_rol) {
+    public function get_actores_dependencia($dependencia, $area, $activo, $cve_sector, $cve_rol) {
         if ($cve_rol == 'sup') {
             $area = '%';
         }
@@ -13,13 +13,13 @@ class Actores_model extends CI_Model {
             $dependencia = '%';
             $area = '%';
         }
-        $sql = "select a.*, ta.nom_tipo, s.nom_sector, (select string_agg(c.nom_consejo, ', ') as consejos from consejos_actores ca left join consejos c on ca.cve_consejo = c.cve_consejo where ca.cve_actor = a.cve_actor) from actores a left join tipo_actores ta on a.cve_tipo = ta.cve_tipo left join sectores s on a.cve_sector = s.cve_sector where a.dependencia LIKE ? and a.area LIKE ? and a.activo=? and a.cve_tipo::text LIKE ?";
+        $sql = "select a.*, ta.nom_tipo, s.nom_sector, (select string_agg(c.nom_consejo, ', ') as consejos from consejos_actores ca left join consejos c on ca.cve_consejo = c.cve_consejo where ca.cve_actor = a.cve_actor) from actores a left join tipo_actores ta on a.cve_tipo = ta.cve_tipo left join sectores s on a.cve_sector = s.cve_sector where a.dependencia LIKE ? and a.area LIKE ? and a.activo=? ";
         if ($cve_sector > 0) {
             $sql .= ' and a.cve_sector = ? order by a.nombre;';
-            $query = $this->db->query($sql, array($dependencia, $area, $activo, $cve_tipo, $cve_sector));
+            $query = $this->db->query($sql, array($dependencia, $area, $activo, $cve_sector));
         } else {
             $sql .= ' order by a.nombre;';
-            $query = $this->db->query($sql, array($dependencia, $area, $activo, $cve_tipo));
+            $query = $this->db->query($sql, array($dependencia, $area, $activo));
         }
         return $query->result_array();
     }
