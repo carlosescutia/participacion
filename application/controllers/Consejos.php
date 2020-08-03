@@ -69,11 +69,7 @@ class Consejos extends CI_Controller {
             $data['tipo_consejos'] = $this->tipo_consejos_model->get_tipo_consejos();
             $data['ejes'] = $this->ejes_model->get_ejes();
             $data['consejos_actores'] = $this->consejos_actores_model->get_actores_consejo($cve_consejo);
-            if ($data['consejos']['cve_tipo'] == 6) {
-                $cve_tipo = '%';
-            } else {
-                $cve_tipo = '1';
-            }
+            $cve_tipo = 1;
             $activo = 1;
             $cve_sector = 0;
             $data['actores'] = $this->actores_model->get_actores_dependencia($dependencia, $area, $activo, $cve_tipo, $cve_sector, $cve_rol);
