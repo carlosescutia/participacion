@@ -35,7 +35,7 @@
 
     <div class="form-group row">
         <div class="col-sm-10">
-            <a href="<?=base_url()?>sesiones/detalle/<?=$acuerdos_sesion[0]['cve_sesion'] ?>/<?=$acuerdos_sesion[0]['cve_consejo'] ?>" class="btn btn-secondary">Volver</a>
+            <a href="<?=base_url()?>sesiones/detalle/<?=$sesion['cve_sesion'] ?>/<?=$consejo['cve_consejo'] ?>" class="btn btn-secondary">Volver</a>
         </div>
     </div>
 
