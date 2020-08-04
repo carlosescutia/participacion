@@ -6,7 +6,7 @@
                     <h1 class="h2">Acuerdos de la sesión</h1>
                 </div>
                 <div class="col-sm-4 text-right">
-                    <a href="<?=base_url()?>reportes/reporte_acuerdos_csv/<?=$acuerdos_sesion[0]['cve_sesion'] ?>/<?=$acuerdos_sesion[0]['cve_consejo'] ?>" class="btn btn-primary">Exportar a excel</a>
+                    <a href="<?=base_url()?>reportes/reporte_acuerdos_csv/<?=$sesion['cve_sesion'] ?>/<?=$consejo['cve_consejo'] ?>" class="btn btn-primary">Exportar a excel</a>
 					<a href="javascript:window.print()" class="btn btn-primary">Generar pdf</a>
                 </div>
             </div>
@@ -63,7 +63,7 @@
 
     <div class="form-group row">
         <div class="col-sm-10">
-            <a href="<?=base_url()?>sesiones/detalle/<?=$acuerdos_sesion[0]['cve_sesion'] ?>/<?=$acuerdos_sesion[0]['cve_consejo'] ?>" class="btn btn-secondary">Volver</a>
+            <a href="<?=base_url()?>sesiones/detalle/<?=$sesion['cve_sesion'] ?>/<?=$consejo['cve_consejo'] ?>" class="btn btn-secondary">Volver</a>
         </div>
     </div>
 
