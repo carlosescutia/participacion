@@ -35,4 +35,43 @@ class Acuerdos_sesion_model extends CI_Model {
         $this->db->delete('acuerdos_sesion');
     }
 
+    public function get_acuerdos_responsable($dependencia, $area, $cve_rol) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select upper(trim(responsable)) as responsable, count(*) as num_acuerdos from acuerdos_sesion acs left join consejos c on acs.cve_consejo = c.cve_consejo where c.dependencia LIKE ? and c.area LIKE ? group by upper(trim(responsable)) order by upper(trim(responsable)) ";
+        $query = $this->db->query($sql, array($dependencia, $area));
+        return $query->result_array();
+    }
+
+    public function get_acuerdos_status($dependencia, $area, $cve_rol) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select sas.nom_status as status, count(acs.*) as num_acuerdos from acuerdos_sesion acs left join status_acuerdos_sesion sas on acs.cve_status = sas.cve_status left join consejos c on acs.cve_consejo = c.cve_consejo where c.dependencia LIKE ? and c.area LIKE ? group by acs.cve_status, sas.nom_status order by acs.cve_status ";
+        $query = $this->db->query($sql, array($dependencia, $area));
+        return $query->result_array();
+    }
+
+    public function get_total_acuerdos($dependencia, $area, $cve_rol) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select count(*) as num_acuerdos from acuerdos_sesion acs left join consejos c on acs.cve_consejo = c.cve_consejo where c.dependencia LIKE ? and c.area LIKE ? ";
+        $query = $this->db->query($sql, array($dependencia, $area));
+        return $query->result_array();
+    }
+
 }
