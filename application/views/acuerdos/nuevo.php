@@ -26,16 +26,16 @@
                     <div class="form-group col-md-5">
                         <label for="nom_acuerdo">Acuerdo</label>
                         <?php echo form_error('nom_acuerdo'); ?>
-                        <input type="text" class="form-control" name="nom_acuerdo" id="nom_acuerdo" value="<?php echo set_value('nom_acuerdo'); ?>">
+                        <textarea rows="5" class="form-control" name="nom_acuerdo" id="nom_acuerdo"><?php echo set_value('nom_acuerdo') ?></textarea>
                     </div>
                     <div class="form-group col-md-5">
                         <label for="observaciones">Observaciones</label>
                         <?php echo form_error('observaciones'); ?>
-                        <input type="text" class="form-control" name="observaciones" id="observaciones" value="<?php echo set_value('observaciones'); ?>">
+                        <textarea rows="5" class="form-control" name="observaciones" id="observaciones"><?php echo set_value('observaciones') ?></textarea>
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <label for="porcentaje_avance">Porcentaje de avance</label>
                         <?php echo form_error('porcentaje_avance'); ?>
                         <input type="text" class="form-control" name="porcentaje_avance" id="porcentaje_avance" value="<?php echo set_value('porcentaje_avance'); ?>">
@@ -45,7 +45,7 @@
                         <?php echo form_error('solicitud_iplaneg'); ?>
                         <select class="custom-select" name="solicitud_iplaneg" id="solicitud_iplaneg">
                             <option value="s" <?php echo set_select('solicitud_iplaneg', 's'); ?> >Si</option>
-                            <option value="n" <?php echo set_select('solicitud_iplaneg', 'n'); ?> >No</option>
+                            <option value="n" <?php echo set_select('solicitud_iplaneg', 'n'); ?> selected >No</option>
                         </select>
                     </div>
                     <div class="form-group col-md-4">
