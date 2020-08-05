@@ -226,4 +226,30 @@ class Reportes extends CI_Controller {
         }
     }
 
+    public function reporte_totales_acuerdos()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+
+            $this->load->model('acuerdos_sesion_model');
+
+            $data['acuerdos_status'] = $this->acuerdos_sesion_model->get_acuerdos_status($dependencia, $area, $cve_rol);
+            $data['acuerdos_responsable'] = $this->acuerdos_sesion_model->get_acuerdos_responsable($dependencia, $area, $cve_rol);
+            $data['total_acuerdos'] = $this->acuerdos_sesion_model->get_total_acuerdos($dependencia, $area, $cve_rol);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('reportes/reporte_totales_acuerdos', $data);
+            $this->load->view('templates/footer');
+        } else {
+            redirect('inicio/iniciar_sesion');
+        }
+    }
+
 }
