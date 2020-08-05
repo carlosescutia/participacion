@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <label for="porcentaje_avance">Porcentaje de avance</label>
                         <?php echo form_error('porcentaje_avance'); ?>
                         <input type="text" class="form-control" name="porcentaje_avance" id="porcentaje_avance" value="<?=$acuerdos_sesion['porcentaje_avance'] ?>">

@@ -48,6 +48,7 @@ class Acuerdos_sesion extends CI_Controller {
             $this->form_validation->set_rules('nom_acuerdo','Acuerdo','required',array('required' => '* requerido'));
             $this->form_validation->set_rules('cve_status','Status','required',array('required' => '* requerido'));
             $this->form_validation->set_rules('fecha_acuerdo','Fecha acuerdo','required',array('required' => '* requerido'));
+            $this->form_validation->set_rules('porcentaje_avance','Porcentaje avance','numeric',array('numeric' => '* solo números'));
 
             $acuerdos_sesion = $this->input->post();
             if ($this->form_validation->run()) {
