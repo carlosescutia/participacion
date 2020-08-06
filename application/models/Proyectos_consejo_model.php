@@ -85,6 +85,46 @@ class Proyectos_consejo_model extends CI_Model {
         $this->db->delete('proyectos_consejo');
     }
 
+    public function get_proyectos_preparacion($dependencia, $area, $cve_rol) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select pr.nom_preparacion, count(*) as num_proyectos from proyectos_consejo pc left join preparaciones pr on pc.cve_preparacion = pr.cve_preparacion where pc.dependencia LIKE ? and pc.area LIKE ? group by pc.cve_preparacion, pr.nom_preparacion order by pc.cve_preparacion";
+        $query = $this->db->query($sql, array($dependencia, $area));
+        return $query->result_array();
+    }
+
+    public function get_proyectos_plazo($dependencia, $area, $cve_rol) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select pl.nom_plazo, count(*) as num_proyectos from proyectos_consejo pc left join plazos pl on pc.cve_plazo = pl.cve_plazo where pc.dependencia LIKE ? and pc.area LIKE ? group by pc.cve_plazo, pl.nom_plazo order by pc.cve_plazo";
+        $query = $this->db->query($sql, array($dependencia, $area));
+        return $query->result_array();
+    }
+
+    public function get_total_proyectos($dependencia, $area, $cve_rol) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select count(*) as num_proyectos from proyectos_consejo pc where pc.dependencia LIKE ? and pc.area LIKE ?";
+        $query = $this->db->query($sql, array($dependencia, $area));
+        return $query->result_array();
+    }
+
+
 }
 
 

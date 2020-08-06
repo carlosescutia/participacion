@@ -252,4 +252,30 @@ class Reportes extends CI_Controller {
         }
     }
 
+    public function reporte_totales_proyectos()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+
+            $this->load->model('proyectos_consejo_model');
+
+            $data['proyectos_preparacion'] = $this->proyectos_consejo_model->get_proyectos_preparacion($dependencia, $area, $cve_rol);
+            $data['proyectos_plazo'] = $this->proyectos_consejo_model->get_proyectos_plazo($dependencia, $area, $cve_rol);
+            $data['total_proyectos'] = $this->proyectos_consejo_model->get_total_proyectos($dependencia, $area, $cve_rol);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('reportes/reporte_totales_proyectos', $data);
+            $this->load->view('templates/footer');
+        } else {
+            redirect('inicio/iniciar_sesion');
+        }
+    }
+
 }
