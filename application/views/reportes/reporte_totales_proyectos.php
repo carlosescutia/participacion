@@ -15,6 +15,7 @@
     <div class="col-sm-8" style="min-height: 46vh">
         <?php include 'reporte_totales_proyectos_preparacion.php' ?>
         <?php include 'reporte_totales_proyectos_plazo.php' ?>
+        <?php include 'reporte_totales_proyectos_atingencia.php' ?>
         <?php include 'reporte_totales_proyectos_total.php' ?>
     </div>
 
