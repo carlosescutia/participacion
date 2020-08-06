@@ -119,7 +119,7 @@ class Proyectos_consejo_model extends CI_Model {
             $dependencia = '%';
             $area = '%';
         }
-        $sql = "select a.nom_atingencia, count(*) as num_proyectos from proyectos_consejo pc left join atingencias a on pc.cve_atingencia = a.cve_atingencia where pc.dependencia LIKE ? and pc.area LIKE ? group by pc.cve_plazo, a.nom_atingencia order by pc.cve_plazo";
+        $sql = "select a.nom_atingencia, count(*) as num_proyectos from proyectos_consejo pc left join atingencias a on pc.cve_atingencia = a.cve_atingencia where pc.dependencia LIKE ? and pc.area LIKE ? group by pc.cve_atingencia, a.nom_atingencia order by pc.cve_atingencia";
         $query = $this->db->query($sql, array($dependencia, $area));
         return $query->result_array();
     }
