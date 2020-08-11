@@ -124,6 +124,19 @@ class Proyectos_consejo_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_proyectos_atingencia_plazo($dependencia, $area, $cve_rol) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select a.nom_atingencia, pl.nom_plazo, count(*) as num_proyectos from proyectos_consejo pc left join atingencias a on pc.cve_atingencia = a.cve_atingencia left join plazos pl on pc.cve_plazo = pl.cve_plazo where pc.dependencia LIKE ? and pc.area LIKE ? group by pc.cve_atingencia, a.nom_atingencia, pc.cve_plazo, pl.nom_plazo order by pc.cve_atingencia, pc.cve_plazo ;";
+        $query = $this->db->query($sql, array($dependencia, $area));
+        return $query->result_array();
+    }
+
     public function get_total_proyectos($dependencia, $area, $cve_rol) {
         if ($cve_rol == 'sup') {
             $area = '%';
