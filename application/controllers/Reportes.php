@@ -269,6 +269,7 @@ class Reportes extends CI_Controller {
             $data['proyectos_preparacion'] = $this->proyectos_consejo_model->get_proyectos_preparacion($dependencia, $area, $cve_rol);
             $data['proyectos_plazo'] = $this->proyectos_consejo_model->get_proyectos_plazo($dependencia, $area, $cve_rol);
             $data['proyectos_atingencia'] = $this->proyectos_consejo_model->get_proyectos_atingencia($dependencia, $area, $cve_rol);
+            $data['proyectos_atingencia_plazo'] = $this->proyectos_consejo_model->get_proyectos_atingencia_plazo($dependencia, $area, $cve_rol);
             $data['total_proyectos'] = $this->proyectos_consejo_model->get_total_proyectos($dependencia, $area, $cve_rol);
 
             $this->load->view('templates/header', $data);

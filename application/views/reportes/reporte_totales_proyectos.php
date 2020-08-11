@@ -16,6 +16,7 @@
         <?php include 'reporte_totales_proyectos_preparacion.php' ?>
         <?php include 'reporte_totales_proyectos_plazo.php' ?>
         <?php include 'reporte_totales_proyectos_atingencia.php' ?>
+        <?php include 'reporte_totales_proyectos_atingencia_plazo.php' ?>
         <?php include 'reporte_totales_proyectos_total.php' ?>
     </div>
 
