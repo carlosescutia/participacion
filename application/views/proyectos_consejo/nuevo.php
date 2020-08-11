@@ -58,10 +58,49 @@
                                 <?php } ?>
                             </select>
                         </div>
-                        <input type="hidden" name="dependencia" value="<?= $usuario_dependencia; ?>">
-                        <input type="hidden" name="area" value="<?= $usuario_area; ?>">
-                        <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?= $cve_consejo ?>">
                     </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="responsable">Responsable</label>
+                            <?php echo form_error('responsable'); ?>
+                            <input type="text" class="form-control" name="responsable" id="responsable" value="<?php echo set_value('responsable') ?>">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="objetivos">Objetivos</label>
+                            <?php echo form_error('objetivos'); ?>
+                            <textarea rows="5" class="form-control" name="objetivos" id="objetivos"><?php echo set_value('objetivos') ?></textarea>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="indicadores">Indicadores</label>
+                            <?php echo form_error('indicadores'); ?>
+                            <textarea rows="5" class="form-control" name="indicadores" id="indicadores"><?php echo set_value('indicadores') ?></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="inversion">Inversión estimada</label>
+                            <?php echo form_error('inversion'); ?>
+                            <input type="text" class="form-control" name="inversion" id="inversion" value="<?php echo set_value('inversion') ?>">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="empleos_directos">Empleos directos</label>
+                            <?php echo form_error('empleos_directos'); ?>
+                            <input type="text" class="form-control" name="empleos_directos" id="empleos_directos" value="<?php echo set_value('empleos_directos') ?>">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="empleos_indirectos">Empleos indirectos</label>
+                            <?php echo form_error('empleos_indirectos'); ?>
+                            <input type="text" class="form-control" name="empleos_indirectos" id="empleos_indirectos" value="<?php echo set_value('empleos_indirectos') ?>">
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="derrama">Derrama económica</label>
+                            <?php echo form_error('derrama'); ?>
+                            <input type="text" class="form-control" name="derrama" id="derrama" value="<?php echo set_value('derrama') ?>">
+                        </div>
+                    </div>
+                    <input type="hidden" name="dependencia" value="<?= $usuario_dependencia; ?>">
+                    <input type="hidden" name="area" value="<?= $usuario_area; ?>">
+                    <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?= $cve_consejo ?>">
                 </div>
             </div>
         </div>

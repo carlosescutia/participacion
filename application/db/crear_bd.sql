@@ -252,7 +252,14 @@ CREATE TABLE proyectos_consejo (
     cve_preparacion integer,
     cve_plazo integer,
     objetivo_definido text,
-    cve_atingencia integer
+    cve_atingencia integer,
+    responsable text,
+    objetivos text,
+    indicadores text,
+    inversion numeric,
+    empleos_directos integer,
+    empleos_indirectos integer,
+    derrama numeric
 );
 
 DROP TABLE IF EXISTS asistencia_sesion;
