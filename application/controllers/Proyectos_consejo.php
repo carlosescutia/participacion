@@ -44,6 +44,10 @@ class Proyectos_consejo extends CI_Controller {
     {
         if ($this->session->userdata('logueado')) {
             $this->form_validation->set_rules('nom_proyecto','Proyecto','required',array('required' => '* requerido'));
+            $this->form_validation->set_rules('inversion','Inversión estimada','numeric',array('numeric' => '* numérico'));
+            $this->form_validation->set_rules('empleos_directos','Empleos directos','numeric',array('numeric' => '* numérico'));
+            $this->form_validation->set_rules('empleos_indirectos','Empleos indirectos','numeric',array('numeric' => '* numérico'));
+            $this->form_validation->set_rules('derrama','Derrama económica','numeric',array('numeric' => '* numérico'));
             
             $proyecto_consejo = $this->input->post();
             if ($this->form_validation->run()) {
@@ -55,7 +59,14 @@ class Proyectos_consejo extends CI_Controller {
                     'cve_preparacion' => $proyecto_consejo['cve_preparacion'],
                     'cve_plazo' => $proyecto_consejo['cve_plazo'],
                     'objetivo_definido' => $proyecto_consejo['objetivo_definido'],
-                    'cve_atingencia' => $proyecto_consejo['cve_atingencia']
+                    'cve_atingencia' => $proyecto_consejo['cve_atingencia'],
+                    'responsable' => $proyecto_consejo['responsable'],
+                    'objetivos' => $proyecto_consejo['objetivos'],
+                    'indicadores' => $proyecto_consejo['indicadores'],
+                    'inversion' => empty($proyecto_consejo['inversion']) ? null : $proyecto_consejo['inversion'],
+                    'empleos_directos' => empty($proyecto_consejo['empleos_directos']) ? null : $proyecto_consejo['empleos_directos'],
+                    'empleos_indirectos' => empty($proyecto_consejo['empleos_indirectos']) ? null : $proyecto_consejo['empleos_indirectos'],
+                    'derrama' => empty($proyecto_consejo['derrama']) ? null : $proyecto_consejo['derrama'] 
                 );
                 $cve_proyecto = isset($proyecto_consejo['cve_proyecto']) ? $proyecto_consejo['cve_proyecto'] : null;
                 $cve_consejo = isset($proyecto_consejo['cve_consejo']) ? $proyecto_consejo['cve_consejo'] : $cve_consejo ;

@@ -1,6 +1,6 @@
 <main role="main" class="ml-sm-auto px-4">
 
-    <form method="post" action="<?= base_url() ?>acuerdos_sesion/guardar/<?=$acuerdos_sesion['cve_sesion']?>/<?=$acuerdos_sesion['cve_consejo']?>">
+<form method="post" action="<?= base_url() ?>acuerdos_sesion/guardar/<?=$acuerdos_sesion['cve_sesion']?>/<?=$acuerdos_sesion['cve_consejo']?>">
     <div class="col-md-12 mb-3 pb-2 pt-3 border-bottom">
         <div class="row">
             <div class="col-md-10">
@@ -99,18 +99,17 @@
             <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?=$acuerdos_sesion['cve_consejo'] ?>">
             <input type="hidden" name="cve_sesion" id="cve_sesion" value="<?=$acuerdos_sesion['cve_sesion'] ?>">
             <input type="hidden" name="cve_acuerdo" id="cve_acuerdo" value="<?=$acuerdos_sesion['cve_acuerdo'] ?>">
-            </form>
-
         </div>
     </div>
+</form>
 
-    <hr />
+<hr />
 
-    <div class="form-group row">
-        <div class="col-sm-10">
-            <a href="<?=base_url()?>sesiones/detalle/<?=$acuerdos_sesion['cve_sesion'] ?>/<?=$acuerdos_sesion['cve_consejo'] ?>" class="btn btn-secondary">Volver</a>
-        </div>
+<div class="form-group row">
+    <div class="col-sm-10">
+        <a href="<?=base_url()?>sesiones/detalle/<?=$acuerdos_sesion['cve_sesion'] ?>/<?=$acuerdos_sesion['cve_consejo'] ?>" class="btn btn-secondary">Volver</a>
     </div>
+</div>
 
 </main>
 
