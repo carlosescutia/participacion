@@ -2,7 +2,7 @@
     <div class="card-header" style="background-color:#E6D9FA">
         <div class="row">
             <div class="col-md-10">
-                <strong>Status de los proyectos</strong>
+                <strong>Status de los proyectos o iniciativas</strong>
             </div>
         </div>
     </div>

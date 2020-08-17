@@ -4,7 +4,7 @@
         <div class="col-md-12 mb-3 pb-2 pt-3 border-bottom">
             <div class="row">
                 <div class="col-md-10">
-                    <h1 class="h2">Nuevo proyecto</h1>
+                    <h1 class="h2">Nuevo proyecto o iniciativa</h1>
                 </div>
                 <div class="col-md-2 text-right">
                     <?php if ($cve_rol == 'usr') { ?>
@@ -19,7 +19,7 @@
                 <div class="col-md-12">
                     <div class="form-row">
                         <div class="form-group col-md-4">
-                            <label for="nom_proyecto">Proyecto</label>
+                            <label for="nom_proyecto">Proyecto o iniciativa</label>
                             <?php echo form_error('nom_proyecto'); ?>
                             <input type="text" class="form-control" name="nom_proyecto" id="nom_proyecto" value="<?php echo set_value('nom_proyecto'); ?>">
                         </div>
