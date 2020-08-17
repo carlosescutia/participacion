@@ -2,7 +2,7 @@
     <div class="card-header" style="background-color:#E6D9FA">
         <div class="row">
             <div class="col-md-10">
-                <strong>Total de proyectos</strong>
+                <strong>Total de proyectos o iniciativas</strong>
             </div>
         </div>
     </div>
@@ -11,7 +11,7 @@
             <table class="table table-striped table-sm">
                 <thead>
                     <tr>
-                        <th scope="col">Total de proyectos</th>
+                        <th scope="col">Total de proyectos o iniciativas</th>
                     </tr>
                 </thead>
                 <tbody>

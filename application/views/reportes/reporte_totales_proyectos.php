@@ -3,7 +3,7 @@
         <div class="col-sm-12 alternate-color">
             <div class="row">
                 <div class="col-sm-8 text-left">
-                    <h1 class="h2">Reporte de Proyectos</h1>
+                    <h1 class="h2">Reporte de Proyectos o iniciativas</h1>
                 </div>
                 <div class="col-sm-4 text-right">
 					<a href="javascript:window.print()" class="btn btn-primary">Generar pdf</a>
