@@ -8,6 +8,7 @@ class Reportes extends CI_Controller {
         $this->load->model('usuarios_model');
         $this->load->model('actores_model');
         $this->load->model('consejos_model');
+        $this->load->model('proyectos_consejo_model');
 
     }
 
@@ -116,6 +117,8 @@ class Reportes extends CI_Controller {
             $data['usuario_nombre'] = $this->session->userdata('nombre');
             $dependencia = $this->session->userdata('dependencia');
             $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
 
@@ -137,6 +140,61 @@ class Reportes extends CI_Controller {
             $newline = "\r\n";
             $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
             force_download("reporte_consejos_01.csv", $data);
+        }
+    }
+
+    public function reporte_proyectos_01()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+
+            $data['proyectos'] = $this->proyectos_consejo_model->get_reporte_proyectos_01($dependencia, $area, $cve_rol);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('reportes/reporte_proyectos_01', $data);
+            $this->load->view('templates/footer');
+        } else {
+            redirect('inicio/iniciar_sesion');
+        }
+    }
+
+    public function reporte_proyectos_01_csv()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+
+            $this->load->dbutil();
+            $this->load->helper('file');
+            $this->load->helper('download');
+
+            if ($cve_rol == 'sup') {
+                $area = '%';
+            }
+            if ($cve_rol == 'adm') {
+                $dependencia = '%';
+                $area = '%';
+            }
+            $sql = "select c.nom_consejo, pc.responsable, op.nom_objetivo, pc.nom_proyecto, pc.valor_grado_preparacion, to_char((pc.valor_grado_preparacion::numeric / 65)*100, '999D99') as calif_grado_preparacion, pl.nom_plazo, pc.valor_atingencia, to_char((pc.valor_atingencia::numeric / 35)*100, '999D99') as calif_atingencia, pc.objetivos, pc.indicadores from proyectos_consejo pc left join consejos c on pc.cve_consejo = c.cve_consejo left join objetivo_plangto op on pc.cve_objetivo = op.cve_objetivo left join plazos pl on pc.cve_plazo = pl.cve_plazo where pc.dependencia LIKE ? and pc.area LIKE ?";
+            $query = $this->db->query($sql, array($dependencia, $area));
+
+            $delimiter = ",";
+            $newline = "\r\n";
+            $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
+            force_download("reporte_proyectos_01.csv", $data);
         }
     }
 
