@@ -98,6 +98,35 @@
                             <input type="text" class="form-control" name="derrama" id="derrama" value="<?=$proyecto_consejo['derrama'] ?>">
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-3">
+                            <label for="cve_objetivo">Objetivo del plan de acción Gto</label>
+                            <?php echo form_error('cve_objetivo'); ?>
+                            <select class="custom-select" name="cve_objetivo" id="cve_objetivo">
+                                <?php foreach ($objetivo_plangto as $objetivo_plangto_item) { ?>
+                                <option value="<?= $objetivo_plangto_item['cve_objetivo'] ?>" <?= ($proyecto_consejo['cve_objetivo'] == $objetivo_plangto_item['cve_objetivo']) ? 'selected' : '' ?> ><?= $objetivo_plangto_item['nom_objetivo'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="valor_grado_preparacion">Valor del grado de preparación</label>
+                            <?php echo form_error('valor_grado_preparacion'); ?>
+                            <input type="text" class="form-control" name="valor_grado_preparacion" id="valor_grado_preparacion" value="<?=$proyecto_consejo['valor_grado_preparacion'] ?>">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="calif_grado_preparacion">calif del grado de preparación</label>
+                            <input type="text" class="form-control" name="calif_grado_preparacion" id="calif_grado_preparacion" value="<?=$proyecto_consejo['calif_grado_preparacion'] ?>" readonly>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="valor_atingencia">Valor de la atingencia</label>
+                            <?php echo form_error('valor_atingencia'); ?>
+                            <input type="text" class="form-control" name="valor_atingencia" id="valor_atingencia" value="<?=$proyecto_consejo['valor_atingencia'] ?>">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="calif_atingencia">calif de la atingencia</label>
+                            <input type="text" class="form-control" name="calif_atingencia" id="calif_atingencia" value="<?=$proyecto_consejo['calif_atingencia'] ?>" readonly>
+                        </div>
+                    </div>
                     <input type="hidden" name="dependencia" value="<?= $usuario_dependencia; ?>">
                     <input type="hidden" name="area" value="<?= $usuario_area; ?>">
                     <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?= $proyecto_consejo['cve_consejo'] ?>">

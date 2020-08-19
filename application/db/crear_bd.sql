@@ -259,7 +259,10 @@ CREATE TABLE proyectos_consejo (
     inversion numeric,
     empleos_directos integer,
     empleos_indirectos integer,
-    derrama numeric
+    derrama numeric,
+    cve_objetivo integer,
+    valor_grado_preparacion integer,
+    valor_atingencia integer
 );
 
 DROP TABLE IF EXISTS asistencia_sesion;
@@ -278,4 +281,10 @@ DROP TABLE IF EXISTS grados_participacion;
 CREATE TABLE grados_participacion (
     cve_grado_participacion serial,
     nom_grado_participacion text
+);
+
+DROP TABLE IF EXISTS objetivo_plangto;
+CREATE TABLE objetivo_plangto (
+    cve_objetivo serial,
+    nom_objetivo text
 );

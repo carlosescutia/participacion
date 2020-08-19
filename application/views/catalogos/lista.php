@@ -65,5 +65,8 @@
         <div class="col-md-3">
             <?php include "grados_participacion/boton.php" ?>
         </div>
+        <div class="col-md-3">
+            <?php include "objetivo_plangto/boton.php" ?>
+        </div>
     </div>
 </main>
