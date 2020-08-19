@@ -150,6 +150,19 @@ class Proyectos_consejo_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_reporte_proyectos_01($dependencia, $area, $cve_rol) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select c.nom_consejo, pc.responsable, op.nom_objetivo, pc.nom_proyecto, pc.valor_grado_preparacion, to_char((pc.valor_grado_preparacion::numeric / 65)*100, '999D99') as calif_grado_preparacion, pl.nom_plazo, pc.valor_atingencia, to_char((pc.valor_atingencia::numeric / 35)*100, '999D99') as calif_atingencia, pc.objetivos, pc.indicadores from proyectos_consejo pc left join consejos c on pc.cve_consejo = c.cve_consejo left join objetivo_plangto op on pc.cve_objetivo = op.cve_objetivo left join plazos pl on pc.cve_plazo = pl.cve_plazo where pc.dependencia LIKE ? and pc.area LIKE ?";
+        $query = $this->db->query($sql, array($dependencia, $area));
+        return $query->result_array();
+    }
+
 
 }
 
