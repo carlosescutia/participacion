@@ -9,6 +9,8 @@ class Reportes extends CI_Controller {
         $this->load->model('actores_model');
         $this->load->model('consejos_model');
         $this->load->model('proyectos_consejo_model');
+        $this->load->model('preparaciones_model');
+        $this->load->model('plazos_model');
 
     }
 
@@ -155,7 +157,25 @@ class Reportes extends CI_Controller {
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
 
-            $data['proyectos'] = $this->proyectos_consejo_model->get_reporte_proyectos_01($dependencia, $area, $cve_rol);
+            $filtros = $this->input->post();
+            if ($filtros) {
+                $cve_preparacion = $filtros['cve_preparacion'];
+                $cve_plazo = $filtros['cve_plazo'];
+                $cve_consejo = $filtros['cve_consejo'];
+            } else {
+                $cve_preparacion = '0';
+                $cve_plazo = '0';
+                $cve_consejo = '0';
+			}
+
+            $data['cve_preparacion'] = $cve_preparacion;
+            $data['cve_plazo'] = $cve_plazo;
+            $data['cve_consejo'] = $cve_consejo;
+
+            $data['consejos'] = $this->consejos_model->get_consejos_dependencia($dependencia, $area, $cve_rol);
+            $data['preparaciones'] = $this->preparaciones_model->get_preparaciones();
+            $data['plazos'] = $this->plazos_model->get_plazos();
+            $data['proyectos'] = $this->proyectos_consejo_model->get_reporte_proyectos_01($dependencia, $area, $cve_rol, $cve_preparacion, $cve_plazo, $cve_consejo);
 
             $this->load->view('templates/header', $data);
             $this->load->view('reportes/reporte_proyectos_01', $data);
@@ -188,7 +208,7 @@ class Reportes extends CI_Controller {
                 $dependencia = '%';
                 $area = '%';
             }
-            $sql = "select c.nom_consejo, pc.responsable, op.nom_objetivo, pc.nom_proyecto, pc.valor_grado_preparacion, to_char((pc.valor_grado_preparacion::numeric / 65)*100, '999.99') as calif_grado_preparacion, pl.nom_plazo, pc.valor_atingencia, to_char((pc.valor_atingencia::numeric / 35)*100, '999.99') as calif_atingencia, pc.objetivos, pc.indicadores from proyectos_consejo pc left join consejos c on pc.cve_consejo = c.cve_consejo left join objetivo_plangto op on pc.cve_objetivo = op.cve_objetivo left join plazos pl on pc.cve_plazo = pl.cve_plazo where pc.dependencia LIKE ? and pc.area LIKE ?";
+            $sql = "select c.nom_consejo, pc.responsable, op.nom_objetivo, pc.nom_proyecto, pr.nom_preparacion, pc.valor_grado_preparacion, to_char((pc.valor_grado_preparacion::numeric / 65)*100, '999.99') as calif_grado_preparacion, pl.nom_plazo, at.nom_atingencia, pc.valor_atingencia, to_char((pc.valor_atingencia::numeric / 35)*100, '999.99') as calif_atingencia, pc.objetivos, pc.indicadores from proyectos_consejo pc left join consejos c on pc.cve_consejo = c.cve_consejo left join objetivo_plangto op on pc.cve_objetivo = op.cve_objetivo left join preparaciones pr on pc.cve_preparacion = pr.cve_preparacion left join plazos pl on pc.cve_plazo = pl.cve_plazo left join atingencias at on pc.cve_atingencia = at.cve_atingencia where pc.dependencia LIKE ? and pc.area LIKE ?";
             $query = $this->db->query($sql, array($dependencia, $area));
 
             $delimiter = ",";
