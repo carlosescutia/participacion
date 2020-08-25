@@ -288,3 +288,10 @@ CREATE TABLE objetivo_plangto (
     cve_objetivo serial,
     nom_objetivo text
 );
+
+DROP TABLE IF EXISTS planteamientos;
+CREATE TABLE planteamientos (
+    cve_planteamiento serial,
+    nom_planteamiento text
+);
+
