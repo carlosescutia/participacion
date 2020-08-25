@@ -262,7 +262,8 @@ CREATE TABLE proyectos_consejo (
     derrama numeric,
     cve_objetivo integer,
     valor_grado_preparacion integer,
-    valor_atingencia integer
+    valor_atingencia integer,
+    cve_planteamiento integer
 );
 
 DROP TABLE IF EXISTS asistencia_sesion;
