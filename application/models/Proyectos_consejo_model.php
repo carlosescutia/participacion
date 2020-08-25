@@ -150,7 +150,7 @@ class Proyectos_consejo_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_reporte_proyectos_01($dependencia, $area, $cve_rol, $cve_preparacion, $cve_plazo, $cve_consejo) {
+    public function get_reporte_proyectos_01($dependencia, $area, $cve_rol, $cve_planteamiento, $cve_preparacion, $cve_plazo, $cve_consejo) {
         if ($cve_rol == 'sup') {
             $area = '%';
         }
@@ -162,6 +162,10 @@ class Proyectos_consejo_model extends CI_Model {
         $parametros = array();
         array_push($parametros, "$dependencia");
         array_push($parametros, "$area");
+        if ($cve_planteamiento > 0) {
+            $sql .= ' and pc.cve_planteamiento = ?';
+            array_push($parametros, "$cve_planteamiento");
+        } 
         if ($cve_preparacion > 0) {
             $sql .= ' and pc.cve_preparacion = ?';
             array_push($parametros, "$cve_preparacion");
