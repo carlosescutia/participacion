@@ -13,6 +13,7 @@ class Proyectos_consejo extends CI_Controller {
         $this->load->model('plazos_model');
         $this->load->model('atingencias_model');
         $this->load->model('objetivo_plangto_model');
+        $this->load->model('planteamientos_model');
 
     }
 
@@ -33,6 +34,7 @@ class Proyectos_consejo extends CI_Controller {
             $data['plazos'] = $this->plazos_model->get_plazos();
             $data['atingencias'] = $this->atingencias_model->get_atingencias();
             $data['objetivo_plangto'] = $this->objetivo_plangto_model->get_objetivo_plangto();
+            $data['planteamientos'] = $this->planteamientos_model->get_planteamientos();
 
             $this->load->view('templates/header', $data);
             $this->load->view('proyectos_consejo/detalle', $data);
@@ -60,6 +62,7 @@ class Proyectos_consejo extends CI_Controller {
                     'dependencia' => $proyecto_consejo['dependencia'],
                     'area' => $proyecto_consejo['area'],
                     'cve_consejo' => $proyecto_consejo['cve_consejo'],
+                    'cve_planteamiento' => empty($proyecto_consejo['cve_planteamiento']) ? null : $proyecto_consejo['cve_planteamiento'],
                     'cve_preparacion' => $proyecto_consejo['cve_preparacion'],
                     'cve_plazo' => $proyecto_consejo['cve_plazo'],
                     'objetivo_definido' => $proyecto_consejo['objetivo_definido'],
@@ -97,6 +100,7 @@ class Proyectos_consejo extends CI_Controller {
             $data['plazos'] = $this->plazos_model->get_plazos();
             $data['atingencias'] = $this->atingencias_model->get_atingencias();
             $data['objetivo_plangto'] = $this->objetivo_plangto_model->get_objetivo_plangto();
+            $data['planteamientos'] = $this->planteamientos_model->get_planteamientos();
             $data['cve_consejo'] = $cve_consejo;
                 
             if (isset($data['proyecto_consejo']['cve_proyecto']))

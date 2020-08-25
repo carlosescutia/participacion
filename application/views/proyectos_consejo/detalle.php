@@ -23,6 +23,23 @@
                             <?php echo form_error('nom_proyecto'); ?>
                             <input type="text" class="form-control" name="nom_proyecto" id="nom_proyecto" value="<?=$proyecto_consejo['nom_proyecto'] ?>">
                         </div>
+                        <div class="form-group col-md-8">
+                            <label for="cve_planteamiento">Planteamiento original</label>
+                            <?php echo form_error('cve_planteamiento'); ?>
+                            <select class="custom-select" name="cve_planteamiento" id="cve_planteamiento">
+                                <option value="" <?= $proyecto_consejo['cve_planteamiento'] == "" ? 'selected' : '' ?> ></option>
+                                <?php foreach ($planteamientos as $planteamientos_item) { ?>
+                                <option value="<?= $planteamientos_item['cve_planteamiento'] ?>" <?= ($proyecto_consejo['cve_planteamiento'] == $planteamientos_item['cve_planteamiento']) ? 'selected' : '' ?> ><?= $planteamientos_item['nom_planteamiento'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="responsable">Responsable</label>
+                            <?php echo form_error('responsable'); ?>
+                            <input type="text" class="form-control" name="responsable" id="responsable" value="<?=$proyecto_consejo['responsable'] ?>">
+                        </div>
                         <div class="form-group col-md-2">
                             <label for="cve_preparacion">Grado de preparación</label>
                             <?php echo form_error('cve_preparacion'); ?>
@@ -60,17 +77,12 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="responsable">Responsable</label>
-                            <?php echo form_error('responsable'); ?>
-                            <input type="text" class="form-control" name="responsable" id="responsable" value="<?=$proyecto_consejo['responsable'] ?>">
-                        </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="objetivos">Objetivos</label>
                             <?php echo form_error('objetivos'); ?>
                             <textarea rows="5" class="form-control" name="objetivos" id="objetivos"><?=$proyecto_consejo['objetivos'] ?></textarea>
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-6">
                             <label for="indicadores">Indicadores</label>
                             <?php echo form_error('indicadores'); ?>
                             <textarea rows="5" class="form-control" name="indicadores" id="indicadores"><?=$proyecto_consejo['indicadores'] ?></textarea>
