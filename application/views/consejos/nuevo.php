@@ -89,7 +89,8 @@
                             <label for="integracion">Integración</label>
                             <select class="custom-select" name="integracion" id="integracion">
                                 <option value="" <?php echo set_select('integracion', '', TRUE); ?> ></option>
-                                <option value="social" <?php echo set_select('integracion', 'social'); ?> >Mayoría social</option>
+                                <option value="social" <?php echo set_select('integracion', 'social'); ?> >Mayoría ciudadana</option>
+                                <option value="minoria_social" <?php echo set_select('integracion', 'minoria_social'); ?> >Minoría social</option>
                                 <option value="gubernamental" <?php echo set_select('integracion', 'gubernamental'); ?> >Gubernamental</option>
                             </select>
                         </div>
