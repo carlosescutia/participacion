@@ -78,7 +78,8 @@
                     <label for="integracion">Integración</label>
                     <select class="custom-select" name="integracion" id="integracion">
                         <option value=""></option>
-                        <option value="social" <?= ($consejos['integracion'] == 'social') ? 'selected' : '' ?> >Mayoría social</option>
+                        <option value="social" <?= ($consejos['integracion'] == 'social') ? 'selected' : '' ?> >Mayoría ciudadana</option>
+                        <option value="minoria_social" <?= ($consejos['integracion'] == 'minoria_social') ? 'selected' : '' ?> >Minoría social</option>
                         <option value="gubernamental" <?= ($consejos['integracion'] == 'gubernamental') ? 'selected' : '' ?> >Gubernamental</option>
                     </select>
                 </div>
