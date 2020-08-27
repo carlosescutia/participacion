@@ -12,6 +12,8 @@ class Reportes extends CI_Controller {
         $this->load->model('planteamientos_model');
         $this->load->model('preparaciones_model');
         $this->load->model('plazos_model');
+        $this->load->model('ejes_model');
+        $this->load->model('tipo_consejos_model');
 
     }
 
@@ -145,6 +147,79 @@ class Reportes extends CI_Controller {
             force_download("reporte_consejos_01.csv", $data);
         }
     }
+
+    public function listado_consejos_02()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+
+            $filtros = $this->input->post();
+            if ($filtros) {
+                $cve_eje = $filtros['cve_eje'];
+                $cve_tipo = $filtros['cve_tipo'];
+                $cve_status = $filtros['cve_status'];
+            } else {
+                $cve_eje = '0';
+                $cve_tipo = '0';
+                $cve_status = '-1';
+			}
+
+            $data['cve_eje'] = $cve_eje;
+            $data['cve_tipo'] = $cve_tipo;
+            $data['cve_status'] = $cve_status;
+
+            $data['ejes'] = $this->ejes_model->get_ejes();
+            $data['tipo_consejos'] = $this->tipo_consejos_model->get_tipo_consejos();
+            $data['consejos'] = $this->consejos_model->get_listado_consejos_02($dependencia, $area, $cve_rol, $cve_eje, $cve_tipo, $cve_status);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('reportes/listado_consejos_02', $data);
+            $this->load->view('templates/footer');
+        } else {
+            redirect('inicio/iniciar_sesion');
+        }
+    }
+
+    public function listado_consejos_02_csv()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+
+            $this->load->dbutil();
+            $this->load->helper('file');
+            $this->load->helper('download');
+
+            if ($cve_rol == 'sup') {
+                $area = '%';
+            }
+            if ($cve_rol == 'adm') {
+                $dependencia = '%';
+                $area = '%';
+            }
+            $sql = "select e.nom_eje, c.nom_consejo, tc.nom_tipo,  (select count(*) from consejos_actores ca where ca.status = 1 and ca.cve_consejo = c.cve_consejo) as num_integrantes, (case when c.status=1 then 'activo' when c.status=0 then 'inactivo' else '' end) as nom_status, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 4) as num_ciudadanos, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 6) as num_funcionarios_estatales, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector <> 4 and a.cve_sector <> 6) as num_otros_sectores from consejos c left join ejes e on e.cve_eje = c.cve_eje left join tipo_consejos tc on tc.cve_tipo = c.cve_tipo where dependencia LIKE ? and area LIKE ?";
+            $query = $this->db->query($sql, array($dependencia, $area));
+
+            $delimiter = ",";
+            $newline = "\r\n";
+            $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
+            force_download("reporte_proyectos_01.csv", $data);
+        }
+    }
+
 
     public function reporte_proyectos_01()
     {
