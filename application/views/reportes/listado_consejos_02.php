@@ -76,6 +76,12 @@
                 </table>
             </div>
         </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Total: <?= $totales_consejos['num_consejos'] ?></h5>
+            </div>
+        </div>
     </div>
 
 </main>

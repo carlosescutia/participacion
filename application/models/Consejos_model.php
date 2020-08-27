@@ -72,6 +72,34 @@ class Consejos_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_totales_listado_consejos_02($dependencia, $area, $cve_rol, $cve_eje, $cve_tipo, $cve_status) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select count(*) as num_consejos from consejos c where dependencia LIKE ? and area LIKE ?";
+        $parametros = array();
+        array_push($parametros, "$dependencia");
+        array_push($parametros, "$area");
+        if ($cve_eje > 0) {
+            $sql .= ' and c.cve_eje = ?';
+            array_push($parametros, "$cve_eje");
+        } 
+        if ($cve_tipo > 0) {
+            $sql .= ' and c.cve_tipo = ?';
+            array_push($parametros, "$cve_tipo");
+        } 
+        if ($cve_status >= 0) {
+            $sql .= ' and c.status = ?';
+            array_push($parametros, "$cve_status");
+        } 
+        $query = $this->db->query($sql, $parametros);
+        return $query->row_array();
+    }
+
 
     public function guardar($data, $cve_consejo) 
     {
