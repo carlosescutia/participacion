@@ -178,6 +178,7 @@ class Reportes extends CI_Controller {
             $data['ejes'] = $this->ejes_model->get_ejes();
             $data['tipo_consejos'] = $this->tipo_consejos_model->get_tipo_consejos();
             $data['consejos'] = $this->consejos_model->get_listado_consejos_02($dependencia, $area, $cve_rol, $cve_eje, $cve_tipo, $cve_status);
+            $data['totales_consejos'] = $this->consejos_model->get_totales_listado_consejos_02($dependencia, $area, $cve_rol, $cve_eje, $cve_tipo, $cve_status);
 
             $this->load->view('templates/header', $data);
             $this->load->view('reportes/listado_consejos_02', $data);
