@@ -44,6 +44,34 @@ class Consejos_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_listado_consejos_02($dependencia, $area, $cve_rol, $cve_eje, $cve_tipo, $cve_status) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select e.nom_eje, c.nom_consejo, tc.nom_tipo,  (select count(*) from consejos_actores ca where ca.status = 1 and ca.cve_consejo = c.cve_consejo) as num_integrantes, (case when c.status=1 then 'activo' when c.status=0 then 'inactivo' else '' end) as nom_status, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 4) as num_ciudadanos, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 6) as num_funcionarios_estatales, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector <> 4 and a.cve_sector <> 6) as num_otros_sectores from consejos c left join ejes e on e.cve_eje = c.cve_eje left join tipo_consejos tc on tc.cve_tipo = c.cve_tipo where dependencia LIKE ? and area LIKE ?";
+        $parametros = array();
+        array_push($parametros, "$dependencia");
+        array_push($parametros, "$area");
+        if ($cve_eje > 0) {
+            $sql .= ' and c.cve_eje = ?';
+            array_push($parametros, "$cve_eje");
+        } 
+        if ($cve_tipo > 0) {
+            $sql .= ' and c.cve_tipo = ?';
+            array_push($parametros, "$cve_tipo");
+        } 
+        if ($cve_status >= 0) {
+            $sql .= ' and c.status = ?';
+            array_push($parametros, "$cve_status");
+        } 
+        $query = $this->db->query($sql, $parametros);
+        return $query->result_array();
+    }
+
 
     public function guardar($data, $cve_consejo) 
     {
