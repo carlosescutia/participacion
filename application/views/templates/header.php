@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="<?php echo base_url('img/favicon.ico'); ?>" sizes="16x16" type="image/png" />
 
-        <title>Sistema de Vinculación y Gestión Social</title>
+        <title>Sistema de Participación y Colaboración Social</title>
 
         <!-- custom css -->
         <link rel="stylesheet" type="text/css" href="<?=base_url()?>css/base.css" />
@@ -43,7 +43,7 @@
             <!-- opciones del menu -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="col-sm-6 mr-5">
-                    <h5 class="my-0 mr-md-auto font-weight-normal text-white">Sistema de Vinculación y Gestión Social</h5>
+                    <h5 class="my-0 mr-md-auto font-weight-normal text-white">Sistema de Participación y Colaboración Social</h5>
                     <hr class="mb-0 pb-0" />
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>inicio">Inicio</a></li>

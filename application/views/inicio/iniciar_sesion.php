@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="<?php echo base_url('img/favicon.ico'); ?>" sizes="16x16" type="image/png" />
 
-        <title>Sistema de Vinculación y Gestión Social</title>
+        <title>Sistema de Participación y Colaboración Social</title>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
@@ -69,7 +69,7 @@
         </head>
         <body class="text-center">
             <form class="form-signin" method="post" action="<?= base_url() ?>inicio/iniciar_sesion_post">
-                <h4>Sistema de Vinculación y Gestión Social</h4>
+                <h4>Sistema de Participación y Colaboración Social</h4>
                 <hr>
                 <?php if ($error): ?>
                     <p class="text-danger"><?php echo $error ?></p>
