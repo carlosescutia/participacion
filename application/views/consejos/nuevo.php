@@ -81,11 +81,11 @@
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
                             <label for="sesiones_anuales">Sesiones al año</label>
                             <input type="text" class="form-control " name="sesiones_anuales" id="sesiones_anuales" value="<?php echo set_value('sesiones_anuales'); ?>">
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
                             <label for="integracion">Integración</label>
                             <select class="custom-select" name="integracion" id="integracion">
                                 <option value="" <?php echo set_select('integracion', '', TRUE); ?> ></option>
@@ -94,11 +94,26 @@
                                 <option value="gubernamental" <?php echo set_select('integracion', 'gubernamental'); ?> >Gubernamental</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
                             <label for="fecha_instalacion">Fecha de instalación</label>
                             <input type="date" class="form-control " name="fecha_instalacion" id="fecha_instalacion" value="<?php echo set_value('fecha_instalacion'); ?>">
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
+                            <label for="participacion_ciudadana">Participación ciudadana?</label>
+                            <select class="custom-select" name="participacion_ciudadana" id="participacion_ciudadana">
+                                <option value="s" <?php echo set_select('participacion_ciudadana', 's'); ?> >Si</option>
+                                <option value="n" <?php echo set_select('participacion_ciudadana', 'n'); ?> >No</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="cve_calidad">Calidad de participación?</label>
+                            <select class="custom-select" name="cve_calidad" id="cve_calidad">
+                                <?php foreach ($calidad_participacion as $calidad_participacion_item) { ?>
+                                <option value="<?= $calidad_participacion_item['cve_calidad'] ?>" <?php echo set_select('cve_calidad', $calidad_participacion_item['cve_calidad']); ?> ><?= $calidad_participacion_item['nom_calidad'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
                             <label for="status">Status</label>
                             <select class="custom-select" name="status" id="status">
                                 <option value="1" <?php echo set_select('status', '1'); ?> >Activo</option>
