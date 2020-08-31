@@ -22,7 +22,7 @@
                                     <?php } ?>
                                 </select>
                             </div>
-                            <div class="col-3">
+                            <div class="col-2">
                                 <select class="custom-select custom-select-sm" name="cve_tipo">
                                     <option value="0" <?= ($cve_tipo == '0') ? 'selected' : '' ?>>Todos los tipos de consejos</option>
                                     <?php foreach ($tipo_consejos as $tipo_consejos_item) { ?>
@@ -30,11 +30,18 @@
                                     <?php } ?>
                                 </select>
                             </div>
-                            <div class="col-3">
+                            <div class="col-2">
                                 <select class="custom-select custom-select-sm" name="cve_status">
                                     <option value="-1" <?= ($cve_status == '-1') ? 'selected' : '' ?>>Todos los status</option>
                                     <option value="1" <?= ($cve_status == '1') ? 'selected' : '' ?>>Activo</option>
                                     <option value="0" <?= ($cve_status == '0') ? 'selected' : '' ?>>Inactivo</option>
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <select class="custom-select custom-select-sm" name="participacion_ciudadana">
+                                    <option value="" <?= ($participacion_ciudadana == '') ? 'selected' : '' ?>>Participación ciudadana</option>
+                                    <option value="s" <?= ($participacion_ciudadana == 's') ? 'selected' : '' ?>>Si</option>
+                                    <option value="n" <?= ($participacion_ciudadana == 'n') ? 'selected' : '' ?>>No</option>
                                 </select>
                             </div>
                             <div class="col-1">
@@ -57,6 +64,7 @@
                             <th scope="col">Consejo</th>
                             <th scope="col">Tipo</th>
                             <th scope="col">Integrantes</th>
+                            <th scope="col">Part. ciudadana</th>
                             <th scope="col">Status</th>
                             <th scope="col">Integración</th>
                         </tr>
@@ -68,6 +76,7 @@
                             <td><?= $consejos_item['nom_consejo'] ?></td>
                             <td><?= $consejos_item['nom_tipo'] ?></td>
                             <td><?= $consejos_item['num_integrantes'] ?></td>
+                            <td><?= $consejos_item['participacion_ciudadana'] ?></td>
                             <td><?= $consejos_item['nom_status'] ?></td>
                             <td>ciudadanos: <?= $consejos_item['num_ciudadanos'] ?>; funcionarios estatales: <?= $consejos_item['num_funcionarios_estatales'] ?>; otros: <?= $consejos_item['num_otros_sectores'] ?></td>
                         </tr>

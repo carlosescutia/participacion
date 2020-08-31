@@ -165,20 +165,23 @@ class Reportes extends CI_Controller {
                 $cve_eje = $filtros['cve_eje'];
                 $cve_tipo = $filtros['cve_tipo'];
                 $cve_status = $filtros['cve_status'];
+                $participacion_ciudadana = $filtros['participacion_ciudadana'];
             } else {
                 $cve_eje = '0';
                 $cve_tipo = '0';
                 $cve_status = '-1';
+                $participacion_ciudadana = '';
 			}
 
             $data['cve_eje'] = $cve_eje;
             $data['cve_tipo'] = $cve_tipo;
             $data['cve_status'] = $cve_status;
+            $data['participacion_ciudadana'] = $participacion_ciudadana;
 
             $data['ejes'] = $this->ejes_model->get_ejes();
             $data['tipo_consejos'] = $this->tipo_consejos_model->get_tipo_consejos();
-            $data['consejos'] = $this->consejos_model->get_listado_consejos_02($dependencia, $area, $cve_rol, $cve_eje, $cve_tipo, $cve_status);
-            $data['totales_consejos'] = $this->consejos_model->get_totales_listado_consejos_02($dependencia, $area, $cve_rol, $cve_eje, $cve_tipo, $cve_status);
+            $data['consejos'] = $this->consejos_model->get_listado_consejos_02($dependencia, $area, $cve_rol, $cve_eje, $cve_tipo, $cve_status, $participacion_ciudadana);
+            $data['totales_consejos'] = $this->consejos_model->get_totales_listado_consejos_02($dependencia, $area, $cve_rol, $cve_eje, $cve_tipo, $cve_status, $participacion_ciudadana);
 
             $this->load->view('templates/header', $data);
             $this->load->view('reportes/listado_consejos_02', $data);
@@ -211,7 +214,7 @@ class Reportes extends CI_Controller {
                 $dependencia = '%';
                 $area = '%';
             }
-            $sql = "select e.nom_eje, c.nom_consejo, tc.nom_tipo,  (select count(*) from consejos_actores ca where ca.status = 1 and ca.cve_consejo = c.cve_consejo) as num_integrantes, (case when c.status=1 then 'activo' when c.status=0 then 'inactivo' else '' end) as nom_status, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 4) as num_ciudadanos, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 6) as num_funcionarios_estatales, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector <> 4 and a.cve_sector <> 6) as num_otros_sectores from consejos c left join ejes e on e.cve_eje = c.cve_eje left join tipo_consejos tc on tc.cve_tipo = c.cve_tipo where dependencia LIKE ? and area LIKE ?";
+            $sql = "select e.nom_eje, c.nom_consejo, tc.nom_tipo,  (select count(*) from consejos_actores ca where ca.status = 1 and ca.cve_consejo = c.cve_consejo) as num_integrantes, (case when c.status=1 then 'activo' when c.status=0 then 'inactivo' else '' end) as nom_status, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 4) as num_ciudadanos, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 6) as num_funcionarios_estatales, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector <> 4 and a.cve_sector <> 6) as num_otros_sectores, c.participacion_ciudadana from consejos c left join ejes e on e.cve_eje = c.cve_eje left join tipo_consejos tc on tc.cve_tipo = c.cve_tipo where dependencia LIKE ? and area LIKE ?";
             $query = $this->db->query($sql, array($dependencia, $area));
 
             $delimiter = ",";
