@@ -97,7 +97,9 @@ CREATE TABLE consejos (
     sesiones_anuales integer,
     integracion text,
     fecha_instalacion date,
-    status integer
+    status integer,
+    participacion_ciudadana text,
+    cve_calidad integer
 );
 
 DROP TABLE IF EXISTS consejos_actores;
@@ -294,5 +296,11 @@ DROP TABLE IF EXISTS planteamientos;
 CREATE TABLE planteamientos (
     cve_planteamiento serial,
     nom_planteamiento text
+);
+
+DROP TABLE IF EXISTS calidad_participacion;
+CREATE TABLE calidad_participacion (
+    cve_calidad serial,
+    nom_calidad text
 );
 

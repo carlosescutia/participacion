@@ -23,6 +23,7 @@ class Consejos extends CI_Controller {
         $this->load->model('preparaciones_model');
         $this->load->model('plazos_model');
         $this->load->model('atingencias_model');
+        $this->load->model('calidad_participacion_model');
     }
 
     public function lista()
@@ -81,6 +82,7 @@ class Consejos extends CI_Controller {
             $data['preparaciones'] = $this->preparaciones_model->get_preparaciones();
             $data['plazos'] = $this->plazos_model->get_plazos();
             $data['atingencias'] = $this->atingencias_model->get_atingencias();
+            $data['calidad_participacion'] = $this->calidad_participacion_model->get_calidad_participacion();
 
             $this->load->view('templates/header', $data);
             $this->load->view('consejos/detalle', $data);
@@ -114,7 +116,9 @@ class Consejos extends CI_Controller {
                     'sesiones_anuales' => empty($consejo['sesiones_anuales']) ? null : $consejo['sesiones_anuales'],
                     'integracion' => $consejo['integracion'],
                     'fecha_instalacion' => empty($consejo['fecha_instalacion']) ? null : $consejo['fecha_instalacion'],
-                    'status' => $consejo['status']
+                    'status' => $consejo['status'],
+                    'participacion_ciudadana' => $consejo['participacion_ciudadana'],
+                    'cve_calidad' => empty($consejo['cve_calidad']) ? null : $consejo['cve_calidad']
                );
                 $cve_consejo = isset($consejo['cve_consejo']) ? $consejo['cve_consejo'] : null;
                 print_r($data);
@@ -136,6 +140,7 @@ class Consejos extends CI_Controller {
 
             $data['tipo_consejos'] = $this->tipo_consejos_model->get_tipo_consejos();
             $data['ejes'] = $this->ejes_model->get_ejes();
+            $data['calidad_participacion'] = $this->calidad_participacion_model->get_calidad_participacion();
 
             if (isset($data['consejos']['cve_consejo']))
             {

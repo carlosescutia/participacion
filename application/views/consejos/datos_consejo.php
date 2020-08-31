@@ -70,11 +70,11 @@
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <label for="sesiones_anuales">Sesiones al año</label>
                     <input type="text" class="form-control " name="sesiones_anuales" id="sesiones_anuales" value="<?=$consejos['sesiones_anuales'] ?>">
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <label for="integracion">Integración</label>
                     <select class="custom-select" name="integracion" id="integracion">
                         <option value=""></option>
@@ -83,11 +83,28 @@
                         <option value="gubernamental" <?= ($consejos['integracion'] == 'gubernamental') ? 'selected' : '' ?> >Gubernamental</option>
                     </select>
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <label for="fecha_instalacion">Fecha de instalación</label>
                     <input type="date" class="form-control " name="fecha_instalacion" id="fecha_instalacion" value="<?=$consejos['fecha_instalacion'] ?>">
                 </div>
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
+                    <label for="participacion_ciudadana">Participación ciudadana?</label>
+                    <select class="custom-select" name="participacion_ciudadana" id="participacion_ciudadana">
+                        <option value=""></option>
+                        <option value="s" <?= ($consejos['participacion_ciudadana'] == 's') ? 'selected' : '' ?> >Si</option>
+                        <option value="n" <?= ($consejos['participacion_ciudadana'] == 'n') ? 'selected' : '' ?> >No</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="cve_calidad">Calidad de participación</label>
+                    <select class="custom-select" name="cve_calidad" id="cve_calidad">
+                        <option value=""></option>
+                        <?php foreach ($calidad_participacion as $calidad_participacion_item) { ?>
+                        <option value="<?= $calidad_participacion_item['cve_calidad'] ?>" <?= ($consejos['cve_calidad'] == $calidad_participacion_item['cve_calidad']) ? 'selected' : '' ?> ><?= $calidad_participacion_item['nom_calidad'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
                     <label for="status">Status</label>
                     <select class="custom-select" name="status" id="status">
                         <option value=""></option>

@@ -72,4 +72,9 @@
             <?php include "planteamientos/boton.php" ?>
         </div>
     </div>
+    <div class="row mb-3">
+        <div class="col-md-3">
+            <?php include "calidad_participacion/boton.php" ?>
+        </div>
+    </div>
 </main>
