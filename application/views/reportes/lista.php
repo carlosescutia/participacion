@@ -15,6 +15,7 @@
                 <h3>Estadísticos</h3>
                     <?php include "btn_reporte_totales_acuerdos.php" ?>
                     <?php include "btn_reporte_totales_proyectos.php" ?>
+                    <?php include "btn_estadistico_consejos_01.php" ?>
             </div>
         </div>
     </div>
