@@ -133,4 +133,17 @@ class Consejos_model extends CI_Model {
         return $query->row_array();
     }
 
+    public function get_estadistico_consejos_01($dependencia, $area, $cve_rol) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select e.nom_eje, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor left join consejos c on ca.cve_consejo = c.cve_consejo where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 4 and c.cve_eje = e.cve_eje) as num_ciudadanos, (select count(*) from consejos c where c.cve_eje = e.cve_eje and cve_calidad = 1) as num_estrategicos, (select count(*) from consejos c where c.cve_eje = e.cve_eje and cve_calidad = 2) as num_tacticos, (select count(*) from consejos c where c.cve_eje = e.cve_eje and cve_calidad = 3) as num_operativos from ejes e order by e.cve_eje";
+        $query = $this->db->query($sql);
+        return $query->result_array();
+    }
+
 }
