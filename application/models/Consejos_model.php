@@ -141,8 +141,8 @@ class Consejos_model extends CI_Model {
             $dependencia = '%';
             $area = '%';
         }
-        $sql = "select e.nom_eje, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor left join consejos c on ca.cve_consejo = c.cve_consejo where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 4 and c.cve_eje = e.cve_eje) as num_ciudadanos, (select count(*) from consejos c where c.cve_eje = e.cve_eje and cve_calidad = 1) as num_estrategicos, (select count(*) from consejos c where c.cve_eje = e.cve_eje and cve_calidad = 2) as num_tacticos, (select count(*) from consejos c where c.cve_eje = e.cve_eje and cve_calidad = 3) as num_operativos from ejes e order by e.cve_eje";
-        $query = $this->db->query($sql);
+        $sql = "select e.nom_eje, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor left join consejos c on ca.cve_consejo = c.cve_consejo where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 4 and c.cve_eje = e.cve_eje and c.dependencia LIKE ? and c.area LIKE ?) as num_ciudadanos, (select count(*) from consejos c where c.cve_eje = e.cve_eje and cve_calidad = 1 and c.dependencia LIKE ? and c.area LIKE ?) as num_estrategicos, (select count(*) from consejos c where c.cve_eje = e.cve_eje and cve_calidad = 2 and c.dependencia LIKE ? and c.area LIKE ?) as num_tacticos, (select count(*) from consejos c where c.cve_eje = e.cve_eje and cve_calidad = 3 and c.dependencia LIKE ? and c.area LIKE ?) as num_operativos from ejes e order by e.cve_eje";
+        $query = $this->db->query($sql, array($dependencia, $area, $dependencia, $area, $dependencia, $area, $dependencia, $area));
         return $query->result_array();
     }
 
