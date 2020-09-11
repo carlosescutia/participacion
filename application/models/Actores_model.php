@@ -83,6 +83,38 @@ class Actores_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_totales_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select count(*) as num_actores from actores a where dependencia LIKE ? and area LIKE ?";
+        $parametros = array();
+        array_push($parametros, "$dependencia");
+        array_push($parametros, "$area");
+        if ($cve_ent <> "") {
+            $sql .= ' and a.cve_ent = ?';
+            array_push($parametros, "$cve_ent");
+        } 
+        if ($cve_mun <> "") {
+            $sql .= ' and a.cve_mun = ?';
+            array_push($parametros, "$cve_mun");
+        } 
+        if ($cve_ambito > 0) {
+            $sql .= ' and a.cve_ambito = ?';
+            array_push($parametros, "$cve_ambito");
+        } 
+        if ($cve_sector <> "") {
+            $sql .= " and a.cve_sector = any(string_to_array(?, ',')::int[])";
+            array_push($parametros, "$cve_sector");
+        } 
+        $query = $this->db->query($sql, $parametros);
+        return $query->row_array();
+    }
+
 
     public function guardar($data, $cve_actor=null) {
       if ($cve_actor) {

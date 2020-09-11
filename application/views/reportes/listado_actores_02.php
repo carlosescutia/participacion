@@ -81,5 +81,11 @@
                 </table>
             </div>
         </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Total: <?= $totales_actores['num_actores'] ?></h5>
+            </div>
+        </div>
     </div>
     </main>
