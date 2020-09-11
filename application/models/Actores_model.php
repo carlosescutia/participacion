@@ -74,8 +74,8 @@ class Actores_model extends CI_Model {
             $sql .= ' and a.cve_ambito = ?';
             array_push($parametros, "$cve_ambito");
         } 
-        if ($cve_sector > 0) {
-            $sql .= ' and a.cve_sector = ?';
+        if ($cve_sector <> "") {
+            $sql .= " and a.cve_sector = any(string_to_array(?, ',')::int[])";
             array_push($parametros, "$cve_sector");
         } 
         $sql .= ' group by a.nombre, a.apellido_pa, a.apellido_ma, a.organizacion, a.correo_laboral, a.correo_personal, a.correo_asistente order by a.nombre';
