@@ -132,6 +132,7 @@ class Reportes extends CI_Controller {
             $data['sectores'] = $this->sectores_model->get_sectores();
 
             $data['actores'] = $this->actores_model->get_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector);
+            $data['totales_actores'] = $this->actores_model->get_totales_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector);
 
             $this->load->view('templates/header', $data);
             $this->load->view('reportes/listado_actores_02', $data);
