@@ -13,6 +13,10 @@ class Reportes extends CI_Controller {
         $this->load->model('preparaciones_model');
         $this->load->model('plazos_model');
         $this->load->model('ejes_model');
+        $this->load->model('entidades_model');
+        $this->load->model('municipios_model');
+        $this->load->model('ambitos_model');
+        $this->load->model('sectores_model');
         $this->load->model('tipo_consejos_model');
 
     }
@@ -89,6 +93,51 @@ class Reportes extends CI_Controller {
             $newline = "\r\n";
             $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
             force_download("reporte_actores_01.csv", $data);
+        }
+    }
+
+    public function listado_actores_02()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+
+            $filtros = $this->input->post();
+            if ($filtros) {
+                $cve_ent = $filtros['cve_ent'];
+                $cve_mun = $filtros['cve_mun'];
+                $cve_ambito = $filtros['cve_ambito'];
+                $cve_sector = $filtros['cve_sector'];
+            } else {
+                $cve_ent = '';
+                $cve_mun = '';
+                $cve_ambito = '0';
+                $cve_sector = '0';
+			}
+
+            $data['cve_ent'] = $cve_ent;
+            $data['cve_mun'] = $cve_mun;
+            $data['cve_ambito'] = $cve_ambito;
+            $data['cve_sector'] = $cve_sector;
+
+            $data['entidades'] = $this->entidades_model->get_entidades();
+            $data['municipios'] = $this->municipios_model->get_municipios();
+            $data['ambitos'] = $this->ambitos_model->get_ambitos();
+            $data['sectores'] = $this->sectores_model->get_sectores();
+
+            $data['actores'] = $this->actores_model->get_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('reportes/listado_actores_02', $data);
+            $this->load->view('templates/footer');
+        } else {
+            redirect('inicio/iniciar_sesion');
         }
     }
 
