@@ -113,12 +113,12 @@ class Reportes extends CI_Controller {
                 $cve_ent = $filtros['cve_ent'];
                 $cve_mun = $filtros['cve_mun'];
                 $cve_ambito = $filtros['cve_ambito'];
-                $cve_sector = $filtros['cve_sector'];
+                $cve_sector = implode(',', $filtros['cve_sector']);
             } else {
                 $cve_ent = '';
                 $cve_mun = '';
                 $cve_ambito = '0';
-                $cve_sector = '0';
+                $cve_sector = '';
 			}
 
             $data['cve_ent'] = $cve_ent;
@@ -158,12 +158,12 @@ class Reportes extends CI_Controller {
                 $cve_ent = $filtros['cve_ent'];
                 $cve_mun = $filtros['cve_mun'];
                 $cve_ambito = $filtros['cve_ambito'];
-                $cve_sector = $filtros['cve_sector'];
+                $cve_sector = implode(',', $filtros['cve_sector']);
             } else {
                 $cve_ent = '';
                 $cve_mun = '';
                 $cve_ambito = '0';
-                $cve_sector = '0';
+                $cve_sector = '';
 			}
 
             $this->load->dbutil();
@@ -193,8 +193,8 @@ class Reportes extends CI_Controller {
                 $sql .= ' and a.cve_ambito = ?';
                 array_push($parametros, "$cve_ambito");
             } 
-            if ($cve_sector > 0) {
-                $sql .= ' and a.cve_sector = ?';
+            if ($cve_sector <> "") {
+                $sql .= " and a.cve_sector = any(string_to_array(?, ',')::int[])";
                 array_push($parametros, "$cve_sector");
             } 
             $sql .= ' group by a.nombre, a.apellido_pa, a.apellido_ma, a.organizacion, a.correo_laboral, a.correo_personal, a.correo_asistente order by a.nombre';
