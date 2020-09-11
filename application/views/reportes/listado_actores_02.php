@@ -1,18 +1,18 @@
 <main role="main" class="ml-sm-auto px-4 mb-3 col-print-12">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <div class="col-sm-12 alternate-color">
-            <div class="row">
-                <div class="col-sm-8 text-left">
-                    <h1 class="h2">Reporte de Actores con filtros</h1>
+            <form method="post" action="<?= base_url() ?>reportes/listado_actores_02">
+                <div class="row">
+                    <div class="col-sm-8 text-left">
+                        <h1 class="h2">Listado de Actores con filtros</h1>
+                    </div>
+                    <div class="col-sm-4 text-right">
+                        <button formaction="<?= base_url() ?>reportes/listado_actores_02_csv" class="btn btn-primary">Exportar a excel</button>
+                        <a href="javascript:window.print()" class="btn btn-primary">Generar pdf</a>
+                    </div>
                 </div>
-                <div class="col-sm-4 text-right">
-                    <a href="<?=base_url()?>reportes/reporte_actores_01_csv" class="btn btn-primary">Exportar a excel</a>
-					<a href="javascript:window.print()" class="btn btn-primary">Generar pdf</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 align-self-center">
-                    <form method="post" action="<?= base_url() ?>reportes/listado_actores_02">
+                <div class="row">
+                    <div class="col-sm-12 align-self-center">
                         <div class="form-row">
                             <div class="col-3">
                                 <select class="custom-select custom-select-sm" name="cve_ent">
@@ -50,9 +50,9 @@
                                 <button class="btn btn-success btn-sm">Filtrar</button>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -82,4 +82,4 @@
             </div>
         </div>
     </div>
-</main>
+    </main>

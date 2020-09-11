@@ -141,6 +141,72 @@ class Reportes extends CI_Controller {
         }
     }
 
+    public function listado_actores_02_csv()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+
+            $filtros = $this->input->post();
+            if ($filtros) {
+                $cve_ent = $filtros['cve_ent'];
+                $cve_mun = $filtros['cve_mun'];
+                $cve_ambito = $filtros['cve_ambito'];
+                $cve_sector = $filtros['cve_sector'];
+            } else {
+                $cve_ent = '';
+                $cve_mun = '';
+                $cve_ambito = '0';
+                $cve_sector = '0';
+			}
+
+            $this->load->dbutil();
+            $this->load->helper('file');
+            $this->load->helper('download');
+
+            if ($cve_rol == 'sup') {
+                $area = '%';
+            }
+            if ($cve_rol == 'adm') {
+                $dependencia = '%';
+                $area = '%';
+            }
+            $sql = "select string_agg(concat(c.nom_consejo, ' (',cg.nom_cargo, ')'), '; ') as consejos, a.nombre, a.apellido_pa, a.apellido_ma, a.organizacion, a.correo_laboral from actores a left join consejos_actores ca on a.cve_actor = ca.cve_actor left join consejos c on ca.cve_consejo = c.cve_consejo left join cargos cg on ca.cve_cargo = cg.cve_cargo where a.dependencia LIKE ? and a.area LIKE ? ";
+            $parametros = array();
+            array_push($parametros, "$dependencia");
+            array_push($parametros, "$area");
+            if ($cve_ent <> "") {
+                $sql .= ' and a.cve_ent = ?';
+                array_push($parametros, "$cve_ent");
+            } 
+            if ($cve_mun <> "") {
+                $sql .= ' and a.cve_mun = ?';
+                array_push($parametros, "$cve_mun");
+            } 
+            if ($cve_ambito > 0) {
+                $sql .= ' and a.cve_ambito = ?';
+                array_push($parametros, "$cve_ambito");
+            } 
+            if ($cve_sector > 0) {
+                $sql .= ' and a.cve_sector = ?';
+                array_push($parametros, "$cve_sector");
+            } 
+            $sql .= ' group by a.nombre, a.apellido_pa, a.apellido_ma, a.organizacion, a.correo_laboral, a.correo_personal, a.correo_asistente order by a.nombre';
+            $query = $this->db->query($sql, $parametros);
+
+            $delimiter = ",";
+            $newline = "\r\n";
+            $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
+            force_download("listado_actores_02.csv", $data);
+        }
+    }
+
     public function reporte_consejos_01()
     {
         if ($this->session->userdata('logueado')) {
