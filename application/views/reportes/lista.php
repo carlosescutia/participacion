@@ -7,6 +7,7 @@
             <div class="col-md-6">
                 <h3>Listados</h3>
                     <?php include "btn_reporte_actores_01.php" ?>
+                    <?php include "btn_listado_actores_02.php" ?>
                     <?php include "btn_reporte_consejos_01.php" ?>
                     <?php include "btn_listado_consejos_02.php" ?>
                     <?php include "btn_reporte_proyectos_01.php" ?>

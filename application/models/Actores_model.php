@@ -50,6 +50,39 @@ class Actores_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select a.nombre, a.apellido_pa, a.apellido_ma, string_agg(concat(c.nom_consejo, ' (',cg.nom_cargo, ')'), '; ') as consejos, a.organizacion, a.correo_laboral, a.correo_personal, a.correo_asistente from actores a left join consejos_actores ca on a.cve_actor = ca.cve_actor left join consejos c on ca.cve_consejo = c.cve_consejo left join cargos cg on ca.cve_cargo = cg.cve_cargo where a.dependencia LIKE ? and a.area LIKE ? ";
+        $parametros = array();
+        array_push($parametros, "$dependencia");
+        array_push($parametros, "$area");
+        if ($cve_ent <> "") {
+            $sql .= ' and a.cve_ent = ?';
+            array_push($parametros, "$cve_ent");
+        } 
+        if ($cve_mun <> "") {
+            $sql .= ' and a.cve_mun = ?';
+            array_push($parametros, "$cve_mun");
+        } 
+        if ($cve_ambito > 0) {
+            $sql .= ' and a.cve_ambito = ?';
+            array_push($parametros, "$cve_ambito");
+        } 
+        if ($cve_sector > 0) {
+            $sql .= ' and a.cve_sector = ?';
+            array_push($parametros, "$cve_sector");
+        } 
+        $sql .= ' group by a.nombre, a.apellido_pa, a.apellido_ma, a.organizacion, a.correo_laboral, a.correo_personal, a.correo_asistente order by a.nombre';
+        $query = $this->db->query($sql, $parametros);
+        return $query->result_array();
+    }
+
 
     public function guardar($data, $cve_actor=null) {
       if ($cve_actor) {
