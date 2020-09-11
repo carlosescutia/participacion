@@ -58,7 +58,7 @@ class Actores_model extends CI_Model {
             $dependencia = '%';
             $area = '%';
         }
-        $sql = "select a.nombre, a.apellido_pa, a.apellido_ma, string_agg(concat(c.nom_consejo, ' (',cg.nom_cargo, ')'), '; ') as consejos, a.organizacion, a.correo_laboral, a.correo_personal, a.correo_asistente from actores a left join consejos_actores ca on a.cve_actor = ca.cve_actor left join consejos c on ca.cve_consejo = c.cve_consejo left join cargos cg on ca.cve_cargo = cg.cve_cargo where a.dependencia LIKE ? and a.area LIKE ? ";
+        $sql = "select string_agg(concat(c.nom_consejo, ' (',cg.nom_cargo, ')'), '; ') as consejos, a.nombre, a.apellido_pa, a.apellido_ma, a.organizacion, a.correo_laboral from actores a left join consejos_actores ca on a.cve_actor = ca.cve_actor left join consejos c on ca.cve_consejo = c.cve_consejo left join cargos cg on ca.cve_cargo = cg.cve_cargo where a.dependencia LIKE ? and a.area LIKE ? ";
         $parametros = array();
         array_push($parametros, "$dependencia");
         array_push($parametros, "$area");
