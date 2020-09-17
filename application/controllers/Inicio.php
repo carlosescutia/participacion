@@ -26,13 +26,19 @@ class Inicio extends CI_Controller {
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
 
-            $data['estadisticas_actores'] = $this->actores_model->get_estadisticas_actores($dependencia, $area, $cve_rol);
-            $data['estadisticas_consejos'] = $this->consejos_model->get_estadisticas_consejos($dependencia, $area, $cve_rol);
-            $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_dependencia($dependencia, $area, $cve_rol);
+            if ($cve_rol == 'cns') {
+                $this->load->view('templates/header_consulta', $data);
+                $this->load->view('inicio/inicio_consulta', $data);
+                $this->load->view('templates/footer');
+            } else {
+                $data['estadisticas_actores'] = $this->actores_model->get_estadisticas_actores($dependencia, $area, $cve_rol);
+                $data['estadisticas_consejos'] = $this->consejos_model->get_estadisticas_consejos($dependencia, $area, $cve_rol);
+                $data['calendario_sesiones'] = $this->calendario_sesiones_model->get_calendario_sesiones_dependencia($dependencia, $area, $cve_rol);
 
-            $this->load->view('templates/header', $data);
-            $this->load->view('inicio/inicio', $data);
-            $this->load->view('templates/footer');
+                $this->load->view('templates/header', $data);
+                $this->load->view('inicio/inicio', $data);
+                $this->load->view('templates/footer');
+            }
         } else {
             $this->iniciar_sesion();
         }

@@ -21,6 +21,9 @@
                                     <option value="<?= $entidades_item['cve_ent'] ?>" <?= ($cve_ent == $entidades_item['cve_ent']) ? 'selected' : '' ?>><?= $entidades_item['nom_ent'] ?></option>
                                     <?php } ?>
                                 </select>
+                                <p class="small mt-3">
+                                * Presione ctrl para hacer selección múltiple de sectores.<br />
+                                * Para exportar a excel NO presione filtrar primero.</p>
                             </div>
                             <div class="col-3">
                                 <select class="custom-select custom-select-sm" name="cve_mun">
