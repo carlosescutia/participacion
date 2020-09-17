@@ -54,7 +54,7 @@ class Actores_model extends CI_Model {
         if ($cve_rol == 'sup') {
             $area = '%';
         }
-        if ($cve_rol == 'adm') {
+        if ($cve_rol == 'adm' or $cve_rol == 'cns') {
             $dependencia = '%';
             $area = '%';
         }
@@ -87,7 +87,7 @@ class Actores_model extends CI_Model {
         if ($cve_rol == 'sup') {
             $area = '%';
         }
-        if ($cve_rol == 'adm') {
+        if ($cve_rol == 'adm' or $cve_rol == 'cns') {
             $dependencia = '%';
             $area = '%';
         }

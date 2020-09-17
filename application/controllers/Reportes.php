@@ -32,7 +32,11 @@ class Reportes extends CI_Controller {
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
 
-            $this->load->view('templates/header', $data);
+            if ($cve_rol == 'cns') {
+                $this->load->view('templates/header_consulta', $data);
+            } else {
+                $this->load->view('templates/header', $data);
+            }
             $this->load->view('reportes/lista', $data);
             $this->load->view('templates/footer');
         } else {
@@ -134,7 +138,11 @@ class Reportes extends CI_Controller {
             $data['actores'] = $this->actores_model->get_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector);
             $data['totales_actores'] = $this->actores_model->get_totales_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector);
 
-            $this->load->view('templates/header', $data);
+            if ($cve_rol == 'cns') {
+                $this->load->view('templates/header_consulta', $data);
+            } else {
+                $this->load->view('templates/header', $data);
+            }
             $this->load->view('reportes/listado_actores_02', $data);
             $this->load->view('templates/footer');
         } else {
@@ -174,7 +182,7 @@ class Reportes extends CI_Controller {
             if ($cve_rol == 'sup') {
                 $area = '%';
             }
-            if ($cve_rol == 'adm') {
+            if ($cve_rol == 'adm' or $cve_rol == 'cns') {
                 $dependencia = '%';
                 $area = '%';
             }
