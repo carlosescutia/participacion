@@ -164,7 +164,7 @@
                 <div class="col-md-10">
                     <div class="form-row">
                         <div class="form-group col-md-3">
-                            <label for="cve_tipo">Tipo</label>
+                            <label for="cve_tipo">Naturaleza de la participación</label>
                             <?php echo form_error('cve_tipo'); ?>
                             <select class="custom-select" name="cve_tipo" id="cve_tipo">
                                 <option value="" <?php echo set_select('cve_tipo', '', TRUE); ?> ></option>
