@@ -17,12 +17,13 @@
                 } ?>
             </div>
             <div class="col-md-6">
+                <h3>Estadísticos</h3>
                 <?php if ($cve_rol <> 'cns') {
-                echo "<h3>Estadísticos</h3>";
                     include "btn_reporte_totales_acuerdos.php";
                     include "btn_reporte_totales_proyectos.php";
                     include "btn_estadistico_consejos_01.php";
                 } ?>
+                <?php include "btn_estadistico_actores_01.php" ?>
             </div>
         </div>
     </div>
