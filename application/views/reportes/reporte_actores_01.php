@@ -26,7 +26,7 @@
                             <th scope="col">Sexo</th>
                             <th scope="col">Sector</th>
                             <th scope="col">Estructuras</th>
-                            <th scope="col">Tipo</th>
+                            <th scope="col">Naturaleza de la participación</th>
                         </tr>
                     </thead>
                     <tbody>

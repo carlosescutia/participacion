@@ -20,7 +20,7 @@
                                 <input type="radio" name="cve_tipo" value="1" autocomplete="off" <?= ($cve_tipo == '1') ? 'checked' : '' ?>> Consejeros
                             </label>
                             <label class="btn btn-secondary btn-sm <?= ($cve_tipo == '2') ? 'active' : '' ?>">
-                                <input type="radio" name="cve_tipo" value="2" autocomplete="off" <?= ($cve_tipo == '2') ? 'checked' : '' ?>> Colaboradores
+                                <input type="radio" name="cve_tipo" value="2" autocomplete="off" <?= ($cve_tipo == '2') ? 'checked' : '' ?>> Voluntarios
                             </label>
                         </div>
                         <div class="btn-group" role="group">
@@ -56,7 +56,7 @@
                         <input id="filtro_actores" class="form-control form-control-sm" type="text" placeholder="Filtrar actores">
                     </div>
                     <div class="col-sm-1 align-self-center">
-                        <p class="small"><strong>Tipo</strong></p>
+                        <p class="small"><strong>Naturaleza de la participación</strong></p>
                     </div>
                     <div class="col-sm-2 align-self-center">
                         <p class="small"><strong>Sector</strong></p>
