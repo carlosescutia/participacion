@@ -590,4 +590,28 @@ class Reportes extends CI_Controller {
         }
     }
 
+    public function estadistico_actores_01()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+
+            $this->load->model('actores_model');
+
+            $data['estadistico_actores'] = $this->actores_model->get_estadistico_actores_01($dependencia, $area, $cve_rol);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('reportes/estadistico_actores_01', $data);
+            $this->load->view('templates/footer');
+        } else {
+            redirect('inicio/iniciar_sesion');
+        }
+    }
+
 }

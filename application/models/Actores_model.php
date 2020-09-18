@@ -139,4 +139,17 @@ class Actores_model extends CI_Model {
         return $query->row_array();
     }
 
+    public function get_estadistico_actores_01($dependencia, $area, $cve_rol) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm' or $cve_rol == 'cns') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select e.nom_eje, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor left join consejos c on ca.cve_consejo = c.cve_consejo where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 1 and c.cve_eje = e.cve_eje and c.dependencia LIKE ? and c.area LIKE ?) as num_academico, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor left join consejos c on ca.cve_consejo = c.cve_consejo where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 2 and c.cve_eje = e.cve_eje and c.dependencia LIKE ? and c.area LIKE ?) as num_empresarial, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor left join consejos c on ca.cve_consejo = c.cve_consejo where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 3 and c.cve_eje = e.cve_eje and c.dependencia LIKE ? and c.area LIKE ?) as num_organismo_social, (select count(*) from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor left join consejos c on ca.cve_consejo = c.cve_consejo where ca.status = 1 and ca.cve_consejo = c.cve_consejo and a.cve_sector = 4 and c.cve_eje = e.cve_eje and c.dependencia LIKE ? and c.area LIKE ?) as num_ciudadano_independiente from ejes e order by e.cve_eje";
+        $query = $this->db->query($sql, array($dependencia, $area, $dependencia, $area, $dependencia, $area, $dependencia, $area));
+        return $query->result_array();
+    }
+
 }
