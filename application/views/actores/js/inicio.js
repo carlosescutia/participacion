@@ -47,7 +47,7 @@
 
         $('#cve_ambito').change(function(){ 
             var cve_ambito=$(this).val();
-            var url=window.location.origin+"/participacion/sectores/get_sectores_ambito/"+cve_ambito;
+            var url=window.location.origin+"/sectores/get_sectores_ambito/"+cve_ambito;
             $.ajax({
                 url : url,
                 method : "POST",
