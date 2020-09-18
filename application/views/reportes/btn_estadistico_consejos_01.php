@@ -3,7 +3,7 @@
 		<div class="card-body">
 			<div class="row">
 				<div class="col-md-8">
-					<h3>Estadístico de consejos por calidad de participación</h3>
+					<h3>Estadístico de consejos por eje</h3>
 					<p>Totales por calidad de participación y ejes</p>
 				</div>
 				<div class="col-md-4">

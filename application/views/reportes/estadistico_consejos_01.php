@@ -3,7 +3,7 @@
         <div class="col-sm-12 alternate-color">
             <div class="row">
                 <div class="col-sm-8 text-left">
-                    <h1 class="h2">Estadístico de consejos por calidad de participación</h1>
+                    <h1 class="h2">Estadístico de consejos por eje</h1>
                 </div>
                 <div class="col-sm-4 text-right">
 					<a href="javascript:window.print()" class="btn btn-primary">Generar pdf</a>
@@ -23,7 +23,7 @@
                     </tr>
                     <tr>
                         <th scope="col">Eje</th>
-                        <th scope="col">Ciudadanos</th>
+                        <th scope="col">Actores sociales</th>
                         <th scope="col">Estratégicos</th>
                         <th scope="col">Tácticos</th>
                         <th scope="col">Operativos</th>
