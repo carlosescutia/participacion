@@ -117,7 +117,7 @@ class Reportes extends CI_Controller {
                 $cve_ent = $filtros['cve_ent'];
                 $cve_mun = $filtros['cve_mun'];
                 $cve_ambito = $filtros['cve_ambito'];
-                $cve_sector = implode(',', $filtros['cve_sector']);
+                $cve_sector = empty($filtros['cve_sector']) ? '' : implode(',', $filtros['cve_sector']);
             } else {
                 $cve_ent = '';
                 $cve_mun = '';

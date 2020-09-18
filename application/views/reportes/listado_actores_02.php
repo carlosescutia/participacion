@@ -43,7 +43,7 @@
                             </div>
                             <div class="col-3">
                                 <select class="custom-select custom-select-sm" name="cve_sector[]" multiple>
-                                    <option value="0" <?= ($cve_sector == '0') ? 'selected' : '' ?>>Todos los sectores</option>
+                                    <option value="" <?= ($cve_sector == '') ? 'selected' : '' ?>>Todos los sectores</option>
                                     <?php foreach ($sectores as $sectores_item) { ?>
                                     <option value="<?= $sectores_item['cve_sector'] ?>" <?= ($cve_sector == $sectores_item['cve_sector']) ? 'selected' : '' ?>><?= $sectores_item['nom_sector'] ?></option>
                                     <?php } ?>
