@@ -182,6 +182,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="cve_ambito">Ámbito</label>
+                            <?php echo form_error('cve_ambito'); ?>
                             <select class="custom-select" name="cve_ambito" id="cve_ambito">
                                 <option value=""></option>
                                 <?php foreach ($ambitos as $ambitos_item) { ?>

@@ -6,7 +6,7 @@ class Sectores_model extends CI_Model {
     }
 
     public function get_sectores() {
-        $sql = 'select * from sectores order by cve_sector;';
+        $sql = 'select * from sectores s left join ambitos a on s.cve_ambito = a.cve_ambito order by cve_sector;';
         $query = $this->db->query($sql);
         return $query->result_array();
     }
@@ -33,6 +33,13 @@ class Sectores_model extends CI_Model {
         $this->db->where('cve_sector', $cve_sector);
         $result = $this->db->delete('sectores');
         return $result;
+    }
+
+    public function get_sectores_ambito($cve_ambito)
+    {
+        $sql = 'select * from sectores where cve_ambito = ? order by cve_sector;';
+        $query = $this->db->query($sql, $cve_ambito);
+        return $query->result_array();
     }
 
 }

@@ -20,6 +20,16 @@
                     <input type="text" class="form-control" name="nom_sector" id="nom_sector">
                 </div>
             </div>
+            <div class="form-group row">
+                <label for="cve_ambito" class="col-sm-2 col-form-label">Ámbito</label>
+                <div class="col-sm-10">
+                    <select class="custom-select" name="cve_ambito" id="cve_ambito">
+                        <?php foreach ($ambitos as $ambitos_item) { ?>
+                        <option value="<?= $ambitos_item['cve_ambito'] ?>" ><?= $ambitos_item['nom_ambito'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
         </div>
 
     </form>

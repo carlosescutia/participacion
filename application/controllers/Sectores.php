@@ -6,6 +6,7 @@ class Sectores extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('sectores_model');
+        $this->load->model('ambitos_model');
     }
 
     public function lista()
@@ -48,6 +49,7 @@ class Sectores extends CI_Controller {
                 redirect('inicio');
             }
 
+            $data['ambitos'] = $this->ambitos_model->get_ambitos();
             $data['sectores'] = $this->sectores_model->get_sector($cve_sector);
 
             $this->load->view('templates/header', $data);
@@ -73,6 +75,8 @@ class Sectores extends CI_Controller {
                 redirect('inicio');
             }
 
+            $data['ambitos'] = $this->ambitos_model->get_ambitos();
+
             $this->load->view('templates/header', $data);
             $this->load->view('catalogos/sectores/nuevo', $data);
             $this->load->view('templates/footer');
@@ -88,7 +92,8 @@ class Sectores extends CI_Controller {
             $sectores = $this->input->post();
             if ($sectores) {
                 $data = array(
-                    'nom_sector' => empty($sectores['nom_sector']) ? null : $sectores['nom_sector']
+                    'nom_sector' => empty($sectores['nom_sector']) ? null : $sectores['nom_sector'],
+                    'cve_ambito' => empty($sectores['cve_ambito']) ? null : $sectores['cve_ambito']
                 );
                 $this->sectores_model->guardar($data, $cve_sector);
             }
@@ -111,7 +116,10 @@ class Sectores extends CI_Controller {
         }
     }
 
+    public function get_sectores_ambito($cve_ambito)
+    {
+        $data = $this->sectores_model->get_sectores_ambito($cve_ambito);
+        echo json_encode($data);
+    }
+
 }
-
-
-
