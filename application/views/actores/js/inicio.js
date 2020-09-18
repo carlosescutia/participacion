@@ -45,6 +45,30 @@
 
         $('#cve_tipo').change();
 
+        $('#cve_ambito').change(function(){ 
+            var cve_ambito=$(this).val();
+            var url=window.location.origin+"/participacion/sectores/get_sectores_ambito/"+cve_ambito;
+            $.ajax({
+                url : url,
+                method : "POST",
+                async : true,
+                dataType : 'json',
+                success: function(data){
+
+                    var html = '<option value=""></option>';
+                    var i;
+                    for(i=0; i<data.length; i++){
+                        html += '<option value='+data[i].cve_sector+'>'+data[i].nom_sector+'</option>';
+                    }
+                    $('#cve_sector').html(html);
+
+                },
+                error: function(e){
+                }
+            });
+            return false;
+        }); 
+
     });
 
 </script>

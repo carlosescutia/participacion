@@ -175,6 +175,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="cve_ambito">Ámbito</label>
+                            <?php echo form_error('cve_ambito'); ?>
                             <select class="custom-select" name="cve_ambito" id="cve_ambito">
                                 <option value="" <?php echo set_select('cve_ambito', '', TRUE); ?> ></option>
                                 <?php foreach ($ambitos as $ambitos_item) { ?>
@@ -187,9 +188,6 @@
                             <?php echo form_error('cve_sector'); ?>
                             <select class="custom-select" name="cve_sector" id="cve_sector">
                                 <option value="" <?php echo set_select('cve_sector', '', TRUE); ?> ></option>
-                                <?php foreach ($sectores as $sectores_item) { ?>
-                                <option value="<?= $sectores_item['cve_sector'] ?>" <?php echo set_select('cve_sector', $sectores_item['cve_sector']); ?> ><?= $sectores_item['nom_sector'] ?></option>
-                                <?php } ?>
                             </select>
                         </div>
                     </div>

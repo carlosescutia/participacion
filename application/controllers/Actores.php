@@ -78,7 +78,8 @@ class Actores extends CI_Controller {
             $data['entidades'] = $this->entidades_model->get_entidades();
             $data['tipo_actores'] = $this->tipo_actores_model->get_tipo_actores();
             $data['ambitos'] = $this->ambitos_model->get_ambitos();
-            $data['sectores'] = $this->sectores_model->get_sectores();
+            $cve_ambito = $data['actores']['cve_ambito'];
+            $data['sectores'] = $this->sectores_model->get_sectores_ambito($cve_ambito);
             $data['consejos_actores'] = $this->consejos_actores_model->get_consejos_actor($cve_actor);
             $data['perfiles'] = $this->perfiles_model->get_perfiles();
 
@@ -99,6 +100,7 @@ class Actores extends CI_Controller {
             $this->form_validation->set_rules('apellido_ma','apellido materno','required',array('required' => '* requerido',));
             $this->form_validation->set_rules('sexo','sexo','required',array('required' => '*req',));
             $this->form_validation->set_rules('cve_tipo','tipo de actor','required',array('required' => '* requerido',));
+            $this->form_validation->set_rules('cve_ambito','ambito','required',array('required' => '* requerido',));
             $this->form_validation->set_rules('cve_sector','sector','required',array('required' => '* requerido',));
 
             $actores = $this->input->post();
@@ -162,7 +164,10 @@ class Actores extends CI_Controller {
             $data['entidades'] = $this->entidades_model->get_entidades();
             $data['tipo_actores'] = $this->tipo_actores_model->get_tipo_actores();
             $data['ambitos'] = $this->ambitos_model->get_ambitos();
-            $data['sectores'] = $this->sectores_model->get_sectores();
+            if (isset($data['actores']['cve_ambito'])) {
+                $cve_ambito = $data['actores']['cve_ambito'];
+                $data['sectores'] = $this->sectores_model->get_sectores_ambito($cve_ambito);
+            } 
             $data['perfiles'] = $this->perfiles_model->get_perfiles();
 
             if (isset($data['actores']['cve_actor']))

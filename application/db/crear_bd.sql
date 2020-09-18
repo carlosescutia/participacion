@@ -71,7 +71,8 @@ CREATE TABLE municipios (
 DROP TABLE IF EXISTS sectores;
 CREATE TABLE sectores (
     cve_sector serial,
-    nom_sector text
+    nom_sector text,
+    cve_ambito integer
 );
 
 DROP TABLE IF EXISTS tipo_actores;

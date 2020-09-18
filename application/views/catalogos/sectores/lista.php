@@ -22,9 +22,11 @@
                         <div class="col-sm-3 align-self-center">
                             <p class="small"><strong>Clave</strong></p>
                         </div>
-                        <div class="col-sm-8 align-self-center">
+                        <div class="col-sm-6 align-self-center">
                             <p class="small"><strong>Nombre</strong></p>
                         </div>
+                        <div class="col-sm-2 align-self-center">
+                            <p class="small"><strong>Ámbito</strong></p>
                     </div>
                 </div>
             </div>
@@ -35,8 +37,11 @@
                         <div class="col-sm-3 align-self-center">
                             <p><?= $sectores_item['cve_sector'] ?></p>
                         </div>
-                        <div class="col-sm-8 align-self-center">
+                        <div class="col-sm-6 align-self-center">
                             <a href="<?=base_url()?>sectores/detalle/<?=$sectores_item['cve_sector']?>"><?= $sectores_item['nom_sector'] ?></a>
+                        </div>
+                        <div class="col-sm-2 align-self-center">
+                            <p><?= $sectores_item['nom_ambito'] ?></p>
                         </div>
                         <div class="col-sm-1">
                             <a style="color: #f00" href="<?= base_url() ?>sectores/eliminar/<?= $sectores_item['cve_sector'] ?>/"><span data-feather="x-circle"></span></a>
