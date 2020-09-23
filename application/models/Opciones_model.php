@@ -6,7 +6,7 @@ class Opciones_model extends CI_Model {
     }
 
     public function get_opciones() {
-        $sql = 'select * from opciones order by cve_opcion;';
+        $sql = 'select * from opciones order by cod_opcion;';
         $query = $this->db->query($sql);
         return $query->result_array();
     }

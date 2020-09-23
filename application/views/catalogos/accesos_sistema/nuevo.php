@@ -5,7 +5,7 @@
         <div class="col-md-12 mb-3 pb-2 pt-3 border-bottom">
             <div class="row">
                 <div class="col-md-10">
-                    <h1 class="h2">Nueva opción</h1>
+                    <h1 class="h2">Nuevo acceso al sistema</h1>
                 </div>
                 <div class="col-md-2 text-right">
                     <button type="submit" class="btn btn-primary">Guardar</button>
@@ -15,15 +15,23 @@
 
         <div class="col-md-12">
             <div class="form-group row">
-                <label for="cod_opcion" class="col-sm-2 col-form-label">Código</label>
+                <label for="cod_opcion" class="col-sm-2 col-form-label">Opción</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="cod_opcion" id="cod_opcion">
+                    <select class="custom-select" name="cod_opcion" id="cod_opcion">
+                        <?php foreach ($opciones as $opciones_item) { ?>
+                        <option value="<?= $opciones_item['cod_opcion'] ?>" ><?= $opciones_item['cod_opcion'] ?> <?= $opciones_item['nom_opcion'] ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="cve_rol" class="col-sm-2 col-form-label">Nombre</label>
+                <label for="cve_rol" class="col-sm-2 col-form-label">Rol</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="cve_rol" id="cve_rol">
+                    <select class="custom-select" name="cve_rol" id="cve_rol">
+                        <?php foreach ($roles as $roles_item) { ?>
+                        <option value="<?= $roles_item['cve_rol'] ?>" ><?= $roles_item['nom_rol'] ?></option>
+                        <?php } ?>
+                    </select>
                 </div>
             </div>
         </div>
