@@ -6,7 +6,7 @@ class Accesos_sistema_model extends CI_Model {
     }
 
     public function get_accesos_sistema() {
-        $sql = 'select acs.*, o.nom_opcion from accesos_sistema acs left join opciones o on acs.cod_opcion = o.cod_opcion order by cve_acceso;';
+        $sql = 'select acs.*, o.nom_opcion, r.nom_rol from accesos_sistema acs left join opciones o on acs.cod_opcion = o.cod_opcion left join roles r on acs.cve_rol = r.cve_rol order by cve_rol, cve_opcion;';
         $query = $this->db->query($sql);
         return $query->result_array();
     }

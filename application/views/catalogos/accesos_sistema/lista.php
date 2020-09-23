@@ -42,7 +42,7 @@
                             <p><?= $accesos_sistema_item['cod_opcion'] ?> <?= $accesos_sistema_item['nom_opcion'] ?></p>
                         </div>
                         <div class="col-sm-5 align-self-center">
-                            <p><?= $accesos_sistema_item['cve_rol'] ?></p>
+                            <p><?= $accesos_sistema_item['nom_rol'] ?></p>
                         </div>
                         <div class="col-sm-1">
                             <a style="color: #f00" href="<?= base_url() ?>accesos_sistema/eliminar/<?= $accesos_sistema_item['cve_acceso'] ?>/"><span data-feather="x-circle"></span></a>
