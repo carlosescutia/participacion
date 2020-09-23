@@ -305,3 +305,17 @@ CREATE TABLE calidad_participacion (
     nom_calidad text
 );
 
+DROP TABLE IF EXISTS opciones;
+CREATE TABLE opciones (
+    cve_opcion serial,
+    cod_opcion text,
+    nom_opcion text
+);
+
+DROP TABLE IF EXISTS accesos_sistema;
+CREATE TABLE accesos_sistema (
+    cve_acceso serial,
+    cod_opcion text,
+    cve_rol text
+);
+
