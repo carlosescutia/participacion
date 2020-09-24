@@ -18,6 +18,7 @@ class Catalogos extends CI_Controller {
         $this->load->model('sectores_model');
         $this->load->model('consejos_actores_model');
         $this->load->model('perfiles_model');
+        $this->load->model('accesos_sistema_model');
 
     }
 
@@ -32,6 +33,7 @@ class Catalogos extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
             if ($cve_rol != 'adm') {
                 redirect('inicio');
             }

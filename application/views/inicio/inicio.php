@@ -7,16 +7,16 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-12">
-                        <?php include "datos_calendario_sesiones.php"; ?>
+                        <?php if (in_array('01001', $accesos_sistema_rol)) include "datos_calendario_sesiones.php"; ?>
                     </div>
                 </div>
                 <hr />
                 <div class="row">
                     <div class="col-md-6">
-                        <?php include "datos_actores.php"; ?>
+                        <?php if (in_array('01002', $accesos_sistema_rol)) include "datos_actores.php"; ?>
                     </div>
                     <div class="col-md-6">
-                        <?php include "datos_consejos.php"; ?>
+                        <?php if (in_array('01002', $accesos_sistema_rol)) include "datos_consejos.php"; ?>
                     </div>
                 </div>
             </div>

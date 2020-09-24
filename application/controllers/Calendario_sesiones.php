@@ -6,6 +6,7 @@ class Calendario_sesiones extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('calendario_sesiones_model');
+        $this->load->model('accesos_sistema_model');
 
     }
 

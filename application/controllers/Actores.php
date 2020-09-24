@@ -18,6 +18,7 @@ class Actores extends CI_Controller {
         $this->load->model('sectores_model');
         $this->load->model('consejos_actores_model');
         $this->load->model('perfiles_model');
+        $this->load->model('accesos_sistema_model');
 
     }
 
@@ -32,6 +33,7 @@ class Actores extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $filtros = $this->input->post();
             if ($filtros) {
@@ -72,6 +74,7 @@ class Actores extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $data['actores'] = $this->actores_model->get_actor_dependencia($dependencia, $area, $cve_actor, $cve_rol);
             $data['municipios'] = $this->municipios_model->get_municipios();
@@ -159,6 +162,7 @@ class Actores extends CI_Controller {
             $data['error_adj_actores'] = $this->session->flashdata('error_adj_actores');
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $data['municipios'] = $this->municipios_model->get_municipios();
             $data['entidades'] = $this->entidades_model->get_entidades();
