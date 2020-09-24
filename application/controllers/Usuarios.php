@@ -5,6 +5,7 @@ class Usuarios extends CI_Controller {
         $this->load->helper('url');
         $this->load->model('usuarios_model');
         $this->load->model('roles_model');
+        $this->load->model('accesos_sistema_model');
     }
 
     public function lista()
@@ -18,6 +19,7 @@ class Usuarios extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
             if ($cve_rol != 'adm') {
                 redirect('inicio');
             }
@@ -43,6 +45,7 @@ class Usuarios extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
             if ($cve_rol != 'adm') {
                 redirect('inicio');
             }
@@ -69,6 +72,7 @@ class Usuarios extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
             if ($cve_rol != 'adm') {
                 redirect('inicio');
             }

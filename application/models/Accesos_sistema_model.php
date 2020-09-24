@@ -17,6 +17,12 @@ class Accesos_sistema_model extends CI_Model {
         return $query->row_array();
     }
 
+    public function get_accesos_sistema_rol($cve_rol) {
+        $sql = "select string_agg(cod_opcion::text, ',') as accesos from accesos_sistema where cve_rol = ?";
+        $query = $this->db->query($sql, array($cve_rol));
+        return $query->row_array();
+    }
+
     public function get_acceso_opcion_rol($cod_opcion, $cve_rol) {
         $sql = 'select * from accesos_sistema where cod_opcion = ? and $cve_rol = ?;';
         $query = $this->db->query($sql, array($cod_opcion, $cve_rol));

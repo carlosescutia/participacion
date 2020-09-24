@@ -14,6 +14,7 @@ class Proyectos_consejo extends CI_Controller {
         $this->load->model('atingencias_model');
         $this->load->model('objetivo_plangto_model');
         $this->load->model('planteamientos_model');
+        $this->load->model('accesos_sistema_model');
 
     }
 
@@ -28,6 +29,7 @@ class Proyectos_consejo extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $data['proyecto_consejo'] = $this->proyectos_consejo_model->get_proyecto_consejo($cve_proyecto);
             $data['preparaciones'] = $this->preparaciones_model->get_preparaciones();
@@ -95,6 +97,7 @@ class Proyectos_consejo extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $data['preparaciones'] = $this->preparaciones_model->get_preparaciones();
             $data['plazos'] = $this->plazos_model->get_plazos();

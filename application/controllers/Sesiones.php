@@ -16,6 +16,7 @@ class Sesiones extends CI_Controller {
         $this->load->model('modalidades_sesion_model');
         $this->load->model('asistencia_sesion_model');
         $this->load->model('grados_participacion_model');
+        $this->load->model('accesos_sistema_model');
     }
 
     public function detalle($cve_sesion, $cve_consejo)
@@ -33,6 +34,7 @@ class Sesiones extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $data['sesiones'] = $this->sesiones_model->get_sesion_consejo($cve_sesion, $cve_consejo);
             $data['acuerdos_sesion'] = $this->acuerdos_sesion_model->get_acuerdos_sesion($cve_sesion, $cve_consejo);
@@ -108,6 +110,7 @@ class Sesiones extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $data['acuerdos_sesion'] = $this->acuerdos_sesion_model->get_acuerdos_sesion($cve_sesion, $cve_consejo);
             $data['status_acuerdos_sesion'] = $this->status_acuerdos_sesion_model->get_status_acuerdos_sesion();

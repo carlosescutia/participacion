@@ -12,6 +12,7 @@ class Acuerdos_sesion extends CI_Controller {
         $this->load->model('acuerdos_sesion_model');
         $this->load->model('status_acuerdos_sesion_model');
         $this->load->model('accesos_model');
+        $this->load->model('accesos_sistema_model');
     }
 
     public function detalle($cve_acuerdo, $cve_sesion, $cve_consejo)
@@ -26,6 +27,7 @@ class Acuerdos_sesion extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $data['acuerdos_sesion'] = $this->acuerdos_sesion_model->get_acuerdo($cve_acuerdo, $cve_sesion, $cve_consejo);
             $data['status_acuerdos_sesion'] = $this->status_acuerdos_sesion_model->get_status_acuerdos_sesion();
@@ -84,6 +86,7 @@ class Acuerdos_sesion extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $data['status_acuerdos_sesion'] = $this->status_acuerdos_sesion_model->get_status_acuerdos_sesion();
             $data['accesos'] = $this->accesos_model->get_accesos();

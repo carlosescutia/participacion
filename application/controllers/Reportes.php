@@ -18,6 +18,7 @@ class Reportes extends CI_Controller {
         $this->load->model('ambitos_model');
         $this->load->model('sectores_model');
         $this->load->model('tipo_consejos_model');
+        $this->load->model('accesos_sistema_model');
 
     }
 
@@ -31,12 +32,9 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
-            if ($cve_rol == 'cns') {
-                $this->load->view('templates/header_consulta', $data);
-            } else {
-                $this->load->view('templates/header', $data);
-            }
+            $this->load->view('templates/header', $data);
             $this->load->view('reportes/lista', $data);
             $this->load->view('templates/footer');
         } else {
@@ -55,6 +53,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $data['actores'] = $this->actores_model->get_reporte_actores_01($dependencia, $area, $cve_rol);
 
@@ -78,6 +77,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $this->load->dbutil();
             $this->load->helper('file');
@@ -111,6 +111,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $filtros = $this->input->post();
             if ($filtros) {
@@ -138,11 +139,7 @@ class Reportes extends CI_Controller {
             $data['actores'] = $this->actores_model->get_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector);
             $data['totales_actores'] = $this->actores_model->get_totales_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector);
 
-            if ($cve_rol == 'cns') {
-                $this->load->view('templates/header_consulta', $data);
-            } else {
-                $this->load->view('templates/header', $data);
-            }
+            $this->load->view('templates/header', $data);
             $this->load->view('reportes/listado_actores_02', $data);
             $this->load->view('templates/footer');
         } else {
@@ -161,6 +158,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $filtros = $this->input->post();
             if ($filtros) {
@@ -227,6 +225,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $data['consejos'] = $this->consejos_model->get_reporte_consejos_01($dependencia, $area, $cve_rol);
 
@@ -250,6 +249,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $this->load->dbutil();
             $this->load->helper('file');
@@ -283,6 +283,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $filtros = $this->input->post();
             if ($filtros) {
@@ -326,6 +327,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $this->load->dbutil();
             $this->load->helper('file');
@@ -360,6 +362,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $filtros = $this->input->post();
             if ($filtros) {
@@ -404,6 +407,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $this->load->dbutil();
             $this->load->helper('file');
@@ -437,6 +441,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $this->load->model('acuerdos_sesion_model');
             $this->load->model('sesiones_model');
@@ -462,6 +467,7 @@ class Reportes extends CI_Controller {
             $data['usuario_dependencia'] = $dependencia;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
             
             $this->load->dbutil();
             $this->load->helper('file');
@@ -492,6 +498,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $this->load->model('sesiones_model');
             $this->load->model('acuerdos_sesion_model');
@@ -523,6 +530,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $this->load->model('acuerdos_sesion_model');
 
@@ -549,6 +557,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $this->load->model('proyectos_consejo_model');
 
@@ -577,6 +586,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $this->load->model('consejos_model');
 
@@ -601,6 +611,7 @@ class Reportes extends CI_Controller {
             $data['usuario_area'] = $area;
             $cve_rol = $this->session->userdata('cve_rol');
             $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
             $this->load->model('actores_model');
 

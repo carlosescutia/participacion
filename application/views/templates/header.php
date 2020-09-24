@@ -46,11 +46,19 @@
                     <h5 class="my-0 mr-md-auto font-weight-normal text-white">Sistema de Participación y Colaboración Social</h5>
                     <hr class="mb-0 pb-0" />
                     <ul class="navbar-nav mr-auto">
+                        <?php if (in_array('01', $accesos_sistema_rol)) { ?>
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>inicio">Inicio</a></li>
+                        <?php } ?>
+                        <?php if (in_array('02', $accesos_sistema_rol)) { ?>
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>actores/lista">Actores</a></li>
+                        <?php } ?>
+                        <?php if (in_array('03', $accesos_sistema_rol)) { ?>
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>consejos/lista">Consejos</a></li>
+                        <?php } ?>
+                        <?php if (in_array('04', $accesos_sistema_rol)) { ?>
                         <li class="nav-item"><a class="nav-link" href="<?=base_url()?>reportes/lista">Reportes</a></li>
-                        <?php if ($cve_rol == 'adm' ) { ?>
+                        <?php } ?>
+                        <?php if (in_array('05', $accesos_sistema_rol)) { ?>
                         <li class="nav-item"><a class="nav-link ml-5" href="<?=base_url()?>catalogos/lista">Catálogos</a></li>
                         <?php } ?>
                     </ul>
