@@ -33,7 +33,7 @@
                             </a>
                             <?php } ?>
                         </td>
-                        <?php if ($cve_rol == 'usr') { ?>
+                        <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                         <td>
                             <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/consejos_juridico">
                                 <label class="btn btn-primary btn-sm" for="arch-juridico">
@@ -65,7 +65,7 @@
                             </a>
                             <?php } ?>
                         </td>
-                        <?php if ($cve_rol == 'usr') { ?>
+                        <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                         <td>
                             <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/consejos_normativa">
                                 <label class="btn btn-primary btn-sm" for="arch-normativa">
@@ -97,7 +97,7 @@
                             </a>
                             <?php } ?>
                         </td>
-                        <?php if ($cve_rol == 'usr') { ?>
+                        <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                         <td>
                             <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/consejos_extras">
                                 <label class="btn btn-primary btn-sm" for="arch-extras">

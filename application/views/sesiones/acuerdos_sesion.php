@@ -46,7 +46,7 @@
                         <td><?= $acuerdos_sesion_item['solicitud_iplaneg'] ?></td>
                         <td><?= substr($acuerdos_sesion_item['nom_acceso'],0,4) ?></td>
                         <td><span class="semaforo <?=$color?>"></span> <?= $acuerdos_sesion_item['nom_status'] ?></td>
-                        <?php if ($cve_rol == 'usr') { ?>
+                        <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                             <td><a style="color: #f00" href="<?= base_url() ?>acuerdos_sesion/eliminar_registro/<?= $acuerdos_sesion_item['cve_acuerdo'] ?>/<?= $acuerdos_sesion_item['cve_sesion'] ?>/<?= $acuerdos_sesion_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a>
                             </td>
                         <?php } ?>
@@ -59,7 +59,7 @@
     <div class="card-footer">
         <div class="row">
             <div class="col-md-10">
-                <?php if ($cve_rol == 'usr') { ?>
+                <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                 <form method="post" action="<?= base_url() ?>acuerdos_sesion/guardar/<?=$sesiones['cve_sesion']?>/<?=$sesiones['cve_consejo']?>">
                     <div class="form-row">
                         <div class="col-md-1">

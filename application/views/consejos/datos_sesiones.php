@@ -25,7 +25,7 @@
             </table>
         </div>
     </div>
-    <?php if ($cve_rol == 'usr') { ?>
+    <?php if (in_array('99', $accesos_sistema_rol)) { ?>
     <div class="card-footer">
         <form method="post" action="<?= base_url() ?>sesiones/guardar/<?= $consejos['cve_consejo'] ?>">
                 <button type="submit" class="btn btn-primary">Nueva sesión</button>
