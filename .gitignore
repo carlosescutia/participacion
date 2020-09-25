@@ -10,6 +10,7 @@ application/logs/*
 
 adj_sesiones/*
 adj_actores/*
+adj_consejos/*
 
 composer.lock
 

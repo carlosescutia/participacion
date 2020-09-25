@@ -4,18 +4,18 @@
             <div class="col-md-10">
                 <strong>Asistencia</strong>
             </div>
+            <?php if (in_array('99', $accesos_sistema_rol)) { ?>
             <div class="col-md-2">
-                <?php if ($cve_rol == 'usr') { ?>
-                    <?php if ( ! $asistencia_sesion) { ?>
-                        <form method="post" action="<?= base_url() ?>asistencia_sesion/generar_lista/<?= $sesiones['cve_sesion'] ?>/<?= $sesiones['cve_consejo'] ?>">
-                            <button type="submit" class="btn btn-primary">Generar lista</button>
-                        </form>
-                    <?php } ?>
+                <?php if ( ! $asistencia_sesion) { ?>
+                    <form method="post" action="<?= base_url() ?>asistencia_sesion/generar_lista/<?= $sesiones['cve_sesion'] ?>/<?= $sesiones['cve_consejo'] ?>">
+                        <button type="submit" class="btn btn-primary">Generar lista</button>
+                    </form>
                 <?php } ?>
             </div>
+            <?php } ?>
         </div>
     </div>
-    <?php if ($cve_rol == 'usr') { ?>
+    <?php if (in_array('99', $accesos_sistema_rol)) { ?>
     <form method="post" action="<?= base_url() ?>asistencia_sesion/guardar_lista/<?= $sesiones['cve_sesion'] ?>/<?= $sesiones['cve_consejo'] ?>">
     <?php } ?>
     <div class="card-body p-0">
@@ -39,7 +39,7 @@
                         <td><?= $asistencia_sesion_item['nom_actor'] ?></td>
                         <td><?= $asistencia_sesion_item['organizacion'] ?></td>
                         <td><?= $asistencia_sesion_item['nom_sector'] ?></td>
-                        <?php if ($cve_rol == 'usr') { ?>
+                        <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                             <td>
                                 <select class="custom-select" name="a_<?= $asistencia_sesion_item['cve_asistencia'] ?>" id="a_<?= $asistencia_sesion_item['cve_asistencia'] ?>">
                                     <option value="s" <?= ($asistencia_sesion_item['asistencia'] == 's') ? 'selected' : '' ?> >Si</option>
@@ -64,7 +64,7 @@
             </table>
         </div>
     </div>
-    <?php if ($cve_rol == 'usr') { ?>
+    <?php if (in_array('99', $accesos_sistema_rol)) { ?>
     <div class="card-footer text-right">
         <button type="submit" class="btn btn-primary">Guardar</button>
     </div>

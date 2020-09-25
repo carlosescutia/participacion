@@ -23,7 +23,7 @@
                         <td><?= $consejos_actores_item['nom_cargo'] ?></td>
                         <td><?= date('d/m/y', strtotime($consejos_actores_item['fecha_inicio'])) ?> a <?= date('d/m/y', strtotime($consejos_actores_item['fecha_fin'])) ?></td>
                         <td><?= $consejos_actores_item['nom_status'] ?></td>
-                        <?php if ($cve_rol == 'usr') { ?>
+                        <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                         <td><a style="color: #f00" href="<?= base_url() ?>consejos_actores/eliminar_registro/<?= $consejos_actores_item['cve_consejo'] ?>/<?= $consejos_actores_item['cve_actor'] ?>/<?= $consejos_actores_item['cve_cargo'] ?>/<?= $consejos_actores_item['fecha_inicio'] ?>/<?= $consejos_actores_item['fecha_fin'] ?>/<?= $consejos_actores_item['status'] ?>"><span data-feather="x-circle"></span></a>
                         <?php } ?>
                     </tr>
@@ -32,7 +32,7 @@
             </table>
         </div>
     </div>
-    <?php if ($cve_rol == 'usr') { ?>
+    <?php if (in_array('99', $accesos_sistema_rol)) { ?>
     <div class="card-footer">
         <form method="post" action="<?= base_url() ?>consejos_actores/guardar">
             <div class="row">

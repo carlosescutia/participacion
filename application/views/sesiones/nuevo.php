@@ -10,9 +10,11 @@
                     <p class="text-danger"><?php echo $error_sesion?></p>
                     <?php endif ?>
                 </div>
+                <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
+                <?php } ?>
             </div>
         </div>
 

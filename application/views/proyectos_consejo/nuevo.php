@@ -6,11 +6,11 @@
                 <div class="col-md-10">
                     <h1 class="h2">Nuevo proyecto o iniciativa</h1>
                 </div>
+                <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                 <div class="col-md-2 text-right">
-                    <?php if ($cve_rol == 'usr') { ?>
                     <button type="submit" class="btn btn-primary">Guardar</button>
-                    <?php } ?>
                 </div>
+                <?php } ?>
             </div>
         </div>
 

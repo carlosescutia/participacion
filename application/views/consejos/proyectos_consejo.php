@@ -43,7 +43,7 @@
                     <div class="col-md-2">
                         <p><?= $proyectos_consejo_item['nom_atingencia'] ?></p>
                     </div>
-                    <?php if ($cve_rol == 'usr') { ?>
+                    <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                         <div class="col-md-1">
                             <a style="color: #f00" href="<?= base_url() ?>proyectos_consejo/eliminar_registro/<?= $proyectos_consejo_item['cve_proyecto'] ?>/<?= $proyectos_consejo_item['cve_consejo'] ?>"><span data-feather="x-circle"></span></a>
                         </div>
@@ -52,7 +52,7 @@
             <?php } ?>
         </div>
     </div>
-    <?php if ($cve_rol == 'usr') { ?>
+    <?php if (in_array('99', $accesos_sistema_rol)) { ?>
     <div class="card-footer">
         <form method="post" action="<?= base_url() ?>proyectos_consejo/guardar/<?= $consejos['cve_consejo'] ?>">
             <button type="submit" class="btn btn-primary">Nuevo proyecto</button>

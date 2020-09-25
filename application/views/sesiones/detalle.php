@@ -11,11 +11,11 @@
                 <p class="text-danger"><?php echo $error_sesion?></p>
                 <?php endif ?>
             </div>
+            <?php if (in_array('99', $accesos_sistema_rol)) { ?>
             <div class="col-md-2">
-                <?php if ($cve_rol == 'usr') { ?>
                 <button type="submit" class="btn btn-primary">Guardar</button>
-                <?php } ?>
             </div>
+            <?php } ?>
         </div>
     </div>
 

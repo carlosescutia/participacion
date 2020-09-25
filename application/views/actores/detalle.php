@@ -5,11 +5,11 @@
                 <div class="col-md-10">
                     <h1 class="h2">Datos del actor</h1>
                 </div>
+                <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                 <div class="col-md-2">
-                    <?php if ($cve_rol == 'usr') { ?>
                     <button type="submit" class="btn btn-primary">Guardar</button>
-                    <?php } ?>
                 </div>
+                <?php } ?>
             </div>
         </div>
 
@@ -368,7 +368,7 @@
                                     </td>
 
                                 </tr>
-                                <?php if ($cve_rol == 'usr') { ?>
+                                <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                                 <tr class="text-center">
                                     <td>
                                         <form method="post" enctype="multipart/form-data" action="<?= base_url() ?>archivos/actores_adj1">

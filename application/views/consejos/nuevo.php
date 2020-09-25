@@ -126,9 +126,11 @@
                     <input type="hidden" name="area" value="<?= $usuario_area; ?>">
 
                 </div>
+                <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
+                <?php } ?>
             </form>
         </div>
     </div>

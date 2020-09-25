@@ -33,7 +33,7 @@
                     <div class="col-md-2">
                         <p><?= $calendario_sesiones_item['hora'] ?></p>
                     </div>
-                    <?php if ($cve_rol == 'usr') { ?>
+                    <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                         <div class="col-md-2">
                             <select class="custom-select" onchange="document.location.href=this.value" >
                                 <?php foreach ($status_sesiones as $status_sesiones_item) { ?>
@@ -53,7 +53,7 @@
             <?php } ?>
         </div>
     </div>
-    <?php if ($cve_rol == 'usr') { ?>
+    <?php if (in_array('99', $accesos_sistema_rol)) { ?>
     <div class="card-footer">
         <form method="post" action="<?= base_url() ?>calendario_sesiones/guardar">
             <div class="row">

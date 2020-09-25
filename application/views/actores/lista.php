@@ -34,13 +34,13 @@
                         <button class="btn btn-success btn-sm">Filtrar</button>
                     </form>
                 </div>
+                <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                 <div class="col-sm-2 text-right">
-                    <?php if ($cve_rol == 'usr') { ?>
                     <form method="post" action="<?= base_url() ?>actores/guardar">
                         <button type="submit" class="btn btn-primary">Nuevo</button>
                     </form>
-                    <?php } ?>
                 </div>
+                <?php } ?>
             </div>
         </div>
     </div>
