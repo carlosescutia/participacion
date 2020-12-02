@@ -14,6 +14,7 @@
                         <th scope="col">Actor</th>
                         <th scope="col">Organización</th>
                         <th scope="col">Sector</th>
+                        <th scope="col">Suplente</th>
                         <th scope="col">Asistencia</th>
                         <th scope="col">Participación</th>
                     </tr>
@@ -24,6 +25,7 @@
                         <td><?= $asistencia_sesion_item['nom_actor'] ?></td>
                         <td><?= $asistencia_sesion_item['organizacion'] ?></td>
                         <td><?= $asistencia_sesion_item['nom_sector'] ?></td>
+                        <td><?= $asistencia_sesion_item['nom_suplente'] ?></td>
                         <td><?= $asistencia_sesion_item['nom_asistencia'] ?></td>
                         <td><?= $asistencia_sesion_item['nom_grado_participacion'] ?></td>
                     </tr>
