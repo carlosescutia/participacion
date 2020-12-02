@@ -38,6 +38,11 @@ class Asistencia_sesion extends CI_Controller {
             $lista_asistencia = $this->input->post();
             if ($lista_asistencia) {
                 foreach ($lista_asistencia as $clave => $valor) {
+                    if ($clave[0] == 's') {
+                        $cve_asistencia = substr($clave, 2);
+                        $nom_suplente = $valor;
+                        $this->actualizar_nom_suplente($cve_asistencia, $cve_sesion, $cve_consejo, $nom_suplente);
+                    }
                     if ($clave[0] == 'a') {
                         $cve_asistencia = substr($clave, 2);
                         $asistencia = $valor;
@@ -52,6 +57,13 @@ class Asistencia_sesion extends CI_Controller {
             }
         }
         redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function actualizar_nom_suplente($cve_asistencia, $cve_sesion, $cve_consejo, $nom_suplente)
+    {
+        if ($cve_asistencia && $cve_sesion && $cve_consejo) {
+            $this->asistencia_sesion_model->actualizar_nom_suplente($cve_asistencia, $cve_sesion, $cve_consejo, $nom_suplente);
+        }
     }
 
     public function actualizar_asistencia($cve_asistencia, $cve_sesion, $cve_consejo, $asistencia)

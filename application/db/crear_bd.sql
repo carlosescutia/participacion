@@ -278,7 +278,8 @@ CREATE TABLE asistencia_sesion (
     organizacion text,
     nom_sector text,
     asistencia text,
-    cve_grado_participacion integer
+    cve_grado_participacion integer,
+    nom_suplente text
 );
 
 DROP TABLE IF EXISTS grados_participacion;
