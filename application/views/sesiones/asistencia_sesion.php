@@ -58,6 +58,7 @@
                                 </select>
                             </td>
                         <?php } else { ?>
+                            <td><?= $asistencia_sesion_item['nom_suplente'] ?></td>
                             <td><?= $asistencia_sesion_item['nom_asistencia'] ?></td>
                             <td><?= $asistencia_sesion_item['nom_grado_participacion'] ?></td>
                         <?php } ?>
