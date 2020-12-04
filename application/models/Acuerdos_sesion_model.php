@@ -74,4 +74,25 @@ class Acuerdos_sesion_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_acuerdos_periodo($dependencia, $area, $cve_rol, $fecha_ini, $fecha_fin) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select c.nom_consejo, count(*) filter (where cve_status = 1) as num_en_curso, count(*) filter (where cve_status = 2) as num_cumplido, count(*) filter (where cve_status = 3) as num_no_cumplido, count(*) filter (where cve_status = 4) as num_cancelado, count(*) as tot_acuerdos from acuerdos_sesion acs left join consejos c on acs.cve_consejo = c.cve_consejo where acs.fecha_acuerdo between ? and ? and dependencia LIKE ? and area LIKE ?";
+        
+        $parametros = array();
+        array_push($parametros, "$fecha_ini");
+        array_push($parametros, "$fecha_fin");
+        array_push($parametros, "$dependencia");
+        array_push($parametros, "$area");
+
+        $sql .= " group by c.nom_consejo order by c.nom_consejo";
+        $query = $this->db->query($sql, $parametros);
+        return $query->result_array();
+    }
+
 }
