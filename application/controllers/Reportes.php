@@ -546,6 +546,44 @@ class Reportes extends CI_Controller {
         }
     }
 
+    public function estadistico_acuerdos_02()
+    {
+        // Estadistico de acuerdos con filtros
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
+
+            $filtros = $this->input->post();
+            if ($filtros) {
+                $fecha_ini = $filtros['fecha_ini'];
+                $fecha_fin = $filtros['fecha_fin'];
+            } else {
+                $fecha_ini = date('Y-m-01', time());
+                $fecha_fin = date('Y-m-t', time());
+			}
+            $data['fecha_ini'] = $fecha_ini;
+            $data['fecha_fin'] = $fecha_fin;
+
+            $this->load->model('acuerdos_sesion_model');
+
+            $data['acuerdos_periodo'] = $this->acuerdos_sesion_model->get_acuerdos_periodo($dependencia, $area, $cve_rol, $fecha_ini, $fecha_fin);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('reportes/estadistico_acuerdos_02', $data);
+            $this->load->view('templates/footer');
+        } else {
+            redirect('inicio/iniciar_sesion');
+        }
+    }
+
+
     public function reporte_totales_proyectos()
     {
         if ($this->session->userdata('logueado')) {

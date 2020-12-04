@@ -15,6 +15,7 @@
             <div class="col-md-6">
                 <h3>Estadísticos</h3>
                 <?php if (in_array('04200', $accesos_sistema_rol)) include "btn_reporte_totales_acuerdos.php"; ?>
+                <?php if (in_array('04200', $accesos_sistema_rol)) include "btn_estadistico_acuerdos_02.php"; ?>
                 <?php if (in_array('04200', $accesos_sistema_rol)) include "btn_reporte_totales_proyectos.php"; ?>
                 <?php if (in_array('04200', $accesos_sistema_rol)) include "btn_estadistico_consejos_01.php"; ?>
                 <?php if (in_array('04200', $accesos_sistema_rol)) include "btn_estadistico_actores_01.php" ?>
