@@ -32,6 +32,7 @@
                                     <option value="<?= $municipios_item['cve_mun'] ?>" <?= ($cve_mun == $municipios_item['cve_mun']) ? 'selected' : '' ?>><?= $municipios_item['nom_mun'] ?></option>
                                     <?php } ?>
                                 </select>
+                                <input type="text" class="form-control form-control-sm col-sm-12 mt-3" name="nombre" id="nombre" value="<?= $nombre ?>" placeholder="Todos los nombres">
                             </div>
                             <div class="col-2">
                                 <select class="custom-select custom-select-sm" name="cve_ambito">
