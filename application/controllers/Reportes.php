@@ -211,7 +211,7 @@ class Reportes extends CI_Controller {
             } 
             if ($nombre <> "") {
                 $nombre = '%' . $nombre . '%';
-                $sql .= " and nombre || ' ' || apellido_pa || ' ' || apellido_ma like ? ";
+                $sql .= " and nombre || ' ' || apellido_pa || ' ' || apellido_ma ilike ? ";
                 array_push($parametros, "$nombre");
             } 
             $sql .= ' group by a.nombre, a.apellido_pa, a.apellido_ma, a.organizacion, a.correo_laboral, a.correo_personal, a.correo_asistente order by a.nombre';
