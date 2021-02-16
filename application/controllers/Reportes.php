@@ -119,25 +119,28 @@ class Reportes extends CI_Controller {
                 $cve_mun = $filtros['cve_mun'];
                 $cve_ambito = $filtros['cve_ambito'];
                 $cve_sector = empty($filtros['cve_sector']) ? '' : implode(',', $filtros['cve_sector']);
+                $nombre = $filtros['nombre'];
             } else {
                 $cve_ent = '';
                 $cve_mun = '';
                 $cve_ambito = '0';
                 $cve_sector = '';
+                $nombre = '';
 			}
 
             $data['cve_ent'] = $cve_ent;
             $data['cve_mun'] = $cve_mun;
             $data['cve_ambito'] = $cve_ambito;
             $data['cve_sector'] = $cve_sector;
+            $data['nombre'] = $nombre;
 
             $data['entidades'] = $this->entidades_model->get_entidades();
             $data['municipios'] = $this->municipios_model->get_municipios();
             $data['ambitos'] = $this->ambitos_model->get_ambitos();
             $data['sectores'] = $this->sectores_model->get_sectores();
 
-            $data['actores'] = $this->actores_model->get_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector);
-            $data['totales_actores'] = $this->actores_model->get_totales_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector);
+            $data['actores'] = $this->actores_model->get_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector, $nombre);
+            $data['totales_actores'] = $this->actores_model->get_totales_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector, $nombre);
 
             $this->load->view('templates/header', $data);
             $this->load->view('reportes/listado_actores_02', $data);
@@ -166,11 +169,13 @@ class Reportes extends CI_Controller {
                 $cve_mun = $filtros['cve_mun'];
                 $cve_ambito = $filtros['cve_ambito'];
                 $cve_sector = implode(',', $filtros['cve_sector']);
+                $nombre = $filtros['nombre'];
             } else {
                 $cve_ent = '';
                 $cve_mun = '';
                 $cve_ambito = '0';
                 $cve_sector = '';
+                $nombre = '';
 			}
 
             $this->load->dbutil();
@@ -203,6 +208,11 @@ class Reportes extends CI_Controller {
             if ($cve_sector <> "") {
                 $sql .= " and a.cve_sector = any(string_to_array(?, ',')::int[])";
                 array_push($parametros, "$cve_sector");
+            } 
+            if ($nombre <> "") {
+                $nombre = '%' . $nombre . '%';
+                $sql .= " and nombre || ' ' || apellido_pa || ' ' || apellido_ma like ? ";
+                array_push($parametros, "$nombre");
             } 
             $sql .= ' group by a.nombre, a.apellido_pa, a.apellido_ma, a.organizacion, a.correo_laboral, a.correo_personal, a.correo_asistente order by a.nombre';
             $query = $this->db->query($sql, $parametros);

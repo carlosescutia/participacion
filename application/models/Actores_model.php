@@ -50,7 +50,7 @@ class Actores_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector) {
+    public function get_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector, $nombre) {
         if ($cve_rol == 'sup') {
             $area = '%';
         }
@@ -78,12 +78,17 @@ class Actores_model extends CI_Model {
             $sql .= " and a.cve_sector = any(string_to_array(?, ',')::int[])";
             array_push($parametros, "$cve_sector");
         } 
+        if ($nombre <> "") {
+            $nombre = '%' . $nombre . '%';
+            $sql .= " and nombre || ' ' || apellido_pa || ' ' || apellido_ma like ? ";
+            array_push($parametros, "$nombre");
+        } 
         $sql .= ' group by a.nombre, a.apellido_pa, a.apellido_ma, a.organizacion, a.correo_laboral, a.correo_personal, a.correo_asistente order by a.nombre';
         $query = $this->db->query($sql, $parametros);
         return $query->result_array();
     }
 
-    public function get_totales_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector) {
+    public function get_totales_listado_actores_02($dependencia, $area, $cve_rol, $cve_ent, $cve_mun, $cve_ambito, $cve_sector, $nombre) {
         if ($cve_rol == 'sup') {
             $area = '%';
         }
@@ -110,6 +115,11 @@ class Actores_model extends CI_Model {
         if ($cve_sector <> "") {
             $sql .= " and a.cve_sector = any(string_to_array(?, ',')::int[])";
             array_push($parametros, "$cve_sector");
+        } 
+        if ($nombre <> "") {
+            $nombre = '%' . $nombre . '%';
+            $sql .= " and nombre || ' ' || apellido_pa || ' ' || apellido_ma like ? ";
+            array_push($parametros, "$nombre");
         } 
         $query = $this->db->query($sql, $parametros);
         return $query->row_array();
