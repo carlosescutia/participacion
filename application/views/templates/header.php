@@ -27,6 +27,16 @@
         <!-- bootstrap-combobox -->
         <script src="<?=base_url()?>/js/bootstrap-combobox.js"></script>
         <link rel="stylesheet" type="text/css" href="<?=base_url()?>css/bootstrap-combobox.css" />
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9XLFF90V4W"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-9XLFF90V4W');
+        </script>
     </head>
     <body>
         <nav class="navbar navbar-expand-sm navbar-dark fixed-top d-print-block">
