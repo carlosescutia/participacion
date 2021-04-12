@@ -100,7 +100,9 @@ CREATE TABLE consejos (
     fecha_instalacion date,
     status integer,
     participacion_ciudadana text,
-    cve_calidad integer
+    cve_calidad integer,
+    motivo_inactivo text,
+    aspectos_destacados text
 );
 
 DROP TABLE IF EXISTS consejos_actores;
@@ -266,7 +268,8 @@ CREATE TABLE proyectos_consejo (
     cve_objetivo integer,
     valor_grado_preparacion integer,
     valor_atingencia integer,
-    cve_planteamiento integer
+    cve_planteamiento integer,
+    cve_status integer
 );
 
 DROP TABLE IF EXISTS asistencia_sesion;
@@ -318,5 +321,11 @@ CREATE TABLE accesos_sistema (
     cve_acceso serial,
     cod_opcion text,
     cve_rol text
+);
+
+DROP TABLE IF EXISTS status_proyectos_consejo;
+CREATE TABLE status_proyectos_consejo (
+    cve_status serial,
+    nom_status text
 );
 
