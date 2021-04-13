@@ -122,6 +122,19 @@
                         </div>
                     </div>
 
+                    <div class="form-row" id="dv_datos_inactivo">
+                        <div class="form-group col-md-6">
+                            <label for="motivo_inactivo">Motivo de inactividad</label>
+                            <?php echo form_error('motivo_inactividad'); ?>
+                            <textarea rows="4" class="form-control" name="motivo_inactivo" id="motivo_inactivo"><?php echo set_value('motivo_inactivo'); ?></textarea>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="aspectos_destacados">Aspectos destacados del consejo</label>
+                            <?php echo form_error('aspectos_destacados'); ?>
+                            <textarea rows="4" class="form-control" name="aspectos_destacados" id="aspectos_destacados"><?php echo set_value('aspectos_destacados'); ?></textarea>
+                        </div>
+                    </div>
+
                     <input type="hidden" name="dependencia" value="<?= $usuario_dependencia; ?>">
                     <input type="hidden" name="area" value="<?= $usuario_area; ?>">
 
@@ -142,6 +155,8 @@
             <a href="<?=base_url()?>consejos/lista" class="btn btn-secondary">Volver</a>
         </div>
     </div>
+
+    <?php include 'js/inicio.js'; ?>
 
 </main>
 
