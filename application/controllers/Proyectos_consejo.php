@@ -12,6 +12,7 @@ class Proyectos_consejo extends CI_Controller {
         $this->load->model('preparaciones_model');
         $this->load->model('plazos_model');
         $this->load->model('atingencias_model');
+        $this->load->model('status_proyectos_consejo_model');
         $this->load->model('objetivo_plangto_model');
         $this->load->model('planteamientos_model');
         $this->load->model('accesos_sistema_model');
@@ -35,6 +36,7 @@ class Proyectos_consejo extends CI_Controller {
             $data['preparaciones'] = $this->preparaciones_model->get_preparaciones();
             $data['plazos'] = $this->plazos_model->get_plazos();
             $data['atingencias'] = $this->atingencias_model->get_atingencias();
+            $data['status_proyectos_consejo'] = $this->status_proyectos_consejo_model->get_status_proyectos_consejo();
             $data['objetivo_plangto'] = $this->objetivo_plangto_model->get_objetivo_plangto();
             $data['planteamientos'] = $this->planteamientos_model->get_planteamientos();
 
@@ -69,6 +71,7 @@ class Proyectos_consejo extends CI_Controller {
                     'cve_plazo' => $proyecto_consejo['cve_plazo'],
                     'objetivo_definido' => $proyecto_consejo['objetivo_definido'],
                     'cve_atingencia' => $proyecto_consejo['cve_atingencia'],
+                    'cve_status' => $proyecto_consejo['cve_status'],
                     'responsable' => $proyecto_consejo['responsable'],
                     'objetivos' => $proyecto_consejo['objetivos'],
                     'indicadores' => $proyecto_consejo['indicadores'],
@@ -102,6 +105,7 @@ class Proyectos_consejo extends CI_Controller {
             $data['preparaciones'] = $this->preparaciones_model->get_preparaciones();
             $data['plazos'] = $this->plazos_model->get_plazos();
             $data['atingencias'] = $this->atingencias_model->get_atingencias();
+            $data['status_proyectos_consejo'] = $this->status_proyectos_consejo_model->get_status_proyectos_consejo();
             $data['objetivo_plangto'] = $this->objetivo_plangto_model->get_objetivo_plangto();
             $data['planteamientos'] = $this->planteamientos_model->get_planteamientos();
             $data['cve_consejo'] = $cve_consejo;
