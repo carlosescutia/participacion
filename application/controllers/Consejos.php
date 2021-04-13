@@ -121,7 +121,9 @@ class Consejos extends CI_Controller {
                     'fecha_instalacion' => empty($consejo['fecha_instalacion']) ? null : $consejo['fecha_instalacion'],
                     'status' => $consejo['status'],
                     'participacion_ciudadana' => $consejo['participacion_ciudadana'],
-                    'cve_calidad' => empty($consejo['cve_calidad']) ? null : $consejo['cve_calidad']
+                    'cve_calidad' => empty($consejo['cve_calidad']) ? null : $consejo['cve_calidad'],
+                    'motivo_inactivo' => $consejo['motivo_inactivo'],
+                    'aspectos_destacados' => $consejo['aspectos_destacados']
                );
                 $cve_consejo = isset($consejo['cve_consejo']) ? $consejo['cve_consejo'] : null;
                 print_r($data);

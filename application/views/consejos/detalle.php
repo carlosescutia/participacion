@@ -49,4 +49,6 @@
         </div>
     </div>
 
+    <?php include 'js/inicio.js'; ?>
+
 </main>

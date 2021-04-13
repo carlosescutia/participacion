@@ -114,6 +114,17 @@
                 </div>
             </div>
 
+            <div class="form-row" id="dv_datos_inactivo">
+                <div class="form-group col-md-6">
+                    <label for="motivo_inactivo">Motivo de inactividad</label>
+                    <textarea rows="4" class="form-control" name="motivo_inactivo" id="motivo_inactivo"><?=$consejos['motivo_inactivo'] ?></textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="aspectos_destacados">Aspectos destacados del consejo</label>
+                    <textarea rows="4" class="form-control" name="aspectos_destacados" id="aspectos_destacados"><?=$consejos['aspectos_destacados'] ?></textarea>
+                </div>
+            </div>
+
             <input type="hidden" name="dependencia" value="<?= $usuario_dependencia; ?>">
             <input type="hidden" name="area" value="<?= $usuario_area; ?>">
             <input type="hidden" name="cve_consejo" id="cve_consejo" value="<?=$consejos['cve_consejo'] ?>">
