@@ -66,12 +66,21 @@
                                 <option value="n" <?= ($proyecto_consejo['objetivo_definido'] == 'n') ? 'selected' : '' ?> >No</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-3">
-                            <label for="cve_atingencia">Atingencia al programa de reactivación</label>
+                        <div class="form-group col-md-2">
+                            <label for="cve_atingencia">Atingencia al prg de reactiv</label>
                             <?php echo form_error('cve_atingencia'); ?>
                             <select class="custom-select" name="cve_atingencia" id="cve_atingencia">
                                 <?php foreach ($atingencias as $atingencias_item) { ?>
                                 <option value="<?= $atingencias_item['cve_atingencia'] ?>" <?= ($proyecto_consejo['cve_atingencia'] == $atingencias_item['cve_atingencia']) ? 'selected' : '' ?> ><?= $atingencias_item['nom_atingencia'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <label for="cve_status">Status</label>
+                            <?php echo form_error('cve_status'); ?>
+                            <select class="custom-select" name="cve_status" id="cve_status">
+                                <?php foreach ($status_proyectos_consejo as $status_proyectos_consejo_item) { ?>
+                                <option value="<?= $status_proyectos_consejo_item['cve_status'] ?>" <?= ($proyecto_consejo['cve_status'] == $status_proyectos_consejo_item['cve_status']) ? 'selected' : '' ?> ><?= $status_proyectos_consejo_item['nom_status'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>

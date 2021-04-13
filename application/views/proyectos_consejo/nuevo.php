@@ -27,6 +27,7 @@
                             <label for="cve_planteamiento">Planteamiento original</label>
                             <?php echo form_error('cve_planteamiento'); ?>
                             <select class="custom-select" name="cve_planteamiento" id="cve_planteamiento">
+                                <option value="" <?php echo set_select('cve_planteamiento', ""); ?> ></option>
                                 <?php foreach ($planteamientos as $planteamientos_item) { ?>
                                 <option value="<?= $planteamientos_item['cve_planteamiento'] ?>" <?php echo set_select('cve_planteamiento', $planteamientos_item['cve_planteamiento']); ?> ><?= $planteamientos_item['nom_planteamiento'] ?></option>
                                 <?php } ?>
@@ -65,12 +66,21 @@
                                 <option value="n" <?php echo set_select('objetivo_definido', 'n'); ?> >No</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-3">
-                            <label for="cve_atingencia">Atingencia al programa de reactivación</label>
+                        <div class="form-group col-md-2">
+                            <label for="cve_atingencia">Atingencia al prg de reactiv</label>
                             <?php echo form_error('cve_atingencia'); ?>
                             <select class="custom-select" name="cve_atingencia" id="cve_atingencia">
                                 <?php foreach ($atingencias as $atingencias_item) { ?>
                                 <option value="<?= $atingencias_item['cve_atingencia'] ?>" <?php echo set_select('cve_atingencia', $atingencias_item['cve_atingencia']); ?> ><?= $atingencias_item['nom_atingencia'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <label for="cve_status">Status</label>
+                            <?php echo form_error('cve_status'); ?>
+                            <select class="custom-select" name="cve_status" id="cve_status">
+                                <?php foreach ($status_proyectos_consejo as $status_proyectos_consejo_item) { ?>
+                                <option value="<?= $status_proyectos_consejo_item['cve_status'] ?>" <?php echo set_select('cve_status', $status_proyectos_consejo_item['cve_status']); ?> ><?= $status_proyectos_consejo_item['nom_status'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
