@@ -13,7 +13,7 @@ class Proyectos_consejo_model extends CI_Model {
             $dependencia = '%';
             $area = '%';
         }
-        $sql = "select pc.*, pt.nom_planteamiento, pr.nom_preparacion, pl.nom_plazo, at.nom_atingencia from proyectos_consejo pc left join preparaciones pr on pc.cve_preparacion = pr.cve_preparacion left join plazos pl on pc.cve_plazo = pl.cve_plazo left join atingencias at on pc.cve_atingencia = at.cve_atingencia left join planteamientos pt on pc.cve_planteamiento = pt.cve_planteamiento where pc.cve_consejo = ? and dependencia LIKE ? and area LIKE ? ";
+        $sql = "select pc.*, pt.nom_planteamiento, pr.nom_preparacion, pl.nom_plazo, at.nom_atingencia, spc.nom_status from proyectos_consejo pc left join preparaciones pr on pc.cve_preparacion = pr.cve_preparacion left join plazos pl on pc.cve_plazo = pl.cve_plazo left join atingencias at on pc.cve_atingencia = at.cve_atingencia left join planteamientos pt on pc.cve_planteamiento = pt.cve_planteamiento left join status_proyectos_consejo spc on pc.cve_status = spc.cve_status where pc.cve_consejo = ? and dependencia LIKE ? and area LIKE ? ";
         $query = $this->db->query($sql, array($cve_consejo, $dependencia, $area));
         return $query->result_array();
     }
@@ -158,7 +158,7 @@ class Proyectos_consejo_model extends CI_Model {
             $dependencia = '%';
             $area = '%';
         }
-        $sql = "select c.nom_consejo, pc.responsable, op.nom_objetivo, pc.nom_proyecto, pt.nom_planteamiento, pr.nom_preparacion, pc.valor_grado_preparacion, to_char((pc.valor_grado_preparacion::numeric / 65)*100, '999.99') as calif_grado_preparacion, pl.nom_plazo, at.nom_atingencia, pc.valor_atingencia, to_char((pc.valor_atingencia::numeric / 35)*100, '999.99') as calif_atingencia, pc.objetivos, pc.indicadores from proyectos_consejo pc left join consejos c on pc.cve_consejo = c.cve_consejo left join objetivo_plangto op on pc.cve_objetivo = op.cve_objetivo left join preparaciones pr on pc.cve_preparacion = pr.cve_preparacion left join plazos pl on pc.cve_plazo = pl.cve_plazo left join atingencias at on pc.cve_atingencia = at.cve_atingencia left join planteamientos pt on pc.cve_planteamiento = pt.cve_planteamiento where pc.dependencia LIKE ? and pc.area LIKE ?";
+        $sql = "select c.nom_consejo, pc.responsable, op.nom_objetivo, pc.nom_proyecto, pt.nom_planteamiento, pr.nom_preparacion, pc.valor_grado_preparacion, to_char((pc.valor_grado_preparacion::numeric / 65)*100, '999.99') as calif_grado_preparacion, pl.nom_plazo, at.nom_atingencia, pc.valor_atingencia, to_char((pc.valor_atingencia::numeric / 35)*100, '999.99') as calif_atingencia, pc.objetivos, pc.indicadores, spc.nom_status from proyectos_consejo pc left join consejos c on pc.cve_consejo = c.cve_consejo left join objetivo_plangto op on pc.cve_objetivo = op.cve_objetivo left join preparaciones pr on pc.cve_preparacion = pr.cve_preparacion left join plazos pl on pc.cve_plazo = pl.cve_plazo left join atingencias at on pc.cve_atingencia = at.cve_atingencia left join planteamientos pt on pc.cve_planteamiento = pt.cve_planteamiento left join status_proyectos_consejo spc on pc.cve_status = spc.cve_status where pc.dependencia LIKE ? and pc.area LIKE ?";
         $parametros = array();
         array_push($parametros, "$dependencia");
         array_push($parametros, "$area");
