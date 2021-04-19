@@ -79,6 +79,7 @@
                             <label for="cve_status">Status</label>
                             <?php echo form_error('cve_status'); ?>
                             <select class="custom-select" name="cve_status" id="cve_status">
+                                <option value="" <?= $proyecto_consejo['cve_status'] == "" ? 'selected' : '' ?> ></option>
                                 <?php foreach ($status_proyectos_consejo as $status_proyectos_consejo_item) { ?>
                                 <option value="<?= $status_proyectos_consejo_item['cve_status'] ?>" <?= ($proyecto_consejo['cve_status'] == $status_proyectos_consejo_item['cve_status']) ? 'selected' : '' ?> ><?= $status_proyectos_consejo_item['nom_status'] ?></option>
                                 <?php } ?>

@@ -18,11 +18,14 @@
                 <div class="col-md-2">
                     <strong>Plazo de ejecución</strong>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <strong>Objetivo definido</strong>
                 </div>
                 <div class="col-md-2">
                     <strong>Atingencia al prg de reactiv.</strong>
+                </div>
+                <div class="col-md-1">
+                    <strong>Status</strong>
                 </div>
             </div>
 
@@ -37,11 +40,14 @@
                     <div class="col-md-2">
                         <p><?= $proyectos_consejo_item['nom_plazo'] ?></p>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <p><?= $proyectos_consejo_item['objetivo_definido'] ?></p>
                     </div>
                     <div class="col-md-2">
                         <p><?= $proyectos_consejo_item['nom_atingencia'] ?></p>
+                    </div>
+                    <div class="col-md-1">
+                        <p><?= $proyectos_consejo_item['nom_status'] ?></p>
                     </div>
                     <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                         <div class="col-md-1">

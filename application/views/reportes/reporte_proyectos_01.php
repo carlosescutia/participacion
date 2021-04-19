@@ -64,18 +64,19 @@
                         <tr>
                             <th scope="col">Comisión/consejo</th>
                             <th scope="col">Planteamiento original</th>
-                            <th scope="col">Responsable</th>
-                            <th scope="col">Objetivo plan accion Gto</th>
                             <th scope="col">Proyecto/iniciativa</th>
+                            <th scope="col">Responsable</th>
+                            <th scope="col">Objetivo proyecto</th>
+                            <th scope="col">Indicadores</th>
+                            <th scope="col">Objetivo plan accion Gto</th>
+                            <th scope="col">Atingencia</th>
+                            <th scope="col">Valor de Atingencia</th>
+                            <th scope="col">Calificación</th>
                             <th scope="col">Grado de preparación</th>
                             <th scope="col">Valor del grado de preparación</th>
                             <th scope="col">Calificación</th>
                             <th scope="col">Plazo</th>
-                            <th scope="col">Atingencia</th>
-                            <th scope="col">Valor de Atingencia</th>
-                            <th scope="col">Calificación</th>
-                            <th scope="col">Objetivo proyecto</th>
-                            <th scope="col">Indicadores</th>
+                            <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -83,18 +84,19 @@
                         <tr>
                             <td><?= $proyectos_item['nom_consejo'] ?></td>
                             <td><?= $proyectos_item['nom_planteamiento'] ?></td>
-                            <td><?= $proyectos_item['responsable'] ?></td>
-                            <td><?= $proyectos_item['nom_objetivo'] ?></td>
                             <td><?= $proyectos_item['nom_proyecto'] ?></td>
+                            <td><?= $proyectos_item['responsable'] ?></td>
+                            <td><?= $proyectos_item['objetivos'] ?></td>
+                            <td><?= $proyectos_item['indicadores'] ?></td>
+                            <td><?= $proyectos_item['nom_objetivo'] ?></td>
+                            <td><?= $proyectos_item['nom_atingencia'] ?></td>
+                            <td><?= $proyectos_item['valor_atingencia'] ?></td>
+                            <td><?= $proyectos_item['calif_atingencia'] ?></td>
                             <td><?= $proyectos_item['nom_preparacion'] ?></td>
                             <td><?= $proyectos_item['valor_grado_preparacion'] ?></td>
                             <td><?= $proyectos_item['calif_grado_preparacion'] ?></td>
                             <td><?= $proyectos_item['nom_plazo'] ?></td>
-                            <td><?= $proyectos_item['nom_atingencia'] ?></td>
-                            <td><?= $proyectos_item['valor_atingencia'] ?></td>
-                            <td><?= $proyectos_item['calif_atingencia'] ?></td>
-                            <td><?= $proyectos_item['objetivos'] ?></td>
-                            <td><?= $proyectos_item['indicadores'] ?></td>
+                            <td><?= $proyectos_item['nom_status'] ?></td>
                         </tr>
                         <?php } ?>
                     </tbody>
