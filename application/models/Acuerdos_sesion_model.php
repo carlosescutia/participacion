@@ -95,4 +95,30 @@ class Acuerdos_sesion_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_acuerdos_consejo($dependencia, $area, $cve_rol, $cve_consejo, $cve_status) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select c.nom_consejo, acs.codigo_acuerdo, acs.nom_acuerdo, acs.responsable, acs.fecha_cumplimiento, sas.nom_status, acs.observaciones from acuerdos_sesion acs left join consejos c on acs.cve_consejo = c.cve_consejo left join status_acuerdos_sesion sas on acs.cve_status = sas.cve_status where dependencia LIKE ? and area LIKE ?";
+        
+        $parametros = array();
+        array_push($parametros, "$dependencia");
+        array_push($parametros, "$area");
+        if ($cve_consejo > 0) {
+            $sql .= ' and acs.cve_consejo = ?';
+            array_push($parametros, "$cve_consejo");
+        } 
+        if ($cve_status > 0) {
+            $sql .= ' and acs.cve_status = ?';
+            array_push($parametros, "$cve_status");
+        } 
+
+        $query = $this->db->query($sql, $parametros);
+        return $query->result_array();
+    }
+
 }

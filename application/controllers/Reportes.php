@@ -17,6 +17,8 @@ class Reportes extends CI_Controller {
         $this->load->model('municipios_model');
         $this->load->model('ambitos_model');
         $this->load->model('sectores_model');
+        $this->load->model('acuerdos_sesion_model');
+        $this->load->model('status_acuerdos_sesion_model');
         $this->load->model('tipo_consejos_model');
         $this->load->model('accesos_sistema_model');
 
@@ -356,7 +358,7 @@ class Reportes extends CI_Controller {
             $delimiter = ",";
             $newline = "\r\n";
             $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
-            force_download("reporte_proyectos_01.csv", $data);
+            force_download("listado_consejos_02.csv", $data);
         }
     }
 
@@ -670,6 +672,100 @@ class Reportes extends CI_Controller {
             $this->load->view('templates/footer');
         } else {
             redirect('inicio/iniciar_sesion');
+        }
+    }
+
+    public function listado_acuerdos_01()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
+
+            $filtros = $this->input->post();
+            if ($filtros) {
+                $cve_consejo = $filtros['cve_consejo'];
+                $cve_status = $filtros['cve_status'];
+            } else {
+                $cve_consejo = '0';
+                $cve_status = '0';
+			}
+
+            $data['cve_consejo'] = $cve_consejo;
+            $data['cve_status'] = $cve_status;
+
+            $data['consejos'] = $this->consejos_model->get_consejos_dependencia($dependencia, $area, $cve_rol);
+            $data['status_acuerdos_sesion'] = $this->status_acuerdos_sesion_model->get_status_acuerdos_sesion();
+            $data['acuerdos_consejo'] = $this->acuerdos_sesion_model->get_acuerdos_consejo($dependencia, $area, $cve_rol, $cve_consejo, $cve_status);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('reportes/listado_acuerdos_01', $data);
+            $this->load->view('templates/footer');
+        } else {
+            redirect('inicio/iniciar_sesion');
+        }
+    }
+
+    public function listado_acuerdos_01_csv()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
+
+            $filtros = $this->input->post();
+            if ($filtros) {
+                $cve_consejo = $filtros['cve_consejo'];
+                $cve_status = $filtros['cve_status'];
+            } else {
+                $cve_consejo = '0';
+                $cve_status = '0';
+			}
+
+            $this->load->dbutil();
+            $this->load->helper('file');
+            $this->load->helper('download');
+
+            if ($cve_rol == 'sup') {
+                $area = '%';
+            }
+            if ($cve_rol == 'adm') {
+                $dependencia = '%';
+                $area = '%';
+            }
+
+            $sql = "select c.nom_consejo, acs.codigo_acuerdo, acs.nom_acuerdo, acs.responsable, acs.fecha_cumplimiento, sas.nom_status, acs.observaciones from acuerdos_sesion acs left join consejos c on acs.cve_consejo = c.cve_consejo left join status_acuerdos_sesion sas on acs.cve_status = sas.cve_status where dependencia LIKE ? and area LIKE ?";
+
+            $parametros = array();
+            array_push($parametros, "$dependencia");
+            array_push($parametros, "$area");
+            if ($cve_consejo > 0) {
+                $sql .= ' and acs.cve_consejo = ?';
+                array_push($parametros, "$cve_consejo");
+            } 
+            if ($cve_status > 0) {
+                $sql .= ' and acs.cve_status = ?';
+                array_push($parametros, "$cve_status");
+            } 
+
+            $query = $this->db->query($sql, $parametros);
+
+            $delimiter = ",";
+            $newline = "\r\n";
+            $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
+            force_download("listado_acuerdos_01.csv", $data);
         }
     }
 
