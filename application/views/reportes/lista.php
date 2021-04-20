@@ -11,6 +11,7 @@
                 <?php if (in_array('04100', $accesos_sistema_rol)) include "btn_reporte_consejos_01.php"; ?>
                 <?php if (in_array('04100', $accesos_sistema_rol)) include "btn_listado_consejos_02.php"; ?>
                 <?php if (in_array('04100', $accesos_sistema_rol)) include "btn_reporte_proyectos_01.php"; ?>
+                <?php if (in_array('04100', $accesos_sistema_rol)) include "btn_listado_acuerdos_01.php"; ?>
             </div>
             <div class="col-md-6">
                 <h3>Estadísticos</h3>
