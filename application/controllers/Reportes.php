@@ -362,6 +362,65 @@ class Reportes extends CI_Controller {
         }
     }
 
+    public function listado_consejos_03()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
+
+            $data['consejos'] = $this->consejos_model->get_listado_consejos_03($dependencia, $area, $cve_rol);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('reportes/listado_consejos_03', $data);
+            $this->load->view('templates/footer');
+        } else {
+            redirect('inicio/iniciar_sesion');
+        }
+    }
+
+    public function listado_consejos_03_csv()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
+
+            $this->load->dbutil();
+            $this->load->helper('file');
+            $this->load->helper('download');
+
+            if ($cve_rol == 'sup') {
+                $area = '%';
+            }
+            if ($cve_rol == 'adm') {
+                $dependencia = '%';
+                $area = '%';
+            }
+            $sql = "select c.nom_consejo as nom_consejo, c.fecha_instalacion, (select max(fecha) from sesiones s where s.cve_consejo = c.cve_consejo) as ultima_sesion, (case when c.status=1 then 'activo' when c.status=0 then 'inactivo' else '' end) as nom_status_consejo, (select count(*) from sesiones s where s.cve_consejo = c.cve_consejo) as num_sesiones, (select count(*) from consejos_actores ca where ca.status = 1 and ca.cve_consejo = c.cve_consejo) as num_integrantes, (select string_agg(u.nombre, '; ') from usuarios u where u.dependencia = c.dependencia and u.area = c.area) as responsable_iplaneg, (select count(*) from proyectos_consejo pc where pc.cve_consejo = c.cve_consejo) as tot_proyectos, (select count(*) from proyectos_consejo pc where pc.cve_consejo = c.cve_consejo and pc.cve_status = 3) as proyectos_cumplidos, (select count(*) from proyectos_consejo pc where pc.cve_consejo = c.cve_consejo and pc.cve_status in (1,2)) as proyectos_noiniciados_enproceso, (select count(*) from proyectos_consejo pc where pc.cve_consejo = c.cve_consejo and pc.cve_status = 4) as proyectos_cancelados, (select count(*) from proyectos_consejo pc where pc.cve_consejo = c.cve_consejo and pc.cve_status is null) as proyectos_sinstatus from consejos c where dependencia LIKE ? and area LIKE ?";
+            $parametros = array();
+            array_push($parametros, "$dependencia");
+            array_push($parametros, "$area");
+            $query = $this->db->query($sql, $parametros);
+
+            $delimiter = ",";
+            $newline = "\r\n";
+            $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
+            force_download("listado_consejos_03.csv", $data);
+        }
+    }
 
     public function reporte_proyectos_01()
     {

@@ -76,6 +76,22 @@ class Consejos_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_listado_consejos_03($dependencia, $area, $cve_rol) {
+        if ($cve_rol == 'sup') {
+            $area = '%';
+        }
+        if ($cve_rol == 'adm') {
+            $dependencia = '%';
+            $area = '%';
+        }
+        $sql = "select c.nom_consejo as nom_consejo, c.fecha_instalacion, (select max(fecha) from sesiones s where s.cve_consejo = c.cve_consejo) as ultima_sesion, (case when c.status=1 then 'activo' when c.status=0 then 'inactivo' else '' end) as nom_status_consejo, (select count(*) from sesiones s where s.cve_consejo = c.cve_consejo) as num_sesiones, (select count(*) from consejos_actores ca where ca.status = 1 and ca.cve_consejo = c.cve_consejo) as num_integrantes, (select string_agg(u.nombre, '; ') from usuarios u where u.dependencia = c.dependencia and u.area = c.area) as responsable_iplaneg, (select count(*) from proyectos_consejo pc where pc.cve_consejo = c.cve_consejo) as tot_proyectos, (select count(*) from proyectos_consejo pc where pc.cve_consejo = c.cve_consejo and pc.cve_status = 3) as proyectos_cumplidos, (select count(*) from proyectos_consejo pc where pc.cve_consejo = c.cve_consejo and pc.cve_status in (1,2)) as proyectos_noiniciados_enproceso, (select count(*) from proyectos_consejo pc where pc.cve_consejo = c.cve_consejo and pc.cve_status = 4) as proyectos_cancelados, (select count(*) from proyectos_consejo pc where pc.cve_consejo = c.cve_consejo and pc.cve_status is null) as proyectos_sinstatus from consejos c where dependencia LIKE ? and area LIKE ?";
+        $parametros = array();
+        array_push($parametros, "$dependencia");
+        array_push($parametros, "$area");
+        $query = $this->db->query($sql, $parametros);
+        return $query->result_array();
+    }
+
     public function get_totales_listado_consejos_02($dependencia, $area, $cve_rol, $cve_eje, $cve_tipo, $cve_status, $participacion_ciudadana) {
         if ($cve_rol == 'sup') {
             $area = '%';
