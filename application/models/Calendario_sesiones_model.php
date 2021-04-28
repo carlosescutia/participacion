@@ -26,7 +26,7 @@ class Calendario_sesiones_model extends CI_Model {
             $dependencia = '%';
             $area = '%';
         }
-        $sql = "select c.nom_consejo, cs.nom_sesion, cs.fecha, cs.hora, ss.nom_status from calendario_sesiones cs left join status_sesiones ss on cs.cve_status = ss.cve_status left join consejos c on cs.cve_consejo = c.cve_consejo where cs.dependencia LIKE ? and cs.area LIKE ? order by cs.fecha asc";
+        $sql = "select c.nom_consejo, cs.nom_sesion, cs.fecha, cs.hora, ss.nom_status from calendario_sesiones cs left join status_sesiones ss on cs.cve_status = ss.cve_status left join consejos c on cs.cve_consejo = c.cve_consejo where cs.dependencia LIKE ? and cs.area LIKE ? and cs.fecha >= now() order by cs.fecha asc";
         $query = $this->db->query($sql, array($dependencia, $area));
         return $query->result_array();
     }
