@@ -1,6 +1,6 @@
 <div class="card mt-0 mb-3">
     <div class="card-header" style="background-color:#E6D9FA">
-        <strong>Calendario de sesiones</strong>
+        <strong>Próximas sesiones</strong>
     </div>
     <div class="card-body p-0">
         <div class="col-md-12">
