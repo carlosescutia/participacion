@@ -12,8 +12,8 @@
                 if(filter) {
                     // this finds all items in a list that contain the input,
                     // and hide the ones not containing the input while showing the ones that do
-                    $(lista_actores).find("span:not(:Contains(" + filter + "))").parent().hide();
-                    $(lista_actores).find("span:Contains(" + filter + ")").parent().show();
+                    $(lista_actores).find("span:not(:Contains(" + filter + "))").parent().parent().hide();
+                    $(lista_actores).find("span:Contains(" + filter + ")").parent().parent().show();
                 } else {
                     $(lista_actores).find("li").show();
                 }
