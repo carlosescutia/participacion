@@ -13,14 +13,24 @@ class Actores_model extends CI_Model {
             $dependencia = '%';
             $area = '%';
         }
-        $sql = "select a.*, ta.nom_tipo, s.nom_sector, (select string_agg(c.nom_consejo, ', ') as consejos from consejos_actores ca left join consejos c on ca.cve_consejo = c.cve_consejo where ca.cve_actor = a.cve_actor) from actores a left join tipo_actores ta on a.cve_tipo = ta.cve_tipo left join sectores s on a.cve_sector = s.cve_sector where a.dependencia LIKE ? and a.area LIKE ? and a.activo=? and a.cve_tipo=?";
-        if ($cve_sector > 0) {
-            $sql .= ' and a.cve_sector = ? order by a.nombre;';
-            $query = $this->db->query($sql, array($dependencia, $area, $activo, $cve_tipo, $cve_sector));
-        } else {
-            $sql .= ' order by a.nombre;';
-            $query = $this->db->query($sql, array($dependencia, $area, $activo, $cve_tipo));
+        $sql = "select a.*, ta.nom_tipo, s.nom_sector, (select string_agg(c.nom_consejo, ', ') as consejos from consejos_actores ca left join consejos c on ca.cve_consejo = c.cve_consejo where ca.cve_actor = a.cve_actor) from actores a left join tipo_actores ta on a.cve_tipo = ta.cve_tipo left join sectores s on a.cve_sector = s.cve_sector where a.dependencia LIKE ? and a.area LIKE ?";
+        $parametros = array();
+        array_push($parametros, "$dependencia");
+        array_push($parametros, "$area");
+        if ($activo >= 0) {
+            $sql .= ' and a.activo = ?';
+            array_push($parametros, "$activo");
         }
+        if ($cve_tipo > 0) {
+            $sql .= ' and a.cve_tipo = ?';
+            array_push($parametros, "$cve_tipo");
+        }
+        if ($cve_sector > 0) {
+            $sql .= ' and a.cve_sector = ?';
+            array_push($parametros, "$cve_sector");
+        }
+        $sql .= ' order by a.nombre;';
+        $query = $this->db->query($sql, $parametros);
         return $query->result_array();
     }
 

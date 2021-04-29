@@ -7,31 +7,34 @@
                 </div>
                 <div class="col-sm-7 align-self-center">
                     <form method="post" action="<?= base_url() ?>actores/lista">
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-secondary btn-sm <?= ($activo) ? 'active' : '' ?>">
-                                <input type="radio" name="activo" value="1" autocomplete="off" <?= ($activo) ? 'checked' : '' ?>> Activos
-                            </label>
-                            <label class="btn btn-secondary btn-sm <?= (! $activo) ? 'active' : '' ?>">
-                                <input type="radio" name="activo" value="0" autocomplete="off" <?= ( ! $activo) ? 'checked' : '' ?>> Inactivos
-                            </label>
+                        <div class="form-row">
+                            <div class="col-3">
+                                <select class="custom-select custom-select-sm" name="activo">
+                                    <option value="-1" <?= ($activo == '-1') ? 'selected' : '' ?> >Activos e inactivos</option>
+                                    <option value="1" <?= ($activo == '1') ? 'selected' : '' ?> >Activos</option>
+                                    <option value="0" <?= ($activo == '0') ? 'selected' : '' ?> >Inactivos</option>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <select class="custom-select custom-select-sm" name="cve_tipo">
+                                    <option value="0" <?= ($cve_tipo == '0') ? 'selected' : '' ?>>Todos los tipos de actores</option>
+                                    <?php foreach ($tipo_actores as $tipo_actores_item) { ?>
+                                        <option value="<?= $tipo_actores_item['cve_tipo'] ?>" <?= ($cve_tipo == $tipo_actores_item['cve_tipo']) ? 'selected' : '' ?>><?= $tipo_actores_item['nom_tipo'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col-3">
+                                <select class="custom-select custom-select-sm" name="cve_sector">
+                                    <option value="0" <?= ($cve_sector == '0') ? 'selected' : '' ?>>Todos los sectores</option>
+                                    <?php foreach ($sectores as $sectores_item) { ?>
+                                        <option value="<?= $sectores_item['cve_sector'] ?>" <?= ($cve_sector == $sectores_item['cve_sector']) ? 'selected' : '' ?>><?= $sectores_item['nom_sector'] ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col-1">
+                                <button class="btn btn-success btn-sm">Filtrar</button>
+                            </div>
                         </div>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-secondary btn-sm <?= ($cve_tipo == '1') ? 'active' : '' ?>">
-                                <input type="radio" name="cve_tipo" value="1" autocomplete="off" <?= ($cve_tipo == '1') ? 'checked' : '' ?>> Consejeros
-                            </label>
-                            <label class="btn btn-secondary btn-sm <?= ($cve_tipo == '2') ? 'active' : '' ?>">
-                                <input type="radio" name="cve_tipo" value="2" autocomplete="off" <?= ($cve_tipo == '2') ? 'checked' : '' ?>> Voluntarios
-                            </label>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <select class="custom-select custom-select-sm" name="cve_sector">
-                                <option value="0" <?= ($cve_sector == '0') ? 'selected' : '' ?>>Todos</option>
-                                <?php foreach ($sectores as $sectores_item) { ?>
-                                    <option value="<?= $sectores_item['cve_sector'] ?>" <?= ($cve_sector == $sectores_item['cve_sector']) ? 'selected' : '' ?>><?= $sectores_item['nom_sector'] ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <button class="btn btn-success btn-sm">Filtrar</button>
                     </form>
                 </div>
                 <?php if (in_array('99', $accesos_sistema_rol)) { ?>
