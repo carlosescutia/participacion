@@ -11,6 +11,7 @@ class Inicio extends CI_Controller {
         $this->load->model('calendario_sesiones_model');
         $this->load->model('status_sesiones_model');
         $this->load->model('accesos_sistema_model');
+        $this->load->model('bitacora_model');
 
     }
 
@@ -51,6 +52,21 @@ class Inicio extends CI_Controller {
         $usuario_data = array(
             'logueado' => FALSE
         );
+        $usuario = $this->session->userdata('usuario');
+        $dependencia = $this->session->userdata('dependencia');
+        $area = $this->session->userdata('area');
+        $data = array(
+            'fecha' => date("Y-m-d"),
+            'hora' => date("H:i"),
+            'origen' => $_SERVER['REMOTE_ADDR'],
+            'usuario' => $usuario,
+            'dependencia' => $dependencia,
+            'area' => $area,
+            'accion' => 'logout',
+            'entidad' => '',
+            'valor' => ''
+        );
+        $this->bitacora_model->guardar($data);
         $this->session->set_userdata($usuario_data);
         redirect('inicio/iniciar_sesion');
     }
@@ -71,6 +87,18 @@ class Inicio extends CI_Controller {
                     'logueado' => TRUE
                 );
                 $this->session->set_userdata($usuario_data);
+                $data = array(
+                    'fecha' => date("Y-m-d"),
+                    'hora' => date("H:i"),
+                    'origen' => $_SERVER['REMOTE_ADDR'],
+                    'usuario' => $usuario_db->usuario,
+                    'dependencia' => $usuario_db->dependencia,
+                    'area' => $usuario_db->area,
+                    'accion' => 'login',
+                    'entidad' => '',
+                    'valor' => ''
+                );
+                $this->bitacora_model->guardar($data);
                 redirect('inicio');
             } else {
                 $this->session->set_flashdata('error', 'Usuario o contraseña incorrectos');

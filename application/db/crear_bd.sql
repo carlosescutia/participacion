@@ -329,3 +329,17 @@ CREATE TABLE status_proyectos_consejo (
     nom_status text
 );
 
+DROP TABLE IF EXISTS bitacora;
+CREATE TABLE bitacora (
+    cve_evento serial,
+    fecha date,
+    hora time,
+    origen text,
+    usuario text,
+    dependencia text,
+    area text,
+    accion text,
+    entidad text,
+    valor text
+);
+
