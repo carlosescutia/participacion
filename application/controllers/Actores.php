@@ -156,14 +156,16 @@ class Actores extends CI_Controller {
                 $cve_actor = $this->actores_model->guardar($data, $cve_actor);
 
                 $usuario = $this->session->userdata('usuario');
+                $usuario_nombre = $this->session->userdata('nombre');
                 $dependencia = $this->session->userdata('dependencia');
                 $area = $this->session->userdata('area');
-                $valor = $cve_actor . ',' . $actores['nombre'] . ' ' .$actores['apellido_pa'] . ' ' . $actores['apellido_ma'];
+                $valor = $cve_actor . ':' . $actores['nombre'] . ' ' .$actores['apellido_pa'] . ' ' . $actores['apellido_ma'];
                 $data = array(
                     'fecha' => date("Y-m-d"),
                     'hora' => date("H:i"),
                     'origen' => $_SERVER['REMOTE_ADDR'],
                     'usuario' => $usuario,
+                    'usuario_nombre' => $usuario_nombre,
                     'dependencia' => $dependencia,
                     'area' => $area,
                     'accion' => $accion,
