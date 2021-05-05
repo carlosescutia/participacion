@@ -130,9 +130,12 @@ class Consejos_model extends CI_Model {
         if ($cve_consejo) {
             $this->db->where('cve_consejo', $cve_consejo);
             $this->db->update('consejos', $data);
+            $id = $cve_consejo;
         } else {
             $this->db->insert('consejos', $data);
+            $id = $this->db->insert_id();
         }
+        return $id;
     }
 
     public function get_estadisticas_consejos($dependencia, $area, $cve_rol)

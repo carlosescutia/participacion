@@ -25,6 +25,7 @@ class Consejos extends CI_Controller {
         $this->load->model('atingencias_model');
         $this->load->model('calidad_participacion_model');
         $this->load->model('accesos_sistema_model');
+        $this->load->model('bitacora_model');
     }
 
     public function lista()
@@ -126,8 +127,31 @@ class Consejos extends CI_Controller {
                     'aspectos_destacados' => $consejo['aspectos_destacados']
                );
                 $cve_consejo = isset($consejo['cve_consejo']) ? $consejo['cve_consejo'] : null;
-                print_r($data);
-                $this->consejos_model->guardar($data, $cve_consejo);
+
+                if ($cve_consejo) {
+                    $accion = 'modificó';
+                } else {
+                    $accion = 'agregó';
+                }
+                $cve_consejo = $this->consejos_model->guardar($data, $cve_consejo);
+
+                $usuario = $this->session->userdata('usuario');
+                $dependencia = $this->session->userdata('dependencia');
+                $area = $this->session->userdata('area');
+                $valor = $cve_consejo . ', ' . $consejo['nom_consejo'];
+                $data = array(
+                    'fecha' => date("Y-m-d"),
+                    'hora' => date("H:i"),
+                    'origen' => $_SERVER['REMOTE_ADDR'],
+                    'usuario' => $usuario,
+                    'dependencia' => $dependencia,
+                    'area' => $area,
+                    'accion' => $accion,
+                    'entidad' => 'consejos',
+                    'valor' => $valor
+                );
+                $this->bitacora_model->guardar($data);
+
                 redirect('consejos/lista');
             }
 
