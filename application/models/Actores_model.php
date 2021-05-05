@@ -140,9 +140,12 @@ class Actores_model extends CI_Model {
       if ($cve_actor) {
           $this->db->where('cve_actor', $cve_actor);
           $this->db->update('actores', $data);
+          $id = $cve_actor;
       } else {
           $this->db->insert('actores', $data);
+          $id = $this->db->insert_id();
       }
+      return $id;
     }
 
     public function get_estadisticas_actores($dependencia, $area, $cve_rol)
