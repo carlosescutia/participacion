@@ -336,6 +336,7 @@ CREATE TABLE bitacora (
     hora time,
     origen text,
     usuario text,
+    usuario_nombre text,
     dependencia text,
     area text,
     accion text,

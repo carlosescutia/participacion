@@ -136,14 +136,16 @@ class Consejos extends CI_Controller {
                 $cve_consejo = $this->consejos_model->guardar($data, $cve_consejo);
 
                 $usuario = $this->session->userdata('usuario');
+                $usuario_nombre = $this->session->userdata('nombre');
                 $dependencia = $this->session->userdata('dependencia');
                 $area = $this->session->userdata('area');
-                $valor = $cve_consejo . ', ' . $consejo['nom_consejo'];
+                $valor = $cve_consejo . ':' . $consejo['nom_consejo'];
                 $data = array(
                     'fecha' => date("Y-m-d"),
                     'hora' => date("H:i"),
                     'origen' => $_SERVER['REMOTE_ADDR'],
                     'usuario' => $usuario,
+                    'usuario_nombre' => $usuario_nombre,
                     'dependencia' => $dependencia,
                     'area' => $area,
                     'accion' => $accion,

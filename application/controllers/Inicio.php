@@ -53,6 +53,7 @@ class Inicio extends CI_Controller {
             'logueado' => FALSE
         );
         $usuario = $this->session->userdata('usuario');
+        $usuario_nombre = $this->session->userdata('nombre');
         $dependencia = $this->session->userdata('dependencia');
         $area = $this->session->userdata('area');
         $data = array(
@@ -60,6 +61,7 @@ class Inicio extends CI_Controller {
             'hora' => date("H:i"),
             'origen' => $_SERVER['REMOTE_ADDR'],
             'usuario' => $usuario,
+            'usuario_nombre' => $usuario_nombre,
             'dependencia' => $dependencia,
             'area' => $area,
             'accion' => 'logout',
@@ -92,6 +94,7 @@ class Inicio extends CI_Controller {
                     'hora' => date("H:i"),
                     'origen' => $_SERVER['REMOTE_ADDR'],
                     'usuario' => $usuario_db->usuario,
+                    'usuario_nombre' => $usuario_db->nombre,
                     'dependencia' => $usuario_db->dependencia,
                     'area' => $usuario_db->area,
                     'accion' => 'login',
