@@ -19,6 +19,7 @@ class Actores extends CI_Controller {
         $this->load->model('consejos_actores_model');
         $this->load->model('perfiles_model');
         $this->load->model('accesos_sistema_model');
+        $this->load->model('bitacora_model');
 
     }
 
@@ -147,7 +148,30 @@ class Actores extends CI_Controller {
                     'cve_perfil' => empty($actores['cve_perfil']) ? null : $actores['cve_perfil']
                 );
                 $cve_actor = isset($actores['cve_actor']) ? $actores['cve_actor'] : null;
-                $this->actores_model->guardar($data, $cve_actor);
+                if ($cve_actor) {
+                    $accion = 'modificó';
+                } else {
+                    $accion = 'agregó';
+                }
+                $cve_actor = $this->actores_model->guardar($data, $cve_actor);
+
+                $usuario = $this->session->userdata('usuario');
+                $dependencia = $this->session->userdata('dependencia');
+                $area = $this->session->userdata('area');
+                $valor = $cve_actor . ',' . $actores['nombre'] . ' ' .$actores['apellido_pa'] . ' ' . $actores['apellido_ma'];
+                $data = array(
+                    'fecha' => date("Y-m-d"),
+                    'hora' => date("H:i"),
+                    'origen' => $_SERVER['REMOTE_ADDR'],
+                    'usuario' => $usuario,
+                    'dependencia' => $dependencia,
+                    'area' => $area,
+                    'accion' => $accion,
+                    'entidad' => 'actores',
+                    'valor' => $valor
+                );
+                $this->bitacora_model->guardar($data);
+
                 redirect('actores/lista');
             }
 
