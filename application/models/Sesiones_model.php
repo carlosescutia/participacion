@@ -23,9 +23,12 @@ class Sesiones_model extends CI_Model {
             $this->db->where('cve_sesion', $cve_sesion);
             $this->db->where('cve_consejo', $data['cve_consejo']);
             $this->db->update('sesiones', $data);
+            $id = $cve_sesion;
         } else {
             $this->db->insert('sesiones', $data);
+            $id = $this->db->insert_id();
         }
+        return $id;
     }
 
     public function actualizar_acceso_adjunto($cve_sesion, $cve_consejo, $adjunto, $valor_acceso)
