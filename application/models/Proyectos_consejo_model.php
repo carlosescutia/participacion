@@ -29,9 +29,12 @@ class Proyectos_consejo_model extends CI_Model {
         if ($cve_proyecto) {
             $this->db->where('cve_proyecto', $cve_proyecto);
             $this->db->update('proyectos_consejo', $data);
+            $id = $cve_proyecto;
         } else {
             $this->db->insert('proyectos_consejo', $data);
+            $id = $this->db->insert_id();
         }
+        return $id;
     }
 
     public function actualizar_preparacion($cve_proyecto, $cve_consejo, $cve_preparacion)
