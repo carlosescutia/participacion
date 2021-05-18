@@ -6,6 +6,9 @@ class Asistencia_sesion extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->model('asistencia_sesion_model');
+        $this->load->model('consejos_model');
+        $this->load->model('sesiones_model');
+        $this->load->model('bitacora_model');
 
     }
 
@@ -21,6 +24,33 @@ class Asistencia_sesion extends CI_Controller {
             if ($cve_sesion && $cve_consejo) {
                 $this->asistencia_sesion_model->eliminar_lista($cve_sesion, $cve_consejo);
                 $this->asistencia_sesion_model->generar_lista($cve_sesion, $cve_consejo);
+
+                $usuario = $this->session->userdata('usuario');
+                $usuario_nombre = $this->session->userdata('nombre');
+                $dependencia = $this->session->userdata('dependencia');
+                $area = $this->session->userdata('area');
+                $cve_rol = $this->session->userdata('cve_rol');
+                $consejo = $this->consejos_model->get_consejo_dependencia($dependencia, $area, $cve_consejo, $cve_rol); 
+                $datos_consejo = '(' . $cve_consejo . ':' . $consejo['nom_consejo'] . ')';
+                $separador = ' -> ';
+                $sesion = $this->sesiones_model->get_sesion_consejo($cve_sesion, $cve_consejo);
+                $datos_sesion = '(' . $cve_sesion . ':' . $sesion['num_sesion'] . ' ' . ($sesion['tipo'] == 'o' ? 'ordinaria' : 'extraordinaria') . ')';
+                $valor = $datos_consejo . $separador . $datos_sesion;
+                $accion = 'agregó';
+                $data = array(
+                    'fecha' => date("Y-m-d"),
+                    'hora' => date("H:i"),
+                    'origen' => $_SERVER['REMOTE_ADDR'],
+                    'usuario' => $usuario,
+                    'usuario_nombre' => $usuario_nombre,
+                    'dependencia' => $dependencia,
+                    'area' => $area,
+                    'accion' => $accion,
+                    'entidad' => 'asistencia',
+                    'valor' => $valor
+                );
+                $this->bitacora_model->guardar($data);
+
             }
         }
         redirect($_SERVER['HTTP_REFERER']);
@@ -54,6 +84,33 @@ class Asistencia_sesion extends CI_Controller {
                         $this->actualizar_grado_participacion($cve_asistencia, $cve_sesion, $cve_consejo, $cve_grado_participacion);
                     }
                 }
+
+                $usuario = $this->session->userdata('usuario');
+                $usuario_nombre = $this->session->userdata('nombre');
+                $dependencia = $this->session->userdata('dependencia');
+                $area = $this->session->userdata('area');
+                $cve_rol = $this->session->userdata('cve_rol');
+                $consejo = $this->consejos_model->get_consejo_dependencia($dependencia, $area, $cve_consejo, $cve_rol); 
+                $datos_consejo = '(' . $cve_consejo . ':' . $consejo['nom_consejo'] . ')';
+                $separador = ' -> ';
+                $sesion = $this->sesiones_model->get_sesion_consejo($cve_sesion, $cve_consejo);
+                $datos_sesion = '(' . $cve_sesion . ':' . $sesion['num_sesion'] . ' ' . ($sesion['tipo'] == 'o' ? 'ordinaria' : 'extraordinaria') . ')';
+                $valor = $datos_consejo . $separador . $datos_sesion;
+                $accion = 'modificó';
+                $data = array(
+                    'fecha' => date("Y-m-d"),
+                    'hora' => date("H:i"),
+                    'origen' => $_SERVER['REMOTE_ADDR'],
+                    'usuario' => $usuario,
+                    'usuario_nombre' => $usuario_nombre,
+                    'dependencia' => $dependencia,
+                    'area' => $area,
+                    'accion' => $accion,
+                    'entidad' => 'asistencia',
+                    'valor' => $valor
+                );
+                $this->bitacora_model->guardar($data);
+
             }
         }
         redirect($_SERVER['HTTP_REFERER']);
