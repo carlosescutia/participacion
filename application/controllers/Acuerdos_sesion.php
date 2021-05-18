@@ -13,6 +13,9 @@ class Acuerdos_sesion extends CI_Controller {
         $this->load->model('status_acuerdos_sesion_model');
         $this->load->model('accesos_model');
         $this->load->model('accesos_sistema_model');
+        $this->load->model('consejos_model');
+        $this->load->model('sesiones_model');
+        $this->load->model('bitacora_model');
     }
 
     public function detalle($cve_acuerdo, $cve_sesion, $cve_consejo)
@@ -71,7 +74,41 @@ class Acuerdos_sesion extends CI_Controller {
                     'causa_cancelado' => $acuerdos_sesion['causa_cancelado']
                 );
                 $cve_acuerdo = isset($acuerdos_sesion['cve_acuerdo']) ? $acuerdos_sesion['cve_acuerdo'] : null ;
-                $this->acuerdos_sesion_model->guardar($data, $cve_acuerdo);
+                if ($cve_acuerdo) {
+                    $accion = 'modificó';
+                } else {
+                    $accion = 'agregó';
+                }
+                $cve_acuerdo = $this->acuerdos_sesion_model->guardar($data, $cve_acuerdo);
+
+                $usuario = $this->session->userdata('usuario');
+                $usuario_nombre = $this->session->userdata('nombre');
+                $dependencia = $this->session->userdata('dependencia');
+                $area = $this->session->userdata('area');
+                $cve_rol = $this->session->userdata('cve_rol');
+
+                $consejo = $this->consejos_model->get_consejo_dependencia($dependencia, $area, $cve_consejo, $cve_rol); 
+                $datos_consejo = '(' . $cve_consejo . ':' . $consejo['nom_consejo'] . ')';
+                $separador = ' -> ';
+                $sesion = $this->sesiones_model->get_sesion_consejo($cve_sesion, $cve_consejo);
+                $datos_sesion = '(' . $cve_sesion . ':' . $sesion['num_sesion'] . ' ' . ($sesion['tipo'] == 'o' ? 'ordinaria' : 'extraordinaria') . ')';
+                $datos_acuerdo = $cve_acuerdo . ':' . $acuerdos_sesion['nom_acuerdo'];
+                $valor = $datos_consejo . $separador . $datos_sesion . $separador . $datos_acuerdo;
+
+                $data = array(
+                    'fecha' => date("Y-m-d"),
+                    'hora' => date("H:i"),
+                    'origen' => $_SERVER['REMOTE_ADDR'],
+                    'usuario' => $usuario,
+                    'usuario_nombre' => $usuario_nombre,
+                    'dependencia' => $dependencia,
+                    'area' => $area,
+                    'accion' => $accion,
+                    'entidad' => 'acuerdos',
+                    'valor' => $valor
+                );
+                $this->bitacora_model->guardar($data);
+
                 redirect('sesiones/detalle/'.$cve_sesion.'/'.$cve_consejo);
             }
 
@@ -110,6 +147,36 @@ class Acuerdos_sesion extends CI_Controller {
 
     public function eliminar_registro($cve_acuerdo, $cve_sesion, $cve_consejo)
     {
+        $usuario = $this->session->userdata('usuario');
+        $usuario_nombre = $this->session->userdata('nombre');
+        $dependencia = $this->session->userdata('dependencia');
+        $area = $this->session->userdata('area');
+        $cve_rol = $this->session->userdata('cve_rol');
+
+        $consejo = $this->consejos_model->get_consejo_dependencia($dependencia, $area, $cve_consejo, $cve_rol); 
+        $datos_consejo = '(' . $cve_consejo . ':' . $consejo['nom_consejo'] . ')';
+        $separador = ' -> ';
+        $sesion = $this->sesiones_model->get_sesion_consejo($cve_sesion, $cve_consejo);
+        $datos_sesion = '(' . $cve_sesion . ':' . $sesion['num_sesion'] . ' ' . ($sesion['tipo'] == 'o' ? 'ordinaria' : 'extraordinaria') . ')';
+        $acuerdo = $this->acuerdos_sesion_model->get_acuerdo($cve_acuerdo, $cve_sesion, $cve_consejo);
+        $datos_acuerdo = $cve_acuerdo . ':' . $acuerdo['nom_acuerdo'];
+        $valor = $datos_consejo . $separador . $datos_sesion . $separador . $datos_acuerdo;
+        $accion = 'eliminó';
+
+        $data = array(
+            'fecha' => date("Y-m-d"),
+            'hora' => date("H:i"),
+            'origen' => $_SERVER['REMOTE_ADDR'],
+            'usuario' => $usuario,
+            'usuario_nombre' => $usuario_nombre,
+            'dependencia' => $dependencia,
+            'area' => $area,
+            'accion' => $accion,
+            'entidad' => 'acuerdos',
+            'valor' => $valor
+        );
+        $this->bitacora_model->guardar($data);
+
         $this->acuerdos_sesion_model->eliminar_registro($cve_acuerdo, $cve_sesion, $cve_consejo);
         redirect($_SERVER['HTTP_REFERER']);
     }
