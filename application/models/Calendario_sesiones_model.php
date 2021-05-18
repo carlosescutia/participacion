@@ -31,6 +31,12 @@ class Calendario_sesiones_model extends CI_Model {
         return $query->result_array();
     }
 
+    public function get_calendario($cve_evento, $cve_consejo) {
+        $sql = "select cs.* from calendario_sesiones cs where cs.cve_evento = ? and cs.cve_consejo = ?";
+        $query = $this->db->query($sql, array($cve_evento, $cve_consejo));
+        return $query->row_array();
+    }
+
     public function guardar($cve_consejo, $nom_sesion, $dependencia, $area, $fecha, $hora, $cve_status)
     {
         $data = array(
@@ -44,6 +50,8 @@ class Calendario_sesiones_model extends CI_Model {
         );
 
         $this->db->insert('calendario_sesiones', $data);
+        $id = $this->db->insert_id();
+        return $id;
     }
 
     public function actualizar_status($cve_evento, $cve_consejo, $cve_status)
