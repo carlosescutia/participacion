@@ -16,6 +16,9 @@ class Proyectos_consejo extends CI_Controller {
         $this->load->model('objetivo_plangto_model');
         $this->load->model('planteamientos_model');
         $this->load->model('accesos_sistema_model');
+        $this->load->model('consejos_model');
+        $this->load->model('actores_model');
+        $this->load->model('bitacora_model');
 
     }
 
@@ -84,8 +87,38 @@ class Proyectos_consejo extends CI_Controller {
                     'valor_atingencia' => empty($proyecto_consejo['valor_atingencia']) ? null : $proyecto_consejo['valor_atingencia']
                 );
                 $cve_proyecto = isset($proyecto_consejo['cve_proyecto']) ? $proyecto_consejo['cve_proyecto'] : null;
+                if ($cve_proyecto) {
+                    $accion = 'modificó';
+                } else {
+                    $accion = 'agregó';
+                }
                 $cve_consejo = isset($proyecto_consejo['cve_consejo']) ? $proyecto_consejo['cve_consejo'] : $cve_consejo ;
-                $this->proyectos_consejo_model->guardar($data, $cve_proyecto);
+                $cve_proyecto = $this->proyectos_consejo_model->guardar($data, $cve_proyecto);
+
+                $usuario = $this->session->userdata('usuario');
+                $usuario_nombre = $this->session->userdata('nombre');
+                $dependencia = $this->session->userdata('dependencia');
+                $area = $this->session->userdata('area');
+                $cve_rol = $this->session->userdata('cve_rol');
+                $consejo = $this->consejos_model->get_consejo_dependencia($dependencia, $area, $cve_consejo, $cve_rol); 
+                $datos_consejo = '(' . $cve_consejo . ':' . $consejo['nom_consejo'] . ')';
+                $separador = ' -> ';
+                $datos_proyecto = $cve_proyecto . ':' . $proyecto_consejo['nom_proyecto'];
+                $valor = $datos_consejo . $separador . $datos_proyecto;
+                $data = array(
+                    'fecha' => date("Y-m-d"),
+                    'hora' => date("H:i"),
+                    'origen' => $_SERVER['REMOTE_ADDR'],
+                    'usuario' => $usuario,
+                    'usuario_nombre' => $usuario_nombre,
+                    'dependencia' => $dependencia,
+                    'area' => $area,
+                    'accion' => $accion,
+                    'entidad' => 'proyectos',
+                    'valor' => $valor
+                );
+                $this->bitacora_model->guardar($data);
+
                 redirect('consejos/detalle/'.$cve_consejo);
             }
 
@@ -125,11 +158,36 @@ class Proyectos_consejo extends CI_Controller {
         }
     }
 
-    public function eliminar_registro($cve_evento, $cve_consejo)
+    public function eliminar_registro($cve_proyecto, $cve_consejo)
     {
+        $proyecto_consejo = $this->proyectos_consejo_model->get_proyecto_consejo($cve_proyecto);
+        $this->proyectos_consejo_model->eliminar_registro($cve_proyecto, $cve_consejo);
+
+        $usuario = $this->session->userdata('usuario');
+        $usuario_nombre = $this->session->userdata('nombre');
         $dependencia = $this->session->userdata('dependencia');
         $area = $this->session->userdata('area');
-        $this->proyectos_consejo_model->eliminar_registro($cve_evento, $cve_consejo, $dependencia, $area);
+        $cve_rol = $this->session->userdata('cve_rol');
+        $consejo = $this->consejos_model->get_consejo_dependencia($dependencia, $area, $cve_consejo, $cve_rol); 
+        $datos_consejo = '(' . $cve_consejo . ':' . $consejo['nom_consejo'] . ')';
+        $separador = ' -> ';
+        $datos_proyecto = $cve_proyecto . ':' . $proyecto_consejo['nom_proyecto'];
+        $valor = $datos_consejo . $separador . $datos_proyecto;
+        $accion = 'eliminó';
+        $data = array(
+            'fecha' => date("Y-m-d"),
+            'hora' => date("H:i"),
+            'origen' => $_SERVER['REMOTE_ADDR'],
+            'usuario' => $usuario,
+            'usuario_nombre' => $usuario_nombre,
+            'dependencia' => $dependencia,
+            'area' => $area,
+            'accion' => $accion,
+            'entidad' => 'proyectos',
+            'valor' => $valor
+        );
+        $this->bitacora_model->guardar($data);
+
         redirect($_SERVER['HTTP_REFERER']);
     }
 
