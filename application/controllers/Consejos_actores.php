@@ -7,6 +7,9 @@ class Consejos_actores extends CI_Controller {
         $this->load->helper('url');
         $this->load->model('consejos_actores_model');
         $this->load->model('accesos_sistema_model');
+        $this->load->model('consejos_model');
+        $this->load->model('actores_model');
+        $this->load->model('bitacora_model');
     }
 
     public function lista()
@@ -48,6 +51,34 @@ class Consejos_actores extends CI_Controller {
                 $status = $consejos_actores['status'];
 
                 if ($cve_actor && $cve_cargo && $fecha_inicio && $fecha_fin && is_numeric($status)) {
+
+                    $usuario = $this->session->userdata('usuario');
+                    $usuario_nombre = $this->session->userdata('nombre');
+                    $dependencia = $this->session->userdata('dependencia');
+                    $area = $this->session->userdata('area');
+                    $cve_rol = $this->session->userdata('cve_rol');
+                    $consejo = $this->consejos_model->get_consejo_dependencia($dependencia, $area, $cve_consejo, $cve_rol); 
+                    $actor = $this->actores_model->get_actor_dependencia($dependencia, $area, $cve_actor, $cve_rol);
+                    $datos_consejo = '(' . $cve_consejo . ':' . $consejo['nom_consejo'] . ')';
+                    $separador = ' -> ';
+                    $datos_integrante = $cve_actor . ':' . $actor['nombre'] . ' ' .$actor['apellido_pa'] . ' ' . $actor['apellido_ma'];
+                    $valor = $datos_consejo . $separador . $datos_integrante;
+                    $accion = 'agregó';
+
+                    $data = array(
+                        'fecha' => date("Y-m-d"),
+                        'hora' => date("H:i"),
+                        'origen' => $_SERVER['REMOTE_ADDR'],
+                        'usuario' => $usuario,
+                        'usuario_nombre' => $usuario_nombre,
+                        'dependencia' => $dependencia,
+                        'area' => $area,
+                        'accion' => $accion,
+                        'entidad' => 'integrantes',
+                        'valor' => $valor
+                    );
+                    $this->bitacora_model->guardar($data);
+
                     $this->consejos_actores_model->guardar($cve_consejo, $cve_actor, $cve_cargo, $fecha_inicio, $fecha_fin, $status);
                 } else {
                     $this->session->set_flashdata('error_integrantes', 'Capture todos los datos');
@@ -60,6 +91,34 @@ class Consejos_actores extends CI_Controller {
 
     public function eliminar_registro($cve_consejo, $cve_actor, $cve_cargo, $fecha_inicio, $fecha_fin, $status)
     {
+
+        $usuario = $this->session->userdata('usuario');
+        $usuario_nombre = $this->session->userdata('nombre');
+        $dependencia = $this->session->userdata('dependencia');
+        $area = $this->session->userdata('area');
+        $cve_rol = $this->session->userdata('cve_rol');
+        $consejo = $this->consejos_model->get_consejo_dependencia($dependencia, $area, $cve_consejo, $cve_rol); 
+        $actor = $this->actores_model->get_actor_dependencia($dependencia, $area, $cve_actor, $cve_rol);
+        $datos_consejo = '(' . $cve_consejo . ':' . $consejo['nom_consejo'] . ')';
+        $separador = ' -> ';
+        $datos_integrante = $cve_actor . ':' . $actor['nombre'] . ' ' .$actor['apellido_pa'] . ' ' . $actor['apellido_ma'];
+        $valor = $datos_consejo . $separador . $datos_integrante;
+        $accion = 'eliminó';
+
+        $data = array(
+            'fecha' => date("Y-m-d"),
+            'hora' => date("H:i"),
+            'origen' => $_SERVER['REMOTE_ADDR'],
+            'usuario' => $usuario,
+            'usuario_nombre' => $usuario_nombre,
+            'dependencia' => $dependencia,
+            'area' => $area,
+            'accion' => $accion,
+            'entidad' => 'integrantes',
+            'valor' => $valor
+        );
+        $this->bitacora_model->guardar($data);
+
         $this->consejos_actores_model->eliminar_registro($cve_consejo, $cve_actor, $cve_cargo, $fecha_inicio, $fecha_fin, $status);
         redirect($_SERVER['HTTP_REFERER']);
     }
