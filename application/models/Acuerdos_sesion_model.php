@@ -22,9 +22,12 @@ class Acuerdos_sesion_model extends CI_Model {
         if (isset($cve_acuerdo)) {
             $this->db->where('cve_acuerdo', $cve_acuerdo);
             $this->db->update('acuerdos_sesion', $data);
+            $id = $cve_acuerdo;
         } else {
             $this->db->insert('acuerdos_sesion', $data);
+            $id = $this->db->insert_id();
         }
+        return $id;
     }
 
     public function eliminar_registro($cve_acuerdo, $cve_sesion, $cve_consejo)
