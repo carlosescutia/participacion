@@ -21,7 +21,7 @@ class Reportes extends CI_Controller {
         $this->load->model('status_acuerdos_sesion_model');
         $this->load->model('tipo_consejos_model');
         $this->load->model('accesos_sistema_model');
-
+        $this->load->model('bitacora_model');
     }
 
     public function lista()
@@ -825,6 +825,97 @@ class Reportes extends CI_Controller {
             $newline = "\r\n";
             $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
             force_download("listado_acuerdos_01.csv", $data);
+        }
+    }
+
+    public function listado_bitacora_01()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
+
+            $filtros = $this->input->post();
+            if ($filtros) {
+                $accion = $filtros['accion'];
+                $entidad = $filtros['entidad'];
+            } else {
+                $accion = '';
+                $entidad = '';
+			}
+
+            $data['accion'] = $accion;
+            $data['entidad'] = $entidad;
+
+            $data['bitacora'] = $this->bitacora_model->get_bitacora($dependencia, $area, $cve_rol, $accion, $entidad);
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('reportes/listado_bitacora_01', $data);
+            $this->load->view('templates/footer');
+        } else {
+            redirect('inicio/iniciar_sesion');
+        }
+    }
+
+    public function listado_bitacora_01_csv()
+    {
+        if ($this->session->userdata('logueado')) {
+            $data['usuario_clave'] = $this->session->userdata('clave');
+            $data['usuario_nombre'] = $this->session->userdata('nombre');
+            $dependencia = $this->session->userdata('dependencia');
+            $data['usuario_dependencia'] = $dependencia;
+            $area = $this->session->userdata('area');
+            $data['usuario_area'] = $area;
+            $cve_rol = $this->session->userdata('cve_rol');
+            $data['cve_rol'] = $cve_rol;
+            $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
+
+            $this->load->dbutil();
+            $this->load->helper('file');
+            $this->load->helper('download');
+
+            $filtros = $this->input->post();
+            if ($filtros) {
+                $accion = $filtros['accion'];
+                $entidad = $filtros['entidad'];
+            } else {
+                $accion = '';
+                $entidad = '';
+			}
+
+            if ($cve_rol == 'sup') {
+                $area = '%';
+            }
+            if ($cve_rol == 'adm') {
+                $dependencia = '%';
+                $area = '%';
+            }
+
+            $sql = "select b.* from bitacora b where b.dependencia LIKE ? and b.area LIKE ?";
+            $parametros = array();
+            array_push($parametros, "$dependencia");
+            array_push($parametros, "$area");
+            if ($accion <> "") {
+                $sql .= ' and b.accion = ?';
+                array_push($parametros, "$accion");
+            } 
+            if ($entidad <> "") {
+                $sql .= ' and b.entidad = ?';
+                array_push($parametros, "$entidad");
+            } 
+            $sql .= ' order by b.cve_evento desc;';
+            $query = $this->db->query($sql, $parametros);
+
+            $delimiter = ",";
+            $newline = "\r\n";
+            $data = $this->dbutil->csv_from_result($query, $delimiter, $newline);
+            force_download("listado_bitacora_01.csv", $data);
         }
     }
 
