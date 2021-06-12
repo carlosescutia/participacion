@@ -3,6 +3,24 @@
         <h2>Inicio</h2>
     </div>
     <div class="row">
+        <!-- Modal -->
+        <div class="modal fade" id="encuesta" tabindex="-1" role="dialog" aria-labelledby="encuestaLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="encuestaLabel">Consulta pública en línea para la actualización del Programa de Gobierno 2021-2024</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <a href="https://forms.gle/RdhrTGbRZkqgmQAH6" target="_blank"><img src="<?=base_url();?>img/encuesta.jpg" class="img-fluid rounded"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-8">
             <div class="col-md-12">
                 <div class="row">
@@ -33,5 +51,7 @@
     </div>
 
     <hr />
+
+    <?php include 'js/inicio.js'; ?>
 
 </main>
