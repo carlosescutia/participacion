@@ -14,7 +14,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <a href="https://forms.gle/RdhrTGbRZkqgmQAH6" target="_blank"><img src="<?=base_url();?>img/encuesta.jpg" class="img-fluid rounded"></a>
+                        <a href="https://forms.gle/eWyBWcsYYyTqpMY66" target="_blank"><img src="<?=base_url();?>img/encuesta.jpg" class="img-fluid rounded"></a>
                     </div>
                 </div>
             </div>
