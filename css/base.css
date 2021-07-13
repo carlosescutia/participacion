@@ -174,7 +174,7 @@ body {
 }
 
 .navbar {
-    background-color: #0262C9;
+    background: linear-gradient(90deg, rgba(252,98,32,1) 0%, rgba(190,16,116,1) 50%, rgba(11,60,174,1) 100%);
     padding: 0 !important;
 }
 
@@ -191,14 +191,13 @@ body {
     height: 92px;
     width: 235px;
     padding-left: 50px;
+    padding-top: 25px;
     margin-right: 10px;
-    background-color: #C8C8AA;
-    border-radius: 0 50px 50px 0;
 }
 
 .logo {
     width:185px;
-    height:92px ;
+    height:44px ;
 }
 
 .fas {
