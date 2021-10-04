@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '192.168.56.101',
+	'hostname' => 'postgres',
 	'username' => 'participacion',
 	'password' => 'participacion',
-	'database' => 'dev_participacion',
+	'database' => 'participacion',
 	'dbdriver' => 'postgre',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
