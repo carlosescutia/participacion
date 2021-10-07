@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://pubparticipacion.guanajuato.gob.mx/';
+$config['base_url'] = 'http://tstparticipacion.guanajuato.gob.mx/';
 
 /*
 |--------------------------------------------------------------------------
