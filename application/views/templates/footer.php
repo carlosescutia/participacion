@@ -12,7 +12,6 @@
                 </div>
                 <div class="address">
                     <p>© 2020 Gobierno del Estado de Guanajuato, Derechos Reservados</p>
-                    <p><a href="#">Aviso legal</a></p>
                 </div>
             </footer>
         </div>
