@@ -174,14 +174,24 @@ body {
 }
 
 .navbar {
-    background: linear-gradient(90deg, rgba(252,98,32,1) 0%, rgba(190,16,116,1) 50%, rgba(11,60,174,1) 100%);
+    background: #fff;
     padding: 0 !important;
+    border-bottom: 1px solid #C8C8AA;
+}
+
+.texto-titulo {
+    color: #001E89 !important;
 }
 
 .navbar-nav .nav-link {
-    color: #fff !important;
+    color: #0080FF !important;
     text-align: center;
 }
+
+.navbar-nav .nav-link:hover {
+    text-decoration: underline;
+}
+
 
 .navbar-brand {
     padding: 0 !important;
@@ -189,15 +199,15 @@ body {
 
 .logo_menu {
     height: 92px;
-    width: 235px;
-    padding-left: 50px;
-    padding-top: 25px;
-    margin-right: 10px;
+    width: 316px;
+    padding-left: 20px;
+    padding-top: 8px;
+    margin-right: 60px;
 }
 
 .logo {
-    width:185px;
-    height:44px ;
+    width:316px;
+    height:77px ;
 }
 
 .fas {
@@ -208,48 +218,22 @@ body {
 
 /* FOOTER */
 
-
-.masfoot .address {
-    display: block !important;
-}
 .masfoot {
-    background-color: #e1e1e1 !important;
+    background-color: #E4ECFA !important;
     padding: 30px 0 !important;
 }
-.masfoot .address {
-    padding: 20px;
-    color: #666;
-    font-family: 'Proxima Nova';
-    font-size: 14px;
-    line-height: 1.3;
-    text-align: center;
-}
-.masfoot .legal {
-    color: #000;
-    font-size: 14px;
-    margin-top: 20px;
-    text-align: center;
+
+.masfoot p {
+    margin-bottom: 0.2em;
+    color: #000EA7;
 }
 
-.masfoot .social {
-    text-align: center;
+.section_title {
+    font-weight: bolder;
 }
 
-.masfoot .social a .fa {
-    font-size: 17px;
-}
+/* FOOTER */
 
-.masfoot .social a { 
-    background-color: #001F8A;
-    border-radius: 40px;
-    display: inline-block;
-    margin-right: 5px;
-    padding: 8px;
-    color: #fff;
-    font-size: 14px;
-    min-width: 38px;
-    text-align: center;
-}
 
 .semaforo {
     height: 15px;
