@@ -20,6 +20,8 @@ class Actores extends CI_Controller {
         $this->load->model('perfiles_model');
         $this->load->model('accesos_sistema_model');
         $this->load->model('bitacora_model');
+        $this->load->model('archivos_model');
+        $this->load->model('areas_tematicas_model');
 
     }
 
@@ -87,6 +89,9 @@ class Actores extends CI_Controller {
             $data['sectores'] = $this->sectores_model->get_sectores_ambito($cve_ambito);
             $data['consejos_actores'] = $this->consejos_actores_model->get_consejos_actor($cve_actor);
             $data['perfiles'] = $this->perfiles_model->get_perfiles();
+            $data['nombre_adj1'] = $this->archivos_model->get_file_metadata($cve_actor, 'adj1.pdf');
+            $data['nombre_adj2'] = $this->archivos_model->get_file_metadata($cve_actor, 'adj2.pdf');
+            $data['areas_tematicas'] = $this->areas_tematicas_model->get_areas_tematicas();
 
             $this->load->view('templates/header', $data);
             $this->load->view('actores/detalle', $data);
@@ -115,6 +120,7 @@ class Actores extends CI_Controller {
                     'activo' => $actores['activo'] ,
                     'dependencia' => $actores['dependencia'],
                     'area' => $actores['area'],
+                    'titulo_academico' => $actores['titulo_academico'],
                     'nombre' =>  $actores['nombre'],
                     'apellido_pa' =>  $actores['apellido_pa'],
                     'apellido_ma' =>  $actores['apellido_ma'],
@@ -145,7 +151,8 @@ class Actores extends CI_Controller {
                     'fecha_experiencia_exitosa' => empty($actores['fecha_experiencia_exitosa']) ? null : $actores['fecha_experiencia_exitosa'],
                     'desea_colaborar' =>  $actores['desea_colaborar'],
                     'profesion' =>  $actores['profesion'],
-                    'cve_perfil' => empty($actores['cve_perfil']) ? null : $actores['cve_perfil']
+                    'cve_perfil' => empty($actores['cve_perfil']) ? null : $actores['cve_perfil'],
+                    'cve_area_tematica' => empty($actores['cve_area_tematica']) ? null : $actores['cve_area_tematica']
                 );
                 $cve_actor = isset($actores['cve_actor']) ? $actores['cve_actor'] : null;
                 if ($cve_actor) {
@@ -195,6 +202,7 @@ class Actores extends CI_Controller {
             $data['entidades'] = $this->entidades_model->get_entidades();
             $data['tipo_actores'] = $this->tipo_actores_model->get_tipo_actores();
             $data['ambitos'] = $this->ambitos_model->get_ambitos();
+            $data['areas_tematicas'] = $this->areas_tematicas_model->get_areas_tematicas();
             if (isset($data['actores']['cve_ambito'])) {
                 $cve_ambito = $data['actores']['cve_ambito'];
                 $data['sectores'] = $this->sectores_model->get_sectores_ambito($cve_ambito);

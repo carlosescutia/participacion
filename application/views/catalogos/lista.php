@@ -78,6 +78,9 @@
                 <div class="col-md-4">
                     <?php include "status_proyectos_consejo/boton.php" ?>
                 </div>
+                <div class="col-md-4">
+                    <?php include "areas_tematicas/boton.php" ?>
+                </div>
             </div>
         </div>
         <div class="col-md-3 p-3 border bg-light">

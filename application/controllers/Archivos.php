@@ -5,7 +5,7 @@ class Archivos extends CI_Controller {
     {
         parent::__construct();
         $this->load->helper('url');
-
+        $this->load->model('archivos_model');
     }
 
     public function sesiones_presentacion()
@@ -132,16 +132,25 @@ class Archivos extends CI_Controller {
     {
         if ($this->session->userdata('logueado')) {
             $cve_actor = $this->input->post('cve_actor');
-            
+            $archivo_sistema = $cve_actor . '_adj1.pdf';
+
             $config = array();
             $config['allowed_types'] = 'pdf';
             $config['overwrite'] = TRUE;
             $config['upload_path'] = 'adj_actores';
-            $config['file_name'] = $cve_actor . '_adj1.pdf';
+            $config['file_name'] = $archivo_sistema;
             $this->load->library('upload',$config);
             if ( ! $this->upload->do_upload('arch-act-adj1') ) {
                 $error_adj_actores = array('error_adj_actores' => $this->upload->display_errors());
                 $this->session->set_flashdata('error_adj_actores', $error_adj_actores['error_adj_actores']);
+            } else {
+                $upload_data = $this->upload->data();
+                $archivo_original = $upload_data['client_name'];
+                $data = array(
+                    'archivo_sistema' => $archivo_sistema, 
+                    'archivo_original' => $archivo_original 
+                );
+                $this->archivos_model->save_file_metadata($data);
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
@@ -151,16 +160,25 @@ class Archivos extends CI_Controller {
     {
         if ($this->session->userdata('logueado')) {
             $cve_actor = $this->input->post('cve_actor');
-            
+            $archivo_sistema = $cve_actor . '_adj2.pdf';
+
             $config = array();
             $config['allowed_types'] = 'pdf';
             $config['overwrite'] = TRUE;
             $config['upload_path'] = 'adj_actores';
-            $config['file_name'] = $cve_actor . '_adj2.pdf';
+            $config['file_name'] = $archivo_sistema;
             $this->load->library('upload',$config);
             if ( ! $this->upload->do_upload('arch-act-adj2') ) {
                 $error_adj_actores = array('error_adj_actores' => $this->upload->display_errors());
                 $this->session->set_flashdata('error_adj_actores', $error_adj_actores['error_adj_actores']);
+            } else {
+                $upload_data = $this->upload->data();
+                $archivo_original = $upload_data['client_name'];
+                $data = array(
+                    'archivo_sistema' => $archivo_sistema, 
+                    'archivo_original' => $archivo_original 
+                );
+                $this->archivos_model->save_file_metadata($data);
             }
             redirect($_SERVER['HTTP_REFERER']);
         }
