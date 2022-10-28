@@ -5,11 +5,12 @@
                 <div class="col-md-10">
                     <h1 class="h2">Datos del actor</h1>
                 </div>
-                <?php if (in_array('99', $accesos_sistema_rol)) { ?>
                 <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <?php if (in_array('99', $accesos_sistema_rol)) { ?>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    <?php } ?>
+                    <a href="<?=base_url()?>actores/lista" class="btn btn-secondary">Volver</a>
                 </div>
-                <?php } ?>
             </div>
         </div>
 
@@ -30,12 +31,17 @@
                 </div>
                 <div class="col-md-10">
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-3">
+                            <label for="titulo_academico">Título académico</label>
+                            <?php echo form_error('titulo_academico'); ?>
+                            <input type="text" class="form-control" name="titulo_academico" id="titulo_academico" value="<?=$actores['titulo_academico'] ?>">
+                        </div>
+                        <div class="form-group col-md-3">
                             <label for="nombre">Nombre(s)</label>
                             <?php echo form_error('nombre'); ?>
                             <input type="text" class="form-control" name="nombre" id="nombre" value="<?=$actores['nombre'] ?>">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-3">
                             <label for="apellido_pa">Apellido paterno</label>
                             <?php echo form_error('apellido_pa'); ?>
                             <input type="text" class="form-control" name="apellido_pa" id="apellido_pa" value="<?=$actores['apellido_pa'] ?>">
@@ -56,8 +62,8 @@
                             <?php echo form_error('sexo'); ?>
                             <select class="custom-select" name="sexo" id="sexo">
                                 <option value=""></option>
-                                <option value="F" <?= ($actores['sexo'] == 'F') ? 'selected' : '' ?>>F</option>
-                                <option value="M" <?= ($actores['sexo'] == 'M') ? 'selected' : '' ?>>M</option>
+                                <option value="F" <?= ($actores['sexo'] == 'F') ? 'selected' : '' ?>>Mujer</option>
+                                <option value="M" <?= ($actores['sexo'] == 'M') ? 'selected' : '' ?>>Hombre</option>
                             </select>
                         </div>
                         <div class="form-group col-md-5">
@@ -146,7 +152,7 @@
                             <input type="text" class="form-control" name="organizacion" id="organizacion" value="<?=$actores['organizacion'] ?>">
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="asistente">Asistente</label>
+                            <label for="asistente">Nombre de asistente</label>
                             <input type="text" class="form-control" name="asistente" id="asistente" value="<?=$actores['asistente'] ?>">
                         </div>
                         <div class="form-group col-md-3">
@@ -282,6 +288,17 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="cve_area_tematica">Área temática</label>
+                            <select class="custom-select" name="cve_area_tematica" id="cve_area_tematica">
+                                <option value=""></option>
+                                <?php foreach ($areas_tematicas as $areas_tematicas_item) { ?>
+                                <option value="<?= $areas_tematicas_item['cve_area_tematica'] ?>" <?= ($actores['cve_area_tematica'] == $areas_tematicas_item['cve_area_tematica']) ? 'selected' : '' ?> ><?= $areas_tematicas_item['nom_area_tematica'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr />
@@ -308,62 +325,70 @@
                     </div>
                     
                     <div class="row">
-                        <table class="table table-sm table-borderless">
+                        <table class="table table-sm table-borderless tabla_fija">
                             <tbody>
                                 <tr class="text-center">
                                     <td>
+                                        <p>Adjunto 1 (pdf)</p>
                                         <?php
                                         $cve_actor = $actores['cve_actor'] ;
-                                        $arch_actores_adj1 = 'adj_actores/' . $cve_actor . '_adj1.pdf';
-                                        if ( file_exists($arch_actores_adj1) ) { ?>
-                                        <a href="<?= base_url() ?><?= $arch_actores_adj1 ?>" target="_blank">
+                                        $arch_actores_adj1 = $cve_actor . '_adj1.pdf';
+                                        $path_arch_actores_adj1 = 'adj_actores/' . $arch_actores_adj1 ;
+
+                                        if ( file_exists($path_arch_actores_adj1) ) { ?>
+                                            <a href="<?= base_url() ?><?= $path_arch_actores_adj1 ?>" target="_blank">
+                                            <?php if ( isset($nombre_adj1) ) { ?>
+                                                <p><?= $nombre_adj1['archivo_original'] ?></p>
+                                            <?php } else { ?>
+                                                <p><?= $arch_actores_adj1 ?></p>
                                             <?php } ?>
-                                            Adjunto 1 (pdf)
-                                            <?php
-                                            if ( file_exists($arch_actores_adj1) ) { ?>
-                                        </a>
+                                            </a>
                                         <?php } ?>
                                     </td>
 
                                     <td>
+                                        <p>Adjunto 2 (pdf)</p>
                                         <?php
                                         $cve_actor = $actores['cve_actor'] ;
-                                        $arch_actores_adj2 = 'adj_actores/' . $cve_actor . '_adj2.pdf';
-                                        if ( file_exists($arch_actores_adj2) ) { ?>
-                                        <a href="<?= base_url() ?><?= $arch_actores_adj2 ?>" target="_blank">
+                                        $arch_actores_adj2 = $cve_actor . '_adj2.pdf';
+                                        $path_arch_actores_adj2 = 'adj_actores/' . $arch_actores_adj2 ;
+
+                                        if ( file_exists($path_arch_actores_adj2) ) { ?>
+                                            <a href="<?= base_url() ?><?= $path_arch_actores_adj2 ?>" target="_blank">
+                                            <?php if ( isset($nombre_adj2) ) { ?>
+                                                <p><?= $nombre_adj2['archivo_original'] ?></p>
+                                            <?php } else { ?>
+                                                <p><?= $arch_actores_adj2 ?></p>
                                             <?php } ?>
-                                            Adjunto 2 (pdf)
-                                            <?php
-                                            if ( file_exists($arch_actores_adj2) ) { ?>
-                                        </a>
+                                            </a>
                                         <?php } ?>
                                     </td>
 
                                     <td>
+                                        <p>Extras (zip)</p>
                                         <?php
                                         $cve_actor = $actores['cve_actor'] ;
-                                        $arch_actores_extras = 'adj_actores/' . $cve_actor . '_extras.zip';
-                                        if ( file_exists($arch_actores_extras) ) { ?>
-                                        <a href="<?= base_url() ?><?= $arch_actores_extras ?>" target="_blank">
-                                            <?php } ?>
-                                            Extras (zip)
-                                            <?php
-                                            if ( file_exists($arch_actores_extras) ) { ?>
-                                        </a>
+                                        $arch_actores_extras =  $cve_actor . '_extras.zip';
+                                        $path_arch_actores_extras = 'adj_actores/' . $arch_actores_extras ;
+
+                                        if ( file_exists($path_arch_actores_extras) ) { ?>
+                                            <a href="<?= base_url() ?><?= $path_arch_actores_extras ?>" target="_blank">
+                                            <p><?= $arch_actores_extras ?></p>
+                                            </a>
                                         <?php } ?>
                                     </td>
 
                                     <td>
+                                        <p>Foto (jpg)</p>
                                         <?php
                                         $cve_actor = $actores['cve_actor'] ;
-                                        $arch_actores_foto = 'adj_actores/' . $cve_actor . '_foto.jpg';
-                                        if ( file_exists($arch_actores_foto) ) { ?>
-                                        <a href="<?= base_url() ?><?= $arch_actores_foto ?>" target="_blank">
-                                            <?php } ?>
-                                            Foto (jpg)
-                                            <?php
-                                            if ( file_exists($arch_actores_foto) ) { ?>
-                                        </a>
+                                        $arch_actores_foto =  $cve_actor . '_foto.jpg';
+                                        $path_arch_actores_foto = 'adj_actores/' . $arch_actores_foto;
+
+                                        if ( file_exists($path_arch_actores_foto) ) { ?>
+                                            <a href="<?= base_url() ?><?= $path_arch_actores_foto ?>" target="_blank">
+                                            <p><?= $arch_actores_foto ?></p>
+                                            </a>
                                         <?php } ?>
                                     </td>
 

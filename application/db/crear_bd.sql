@@ -46,7 +46,9 @@ CREATE TABLE actores (
     fecha_experiencia_exitosa date,
     desea_colaborar text,
     profesion text,
-    cve_perfil integer
+    cve_perfil integer,
+    titulo_academico text,
+    cve_area_tematica integer
 );
 
 
@@ -342,5 +344,17 @@ CREATE TABLE bitacora (
     accion text,
     entidad text,
     valor text
+);
+
+DROP TABLE IF EXISTS metadatos_archivos;
+CREATE TABLE metadatos_archivos (
+    archivo_sistema text primary key,
+    archivo_original text
+);
+
+DROP TABLE IF EXISTS areas_tematicas;
+CREATE TABLE areas_tematicas (
+    cve_area_tematica serial,
+    nom_area_tematica text
 );
 

@@ -25,12 +25,17 @@
                 </div>
                 <div class="col-md-10">
                     <div class="form-row">
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-3">
+                            <label for="titulo_academico">Título académico</label>
+                            <?php echo form_error('titulo_academico'); ?>
+                            <input type="text" class="form-control" name="titulo_academico" id="titulo_academico" value="<?php echo set_value('titulo_academico'); ?>">
+                        </div>
+                        <div class="form-group col-md-3">
                             <label for="nombre">Nombre(s)</label>
                             <?php echo form_error('nombre'); ?>
                             <input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo set_value('nombre'); ?>">
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-3">
                             <label for="apellido_pa">Apellido paterno</label>
                             <?php echo form_error('apellido_pa'); ?>
                             <input type="text" class="form-control" name="apellido_pa" id="apellido_pa" value="<?php echo set_value('apellido_pa'); ?>">
@@ -51,8 +56,8 @@
                             <?php echo form_error('sexo'); ?>
                             <select class="custom-select" name="sexo" id="sexo">
                                 <option value="" <?php echo set_select('sexo', '', TRUE); ?> ></option>
-                                <option value="F" <?php echo set_select('sexo', 'F'); ?> >F</option>
-                                <option value="M" <?php echo set_select('sexo', 'M'); ?> >M</option>
+                                <option value="F" <?php echo set_select('sexo', 'F'); ?> >Mujer</option>
+                                <option value="M" <?php echo set_select('sexo', 'M'); ?> >Hombre</option>
                             </select>
                         </div>
                         <div class="form-group col-md-5">
@@ -238,6 +243,17 @@
                                 <option value="" <?php echo set_select('cve_perfil', '', TRUE); ?> ></option>
                                 <?php foreach ($perfiles as $perfiles_item) { ?>
                                 <option value="<?= $perfiles_item['cve_perfil'] ?>" <?php echo set_select('cve_perfil', $perfiles_item['cve_perfil']); ?> ><?= $perfiles_item['nom_perfil'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label for="cve_area_tematica">Area temática</label>
+                            <select class="custom-select" name="cve_area_tematica" id="cve_area_tematica">
+                                <option value="" <?php echo set_select('cve_area_tematica', '', TRUE); ?> ></option>
+                                <?php foreach ($areas_tematicas as $areas_tematicas_item) { ?>
+                                <option value="<?= $areas_tematicas_item['cve_area_tematica'] ?>" <?php echo set_select('cve_area_tematica', $areas_tematicas_item['cve_area_tematica']); ?> ><?= $areas_tematicas_item['nom_area_tematica'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
