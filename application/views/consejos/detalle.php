@@ -15,6 +15,12 @@
     <hr />
         
     <div class="col-md-12">
+        <?php include "acuerdos_consejo.php" ?>
+    </div>
+
+    <hr />
+        
+    <div class="col-md-12">
         <div class="row">
             <div class="col-md-7">
                 <?php include "datos_integrantes.php" ?>

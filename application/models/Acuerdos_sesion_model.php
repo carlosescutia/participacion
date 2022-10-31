@@ -106,7 +106,7 @@ class Acuerdos_sesion_model extends CI_Model {
             $dependencia = '%';
             $area = '%';
         }
-        $sql = "select c.nom_consejo, acs.codigo_acuerdo, acs.nom_acuerdo, acs.responsable, acs.fecha_cumplimiento, sas.nom_status, acs.observaciones from acuerdos_sesion acs left join consejos c on acs.cve_consejo = c.cve_consejo left join status_acuerdos_sesion sas on acs.cve_status = sas.cve_status where dependencia LIKE ? and area LIKE ?";
+        $sql = "select c.nom_consejo, acs.codigo_acuerdo, acs.nom_acuerdo, acs.responsable, acs.fecha_compromiso, acs.fecha_cumplimiento, acs.cve_status, sas.nom_status, acs.solicitud_iplaneg, acs.observaciones from acuerdos_sesion acs left join consejos c on acs.cve_consejo = c.cve_consejo left join status_acuerdos_sesion sas on acs.cve_status = sas.cve_status where dependencia LIKE ? and area LIKE ?";
         
         $parametros = array();
         array_push($parametros, "$dependencia");
