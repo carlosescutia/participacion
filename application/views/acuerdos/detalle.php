@@ -41,7 +41,7 @@
                         <input type="text" class="form-control" name="porcentaje_avance" id="porcentaje_avance" value="<?=$acuerdos_sesion['porcentaje_avance'] ?>">
                     </div>
                     <div class="form-group col-md-2">
-                        <label for="solicitud_iplaneg">¿Solicitud a Iplaneg?</label>
+                        <label for="solicitud_iplaneg">¿Involucra a Iplaneg?</label>
                         <?php echo form_error('solicitud_iplaneg'); ?>
                         <select class="custom-select" name="solicitud_iplaneg" id="solicitud_iplaneg">
                             <option value="" <?= ($acuerdos_sesion['solicitud_iplaneg'] == '') ? 'selected' : '' ?> ></option>
