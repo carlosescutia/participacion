@@ -26,6 +26,7 @@ class Consejos extends CI_Controller {
         $this->load->model('calidad_participacion_model');
         $this->load->model('accesos_sistema_model');
         $this->load->model('bitacora_model');
+        $this->load->model('acuerdos_sesion_model');
     }
 
     public function lista()
@@ -87,6 +88,7 @@ class Consejos extends CI_Controller {
             $data['plazos'] = $this->plazos_model->get_plazos();
             $data['atingencias'] = $this->atingencias_model->get_atingencias();
             $data['calidad_participacion'] = $this->calidad_participacion_model->get_calidad_participacion();
+            $data['acuerdos_consejo'] = $this->acuerdos_sesion_model->get_acuerdos_consejo ($dependencia, $area, $cve_rol, $cve_consejo, 0);
 
             $this->load->view('templates/header', $data);
             $this->load->view('consejos/detalle', $data);
@@ -154,7 +156,7 @@ class Consejos extends CI_Controller {
                 );
                 $this->bitacora_model->guardar($data);
 
-                redirect('consejos/lista');
+                redirect('consejos/detalle/'.$cve_consejo);
             }
 
             $data = array(
