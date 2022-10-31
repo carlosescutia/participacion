@@ -49,7 +49,7 @@ class Asistencia_sesion_model extends CI_Model {
 
     public function generar_lista($cve_sesion, $cve_consejo)
     {
-        $sql = "insert into asistencia_sesion (cve_sesion, cve_consejo, nom_actor, organizacion, nom_sector, asistencia, cve_grado_participacion) select ? as cve_sesion, ca.cve_consejo, a.nombre || ' ' || a.apellido_pa || ' ' || a.apellido_ma as nom_actor, a.organizacion, s.nom_sector, 'n' as asistencia, 4 as cve_grado_participacion from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor left join sectores s on a.cve_sector = s.cve_sector where ca.cve_consejo = ? order by ca.status desc, ca.cve_cargo ";
+        $sql = "insert into asistencia_sesion (cve_sesion, cve_consejo, nom_actor, organizacion, nom_sector, asistencia, cve_grado_participacion) select ? as cve_sesion, ca.cve_consejo, a.nombre || ' ' || a.apellido_pa || ' ' || a.apellido_ma as nom_actor, a.organizacion, s.nom_sector, 'n' as asistencia, 5 as cve_grado_participacion from consejos_actores ca left join actores a on ca.cve_actor = a.cve_actor left join sectores s on a.cve_sector = s.cve_sector where ca.cve_consejo = ? order by ca.status desc, ca.cve_cargo ";
         $query = $this->db->query($sql, array($cve_sesion, $cve_consejo));
     }
 
