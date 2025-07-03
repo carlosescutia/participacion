@@ -5,7 +5,7 @@ class Consejos_model extends CI_Model {
         parent::__construct();
     }
 
-    public function get_consejos_dependencia($dependencia, $area, $cve_rol) {
+    public function get_consejos_dependencia($dependencia, $area, $cve_rol, $status) {
         if ($cve_rol == 'sup') {
             $area = '%';
         }
@@ -13,9 +13,20 @@ class Consejos_model extends CI_Model {
             $dependencia = '%';
             $area = '%';
         }
-        $sql = "select c.*, (case when c.status=1 then 'activo' when c.status=0 then 'inactivo' else '' end) as nom_status from consejos c where c.dependencia LIKE ? and c.area LIKE ? order by c.status, c.nom_consejo";
-        $query = $this->db->query($sql, array($dependencia, $area));
-        return $query->result_array();
+        $sql = "select c.*, (case when c.status=1 then 'activo' when c.status=0 then 'inactivo' else '' end) as nom_status from consejos c where c.dependencia LIKE ? and c.area LIKE ? ";
+
+        $parametros = array();
+        array_push($parametros, "$dependencia");
+        array_push($parametros, "$area");
+        if ($status == '0' or $status == '1') {
+            $sql .= 'and c.status = ? ' ;
+            array_push($parametros, "$status");
+        }
+        $sql .= ""
+            ."order by c.status, c.nom_consejo"
+            ."";
+        $query = $this->db->query($sql, $parametros);
+        return $query->result_array() ;
     }
 
     public function get_consejo_dependencia($dependencia, $area, $cve_consejo, $cve_rol) {

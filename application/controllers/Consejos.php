@@ -42,7 +42,37 @@ class Consejos extends CI_Controller {
             $data['cve_rol'] = $cve_rol;
             $data['accesos_sistema_rol'] = explode(',', $this->accesos_sistema_model->get_accesos_sistema_rol($cve_rol)['accesos']);
 
-            $data['consejos'] = $this->consejos_model->get_consejos_dependencia($dependencia, $area, $cve_rol);
+            $filtros = $this->input->post();
+            // si hay selecciones de filtros
+            if ($filtros) {
+                // se obtienen selecciones de los selects
+                $status_filtro = $filtros['status_filtro'];
+
+                // se almacenan selecciones en la sesión
+                $filtros_consejos = array (
+                    'status_filtro' => $status_filtro,
+                );
+                $this->session->set_userdata($filtros_consejos);
+            } else {
+                // si no hay selecciones de filtros (ej primera vez que se accede)
+
+                // si hay valor almacenado en la sesión, se utiliza
+                if ( $this->session->userdata('status_filtro') ) {
+                    $status_filtro = $this->session->userdata('status_filtro');
+                } else {
+                    // si no, se usa valor default
+                    $status_filtro = '1';
+                }
+            }
+
+            // items seleccionados de los selects
+            $data['status_filtro'] = $status_filtro;
+
+            // catálogos para llenar los selects
+            // ninguno en este caso
+
+            // datos obtenidos teniendo en cuenta los filtros
+            $data['consejos'] = $this->consejos_model->get_consejos_dependencia($dependencia, $area, $cve_rol, $status_filtro);
 
             $this->load->view('templates/header', $data);
             $this->load->view('consejos/lista', $data);
