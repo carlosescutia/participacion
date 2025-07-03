@@ -12,7 +12,7 @@
                             <div class="col-sm-4 mb-3">
                                 <select class="custom-select custom-select-sm bg-primary-subtle border border-primary-subtle" name="status_filtro" onchange="this.form.submit()">
                                     <option value="1" <?= ($status_filtro == '1') ? 'selected' : '' ?> >Consejos activos</option>
-                                    <option value="0" <?= ($status_filtro == '') ? 'selected' : '' ?> >Consejos inactivos</option>
+                                    <option value="0" <?= ($status_filtro == '0') ? 'selected' : '' ?> >Consejos inactivos</option>
                                     <option value="2" <?= ($status_filtro == '2') ? 'selected' : '' ?> >Consejos activos e inactivos</option>
                                 </select>
                             </div>
