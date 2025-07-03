@@ -28,6 +28,10 @@
         <script src="<?=base_url()?>/js/bootstrap-combobox.js"></script>
         <link rel="stylesheet" type="text/css" href="<?=base_url()?>css/bootstrap-combobox.css" />
 
+        <!-- datatables -->
+        <link href="<?=base_url()?>css/datatables.min.css" rel="stylesheet"/>
+        <script src="<?=base_url()?>js/datatables.min.js"></script>
+
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-9XLFF90V4W"></script>
         <script>

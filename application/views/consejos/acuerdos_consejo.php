@@ -3,7 +3,7 @@
         <strong>Acuerdos del consejo</strong>
     </div>
     <div class="card-body">
-        <table class="table table-striped table-sm">
+        <table id="tbl_acuerdos" class="table table-striped table-sm">
             <thead>
                 <tr>
                     <th scope="col">Codigo</th>
@@ -48,3 +48,13 @@
         </table>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready( function () {
+        $('#tbl_acuerdos').DataTable( {
+            language: {
+                url: '<?=base_url()?>js/es-MX.json',
+            },
+        });
+    });
+</script>
